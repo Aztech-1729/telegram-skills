@@ -74,7 +74,7 @@ class PublishTests(OfflineTests):
         self.source_alert = self.enterContext(patch.object(automation, "source_alert"))
         self.validation = self.enterContext(patch.object(automation, "start_validation"))
         self.protection = {"protected": True, "protection": {
-            "required_status_checks": {"contexts": ["validation"]}}}
+            "required_status_checks": {"contexts": ["validation"], "strict": True}}}
         self.tree = {"truncated": False, "tree": []}
         self.pulls = []
         self.ref = None
@@ -118,6 +118,7 @@ class PublishTests(OfflineTests):
         for protection in (
             {"protected": False}, {"protected": True},
             {"protected": True, "protection": {"required_status_checks": {"contexts": ["lint"]}}},
+            {"protected": True, "protection": {"required_status_checks": {"contexts": ["validation"], "strict": False}}},
         ):
             with self.subTest(protection=protection):
                 self.protection = protection
@@ -126,6 +127,11 @@ class PublishTests(OfflineTests):
                 self.git_head.assert_not_called()
                 self.assertEqual(self.mutations(), [])
         self.source_alert.assert_not_called()
+
+    def test_publish_accepts_public_branch_response_without_admin_only_strict_field(self):
+        del self.protection["protection"]["required_status_checks"]["strict"]
+        automation.publish(self.report_path)
+        self.validation.assert_called_once_with(42, "new-commit")
 
     def test_publish_rejects_non_default_branch_and_untrusted_events(self):
         for event, ref in (("pull_request", "refs/heads/main"), ("push", "refs/heads/main"),
