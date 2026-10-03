@@ -72,6 +72,7 @@ class PublishTests(OfflineTests):
         self.paths = self.enterContext(patch.object(
             automation, "generated_paths", side_effect=lambda: selector(self.root)))
         self.source_alert = self.enterContext(patch.object(automation, "source_alert"))
+        self.validation = self.enterContext(patch.object(automation, "start_validation"))
         self.protection = {"protected": True, "protection": {
             "required_status_checks": {"contexts": ["validation"]}}}
         self.tree = {"truncated": False, "tree": []}
@@ -150,7 +151,7 @@ class PublishTests(OfflineTests):
             automation.publish(self.report_path)
         self.assertEqual(self.mutations(), [])
 
-    def test_publish_only_writes_generated_paths_and_dispatches_validation(self):
+    def test_publish_only_writes_generated_paths_and_starts_native_validation(self):
         with patch.dict(os.environ, {"GITHUB_EVENT_NAME": "workflow_dispatch"}):
             automation.publish(self.report_path)
         tree_call = next(item for item in self.mutations() if item.args[0] == PREFIX + "/git/trees")
@@ -169,8 +170,7 @@ class PublishTests(OfflineTests):
         self.command.assert_called_once_with([
             "gh", "pr", "merge", "42", "--repo", automation.REPO, "--auto", "--squash",
             "--match-head-commit", "new-commit"], check=True)
-        self.api.assert_any_call(PREFIX + "/actions/workflows/validate.yml/dispatches", "POST", {
-            "ref": automation.BRANCH})
+        self.validation.assert_called_once_with(42, "new-commit")
         self.source_alert.assert_called_once_with(REPORT)
 
     def test_unchanged_blobs_still_refresh_alerts_without_a_commit_or_pr(self):

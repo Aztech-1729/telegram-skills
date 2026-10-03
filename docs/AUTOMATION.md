@@ -14,9 +14,9 @@ separate observation, not a new review date.
 | Workflow | Trigger | Result |
 |---|---|---|
 | [Validate skill pack](../.github/workflows/validate.yml) | Push, pull request, manual run and Monday 04:17 UTC | Pack and behavior checks, language builds, public HTTP checks, optional default-branch `getMe` and the required `validation` gate |
-| [Refresh upstream evidence](../.github/workflows/upstream-refresh.yml) | Daily 04:37 UTC and manual run on the default branch | Observed source state, aggregate/per-skill reports, a generated-evidence PR, explicit validation dispatch and a deduplicated source-review issue when needed |
+| [Refresh upstream evidence](../.github/workflows/upstream-refresh.yml) | Daily 04:37 UTC and manual run on the default branch | Observed source state, aggregate/per-skill reports, a generated-evidence PR, native pull-request validation approval and a deduplicated source-review issue when needed |
 | [Eligible dependency auto-merge](../.github/workflows/dependabot-automerge.yml) | Eligible Dependabot pull-request events | Enables protected auto-merge for verified minor/patch updates within allowed paths |
-| [Automation alerts](../.github/workflows/automation-alerts.yml) | Completion of monitored default-branch validation/refresh runs | Creates or updates a deduplicated failure issue and records recovery |
+| [Automation alerts](../.github/workflows/automation-alerts.yml) | Completion of validation/refresh runs | Records default-branch failures/recovery; keeps eligible bot PRs current with main and starts native tests |
 | [Dependabot](../.github/dependabot.yml) | Weekly | Dependency PRs for pip, npm, Go modules, Maven, NuGet, Composer, Cargo and GitHub Actions |
 
 Times are UTC. The [Actions history](https://github.com/Aztech-1729/telegram-skills/actions)
@@ -71,15 +71,19 @@ boundary and needs review of the destination and its ownership.
 
 The refresh checks out trusted default-branch code without persisted checkout
 credentials. Its publishing step uses the run's short-lived `GITHUB_TOKEN` to
-update the automation branch and PR, dispatch validation and request protected
+update the automation branch and PR, start validation and request protected
 auto-merge. No personal access token is stored for this automation.
 
-Validation is explicitly dispatched for the generated branch. This avoids relying
-on implicit events from a token-created commit or PR: GitHub suppresses some such
-events and may require approval for token-created PR workflow runs.
+GitHub creates approval-required pull-request runs for token-created PRs. The
+refresh approves only the native validation run for its own generated PR and exact
+commit, after verifying the repository, author, branch and workflow identity.
+Native pull-request checks satisfy the required merge gate; manually dispatched
+workflow checks do not qualify as required pull-request checks.
 [GitHub documents the token-trigger rules](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow).
 
 The default branch requires the `validation` check with an up-to-date branch.
+After successful validation, the maintenance job updates already eligible bot PRs
+that have fallen behind main and approves their exact native test runs.
 Auto-merge waits for the required gate; it does not bypass it. The automation
 verifies that the gate is configured before requesting auto-merge. Branch deletion
 and force pushes are disabled on the protected default branch; an administrator's
@@ -107,6 +111,7 @@ reviewed version table or certify new API behavior.
 | Validation | `contents: read` | Pull-request checks have no Telegram secret; credentials are not persisted by checkout |
 | Source refresh | Job-level `contents`, `pull-requests`, `actions` and `issues`: write; no default permissions | Trusted default-branch checkout; publishing token is passed only to the publishing step |
 | Dependabot auto-merge | Job-level `contents` and `pull-requests`: write; no default permissions | Verifies metadata and allowed diffs without checking out PR code |
+| Update maintenance | Job-level `contents`, `pull-requests` and `actions`: write | Trusted main; only already eligible, auto-merge-enabled bot PRs are updated |
 | Failure alerts | `contents: read`, `issues: write`, `actions: read` | Uses trusted default-branch code and workflow metadata, not PR artifacts or code |
 
 Repository settings must permit Actions to create pull requests and use the
