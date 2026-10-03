@@ -16,6 +16,9 @@ class PluginTests(unittest.TestCase):
         self.root = Path(self.enterContext(TemporaryDirectory()))
         self.manifests = {name: json.loads((plugins.ROOT / name).read_text(encoding="utf-8")) for name in (
             *plugins.MANIFESTS, ".agents/plugins/marketplace.json", ".claude-plugin/marketplace.json")}
+        # Keep fixture versions stable when the published pack advances.
+        for name in plugins.MANIFESTS:
+            self.manifests[name]["version"] = "1.0.0"
         for name in self.manifests[plugins.MANIFESTS[0]]["skills"]:
             folder = self.root / name[2:]
             folder.mkdir()
