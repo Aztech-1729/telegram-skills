@@ -1,0 +1,190 @@
+name: Validate skill pack
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 4 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  python-and-javascript:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.12'
+      - name: Install validation dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements-dev.txt
+      - name: Validate skills, examples, and local links
+        run: python scripts/validate_pack.py
+      - name: Run isolated offline behavioral suites
+        run: python scripts/run_offline_checks.py
+      - name: Test maintenance and online-check failure paths
+        run: python -m unittest discover -s tests -p 'test_*.py'
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: telegram-bot-javascript/assets/starter
+      - run: npm test
+        working-directory: telegram-bot-javascript/assets/starter
+      - run: node --check telegram-bot-miniapps/assets/todo/app.js
+      - run: git diff --check
+
+  go:
+    name: Go (${{ matrix.project }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - telegram-bot-go-botapi/assets/go-telegram-echo
+          - telegram-bot-go-botapi/assets/gotgbot-echo
+          - telegram-bot-go-botapi/assets/classic-echo
+          - telegram-bot-gotd/assets/echo
+          - telegram-bot-gotd-contrib/assets/reliable-echo
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
+        with:
+          go-version: '1.27.0'
+          cache: false
+      - name: Verify dependency checksums and compile
+        working-directory: ${{ matrix.project }}
+        env:
+          GOMEMLIMIT: 5GiB
+        run: |
+          go mod download
+          go mod verify
+          go build -p 2 ./...
+
+  java:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
+        with:
+          distribution: temurin
+          java-version: '17'
+      - run: mvn --batch-mode --no-transfer-progress verify
+        working-directory: telegram-bot-java/assets/echo
+
+  dotnet:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6
+        with:
+          dotnet-version: '8.0.x'
+      - run: dotnet build --configuration Release --nologo
+        working-directory: telegram-bot-dotnet/assets/starter
+
+  php:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Show runner-provided PHP and Composer versions
+        run: |
+          php --version
+          composer --version
+      - run: composer validate --no-check-publish
+        working-directory: telegram-bot-php/assets/starter
+      - run: composer install --no-interaction --no-progress --no-scripts --no-plugins --prefer-dist
+        working-directory: telegram-bot-php/assets/starter
+      - name: Lint and load the SDK without contacting Telegram
+        working-directory: telegram-bot-php/assets/starter
+        run: |
+          php -l webhook.php
+          php -r 'require "vendor/autoload.php"; exit(class_exists("Telegram\\Bot\\Api") ? 0 : 1);'
+
+  rust:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Use the runner's stable Rust toolchain
+        run: |
+          rustup default stable
+          rustc --version
+          cargo --version
+      - run: cargo check
+        working-directory: telegram-bot-rust/assets/echo
+
+  public-online:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.12'
+      - name: Check public documentation and package endpoints
+        run: python scripts/check_online.py --report "$RUNNER_TEMP/online-checks.json"
+
+  telegram-read-only:
+    # Secrets never enter pull-request jobs or workflows dispatched on other branches.
+    if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Read-only test-bot authentication (explicit skip when unconfigured)
+        env:
+          TELEGRAM_TEST_BOT_TOKEN: ${{ secrets.TELEGRAM_TEST_BOT_TOKEN }}
+        run: python3 scripts/telegram_smoke.py
+
+  validation:
+    name: validation
+    if: always()
+    needs: [python-and-javascript, go, java, dotnet, php, rust, public-online, telegram-read-only]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Require all applicable checks to succeed
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: |
+          python3 - <<'PY'
+          import json, os, sys
+          results = json.loads(os.environ['RESULTS'])
+          failed = [name for name, job in results.items()
+                    if job['result'] != 'success'
+                    and not (name == 'telegram-read-only' and job['result'] == 'skipped')]
+          print('Failed or cancelled jobs: ' + ', '.join(failed) if failed else 'All required validation jobs passed.')
+          sys.exit(bool(failed))
+          PY
