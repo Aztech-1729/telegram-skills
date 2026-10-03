@@ -1,0 +1,9 @@
+:root { color-scheme: light dark; }
+body { margin: 0; font: 16px system-ui, sans-serif; background: var(--tg-theme-bg-color, #fff); color: var(--tg-theme-text-color, #161616); }
+main { max-width: 34rem; margin: auto; padding: calc(1rem + var(--tg-content-safe-area-inset-top, 0px)) 1rem calc(1rem + var(--tg-content-safe-area-inset-bottom, 0px)); }
+label { display: block; margin-bottom: .5rem; }
+input, button { padding: .7rem; border-radius: .5rem; border: 1px solid var(--tg-theme-hint-color, #777); }
+button { cursor: pointer; background: var(--tg-theme-button-color, #2563eb); color: var(--tg-theme-button-text-color, white); }
+button:disabled { opacity: .5; cursor: default; }
+li { display: flex; justify-content: space-between; gap: 1rem; margin: 1rem 0; overflow-wrap: anywhere; }
+#status { color: var(--tg-theme-hint-color, #555); }

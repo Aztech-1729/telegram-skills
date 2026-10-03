@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>My todos</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>My todos</h1>
+    <p id="status" role="status">Signing in…</p>
+    <form id="form">
+      <label for="text">New todo</label>
+      <input id="text" maxlength="500" required disabled>
+      <button id="add" disabled>Add</button>
+    </form>
+    <ul id="list"></ul>
+    <button id="logout" disabled>Sign out</button>
+  </main>
+</body>
+</html>

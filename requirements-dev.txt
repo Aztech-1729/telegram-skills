@@ -1,0 +1,9 @@
+# Versions used for offline checks, not claims about latest upstream releases.
+PyYAML==6.0.3
+python-telegram-bot[job-queue,rate-limiter,webhooks]==22.8
+aiogram[redis,i18n]==3.31.0
+Telethon==1.45.0
+fastapi==0.115.3
+httpx==0.28.1
+SQLAlchemy==2.0.36
+aiosqlite==0.20.0

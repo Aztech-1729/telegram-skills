@@ -1,0 +1,5 @@
+{
+  "name": "telegram-skills/php-starter",
+  "description": "Standalone Telegram SDK webhook echo starter",
+  "require": { "php": ">=8.0", "irazasyed/telegram-bot-sdk": "3.16.0" }
+}
