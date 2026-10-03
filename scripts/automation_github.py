@@ -111,7 +111,7 @@ def start_validation(number, sha, branch=BRANCH, author="github-actions[bot]"):
 
 
 def dependency_paths():
-    allowed = {"requirements-dev.txt"}
+    allowed = {"requirements-dev.txt", "package.json", "package-lock.json"}
     for folder in ["telegram-bot-python-telegram-bot/assets/starter", "telegram-bot-aiogram/assets/starter",
                    "telegram-bot-telethon/assets/starter", "telegram-bot-recipes/assets"]:
         allowed.add(f"{folder}/requirements.txt")

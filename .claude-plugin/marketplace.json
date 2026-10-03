@@ -1,0 +1,17 @@
+{
+  "name": "aztech",
+  "owner": {
+    "name": "Aztech",
+    "url": "https://github.com/Aztech-1729"
+  },
+  "description": "Focused Telegram skills for bots, MTProto clients and Mini Apps across seven languages.",
+  "plugins": [
+    {
+      "name": "telegram",
+      "source": "./",
+      "description": "18 Telegram skills with framework references and runnable examples.",
+      "category": "Developer Tools",
+      "strict": true
+    }
+  ]
+}

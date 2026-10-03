@@ -26,6 +26,8 @@ The agent may prepare, test, independently review and merge:
   behavior tests.
 - Updates to reviewed source state and its generated reports, for the exact
   source hashes that were actually reviewed.
+- Paired patch-version updates to the native plugin manifests when reviewed
+  skill content changes, under the narrow distribution rule below.
 
 It may re-enable an existing scheduled workflow that GitHub disabled for
 inactivity, or dispatch the existing validation/source-refresh workflow when its
@@ -34,9 +36,11 @@ configuration before either action. Enabling an existing workflow does not
 authorize a change to its permissions, triggers or code.
 
 Changes to workflow behavior, maintenance helpers, permissions, source destination
-allowlists, repository protection, credentials, licensing or this maintenance
-policy need maintainer approval. The agent may investigate and propose those
-changes in a separate PR; it must leave them unmerged. Do not substitute an
+allowlists, repository protection, credentials, licensing, plugin/marketplace
+metadata or this maintenance policy need maintainer approval. The paired
+version-only change described below is the sole native-manifest exception.
+The agent may investigate and propose other foundation changes in a separate PR;
+it must leave them unmerged. Do not substitute an
 unverified mirror, disable TLS verification or weaken a required check to resolve
 a failure. Unattended merges must stay within the maintenance helper's file
 allowlist and cannot delete or rename files.
@@ -106,6 +110,38 @@ latest Telegram docs mention it. A cosmetic or irrelevant source change may
 need no guide edit. Record that conclusion and its evidence in the review PR
 rather than rewriting instructions to make the diff look substantial.
 
+## Keep native distribution current
+
+If an agent semantic maintenance PR actually changes instructions, source
+registers, examples or other resources inside a `telegram-bot-*` skill, increment
+the patch version in both
+[the Codex manifest](../.codex-plugin/plugin.json) and
+[the Claude Code manifest](../.claude-plugin/plugin.json) together. For example,
+both `1.0.0` versions become `1.0.1`. Preserve the major/minor numbers and every
+other field exactly. The new versions must match and increase by exactly one
+patch from the matching base versions.
+
+This rule governs the agent's reviewed content releases. Routine cloud Dependabot
+PRs retain their separate bounded manifest-only policy; they do not themselves
+publish a native plugin release.
+
+An observation-only update to generated `references/upstream-status.md` files
+does not bump the plugin version. Changes confined to shared repository records
+also do not represent a skill-package content change. Do not use a version-only
+PR as a substitute for a reviewed content update.
+
+The merge helper checks this paired exception against the immutable base and
+head manifests. Adding or removing metadata, changing skill paths, package or
+marketplace identity, permissions, source locations or any other manifest field
+requires a separate foundation PR that stays unmerged until maintainer approval.
+
+Run `npm ci --ignore-scripts`, the pack validator and
+`python scripts/check_installation.py` for distribution changes. The pack
+validator checks native packaging, and the real installer smoke check verifies
+complete resources and local routes for all 18 skills in linked/copied temporary
+projects.
+Keep the resulting package version and actual checks in the PR description.
+
 ## Record an actual source review
 
 Source observations and content review are separate records. A successful fetch
@@ -153,7 +189,8 @@ when current evidence is unavailable or the migration remains unresolved.
 ## Validate, independently review and merge
 
 Run the pack validator, relevant offline behavior suites and affected language
-builds. Use the full native pull-request validation workflow as the final merge
+builds. Include the real installation check for changes to packaged skill
+resources. Use the full native pull-request validation workflow as the final merge
 gate. Record the actual checks and results in the PR; distinguish a compile
 check, mocked transport behavior and a live Telegram check.
 

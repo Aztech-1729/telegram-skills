@@ -5,6 +5,8 @@ This helper does not invoke a model or treat an observation as an approval.
 Run it from trusted main; the separate Codex schedule follows the review runbook.
 """
 import argparse
+import base64
+import binascii
 from copy import deepcopy
 from datetime import datetime, timedelta, timezone
 import hashlib
@@ -23,6 +25,9 @@ AGENT_BRANCH = "automation/agent-maintenance-"
 ACTION_APP = 15368
 SHA = re.compile(r"[a-f0-9]{40}")
 DIGEST = re.compile(r"[a-f0-9]{64}")
+PLUGIN_MANIFESTS = {".codex-plugin/plugin.json", ".claude-plugin/plugin.json"}
+PLUGIN_VERSION = re.compile(r"(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)")
+MAX_MANIFEST_BYTES = 64 * 1024
 WORKFLOWS = {"validate.yml": 8 * 24, "upstream-refresh.yml": 48,
              "dependabot-automerge.yml": None, "automation-alerts.yml": None}
 
@@ -187,7 +192,8 @@ def allowed_file(name, skills):
     if ("\\" in name or path.is_absolute() or any(p in {".", "..", ".git", ".github"} for p in name.split("/")) or
             any(p.startswith(".env") and p != ".env.example" for p in path.parts)):
         return False
-    if name in {"README.md", "requirements-dev.txt", "automation/upstream-state.json"}:
+    if name in {"README.md", "requirements-dev.txt", "package.json", "package-lock.json",
+                "automation/upstream-state.json"}:
         return True
     if path.parts[0] in skills:
         return True
@@ -196,6 +202,97 @@ def allowed_file(name, skills):
     # Root tests exercise maintenance and live-credential boundaries. Behavior
     # tests beside an affected skill's examples remain in the skill allowlist.
     return False
+
+
+def unique_manifest_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("Duplicate key in plugin manifest")
+        result[key] = value
+    return result
+
+
+def invalid_manifest_constant(value):
+    raise ValueError("Non-JSON constant in plugin manifest")
+
+
+def immutable_manifest(entry):
+    """Decode a bounded Git blob, verifying that its bytes match the tree SHA."""
+    if (entry.get("type") != "blob" or entry.get("mode") != "100644" or
+            not isinstance(entry.get("sha"), str) or not SHA.fullmatch(entry["sha"])):
+        raise ValueError("Plugin manifest must be an existing regular Git blob")
+    blob = api(PREFIX + "/git/blobs/" + entry["sha"])
+    size, content = blob.get("size"), blob.get("content")
+    if (blob.get("sha") != entry["sha"] or blob.get("encoding") != "base64" or
+            type(size) is not int or not 0 < size <= MAX_MANIFEST_BYTES or
+            not isinstance(content, str) or len(content) > MAX_MANIFEST_BYTES * 2):
+        raise ValueError("Invalid or oversized plugin manifest blob")
+    try:
+        raw = base64.b64decode(content.replace("\n", "").replace("\r", ""), validate=True)
+    except (binascii.Error, ValueError) as exc:
+        raise ValueError("Invalid base64 plugin manifest blob") from exc
+    digest = hashlib.sha1(f"blob {len(raw)}\0".encode() + raw).hexdigest()
+    if len(raw) != size or digest != entry["sha"]:
+        raise ValueError("Plugin manifest bytes do not match their immutable Git blob")
+    try:
+        manifest = json.loads(raw.decode("utf-8"), object_pairs_hook=unique_manifest_object,
+                              parse_constant=invalid_manifest_constant)
+    except (UnicodeError, ValueError, RecursionError) as exc:
+        raise ValueError("Malformed plugin manifest JSON") from exc
+    if not isinstance(manifest, dict):
+        raise ValueError("Plugin manifest must be a JSON object")
+    return manifest
+
+
+def plugin_release(files, skills, expected_base, head_tree):
+    """Allow only a paired patch release accompanying actual skill changes."""
+    changed = {f["filename"]: f for f in files if f["filename"] in PLUGIN_MANIFESTS}
+    candidates = [f for f in files if PurePosixPath(f["filename"]).parts[0] in skills and
+                  not f["filename"].endswith("/references/upstream-status.md")]
+    if not changed and not candidates:
+        return
+    if changed and (set(changed) != PLUGIN_MANIFESTS or
+                    any(f["status"] != "modified" for f in changed.values())):
+        raise ValueError("Both existing native plugin manifests must change together")
+    base_tree = api(PREFIX + f"/git/trees/{expected_base}?recursive=1")
+    if base_tree.get("truncated") or head_tree.get("truncated"):
+        raise ValueError("Complete immutable trees are required for plugin releases")
+    trees = [{e["path"]: e for e in tree["tree"]} for tree in (base_tree, head_tree)]
+    if any(not isinstance(f.get("sha"), str) or not SHA.fullmatch(f["sha"]) or
+           trees[1].get(f["filename"], {}).get("sha") != f["sha"] for f in candidates):
+        raise ValueError("Skill content file digest is not from the reviewed head")
+    content_changed = any(
+        trees[0].get(f["filename"], {}).get("sha") != f["sha"]
+        for f in candidates)
+    if not changed:
+        if content_changed:
+            raise ValueError("Actual skill content changes require a paired native plugin patch release")
+        return
+    if not content_changed:
+        raise ValueError("A native plugin release must accompany actual skill content changes")
+    versions = [set(), set()]
+    for name in sorted(PLUGIN_MANIFESTS):
+        entries = [tree.get(name, {}) for tree in trees]
+        if changed[name]["sha"] != entries[1].get("sha"):
+            raise ValueError("Plugin manifest file digest is not from the reviewed head")
+        manifests = [immutable_manifest(entry) for entry in entries]
+        for index, manifest in enumerate(manifests):
+            version = manifest.get("version")
+            if not isinstance(version, str) or len(version) > 64 or not PLUGIN_VERSION.fullmatch(version):
+                raise ValueError("Plugin versions must be exact numeric major.minor.patch strings")
+            versions[index].add(tuple(int(part) for part in version.split(".")))
+        bodies = [{key: value for key, value in manifest.items() if key != "version"}
+                  for manifest in manifests]
+        canonical = [json.dumps(body, sort_keys=True, separators=(",", ":"), ensure_ascii=False,
+                                allow_nan=False) for body in bodies]
+        if canonical[0] != canonical[1]:
+            raise ValueError("Native plugin release may change only the version field")
+    if len(versions[0]) != 1 or len(versions[1]) != 1:
+        raise ValueError("Native plugin manifests must have equal base and release versions")
+    before, after = next(iter(versions[0])), next(iter(versions[1]))
+    if after != (before[0], before[1], before[2] + 1):
+        raise ValueError("Native plugin release must increment the current patch version exactly once")
 
 
 def merge(number, expected_head, expected_base, review, root=ROOT, current_time=None):
@@ -213,12 +310,14 @@ def merge(number, expected_head, expected_base, review, root=ROOT, current_time=
     files = paginated(PREFIX + f"/pulls/{number}/files")
     skills = {p.parent.name for p in root.glob("telegram-bot-*/SKILL.md")}
     if not files or any(f["status"] not in {"added", "modified"} or
-                        not allowed_file(f["filename"], skills) for f in files):
+                        not (allowed_file(f["filename"], skills) or f["filename"] in PLUGIN_MANIFESTS)
+                        for f in files):
         raise ValueError("Change touches foundation/policy files or deletes/renames; automatic merge refused")
     tree = api(PREFIX + f"/git/trees/{expected_head}?recursive=1")
     modes = {e["path"]: (e["type"], e["mode"]) for e in tree["tree"]}
     if tree.get("truncated") or any(modes.get(f["filename"]) != ("blob", "100644") for f in files):
         raise ValueError("Incomplete tree, symlink, submodule or non-regular changed file")
+    plugin_release(files, skills, expected_base, tree)
     if (review.get("schema_version") != 1 or review.get("repository") != REPO or
             review.get("pull_request") != number or review.get("head_sha") != expected_head or
             review.get("base_sha") != expected_base or review.get("files_sha256") != files_digest(files) or

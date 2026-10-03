@@ -329,6 +329,12 @@
         "telegram-bot-rust"
       ],
       "label": "teloxide current docs"
+    },
+    {
+      "url": "https://registry.npmjs.org/skills/latest",
+      "kind": "npm-release",
+      "skills": [],
+      "label": "Agent skills installer"
     }
   ],
   "fetch_overrides": {

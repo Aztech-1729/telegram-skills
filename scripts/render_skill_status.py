@@ -39,8 +39,8 @@ def render(root=ROOT):
             lines.append(f"- Unavailable: [{url}]({url}); {item['last_failure']['failure_kind']}. Last successful evidence is retained.")
         if not failed and not pending:
             lines.append("All tracked sources were available and no unresolved change was detected against the stored observations.")
-        lines += ["", "See the [repository source status](../../docs/UPSTREAM_STATUS.md) and "
-                  "[automation policy](../../docs/AUTOMATION.md) for coverage and review steps.", ""]
+        lines += ["", "See the [repository source status](https://github.com/Aztech-1729/telegram-skills/blob/main/docs/UPSTREAM_STATUS.md) and "
+                  "[automation policy](https://github.com/Aztech-1729/telegram-skills/blob/main/docs/AUTOMATION.md) for coverage and review steps.", ""]
         (skill.parent / "references/upstream-status.md").write_text("\n".join(lines), encoding="utf-8", newline="\n")
 
 

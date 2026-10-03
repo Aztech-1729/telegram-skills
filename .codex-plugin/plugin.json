@@ -1,0 +1,46 @@
+{
+  "name": "telegram",
+  "version": "1.0.0",
+  "description": "18 Telegram skills for Bot API, MTProto and Mini App development across Python, Go, JavaScript/TypeScript, Java, .NET, PHP and Rust.",
+  "author": {
+    "name": "Aztech",
+    "url": "https://github.com/Aztech-1729"
+  },
+  "homepage": "https://github.com/Aztech-1729/telegram-skills",
+  "repository": "https://github.com/Aztech-1729/telegram-skills",
+  "keywords": ["telegram", "bot-api", "mtproto", "mini-apps", "python", "go", "javascript", "java", "dotnet", "php", "rust"],
+  "skills": [
+    "./telegram-bot-advanced-features",
+    "./telegram-bot-aiogram",
+    "./telegram-bot-dotnet",
+    "./telegram-bot-fundamentals",
+    "./telegram-bot-go-botapi",
+    "./telegram-bot-gotd",
+    "./telegram-bot-gotd-contrib",
+    "./telegram-bot-java",
+    "./telegram-bot-javascript",
+    "./telegram-bot-keyboards-ui",
+    "./telegram-bot-miniapps",
+    "./telegram-bot-payments-stars",
+    "./telegram-bot-php",
+    "./telegram-bot-python-telegram-bot",
+    "./telegram-bot-recipes",
+    "./telegram-bot-rich-messaging",
+    "./telegram-bot-rust",
+    "./telegram-bot-telethon"
+  ],
+  "interface": {
+    "displayName": "Telegram Skills",
+    "shortDescription": "Telegram bot and app skills",
+    "longDescription": "Choose focused Telegram development guidance for bots, MTProto clients, Mini Apps, messaging, keyboards, payments and reusable recipes. Includes versioned framework references and runnable examples across seven languages. This is a skills-only package: it supplies instructions and resources, not Telegram credentials, a running bot or a hosted service.",
+    "developerName": "Aztech",
+    "category": "Developer Tools",
+    "capabilities": ["Build Telegram bots", "Create Mini Apps", "Use Bot API and MTProto", "Integrate payments and Stars", "Choose framework examples"],
+    "websiteURL": "https://github.com/Aztech-1729/telegram-skills",
+    "supportURL": "https://github.com/Aztech-1729/telegram-skills/issues",
+    "composerIcon": "./assets/plugin-icon.svg",
+    "logo": "./assets/plugin-icon.svg",
+    "brandColor": "#087DB6",
+    "defaultPrompt": ["Choose the right Telegram skill for my bot and framework.", "Build a Telegram bot using the matching skill and starter.", "Review my Telegram Mini App against the relevant skills."]
+  }
+}

@@ -1,6 +1,8 @@
 """Offline regressions for source review and protected exact-commit AI merges."""
+import base64
 from copy import deepcopy
 from datetime import datetime, timedelta, timezone
+import hashlib
 import json
 from pathlib import Path
 import sys
@@ -27,6 +29,45 @@ def pr(number=8):
             "mergeable": True, "mergeable_state": "clean", "html_url": "https://github.com/" + agent.REPO + "/pull/8"}
 
 
+class PluginFixture:
+    """Git's actual blob shape, with immutable byte-derived identifiers."""
+    def __init__(self):
+        resource = "telegram-bot-alpha/references/guide.md"
+        self.files = [{"filename": resource, "status": "modified", "sha": HEAD}]
+        self.base_tree = {"truncated": False, "tree": [
+            {"path": resource, "type": "blob", "mode": "100644", "sha": BASE}]}
+        self.head_tree = {"truncated": False, "tree": [
+            {"path": resource, "type": "blob", "mode": "100644", "sha": HEAD}]}
+        self.blobs = {}
+        self.documents = {
+            name: {"name": "telegram", "version": "1.0.0", "skills": ["./telegram-bot-alpha"],
+                   "author": {"name": "Aztech"}, "interface": {"displayName": "Telegram Skills"}}
+            for name in agent.PLUGIN_MANIFESTS}
+        for name, document in self.documents.items():
+            self.store(name, document, base=True)
+            self.store(name, {**document, "version": "1.0.1"})
+
+    def store(self, name, document=None, *, base=False, raw=None):
+        raw = raw if raw is not None else json.dumps(document).encode()
+        sha = hashlib.sha1(f"blob {len(raw)}\0".encode() + raw).hexdigest()
+        self.blobs[sha] = {"sha": sha, "encoding": "base64", "size": len(raw),
+                           "content": base64.encodebytes(raw).decode("ascii")}
+        tree = self.base_tree if base else self.head_tree
+        tree["tree"] = [entry for entry in tree["tree"] if entry["path"] != name]
+        tree["tree"].append({"path": name, "type": "blob", "mode": "100644", "sha": sha})
+        if not base:
+            self.files = [entry for entry in self.files if entry["filename"] != name]
+            self.files.append({"filename": name, "status": "modified", "sha": sha})
+        return sha
+
+    def respond(self, path, **kwargs):
+        if path == agent.PREFIX + f"/git/trees/{BASE}?recursive=1":
+            return self.base_tree
+        if path.startswith(agent.PREFIX + "/git/blobs/"):
+            return self.blobs[path.rsplit("/", 1)[1]]
+        raise AssertionError("Unexpected Git blob request: " + path)
+
+
 class OfflineTests(unittest.TestCase):
     def setUp(self):
         self.api = self.enterContext(patch.object(agent, "api", side_effect=AssertionError("Unexpected GitHub call")))
@@ -41,7 +82,7 @@ class MergeTests(OfflineTests):
     def setUp(self):
         super().setUp()
         self.pull = pr()
-        self.files = [{"filename": "telegram-bot-alpha/references/guide.md", "status": "modified", "sha": HEAD}]
+        self.files = [{"filename": "README.md", "status": "modified", "sha": HEAD}]
         self.protection = {"enforce_admins": {"enabled": True}, "required_status_checks": {
             "strict": True, "checks": [{"context": "validation", "app_id": agent.ACTION_APP}]}}
         self.tree = {"truncated": False, "tree": [{"path": self.files[0]["filename"], "type": "blob", "mode": "100644"}]}
@@ -56,6 +97,7 @@ class MergeTests(OfflineTests):
                        "head_sha": HEAD, "base_sha": BASE, "files_sha256": agent.files_digest(self.files),
                        "reviewer": "independent-reviewer", "reviewed_at": STAMP, "approved": True, "findings": []}
         self.command.return_value.returncode = 0
+        self.plugin_fixture = None
         self.api.side_effect = self.respond
 
     def respond(self, path, method="GET", data=None, missing=False):
@@ -73,6 +115,8 @@ class MergeTests(OfflineTests):
             return self.files
         if path == agent.PREFIX + f"/git/trees/{HEAD}?recursive=1":
             return self.tree
+        if self.plugin_fixture and ("/git/blobs/" in path or f"/git/trees/{BASE}?" in path):
+            return self.plugin_fixture.respond(path)
         if path.startswith(agent.PREFIX + "/actions/workflows/validate.yml/runs?"):
             return {"workflow_runs": [self.run]}
         if path.startswith(agent.PREFIX + f"/commits/{HEAD}/check-runs?"):
@@ -135,6 +179,9 @@ class MergeTests(OfflineTests):
                                  ("scripts/agent_maintenance.py", "modified"),
                                  ("automation/sources.json", "modified"),
                                  ("docs/AGENT_MAINTENANCE.md", "modified"),
+                                 (".agents/plugins/marketplace.json", "modified"),
+                                 (".claude-plugin/marketplace.json", "modified"),
+                                 ("assets/plugin-icon.svg", "modified"),
                                  ("telegram-bot-alpha/old.py", "removed"),
                                  ("telegram-bot-alpha/new.py", "renamed")):
             self.files = [{"filename": filename, "status": status, "sha": HEAD}]
@@ -211,13 +258,196 @@ class MergeTests(OfflineTests):
         self.assertEqual(result["files_sha256"], agent.files_digest(self.files))
         self.command.assert_not_called()
 
+    def release_fixture(self):
+        self.plugin_fixture = PluginFixture()
+        self.files = self.plugin_fixture.files
+        self.tree = self.plugin_fixture.head_tree
+        self.review["files_sha256"] = agent.files_digest(self.files)
+
+    def test_paired_plugin_patch_release_uses_normal_exact_merge(self):
+        self.release_fixture()
+        self.assertTrue(self.attempt()["merged"])
+        self.assertEqual(self.command.call_args.args[0][-2:], ["--match-head-commit", HEAD])
+
+    def test_actual_skill_change_without_plugin_release_refused(self):
+        self.release_fixture()
+        self.files = self.files[:1]
+        self.review["files_sha256"] = agent.files_digest(self.files)
+        self.refused()
+
+    def test_plugin_release_still_requires_same_review_and_native_ci(self):
+        self.release_fixture()
+        self.review["files_sha256"] = "d" * 64
+        self.refused()
+        self.review["files_sha256"] = agent.files_digest(self.files)
+        self.run["conclusion"] = "failure"
+        self.refused()
+
+    def test_root_npm_manifests_retain_independent_review_and_native_ci(self):
+        for name in ("package.json", "package-lock.json"):
+            self.files = [{"filename": name, "status": "modified", "sha": HEAD}]
+            self.tree = {"truncated": False, "tree": [{"path": name, "type": "blob", "mode": "100644"}]}
+            self.review["files_sha256"] = "d" * 64
+            self.refused()
+            self.review["files_sha256"] = agent.files_digest(self.files)
+            self.run["conclusion"] = "failure"
+            self.refused()
+            self.run["conclusion"] = "success"
+            self.assertTrue(self.attempt()["merged"])
+            self.command.reset_mock()
+
     def test_path_policy_blocks_escape_and_foundation(self):
         for name in ("../README.md", "/README.md", "telegram-bot-alpha/../x.py", "telegram-bot-alpha\\x.py",
                      "telegram-bot-alpha/.github/x.yml", "telegram-bot-alpha/.env", "new-skill/SKILL.md",
-                     "tests/test_agent_maintenance.py", "tests/test_dependency_automerge.py", "tests/test_online.py", "docs/AUTOMATION.md"):
+                     "tests/test_agent_maintenance.py", "tests/test_dependency_automerge.py", "tests/test_online.py", "docs/AUTOMATION.md",
+                     ".codex-plugin/plugin.json", ".claude-plugin/plugin.json", ".agents/plugins/marketplace.json",
+                     ".claude-plugin/marketplace.json"):
             self.assertFalse(agent.allowed_file(name, {"telegram-bot-alpha"}), name)
-        for name in ("README.md", "requirements-dev.txt", "telegram-bot-alpha/.env.example", "telegram-bot-alpha/assets/bot.py"):
+        for name in ("README.md", "requirements-dev.txt", "package.json", "package-lock.json",
+                     "telegram-bot-alpha/.env.example", "telegram-bot-alpha/assets/bot.py"):
             self.assertTrue(agent.allowed_file(name, {"telegram-bot-alpha"}), name)
+
+
+class PluginReleaseTests(OfflineTests):
+    def setUp(self):
+        super().setUp()
+        self.fixture = PluginFixture()
+        self.api.side_effect = self.fixture.respond
+        self.name = sorted(agent.PLUGIN_MANIFESTS)[0]
+
+    def attempt(self):
+        return agent.plugin_release(self.fixture.files, {"telegram-bot-alpha"}, BASE,
+                                    self.fixture.head_tree)
+
+    def refused(self):
+        with self.assertRaises(ValueError):
+            self.attempt()
+        self.command.assert_not_called()
+
+    def test_actual_decoded_blobs_allow_only_paired_patch(self):
+        self.assertIsNone(self.attempt())
+        paths = [call.args[0] for call in self.api.call_args_list]
+        self.assertEqual(paths[0], agent.PREFIX + f"/git/trees/{BASE}?recursive=1")
+        self.assertEqual(len([path for path in paths if "/git/blobs/" in path]), 4)
+        self.assertTrue(all("/git/" in path for path in paths))
+        self.command.assert_not_called()
+
+    def test_actual_skill_update_requires_release_even_when_manifests_omitted(self):
+        self.fixture.files = self.fixture.files[:1]
+        self.refused()
+        self.assertEqual(len(self.api.call_args_list), 1)
+
+    def test_generated_status_without_content_change_needs_no_release(self):
+        self.fixture.files = [{**self.fixture.files[0], "filename": "telegram-bot-alpha/references/upstream-status.md"}]
+        self.attempt()
+        self.api.assert_not_called()
+
+    def test_mode_only_skill_change_needs_no_release(self):
+        self.fixture.files = self.fixture.files[:1]
+        self.fixture.base_tree["tree"][0]["sha"] = HEAD
+        self.attempt()
+        self.assertEqual(len(self.api.call_args_list), 1)
+
+    def test_single_or_new_manifest_refused(self):
+        original = deepcopy(self.fixture.files)
+        self.fixture.files = [file for file in original if file["filename"] != self.name]
+        self.refused()
+        self.fixture.files = original
+        self.fixture.files[-1]["status"] = "added"
+        self.refused()
+
+    def test_all_non_version_fields_are_immutable(self):
+        document = deepcopy(self.fixture.documents[self.name])
+        for change in ({"name": "another"}, {"skills": ["./other"]}, {"permissions": ["network"]},
+                       {"author": {"name": "other"}}, {"interface": {"displayName": "Changed"}},
+                       {"mcpServers": {"remote": {"url": "https://example.invalid"}}}):
+            self.fixture.store(self.name, {**document, **change, "version": "1.0.1"})
+            self.refused()
+
+    def test_nested_json_type_changes_are_not_equal(self):
+        document = deepcopy(self.fixture.documents[self.name])
+        self.fixture.store(self.name, {**document, "enabled": True}, base=True)
+        self.fixture.store(self.name, {**document, "enabled": 1, "version": "1.0.1"})
+        self.refused()
+
+    def test_version_must_increment_exactly_one_patch_and_match_both(self):
+        for version in ("1.0.0", "0.9.9", "1.0.2", "1.1.0", "2.0.0", "1.0.1-beta", "01.0.1", 101, None):
+            for name, document in self.fixture.documents.items():
+                self.fixture.store(name, {**document, "version": version})
+            self.refused()
+        for name, document in self.fixture.documents.items():
+            self.fixture.store(name, {**document, "version": "1.0.1"})
+        self.fixture.store(self.name, {**self.fixture.documents[self.name], "version": "1.0.2"})
+        self.refused()
+
+    def test_unequal_or_invalid_base_versions_refused(self):
+        document = self.fixture.documents[self.name]
+        for version in ("1.0.1", "v1.0.0", None):
+            self.fixture.store(self.name, {**document, "version": version}, base=True)
+            self.refused()
+
+    def test_canonical_json_allows_only_order_and_whitespace_variations(self):
+        document = {**self.fixture.documents[self.name], "version": "1.0.1"}
+        raw = json.dumps(dict(reversed(list(document.items()))), indent=4).encode() + b"\n"
+        self.fixture.store(self.name, raw=raw)
+        self.attempt()
+
+    def test_malformed_duplicate_and_non_json_manifest_refused(self):
+        for raw in (b"{broken", b"[]", b"null", b'\xff',
+                    b'{"version":"1.0.1","version":"1.0.1"}',
+                    b'{"version":"1.0.1","nested":{"key":1,"key":1}}',
+                    b'{"version":"1.0.1","number":NaN}',
+                    b'{"version":"1.0.1","number":Infinity}'):
+            self.fixture.store(self.name, raw=raw)
+            self.refused()
+
+    def test_invalid_blob_encoding_digest_size_or_bytes_refused(self):
+        sha = next(entry["sha"] for entry in self.fixture.head_tree["tree"] if entry["path"] == self.name)
+        original = deepcopy(self.fixture.blobs[sha])
+        for change in ({"encoding": "utf-8"}, {"sha": "f" * 40}, {"size": -1}, {"size": True},
+                       {"size": original["size"] + 1}, {"size": agent.MAX_MANIFEST_BYTES + 1},
+                       {"content": "%%%"}, {"content": base64.b64encode(b"{}").decode()},
+                       {"content": "a" * (agent.MAX_MANIFEST_BYTES * 2 + 1)}):
+            self.fixture.blobs[sha] = {**original, **change}
+            self.refused()
+
+    def test_file_digest_must_match_exact_head_blob(self):
+        next(file for file in self.fixture.files if file["filename"] == self.name)["sha"] = "f" * 40
+        self.refused()
+
+    def test_skill_content_digest_drift_cannot_bypass_required_release(self):
+        self.fixture.files = self.fixture.files[:1]
+        for value in (None, "f" * 40):
+            self.fixture.files[0]["sha"] = value
+            self.refused()
+
+    def test_base_or_head_missing_nonregular_or_truncated_tree_refused(self):
+        for tree in (self.fixture.base_tree, self.fixture.head_tree):
+            tree["truncated"] = True
+            self.refused()
+            tree["truncated"] = False
+            entry = next(entry for entry in tree["tree"] if entry["path"] == self.name)
+            for mode in ("120000", "100755", "160000"):
+                entry["mode"] = mode
+                self.refused()
+            entry["mode"] = "100644"
+            tree["tree"].remove(entry)
+            self.refused()
+            tree["tree"].append(entry)
+
+    def test_release_requires_changed_skill_bytes_beyond_generated_status(self):
+        resource = deepcopy(self.fixture.files[0])
+        self.fixture.files = self.fixture.files[1:]
+        self.refused()
+        self.fixture.files.insert(0, {**resource, "filename": "package.json"})
+        self.refused()
+        self.fixture.files[0] = resource
+        self.fixture.base_tree["tree"][0]["sha"] = HEAD
+        self.refused()
+        self.fixture.base_tree["tree"][0]["sha"] = BASE
+        self.fixture.files[0]["filename"] = "telegram-bot-alpha/references/upstream-status.md"
+        self.fixture.head_tree["tree"][0]["path"] = self.fixture.files[0]["filename"]
+        self.refused()
 
 
 class AcknowledgeTests(OfflineTests):

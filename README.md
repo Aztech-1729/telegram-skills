@@ -10,6 +10,33 @@ Choose a framework, load the feature skills needed for the task, then use the
 linked reference and starter. Each skill has concise activation metadata,
 practical implementation guidance and a dated primary-source register.
 
+## Install
+
+Run this from the project where your agent works:
+
+```sh
+npx --yes skills add Aztech-1729/telegram-skills --all
+```
+
+This installs all **18 complete skills** and targets every agent supported by the
+[skills CLI](https://github.com/vercel-labs/skills#supported-agents), including
+Codex, Claude Code and OpenCode. Unconfigured agent directories may be skipped;
+check the installer output and rerun after configuring a host. The command does
+not install agent applications or deploy a Telegram bot. Node.js **22.20+**,
+npm and Git are required. No GitHub token or Telegram credential is needed to
+install this public pack.
+
+For just Codex, Claude Code and OpenCode:
+
+```sh
+npx --yes skills add Aztech-1729/telegram-skills --skill '*' --agent codex claude-code opencode --yes
+```
+
+Read the [installation guide](docs/INSTALLATION.md) for global installs, native
+plugins, update/removal commands, discovery paths and an instruction you can give
+your agent. Install the complete pack once; let the agent select the framework
+and feature skills relevant to each task.
+
 **Documentation review:** 2026-10-03 · **Telegram baseline:** Bot API 10.3
 · [Research and versions](docs/RESEARCH.md) · [Validation and limits](docs/VALIDATION.md)
 · [Upstream observations](docs/UPSTREAM_STATUS.md) · [Automation](docs/AUTOMATION.md)
@@ -109,7 +136,7 @@ suggested posts, gifts and paid media have implementation decision guides and
 official lookup routes in the [capability map](telegram-bot-fundamentals/references/api-capabilities.md).
 They do not each have an end-to-end starter in this pack.
 
-## Get the pack
+## Browse or contribute to the source
 
 This repository is public:
 
@@ -118,21 +145,17 @@ git clone https://github.com/Aztech-1729/telegram-skills.git
 cd telegram-skills
 ```
 
-Read the skills directly from the clone, or copy the selected complete folders
-into the skill directory supported by your agent host. Keep their `references/`,
-`assets/` and `scripts/` resources together. Sibling links need the corresponding
-sibling skills; copying all 18 folders preserves every local route. Do not copy
-only `SKILL.md` and expect the supporting files to be available.
-
-For Codex, user skills conventionally live under `~/.codex/skills` (or the
-configured `CODEX_HOME/skills`). Copy selected folders there only if local
-installation is wanted. Other hosts have their own discovery conventions;
-this repository does not require a particular runtime to read its instructions.
+Read the skills directly from the clone, or use the installer above to register
+them with your agent. Keep each skill's `references/`, `assets/` and `scripts/`
+resources together. All 18 folders preserve links between framework and feature
+skills; shared repository records are also available on GitHub. Copying only
+`SKILL.md` omits the resources its instructions rely on.
 
 ## Repository layout
 
 ```text
 README.md                         Catalog, task routing and setup
+docs/INSTALLATION.md               Installer, agent discovery and native plugins
 docs/RESEARCH.md                   Dated baselines, sources and coverage boundaries
 docs/VALIDATION.md                 What was checked and how to repeat it
 docs/AUTOMATION.md                 Schedules, permissions and review procedure
@@ -141,11 +164,16 @@ docs/UPSTREAM_STATUS.md            Generated source changes, failures and versio
 automation/sources.json            Allowed official destinations and release feeds
 automation/upstream-state.json     Observed hashes and unresolved source changes
 scripts/validate_pack.py           Pack structure, links, syntax and secret checks
+scripts/check_installation.py      Real installer, complete resources and local routes
 scripts/run_offline_checks.py      Isolated offline behavior suites
 scripts/check_upstream.py          Refresh source observations and generated reports
 scripts/agent_maintenance.py       Plan, acknowledge reviews and guard immediate merges
 .github/workflows/                 Active validation and maintenance workflows
 .github/dependabot.yml             Weekly updates across eight ecosystems
+.codex-plugin/plugin.json          Native Codex telegram plugin manifest
+.claude-plugin/                    Native Claude Code plugin and aztech marketplace
+.agents/plugins/marketplace.json   Native Codex aztech marketplace
+package.json / package-lock.json   Locked skills CLI for installation verification
 telegram-bot-*/
   SKILL.md                        Activation and essential workflow
   references/guide.md              Detailed implementation decisions
@@ -205,14 +233,26 @@ For a framework/API update, review the affected primary-source register, update
 the pin and examples together, then repeat the relevant checks:
 
 ```sh
+npm ci --ignore-scripts
 python -m pip install -r requirements-dev.txt
 python scripts/validate_pack.py
+python scripts/check_installation.py
 python scripts/run_offline_checks.py
 python -m unittest discover -s tests -p 'test_*.py'
 ```
 
+The pack validator checks both native plugin manifests against the 18 source
+skills. The installer check uses temporary projects, the real locked CLI and
+both linked and copied installation modes to verify resources and local routes.
+When the maintenance agent updates reviewed skill content, it updates both native
+manifests with the same next patch version; observation-only reports do not need
+a version bump. Routine Dependabot PRs follow their separate manifest-only path
+and do not themselves publish a native plugin release. The
+[maintenance runbook](docs/AGENT_MAINTENANCE.md) defines that narrow exception.
+
 The active [validation workflow](.github/workflows/validate.yml) also checks
-JavaScript, builds the language starters and checks public endpoints. It runs
+JavaScript, builds the language starters, tests installation and checks public
+endpoints. It runs
 weekly on Monday at 04:17 UTC, as well as on pushes, pull requests and manual runs.
 Daily source refreshes are scheduled for 04:37 UTC. Weekly Dependabot checks cover
 pip, npm, Go modules, Maven, NuGet, Composer, Cargo and GitHub Actions; only eligible

@@ -6,6 +6,6 @@ They check minute-to-second scheduling, invalid delays, sequential conversation
 construction, persistent state round-trip and callback ownership. Run that file from its starter
 directory with [requirements.txt](../assets/starter/requirements.txt) installed.
 
-The repository [validation record](../../docs/VALIDATION.md) supplies the combined
+The repository [validation record](https://github.com/Aztech-1729/telegram-skills/blob/main/docs/VALIDATION.md) supplies the combined
 runner. These checks do not authenticate a bot or establish webhook delivery,
 real permissions or client rendering.

@@ -21,7 +21,9 @@ updates:
         applies-to: security-updates
         patterns: ['*']
   - package-ecosystem: npm
-    directory: /telegram-bot-javascript/assets/starter
+    directories:
+      - /
+      - /telegram-bot-javascript/assets/starter
     schedule:
       interval: weekly
     open-pull-requests-limit: 3

@@ -71,7 +71,7 @@ jobs:
           checks = protection.get('protection', {}).get('required_status_checks', {})
           # The Contents-readable branch response omits the Administration-only strict setting.
           assert protection.get('protected') and checks.get('strict') is not False and 'validation' in checks.get('contexts', []), 'Required validation gate is not configured'
-          allowed = {'requirements-dev.txt'}
+          allowed = {'requirements-dev.txt', 'package.json', 'package-lock.json'}
           python_dirs = ['telegram-bot-python-telegram-bot/assets/starter', 'telegram-bot-aiogram/assets/starter',
                          'telegram-bot-telethon/assets/starter', 'telegram-bot-recipes/assets']
           allowed.update(f'{p}/requirements.txt' for p in python_dirs)

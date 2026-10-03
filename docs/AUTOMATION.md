@@ -37,7 +37,9 @@ by cloning this repository.
 
 The agent handles pending documentation semantics, compatible major upgrades,
 failed or conflicted bot PRs and default-branch validation failures. It also
-checks for stale results or workflows disabled for inactivity, and can dispatch
+keeps native Codex/Claude distribution versions current for reviewed skill
+content and verifies installation resources. It checks for stale results or
+workflows disabled for inactivity, and can dispatch
 or re-enable an existing trusted workflow. It works in an isolated worktree,
 preserves unrelated human work and treats source content, issues and logs as
 untrusted evidence.
@@ -51,9 +53,13 @@ change requires a new review. The agent allows three repair attempts per item in
 a run and preserves unresolved evidence when it cannot validate a repair.
 
 Workflow behavior, maintenance helpers, permissions, source allowlists,
-protection, credentials, licensing and maintenance policy changes remain
-maintainer decisions. An agent may propose them but cannot merge them
-automatically. Read the [runbook](AGENT_MAINTENANCE.md) for the full review and
+protection, credentials, licensing, plugin/marketplace metadata and maintenance
+policy changes remain maintainer decisions. The sole native-manifest exception
+is a paired patch-version increment for an agent's reviewed skill-content update:
+both plugin versions advance by exactly one patch and every other field stays
+unchanged. Observation-only refreshes do not bump versions. An agent may propose
+other foundation changes but cannot merge them automatically. Read the
+[runbook](AGENT_MAINTENANCE.md) for the full review and
 reporting procedure.
 
 ## What the source refresh observes
@@ -148,6 +154,14 @@ changes to scripts, workflow permissions or job behavior do not qualify. The
 privileged `pull_request_target` auto-merge workflow never checks out or executes
 pull-request code. Updating a dependency does not automatically update a guide's
 reviewed version table or certify new API behavior.
+Routine cloud dependency PRs do not themselves publish a native plugin release;
+paired plugin versions advance with the agent's reviewed skill-content releases.
+
+The root npm manifest locks the skills installer used for packaging checks;
+Dependabot updates it alongside the JavaScript starter's own npm dependencies.
+The required validation includes native manifest checks and real installation
+checks in temporary projects. A passing installer check verifies complete
+resources and local routes, not every supported agent's runtime or a live bot.
 
 ## Permissions and secrets
 
