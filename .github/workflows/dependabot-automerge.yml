@@ -2,7 +2,7 @@ name: Eligible dependency auto-merge
 
 on:
   pull_request_target:
-    types: [opened, reopened, synchronize, ready_for_review]
+    types: [opened, reopened, synchronize, ready_for_review, converted_to_draft, edited]
 
 permissions: {}
 
@@ -14,10 +14,7 @@ jobs:
   enable:
     if: >-
       github.repository == 'Aztech-1729/telegram-skills' &&
-      github.event.pull_request.user.login == 'dependabot[bot]' &&
-      github.event.pull_request.head.repo.full_name == github.repository &&
-      github.event.pull_request.base.ref == github.event.repository.default_branch &&
-      !github.event.pull_request.draft
+      github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
@@ -25,11 +22,33 @@ jobs:
       pull-requests: write
     steps:
       # This privileged workflow never checks out or executes pull-request code.
+      - name: Revoke prior auto-merge before reviewing this head
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha }}
+        shell: python
+        run: |
+          import json, os, re, subprocess
+          repo, number, sha = os.environ['REPOSITORY'], os.environ['PR_NUMBER'], os.environ['EXPECTED_SHA']
+          assert repo == 'Aztech-1729/telegram-skills' and number.isdigit() and re.fullmatch('[0-9a-f]{40}', sha)
+          pr = json.loads(subprocess.check_output(['gh', 'api', f'repos/{repo}/pulls/{number}']))
+          if (pr['user']['login'] == 'dependabot[bot]' and pr['state'] == 'open' and
+              pr['head']['sha'] == sha and pr.get('auto_merge')):
+              subprocess.run(['gh', 'pr', 'merge', number, '--repo', repo, '--disable-auto'], check=True)
       - name: Verify Dependabot metadata and commit signatures
+        if: >-
+          github.event.pull_request.head.repo.full_name == github.repository &&
+          github.event.pull_request.base.ref == github.event.repository.default_branch &&
+          !github.event.pull_request.draft
         id: metadata
         uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3
       - name: Verify allowed paths and enable protected auto-merge
         if: >-
+          github.event.pull_request.head.repo.full_name == github.repository &&
+          github.event.pull_request.base.ref == github.event.repository.default_branch &&
+          !github.event.pull_request.draft &&
           (steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
            steps.metadata.outputs.update-type == 'version-update:semver-minor') &&
           steps.metadata.outputs.maintainer-changes != 'true'
@@ -47,9 +66,11 @@ jobs:
               return json.loads(subprocess.check_output(['gh', 'api', path]))
           pr = api(f'repos/{repo}/pulls/{number}')
           assert pr['user']['login'] == 'dependabot[bot]' and pr['state'] == 'open' and not pr['draft']
-          assert pr['head']['repo']['full_name'] == repo and pr['head']['sha'] == sha
+          assert pr['head']['repo']['full_name'] == repo and pr['head']['sha'] == sha and pr['base']['ref'] == 'main'
           protection = api(f'repos/{repo}/branches/main')
-          assert 'validation' in protection['protection']['required_status_checks']['contexts'], 'Required validation gate is not configured'
+          checks = protection.get('protection', {}).get('required_status_checks', {})
+          # The Contents-readable branch response omits the Administration-only strict setting.
+          assert protection.get('protected') and checks.get('strict') is not False and 'validation' in checks.get('contexts', []), 'Required validation gate is not configured'
           allowed = {'requirements-dev.txt'}
           python_dirs = ['telegram-bot-python-telegram-bot/assets/starter', 'telegram-bot-aiogram/assets/starter',
                          'telegram-bot-telethon/assets/starter', 'telegram-bot-recipes/assets']

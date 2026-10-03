@@ -36,8 +36,11 @@ def generated_paths(root=ROOT):
 
 def protected():
     branch = api(f"repos/{REPO}/branches/main")
-    contexts = branch.get("protection", {}).get("required_status_checks", {}).get("contexts", [])
-    if not branch.get("protected") or "validation" not in contexts:
+    checks = branch.get("protection", {}).get("required_status_checks", {})
+    # Get-a-branch omits strict; its full endpoint needs Administration:read,
+    # which the job token intentionally lacks. The owner verifies that setting
+    # and GitHub enforces it. Reject an explicitly disabled value if returned.
+    if not branch.get("protected") or checks.get("strict") is False or "validation" not in checks.get("contexts", []):
         raise RuntimeError("Required validation protection is not configured")
 
 
@@ -107,6 +110,56 @@ def start_validation(number, sha, branch=BRANCH, author="github-actions[bot]"):
     raise RuntimeError("No native validation run appeared for the generated PR")
 
 
+def dependency_paths():
+    allowed = {"requirements-dev.txt"}
+    for folder in ["telegram-bot-python-telegram-bot/assets/starter", "telegram-bot-aiogram/assets/starter",
+                   "telegram-bot-telethon/assets/starter", "telegram-bot-recipes/assets"]:
+        allowed.add(f"{folder}/requirements.txt")
+    for folder in ["telegram-bot-go-botapi/assets/go-telegram-echo", "telegram-bot-go-botapi/assets/gotgbot-echo",
+                   "telegram-bot-go-botapi/assets/classic-echo", "telegram-bot-gotd/assets/echo",
+                   "telegram-bot-gotd-contrib/assets/reliable-echo"]:
+        allowed.update(f"{folder}/{name}" for name in ["go.mod", "go.sum"])
+    allowed.update({"telegram-bot-javascript/assets/starter/package.json",
+                    "telegram-bot-javascript/assets/starter/package-lock.json",
+                    "telegram-bot-java/assets/echo/pom.xml",
+                    "telegram-bot-dotnet/assets/starter/TelegramStarter.csproj",
+                    "telegram-bot-dotnet/assets/starter/packages.lock.json",
+                    "telegram-bot-php/assets/starter/composer.json",
+                    "telegram-bot-php/assets/starter/composer.lock",
+                    "telegram-bot-rust/assets/echo/Cargo.toml",
+                    "telegram-bot-rust/assets/echo/Cargo.lock"})
+    return allowed
+
+
+def allowed_update_files(pr, author):
+    """Recheck the complete current diff; retained auto-merge is not approval."""
+    allowed = set(generated_paths()) if author == "github-actions[bot]" else dependency_paths()
+    files = []
+    for page in range(1, 31):
+        batch = api(f"repos/{REPO}/pulls/{pr['number']}/files?per_page=100&page={page}")
+        files.extend(batch)
+        if len(batch) < 100:
+            break
+    if len(files) != pr["changed_files"] or not files:
+        return False
+    for item in files:
+        path = item["filename"]
+        if item["status"] not in {"modified", "added"}:
+            return False
+        if path in allowed:
+            continue
+        if author != "dependabot[bot]" or not path.startswith(".github/workflows/") or not path.endswith((".yml", ".yaml")):
+            return False
+        # Match the initial Dependabot gate: only immutable action references.
+        changed = [line[1:] for line in item.get("patch", "").splitlines()
+                   if line[:1] in "+-" and not line.startswith(("+++", "---"))]
+        if item["status"] != "modified" or not changed or not all(re.fullmatch(
+                r"\s*(?:-\s*)?uses:\s*[A-Za-z0-9_.-]+/[A-Za-z0-9_./-]+@[0-9a-f]{40}(?:\s+#.*)?\s*", line)
+                for line in changed):
+            return False
+    return True
+
+
 def maintain_updates(event_path):
     """Keep already eligible bot PRs current with main and start their native tests."""
     run = json.loads(Path(event_path).read_text(encoding="utf-8"))["workflow_run"]
@@ -119,14 +172,19 @@ def maintain_updates(event_path):
             continue
         pr = api(f"repos/{REPO}/pulls/{item['number']}")
         branch, author = pr["head"]["ref"], pr["user"]["login"]
+        if pr["state"] != "open" or not pr.get("auto_merge") or author not in {"github-actions[bot]", "dependabot[bot]"}:
+            continue
         if pr["head"]["repo"]["full_name"] != REPO or pr["base"]["ref"] != "main":
             continue
         if author == "github-actions[bot]" and branch != BRANCH:
             continue
+        if pr.get("draft") or not allowed_update_files(pr, author):
+            subprocess.run(["gh", "pr", "merge", str(pr["number"]), "--repo", REPO, "--disable-auto"], check=True)
+            continue
         if pr["mergeable_state"] != "behind":
             continue
-        # Eligibility was established by the generating workflow and auto-merge
-        # remains enabled. Merge only main into that branch; never alter its files.
+        # Only merge main after this exact head's current diff passed the policy.
+        # The expected head prevents a concurrent change from being updated.
         old_sha = pr["head"]["sha"]
         api(f"repos/{REPO}/pulls/{pr['number']}/update-branch", "PUT", {"expected_head_sha": old_sha})
         for attempt in range(10):

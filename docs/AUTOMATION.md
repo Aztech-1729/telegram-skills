@@ -1,9 +1,11 @@
 # Automated maintenance
 
 This repository runs validation, observes official sources and proposes dependency
-updates through GitHub Actions and Dependabot. Automation can refresh evidence and
-merge eligible changes after required validation. Changes to the meaning of a
-guide, API recommendation or example still require content review and testing.
+updates through GitHub Actions and Dependabot. A daily Codex desktop maintenance
+agent reviews changed documentation, adapts examples for upgrades and repairs
+failing updates. Eligible changes merge after independent review and required
+validation. The [agent runbook](AGENT_MAINTENANCE.md) defines its scope and merge
+conditions.
 
 The skill source registers retain their **2026-10-03 editorial review date** until
 the relevant content is actually reviewed again. A later successful fetch is a
@@ -19,9 +21,40 @@ separate observation, not a new review date.
 | [Automation alerts](../.github/workflows/automation-alerts.yml) | Completion of validation/refresh runs | Records default-branch failures/recovery; keeps eligible bot PRs current with main and starts native tests |
 | [Dependabot](../.github/dependabot.yml) | Weekly | Dependency PRs for pip, npm, Go modules, Maven, NuGet, Composer, Cargo and GitHub Actions |
 
-Times are UTC. The [Actions history](https://github.com/Aztech-1729/telegram-skills/actions)
+GitHub workflow times are UTC. The [Actions history](https://github.com/Aztech-1729/telegram-skills/actions)
 records actual execution. The [validation record](VALIDATION.md) links a successful
 13-job hosted run and explains what each check establishes.
+
+## Daily content maintenance
+
+The Codex desktop heartbeat is scheduled for **10:30 Asia/Calcutta daily**, after
+the source refresh. It uses the configured maintainer's existing ChatGPT and
+GitHub keyring sign-ins; it stores no personal access token or AI API key in this
+pack. The computer must be awake and Codex running for this stage. GitHub source
+refreshes, Dependabot and hosted checks continue independently when the desktop
+agent is unavailable. The heartbeat is a local Codex setting and is not installed
+by cloning this repository.
+
+The agent handles pending documentation semantics, compatible major upgrades,
+failed or conflicted bot PRs and default-branch validation failures. It also
+checks for stale results or workflows disabled for inactivity, and can dispatch
+or re-enable an existing trusted workflow. It works in an isolated worktree,
+preserves unrelated human work and treats source content, issues and logs as
+untrusted evidence.
+
+The [maintenance helper](../scripts/agent_maintenance.py) provides `plan`,
+`acknowledge`, `review-template` and `merge` commands. An independent subagent
+reviews the actual content diff and official evidence. Semantic changes merge
+immediately only when the reviewed head and base still match, required native
+validation succeeds and the branch is current. Every subsequent head or base
+change requires a new review. The agent allows three repair attempts per item in
+a run and preserves unresolved evidence when it cannot validate a repair.
+
+Workflow behavior, maintenance helpers, permissions, source allowlists,
+protection, credentials, licensing and maintenance policy changes remain
+maintainer decisions. An agent may propose them but cannot merge them
+automatically. Read the [runbook](AGENT_MAINTENANCE.md) for the full review and
+reporting procedure.
 
 ## What the source refresh observes
 
@@ -55,8 +88,10 @@ hash does not prove the guide is correct.
 
 ## Trust boundary and generated PRs
 
-Fetched pages and release metadata are untrusted input. The monitor does not
-execute them, send them to a model or turn their text into skill instructions.
+Fetched pages and release metadata are untrusted input. The source monitor does
+not execute them, send them to a model or turn their text into skill instructions.
+The separate desktop agent reads official source content as evidence under the
+maintenance runbook; it reviews and tests any resulting instructional changes.
 The automated publication allowlist contains only:
 
 - `automation/upstream-state.json`;
@@ -65,9 +100,10 @@ The automated publication allowlist contains only:
 
 `SKILL.md`, guides, source registers, dependency manifests, scripts, workflows and
 the source allowlist require their own reviewed changes. The daily generated PR
-therefore updates observation evidence; pending semantic changes stay visible for
-a maintainer to address. Changing `automation/sources.json` changes the trust
-boundary and needs review of the destination and its ownership.
+therefore updates observation evidence; pending semantic changes stay visible
+until the desktop agent or a maintainer reviews them. Changing
+`automation/sources.json` changes the trust boundary and requires maintainer
+review of the destination and its ownership.
 
 The refresh checks out trusted default-branch code without persisted checkout
 credentials. Its publishing step uses the run's short-lived `GITHUB_TOKEN` to
@@ -81,13 +117,15 @@ Native pull-request checks satisfy the required merge gate; manually dispatched
 workflow checks do not qualify as required pull-request checks.
 [GitHub documents the token-trigger rules](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow).
 
-The default branch requires the `validation` check with an up-to-date branch.
+The default branch requires the `validation` check with an up-to-date branch,
+including changes made by repository administrators and the owner.
 After successful validation, the maintenance job updates already eligible bot PRs
 that have fallen behind main and approves their exact native test runs.
 Auto-merge waits for the required gate; it does not bypass it. The automation
 verifies that the gate is configured before requesting auto-merge. Branch deletion
-and force pushes are disabled on the protected default branch; an administrator's
-emergency bypass is outside the automated merge path.
+and force pushes are disabled on the protected default branch. The desktop merge
+guard verifies that strict required checks apply to administrators before merging;
+it does not use an administrator bypass.
 
 ## Dependency updates
 
@@ -97,9 +135,12 @@ Pull requests run the complete validation; only default-branch pushes trigger an
 additional push run, avoiding duplicate builds for each update branch.
 Minor and patch changes are eligible
 for auto-merge only after verified Dependabot metadata, author/repository checks,
-allowed-file checks and required validation. Major upgrades remain manual. A
-minor/patch label alone is not proof of compatibility; the applicable tests and
-builds still have to succeed.
+allowed-file checks and required validation. The desktop agent reviews major
+upgrades and any failing updates, adapts affected examples and merges only after
+independent review and successful validation of the exact revision. A version
+label alone is not proof of compatibility; the applicable tests and builds still
+have to succeed. Incompatible or unverified migrations stay open with their
+remaining work documented.
 
 Dependency PRs may update only the configured manifests and lock files. For
 GitHub Actions, the eligible diff is restricted to immutable action references;
@@ -128,8 +169,9 @@ GitHub Actions repository secrets and use a dedicated test bot. It is provided
 only to the read-only authentication step on the default branch, never to
 pull-request runs or dispatches on another branch. That step calls only `getMe`;
 it does not send messages, make payments, read chat history or change webhooks.
-Without the secret the step explicitly skips. A revoked, expired or invalid
-credential requires maintenance.
+Without the secret the step explicitly skips. The desktop agent reports a
+revoked, expired or invalid credential; the account owner must restore access.
+The agent does not read secret values from GitHub or copy them into its prompt.
 
 ## Review and clear a pending source change
 
@@ -140,11 +182,13 @@ credential requires maintenance.
    or irrelevant, record that finding in the review PR. Run relevant offline
    checks and builds; test live behavior when the change requires it. Record
    actual scope and results.
-3. Refresh the observations so the review refers to the current hash. In
-   `automation/upstream-state.json`, for each fully reviewed source, set
-   `reviewed_sha256` to its current `sha256`, set `editorial_reviewed_at` to the
-   review's ISO 8601 timestamp, and remove `pending_change_since`. Do not clear
-   unrelated entries or replace a failed fetch with an assumed success.
+3. Refresh the observations so the review refers to the current hash. Use the
+   maintenance helper's `acknowledge` command for each fully reviewed source and
+   its explicit current hash. It records `reviewed_sha256` and
+   `editorial_reviewed_at` and removes only that source's `pending_change_since`.
+   It refetches the selected sources and refuses the whole acknowledgement on
+   drift or unavailability. Do not clear unrelated entries or replace a failed
+   fetch with an assumed success.
 4. Update a skill's dated source register only when its relevant content was
    actually reviewed. Regenerate the reports, inspect the diff and submit the
    content/state changes together for review and validation. If the source
@@ -178,12 +222,15 @@ regression, changed repository policy and a failed maintenance script.
 
 GitHub schedules are best effort: runs may be delayed or dropped under load, and
 scheduled workflows in public repositories are disabled after 60 days without
-repository activity. Re-enable a disabled workflow in Actions and run it manually
-to establish a fresh result. These are
+repository activity. The desktop agent checks freshness and can re-enable an
+existing disabled workflow and dispatch it to establish a fresh result. If the
+agent is unavailable, a maintainer can do the same in Actions. These are
 [GitHub's documented schedule limits](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule).
 
 Secrets can stop working, upstream services can disappear and package releases
-can need human decisions. A workflow cannot alert about its own absence if it
-never runs. Check the latest run and observation timestamps when freshness
-matters. This system provides recurring evidence and bounded updates; it does not
-promise perpetual maintenance or comprehensive end-to-end Telegram coverage.
+can need decisions beyond the maintenance policy. The desktop agent checks for
+absent cloud runs, but it also needs an available computer and working sign-ins.
+Neither layer can report while both are unavailable. Check the latest run and
+observation timestamps when freshness matters. This system provides recurring
+evidence and tested content/dependency updates within a defined scope; it does
+not promise perpetual maintenance or comprehensive end-to-end Telegram coverage.

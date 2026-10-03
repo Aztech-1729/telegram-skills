@@ -16,8 +16,10 @@ practical implementation guidance and a dated primary-source register.
 
 Validation is active on pushes, pull requests and a weekly schedule. Daily source
 checks refresh observed hashes and release versions; eligible dependency updates
-can merge after required validation. Source observations do not advance the
-documentation review date or automatically rewrite skill instructions.
+can merge after required validation. A daily Codex maintenance agent reviews
+changed documentation, adapts examples for major upgrades and repairs failing
+updates, with independent review and validation before merge. Source observations
+and actual content review remain separate records.
 
 ## Start here
 
@@ -134,12 +136,14 @@ README.md                         Catalog, task routing and setup
 docs/RESEARCH.md                   Dated baselines, sources and coverage boundaries
 docs/VALIDATION.md                 What was checked and how to repeat it
 docs/AUTOMATION.md                 Schedules, permissions and review procedure
+docs/AGENT_MAINTENANCE.md           Daily Codex content review and repair runbook
 docs/UPSTREAM_STATUS.md            Generated source changes, failures and versions
 automation/sources.json            Allowed official destinations and release feeds
 automation/upstream-state.json     Observed hashes and unresolved source changes
 scripts/validate_pack.py           Pack structure, links, syntax and secret checks
 scripts/run_offline_checks.py      Isolated offline behavior suites
 scripts/check_upstream.py          Refresh source observations and generated reports
+scripts/agent_maintenance.py       Plan, acknowledge reviews and guard immediate merges
 .github/workflows/                 Active validation and maintenance workflows
 .github/dependabot.yml             Weekly updates across eight ecosystems
 telegram-bot-*/
@@ -213,14 +217,21 @@ weekly on Monday at 04:17 UTC, as well as on pushes, pull requests and manual ru
 Daily source refreshes are scheduled for 04:37 UTC. Weekly Dependabot checks cover
 pip, npm, Go modules, Maven, NuGet, Composer, Cargo and GitHub Actions; only eligible
 minor and patch updates can auto-merge through the required `validation` check.
-Major upgrades and changes to instructional content need review.
+The daily Codex agent reviews major upgrades and instructional changes, adapts
+affected examples and merges compatible changes after independent review and
+successful native validation of the exact revision. Unresolved migrations remain
+visible in their PRs and source-review issues.
 
 Read the [automation guide](docs/AUTOMATION.md) for the generated-file boundary,
-permissions, unresolved-change review and failure issues. Schedules can be delayed
-or disabled and credentials can stop working; the status badge and run history
-show actual execution. Record actual validation, keep entrypoints concise and
-update this catalog when a skill is added or renamed. Preserve the dated source
-registers separately from machine observations.
+permissions, unresolved-change review and failure issues, and the
+[agent runbook](docs/AGENT_MAINTENANCE.md) for unattended content maintenance.
+The desktop agent runs at 10:30 Asia/Calcutta and needs its configured computer
+awake, Codex running and working ChatGPT/GitHub sign-ins; hosted GitHub checks
+continue independently. Cloning the pack does not install that local schedule.
+Schedules can be delayed or disabled and credentials can stop working; the
+status badge and run history show actual execution. Record actual validation,
+keep entrypoints concise and update this catalog when a skill is added or
+renamed. Preserve the dated source registers separately from machine observations.
 
 ## License
 
