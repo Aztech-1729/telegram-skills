@@ -161,3 +161,20 @@ This exercises both a successful merge and rejection of a failing update.
 The maintenance suite covers URL/redirect boundaries, malformed responses,
 persistent source-review state, publication path restrictions, concurrent branch
 changes, deduplicated alerts, exact-run approval and automatic branch refresh.
+
+## AI maintenance activation
+
+The independently reviewed [agent maintenance change](https://github.com/Aztech-1729/telegram-skills/pull/8)
+passed [native pull-request validation](https://github.com/Aztech-1729/telegram-skills/actions/runs/37134000137).
+The root maintenance suite now has **109 passing regression tests**, including
+28 checks of source acknowledgement, immutable review identities, native run/check
+identity, strict protection, allowed files and rejected stale or failed merges.
+
+The daily desktop Codex schedule was activated on **2026-10-03** for **10:30
+Asia/Calcutta**. Its first read-only plan found no pending source changes or open
+update PRs, fresh successful cloud checks and all four workflows active. Strict
+required validation includes administrators. The
+[agent runbook](AGENT_MAINTENANCE.md) describes independent review and the immediate
+exact-commit merge guard, as well as the computer, app and sign-in requirements.
+The schedule's activation is a maintainer setting; it is not installed by cloning
+this pack, and no scheduled semantic update was needed for that empty first queue.
