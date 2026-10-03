@@ -17,7 +17,6 @@ updates:
       routine:
         patterns: ['*']
         update-types: [minor, patch]
-        group-by: dependency-name
       security:
         applies-to: security-updates
         patterns: ['*']

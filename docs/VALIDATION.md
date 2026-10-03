@@ -11,7 +11,7 @@ live Telegram rendering, delivery, deployment or production readiness.
 
 ## Hosted validation
 
-The active [validation workflow](../.github/workflows/validate.yml) runs on pushes,
+The active [validation workflow](../.github/workflows/validate.yml) runs on default-branch pushes,
 pull requests, manual dispatch and Mondays at 04:17 UTC. The
 [recorded successful run](https://github.com/Aztech-1729/telegram-skills/actions/runs/37125986130)
 passed **all 13 jobs**: checks across seven languages, five independent Go builds,

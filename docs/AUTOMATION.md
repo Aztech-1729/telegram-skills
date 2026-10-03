@@ -13,7 +13,7 @@ separate observation, not a new review date.
 
 | Workflow | Trigger | Result |
 |---|---|---|
-| [Validate skill pack](../.github/workflows/validate.yml) | Push, pull request, manual run and Monday 04:17 UTC | Pack and behavior checks, language builds, public HTTP checks, optional default-branch `getMe` and the required `validation` gate |
+| [Validate skill pack](../.github/workflows/validate.yml) | Default-branch push, pull request, manual run and Monday 04:17 UTC | Pack and behavior checks, language builds, public HTTP checks, optional default-branch `getMe` and the required `validation` gate |
 | [Refresh upstream evidence](../.github/workflows/upstream-refresh.yml) | Daily 04:37 UTC and manual run on the default branch | Observed source state, aggregate/per-skill reports, a generated-evidence PR, native pull-request validation approval and a deduplicated source-review issue when needed |
 | [Eligible dependency auto-merge](../.github/workflows/dependabot-automerge.yml) | Eligible Dependabot pull-request events | Enables protected auto-merge for verified minor/patch updates within allowed paths |
 | [Automation alerts](../.github/workflows/automation-alerts.yml) | Completion of validation/refresh runs | Records default-branch failures/recovery; keeps eligible bot PRs current with main and starts native tests |
@@ -91,7 +91,11 @@ emergency bypass is outside the automated merge path.
 
 ## Dependency updates
 
-Dependabot checks eight ecosystems weekly. Minor and patch changes are eligible
+Dependabot checks eight ecosystems weekly. Routine Python updates are grouped
+across manifests to keep related pins together and reduce adjacent-line conflicts.
+Pull requests run the complete validation; only default-branch pushes trigger an
+additional push run, avoiding duplicate builds for each update branch.
+Minor and patch changes are eligible
 for auto-merge only after verified Dependabot metadata, author/repository checks,
 allowed-file checks and required validation. Major upgrades remain manual. A
 minor/patch label alone is not proof of compatibility; the applicable tests and
