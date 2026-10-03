@@ -29,7 +29,7 @@ Read [the engineering guide](references/guide.md) for database/session lifecycle
 
 - [scripts/durable_ops.py](scripts/durable_ops.py): offline secret validation, bounded retry decisions and a single-host SQLite leased outbox.
 - [scripts/state_lifecycle.py](scripts/state_lifecycle.py): runnable SQLAlchemy 2 async/aiosqlite example with proper base/session/engine lifecycle and concurrent SQLite upsert.
-- [offline tests](scripts/test_durable_ops.py) and [async state tests](scripts/test_state_lifecycle.py): run `python -m unittest discover -s telegram-bot-advanced-features/scripts -p 'test_*.py'` from the repository root. SQLAlchemy/aiosqlite are needed for the second test module.
+- [offline tests](scripts/test_durable_ops.py) and [async state tests](scripts/test_state_lifecycle.py): run `python -m unittest discover -s telegram-bot-advanced-features/scripts -p 'test_*.py'` from the repository root. `SQLAlchemy[asyncio]`/aiosqlite are needed for the second test module.
 
 Combine with Payments for receipt/fulfillment durability, Mini Apps for backend sessions, and Keyboards UI for callback authorization and sending policy.
 
