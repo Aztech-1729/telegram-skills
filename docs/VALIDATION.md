@@ -141,3 +141,23 @@ The included SQLite examples target a single persistent host. A distributed
 deployment needs a database/queue design suited to multiple workers. Recurring
 Stars access is a documented lifecycle; the bundled ledger intentionally handles
 one-time credit orders and does not implement renewals.
+
+## Automation activation
+
+The [daily source refresh](https://github.com/Aztech-1729/telegram-skills/actions/runs/37130243626)
+checked all **218 configured official sources** successfully, updated the generated
+reports, updated [its evidence PR](https://github.com/Aztech-1729/telegram-skills/pull/1)
+and started the native pull-request validation with the short-lived job token.
+That [native validation run](https://github.com/Aztech-1729/telegram-skills/actions/runs/37130287561)
+passed every applicable job, and the evidence PR merged automatically.
+Repository settings require the `validation` check and an up-to-date branch.
+
+The [first dependency update](https://github.com/Aztech-1729/telegram-skills/pull/3)
+passed validation and merged automatically. A separate SQLAlchemy update exposed a
+missing optional async dependency and remained blocked by the required check;
+the installation declaration now requests `SQLAlchemy[asyncio]` explicitly.
+This exercises both a successful merge and rejection of a failing update.
+
+The maintenance suite covers URL/redirect boundaries, malformed responses,
+persistent source-review state, publication path restrictions, concurrent branch
+changes, deduplicated alerts, exact-run approval and automatic branch refresh.
