@@ -51,3 +51,7 @@ Use [Mini Apps](../telegram-bot-miniapps/SKILL.md) for a web interface and
 [Stars](../telegram-bot-payments-stars/SKILL.md) for paid digital access. Use the
 [PTB skill](../telegram-bot-python-telegram-bot/SKILL.md) for lifecycle and webhook
 integration. Keep one update receiver per token.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

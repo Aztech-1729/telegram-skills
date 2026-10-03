@@ -1,0 +1,45 @@
+name: Refresh upstream evidence
+
+on:
+  schedule:
+    - cron: '37 4 * * *'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: upstream-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    if: github.repository == 'Aztech-1729/telegram-skills' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.12'
+      - run: python -m pip install PyYAML==6.0.3
+      - name: Test the monitor and publisher
+        run: python -m unittest discover -s tests -p 'test_*.py'
+      - name: Observe official documentation and release feeds
+        run: python scripts/check_upstream.py --write --report-json "$RUNNER_TEMP/upstream-report.json" > "$RUNNER_TEMP/upstream-output.json"
+      - name: Generate skill status and validate the pack
+        run: |
+          python scripts/render_skill_status.py
+          python scripts/validate_pack.py
+          git diff --check
+      - name: Publish tested-update request and source alerts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/automation_github.py publish "$RUNNER_TEMP/upstream-report.json"

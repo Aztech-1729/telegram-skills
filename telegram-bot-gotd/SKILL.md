@@ -22,3 +22,7 @@ Use for Go MTProto work. For an ordinary Go HTTP Bot API bot, use telegram-bot-g
 [assets/echo/main.go](assets/echo/main.go) is a bot-account echo starter with file session storage and explicit lifecycle. It is not a userbot or admin-notify implementation. It reads APP_ID, APP_HASH, BOT_TOKEN, and optionally SESSION_FILE.
 
 Compile before integrating; use fixtures or a fake invoker for handler tests. Starting this application contacts Telegram. Do not promise TDLib equivalence, ban immunity, unlimited file sizes, or automatic retries of arbitrary business handlers.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

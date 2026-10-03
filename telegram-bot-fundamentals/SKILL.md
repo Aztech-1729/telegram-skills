@@ -55,3 +55,7 @@ Read only the selected references; the pack is a routing system rather than a re
 ## Compatibility and evidence
 
 Research cutoff: **2026-10-03**. Telegram's documented Bot API baseline is **10.3**; framework baselines vary. [Sources](references/sources.md) record the checked primary references. Examples are starters or explicitly marked patterns; validate the actual project behavior and report the checks performed.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

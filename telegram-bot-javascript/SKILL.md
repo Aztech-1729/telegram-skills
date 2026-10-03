@@ -46,3 +46,7 @@ Install the chosen framework in the actual project, rather than carrying both de
 - Graceful shutdown must stop reception and drain accepted work, with a deployment-appropriate deadline.
 
 Combine with [keyboards](../telegram-bot-keyboards-ui/SKILL.md), [payments](../telegram-bot-payments-stars/SKILL.md), [Mini Apps](../telegram-bot-miniapps/SKILL.md), [rich messaging](../telegram-bot-rich-messaging/SKILL.md) or [advanced operations](../telegram-bot-advanced-features/SKILL.md) when requested.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

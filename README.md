@@ -1,5 +1,8 @@
 # Telegram Skills
 
+[![Validate skill pack](https://github.com/Aztech-1729/telegram-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/Aztech-1729/telegram-skills/actions/workflows/validate.yml)
+[![Refresh upstream evidence](https://github.com/Aztech-1729/telegram-skills/actions/workflows/upstream-refresh.yml/badge.svg)](https://github.com/Aztech-1729/telegram-skills/actions/workflows/upstream-refresh.yml)
+
 **18 focused skills for AI agents building Telegram bots and Mini Apps across
 Python, Go, JavaScript/TypeScript, Java, .NET, PHP and Rust.**
 
@@ -9,6 +12,12 @@ practical implementation guidance and a dated primary-source register.
 
 **Documentation review:** 2026-10-03 · **Telegram baseline:** Bot API 10.3
 · [Research and versions](docs/RESEARCH.md) · [Validation and limits](docs/VALIDATION.md)
+· [Upstream observations](docs/UPSTREAM_STATUS.md) · [Automation](docs/AUTOMATION.md)
+
+Validation is active on pushes, pull requests and a weekly schedule. Daily source
+checks refresh observed hashes and release versions; eligible dependency updates
+can merge after required validation. Source observations do not advance the
+documentation review date or automatically rewrite skill instructions.
 
 ## Start here
 
@@ -124,14 +133,21 @@ this repository does not require a particular runtime to read its instructions.
 README.md                         Catalog, task routing and setup
 docs/RESEARCH.md                   Dated baselines, sources and coverage boundaries
 docs/VALIDATION.md                 What was checked and how to repeat it
+docs/AUTOMATION.md                 Schedules, permissions and review procedure
+docs/UPSTREAM_STATUS.md            Generated source changes, failures and versions
+automation/sources.json            Allowed official destinations and release feeds
+automation/upstream-state.json     Observed hashes and unresolved source changes
 scripts/validate_pack.py           Pack structure, links, syntax and secret checks
 scripts/run_offline_checks.py      Isolated offline behavior suites
+scripts/check_upstream.py          Refresh source observations and generated reports
+.github/workflows/                 Active validation and maintenance workflows
+.github/dependabot.yml             Weekly updates across eight ecosystems
 telegram-bot-*/
   SKILL.md                        Activation and essential workflow
   references/guide.md              Detailed implementation decisions
   references/sources.md            Primary sources and version notes
+  references/upstream-status.md    Generated observations for this skill
   assets/ or scripts/             Starters or deterministic helpers, where useful
-docs/validate-workflow.yml         Optional workflow template for checks/builds
 ```
 
 Every skill has `SKILL.md`, a guide and a source register. Extra resources are
@@ -159,8 +175,12 @@ development. The [research record](docs/RESEARCH.md) explains those distinctions
 Starters contain actual entrypoints and dependency manifests. Guides identify
 configuration, database and deployment assumptions. Offline tests cover selected
 behavior; build-only and source-reviewed examples are explicitly distinguished in
-the [validation record](docs/VALIDATION.md). No live Telegram, Stars or OpenAI
-request was used to establish the local behavioral checks.
+the [validation record](docs/VALIDATION.md). The
+[successful hosted run](https://github.com/Aztech-1729/telegram-skills/actions/runs/37125986130)
+passed all 13 jobs across seven languages, including five Go builds, 49 Python
+behavioral tests, two JavaScript transport tests, maintenance tests, 14 public
+HTTP checks and read-only `getMe` authentication with a dedicated test bot.
+It did not test live message delivery, payments or deployment.
 
 ## Working rules
 
@@ -184,17 +204,23 @@ the pin and examples together, then repeat the relevant checks:
 python -m pip install -r requirements-dev.txt
 python scripts/validate_pack.py
 python scripts/run_offline_checks.py
+python -m unittest discover -s tests -p 'test_*.py'
 ```
 
-The [workflow template](docs/validate-workflow.yml) also checks JavaScript and
-builds the language starters. It is supplied as a template, not an active workflow:
-the publishing credential did not have GitHub's separate `workflow` permission.
-To enable it, a maintainer with that permission can place it at
-`.github/workflows/validate.yml`. Record
-actual validation rather than describing all examples as production-ready. Keep
-entrypoints concise, move conditional detail into references, and update this
-catalog when a skill is added or renamed. Source links should be canonical
-primary pages with a review date, not transient search-result links.
+The active [validation workflow](.github/workflows/validate.yml) also checks
+JavaScript, builds the language starters and checks public endpoints. It runs
+weekly on Monday at 04:17 UTC, as well as on pushes, pull requests and manual runs.
+Daily source refreshes are scheduled for 04:37 UTC. Weekly Dependabot checks cover
+pip, npm, Go modules, Maven, NuGet, Composer, Cargo and GitHub Actions; only eligible
+minor and patch updates can auto-merge through the required `validation` check.
+Major upgrades and changes to instructional content need review.
+
+Read the [automation guide](docs/AUTOMATION.md) for the generated-file boundary,
+permissions, unresolved-change review and failure issues. Schedules can be delayed
+or disabled and credentials can stop working; the status badge and run history
+show actual execution. Record actual validation, keep entrypoints concise and
+update this catalog when a skill is added or renamed. Preserve the dated source
+registers separately from machine observations.
 
 ## License
 

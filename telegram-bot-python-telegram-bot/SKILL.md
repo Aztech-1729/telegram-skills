@@ -30,3 +30,7 @@ Use the project's installed PTB version and architecture. The researched baselin
 [assets/starter/bot.py](assets/starter/bot.py) is an original, self-contained polling bot with echo, callback menu, validated reminders and a two-step form. Install [its requirements](assets/starter/requirements.txt), set `BOT_TOKEN`, and run the file only when Telegram interaction is intended. Optional `BOT_STATE_FILE` enables local trusted-file persistence for the form; scheduled reminders remain process-local.
 
 [assets/starter/offline_check.py](assets/starter/offline_check.py) checks routing configuration, minute conversion, invalid reminder input and persistence round-tripping without contacting Telegram. It can be run before supplying any token. Detailed deployment and feature snippets in the guide are explicitly **application patterns**, with their integration boundaries stated.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

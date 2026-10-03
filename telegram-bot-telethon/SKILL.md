@@ -34,3 +34,7 @@ Use the installed project version first. The researched baseline is **Telethon 1
 - [Validation record and live limits](references/validation.md)
 
 The starter covers private text, commands, callback ownership, and verified bot identity. User login, history export, moderation, inline queries, media pipelines, and distributed state are separate application patterns requiring their own configuration.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

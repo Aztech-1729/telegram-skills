@@ -21,3 +21,7 @@ Use for Java HTTP bots. Select TelegramBots for its modular client, polling/webh
 [assets/echo/pom.xml](assets/echo/pom.xml) and [EchoBot.java](assets/echo/src/main/java/EchoBot.java) form an original plain-text polling example using TelegramBots. It reads TELEGRAM_BOT_TOKEN. Running it contacts Telegram; compilation does not.
 
 Use the feature guides for keyboards, payments, Mini Apps, and deployment, adapting their wire concepts to the chosen Java SDK.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

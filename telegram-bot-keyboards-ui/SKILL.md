@@ -32,3 +32,7 @@ Read [the implementation guide](references/guide.md) for button types, PTB/aiogr
 - [scripts/test_ui_helpers.py](scripts/test_ui_helpers.py): `python -m unittest discover -s telegram-bot-keyboards-ui/scripts -p 'test_*.py'` from the repository root; no Telegram calls.
 
 Combine with the chosen framework skill for app startup, Mini Apps for web UI, Payments for invoice buttons, or Advanced Features for durable state and sending policy.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

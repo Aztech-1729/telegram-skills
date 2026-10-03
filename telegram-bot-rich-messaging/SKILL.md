@@ -37,3 +37,7 @@ python -m unittest discover -s telegram-bot-rich-messaging/tests
 ## Validate the actual presentation
 
 Exercise escaping, non-BMP emoji, long answers, stale callbacks, cancellation, retry/backoff and final persistence. Preview representative content in the target Telegram clients before promising exact appearance. Keep fallback rendering when the application requires it.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

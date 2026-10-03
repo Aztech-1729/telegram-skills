@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "description": "Authoritative source origins and release feeds. Harvested URLs and every redirect must pass this static allowlist. Changing this file changes the trust boundary.",
+  "allowed_origins": {
+    "https://api.github.com": [
+      "/repos/PaulSonOfLars/gotgbot",
+      "/repos/TelegramBots/Telegram.Bot",
+      "/repos/TelegramBots/Telegram.Bot.Examples",
+      "/repos/aiogram/aiogram",
+      "/repos/celestix/gotgproto",
+      "/repos/etcd-io/bbolt",
+      "/repos/go-telegram/bot",
+      "/repos/gotd/botapi",
+      "/repos/gotd/contrib",
+      "/repos/gotd/td",
+      "/repos/grammyjs/grammY",
+      "/repos/irazasyed/telegram-bot-sdk",
+      "/repos/kurtmckee/feedparser",
+      "/repos/mtgo-labs/mtgo",
+      "/repos/pageton/gotg",
+      "/repos/pengrad/java-telegram-bot-api",
+      "/repos/php-telegram-bot/core",
+      "/repos/python-telegram-bot/python-telegram-bot",
+      "/repos/rubenlagus/TelegramBots",
+      "/repos/tdlib/telegram-bot-api",
+      "/repos/telegraf/telegraf",
+      "/repos/teloxide/teloxide",
+      "/repos/yt-dlp/yt-dlp"
+    ],
+    "https://api.nuget.org": [
+      "/"
+    ],
+    "https://apscheduler.readthedocs.io": [
+      "/"
+    ],
+    "https://core.telegram.org": [
+      "/"
+    ],
+    "https://crates.io": [
+      "/"
+    ],
+    "https://developers.openai.com": [
+      "/"
+    ],
+    "https://docs.aiogram.dev": [
+      "/"
+    ],
+    "https://docs.docker.com": [
+      "/"
+    ],
+    "https://docs.python-telegram-bot.org": [
+      "/"
+    ],
+    "https://docs.python.org": [
+      "/"
+    ],
+    "https://docs.rs": [
+      "/"
+    ],
+    "https://docs.sqlalchemy.org": [
+      "/"
+    ],
+    "https://docs.telethon.dev": [
+      "/"
+    ],
+    "https://fastapi.tiangolo.com": [
+      "/"
+    ],
+    "https://github.com": [
+      "/PaulSonOfLars/gotgbot",
+      "/TelegramBots/Telegram.Bot",
+      "/TelegramBots/Telegram.Bot.Examples",
+      "/aiogram/aiogram",
+      "/celestix/gotgproto",
+      "/etcd-io/bbolt",
+      "/go-telegram/bot",
+      "/gotd/botapi",
+      "/gotd/contrib",
+      "/gotd/td",
+      "/grammyjs/grammY",
+      "/irazasyed/telegram-bot-sdk",
+      "/kurtmckee/feedparser",
+      "/mtgo-labs/mtgo",
+      "/pageton/gotg",
+      "/pengrad/java-telegram-bot-api",
+      "/php-telegram-bot/core",
+      "/python-telegram-bot/python-telegram-bot",
+      "/rubenlagus/TelegramBots",
+      "/tdlib/telegram-bot-api",
+      "/telegraf/telegraf",
+      "/teloxide/teloxide",
+      "/yt-dlp/yt-dlp",
+      "/grammyjs/website",
+      "/go-telegram-bot-api/telegram-bot-api",
+      "/nginx/nginx.org"
+    ],
+    "https://go-telegram-bot-api.dev": [
+      "/"
+    ],
+    "https://gotd.dev": [
+      "/"
+    ],
+    "https://grammy.dev": [
+      "/"
+    ],
+    "https://nginx.org": [
+      "/"
+    ],
+    "https://pkg.go.dev": [
+      "/"
+    ],
+    "https://pypi.org": [
+      "/"
+    ],
+    "https://raw.githubusercontent.com": [
+      "/PaulSonOfLars/gotgbot",
+      "/TelegramBots/Telegram.Bot",
+      "/TelegramBots/Telegram.Bot.Examples",
+      "/aiogram/aiogram",
+      "/celestix/gotgproto",
+      "/etcd-io/bbolt",
+      "/go-telegram/bot",
+      "/gotd/botapi",
+      "/gotd/contrib",
+      "/gotd/td",
+      "/grammyjs/grammY",
+      "/irazasyed/telegram-bot-sdk",
+      "/kurtmckee/feedparser",
+      "/mtgo-labs/mtgo",
+      "/pageton/gotg",
+      "/pengrad/java-telegram-bot-api",
+      "/php-telegram-bot/core",
+      "/python-telegram-bot/python-telegram-bot",
+      "/rubenlagus/TelegramBots",
+      "/tdlib/telegram-bot-api",
+      "/telegraf/telegraf",
+      "/teloxide/teloxide",
+      "/yt-dlp/yt-dlp",
+      "/grammyjs/website",
+      "/go-telegram-bot-api/telegram-bot-api",
+      "/nginx/nginx.org"
+    ],
+    "https://registry.npmjs.org": [
+      "/"
+    ],
+    "https://repo.maven.apache.org": [
+      "/"
+    ],
+    "https://repo.packagist.org": [
+      "/"
+    ],
+    "https://rubenlagus.github.io": [
+      "/"
+    ],
+    "https://telegraf.js.org": [
+      "/"
+    ],
+    "https://telegram-bot-sdk.com": [
+      "/"
+    ],
+    "https://telegrambots.github.io": [
+      "/"
+    ],
+    "https://www.nuget.org": [
+      "/"
+    ],
+    "https://repo1.maven.org": [
+      "/maven2/org/telegram"
+    ]
+  },
+  "additional_sources": [
+    {
+      "url": "https://pypi.org/pypi/python-telegram-bot/json",
+      "kind": "pypi-release",
+      "skills": [
+        "telegram-bot-python-telegram-bot"
+      ],
+      "label": "python-telegram-bot"
+    },
+    {
+      "url": "https://pypi.org/pypi/aiogram/json",
+      "kind": "pypi-release",
+      "skills": [
+        "telegram-bot-aiogram"
+      ],
+      "label": "aiogram"
+    },
+    {
+      "url": "https://pypi.org/pypi/Telethon/json",
+      "kind": "pypi-release",
+      "skills": [
+        "telegram-bot-telethon"
+      ],
+      "label": "Telethon"
+    },
+    {
+      "url": "https://registry.npmjs.org/grammy/latest",
+      "kind": "npm-release",
+      "skills": [
+        "telegram-bot-javascript"
+      ],
+      "label": "grammy"
+    },
+    {
+      "url": "https://registry.npmjs.org/telegraf/latest",
+      "kind": "npm-release",
+      "skills": [
+        "telegram-bot-javascript"
+      ],
+      "label": "telegraf"
+    },
+    {
+      "url": "https://api.github.com/repos/go-telegram/bot/releases?per_page=10",
+      "kind": "github-release",
+      "skills": [
+        "telegram-bot-go-botapi"
+      ],
+      "label": "go-telegram/bot"
+    },
+    {
+      "url": "https://api.github.com/repos/gotd/td/releases?per_page=10",
+      "kind": "github-release",
+      "skills": [
+        "telegram-bot-gotd",
+        "telegram-bot-gotd-contrib"
+      ],
+      "label": "gotd/td"
+    },
+    {
+      "url": "https://api.github.com/repos/gotd/contrib/releases?per_page=10",
+      "kind": "github-release",
+      "skills": [
+        "telegram-bot-gotd-contrib"
+      ],
+      "label": "gotd/contrib"
+    },
+    {
+      "url": "https://api.github.com/repos/PaulSonOfLars/gotgbot/releases?per_page=10",
+      "kind": "github-prerelease",
+      "skills": [
+        "telegram-bot-go-botapi"
+      ],
+      "label": "gotgbot (release candidates included)"
+    },
+    {
+      "url": "https://api.github.com/repos/rubenlagus/TelegramBots/releases?per_page=10",
+      "kind": "github-release",
+      "skills": [
+        "telegram-bot-java"
+      ],
+      "label": "TelegramBots"
+    },
+    {
+      "url": "https://api.github.com/repos/pengrad/java-telegram-bot-api/releases?per_page=10",
+      "kind": "github-release",
+      "skills": [
+        "telegram-bot-java"
+      ],
+      "label": "Pengrad"
+    },
+    {
+      "url": "https://api.github.com/repos/irazasyed/telegram-bot-sdk/releases?per_page=10",
+      "kind": "github-release",
+      "skills": [
+        "telegram-bot-php"
+      ],
+      "label": "Telegram Bot SDK"
+    },
+    {
+      "url": "https://api.github.com/repos/php-telegram-bot/core/releases?per_page=10",
+      "kind": "github-release",
+      "skills": [
+        "telegram-bot-php"
+      ],
+      "label": "Longman"
+    },
+    {
+      "url": "https://api.github.com/repos/teloxide/teloxide/releases?per_page=10",
+      "kind": "github-release",
+      "skills": [
+        "telegram-bot-rust"
+      ],
+      "label": "teloxide"
+    },
+    {
+      "url": "https://api.nuget.org/v3-flatcontainer/telegram.bot/index.json",
+      "kind": "nuget-versions",
+      "skills": [
+        "telegram-bot-dotnet"
+      ],
+      "label": "Telegram.Bot"
+    },
+    {
+      "url": "https://repo.packagist.org/p2/irazasyed/telegram-bot-sdk.json",
+      "kind": "packagist-release",
+      "skills": [
+        "telegram-bot-php"
+      ],
+      "label": "Telegram Bot SDK"
+    },
+    {
+      "url": "https://crates.io/api/v1/crates/teloxide",
+      "kind": "crates-release",
+      "skills": [
+        "telegram-bot-rust"
+      ],
+      "label": "teloxide"
+    },
+    {
+      "url": "https://docs.python-telegram-bot.org/en/stable/",
+      "kind": "document",
+      "skills": [
+        "telegram-bot-python-telegram-bot"
+      ],
+      "label": "PTB current docs"
+    },
+    {
+      "url": "https://docs.aiogram.dev/en/latest/",
+      "kind": "document",
+      "skills": [
+        "telegram-bot-aiogram"
+      ],
+      "label": "aiogram current docs"
+    },
+    {
+      "url": "https://docs.rs/teloxide/latest/teloxide/",
+      "kind": "document",
+      "skills": [
+        "telegram-bot-rust"
+      ],
+      "label": "teloxide current docs"
+    }
+  ],
+  "fetch_overrides": {
+    "https://grammy.dev/guide/api": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/guide/api.md",
+    "https://grammy.dev/guide/deployment-types": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/guide/deployment-types.md",
+    "https://grammy.dev/guide/errors": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/guide/errors.md",
+    "https://grammy.dev/guide/getting-started": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/guide/getting-started.md",
+    "https://grammy.dev/guide/middleware": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/guide/middleware.md",
+    "https://grammy.dev/plugins/auto-retry": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/plugins/auto-retry.md",
+    "https://grammy.dev/plugins/conversations": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/plugins/conversations.md",
+    "https://grammy.dev/plugins/runner": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/plugins/runner.md",
+    "https://grammy.dev/plugins/session": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/plugins/session.md",
+    "https://repo.maven.apache.org/maven2/org/telegram/telegrambots-client/10.3.0/telegrambots-client-10.3.0.pom": "https://repo1.maven.org/maven2/org/telegram/telegrambots-client/10.3.0/telegrambots-client-10.3.0.pom",
+    "https://repo.maven.apache.org/maven2/org/telegram/telegrambots-longpolling/10.3.0/telegrambots-longpolling-10.3.0.pom": "https://repo1.maven.org/maven2/org/telegram/telegrambots-longpolling/10.3.0/telegrambots-longpolling-10.3.0.pom",
+    "https://repo.maven.apache.org/maven2/org/telegram/telegrambots-meta/10.3.0/telegrambots-meta-10.3.0.pom": "https://repo1.maven.org/maven2/org/telegram/telegrambots-meta/10.3.0/telegrambots-meta-10.3.0.pom",
+    "https://go-telegram-bot-api.dev/": "https://raw.githubusercontent.com/go-telegram-bot-api/telegram-bot-api/master/README.md",
+    "https://nginx.org/en/docs/http/ngx_http_proxy_module.html": "https://raw.githubusercontent.com/nginx/nginx.org/main/xml/en/docs/http/ngx_http_proxy_module.xml",
+    "https://docs.rs/teloxide/0.17.0/teloxide/requests/trait.Requester.html": "https://raw.githubusercontent.com/teloxide/teloxide/v0.17.0/crates/teloxide-core/src/requests/requester.rs"
+  }
+}

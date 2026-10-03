@@ -21,3 +21,7 @@ Use alongside telegram-bot-gotd for optional MTProto infrastructure. This is a c
 [assets/reliable-echo/main.go](assets/reliable-echo/main.go) combines bbolt session/recovery storage, peer collection, bounded retries, and a typed dispatcher. Its local database contains account credentials and should be treated as a secret.
 
 Build checks do not exercise live updates, reconnection, storage services, proxy reachability, or Telegram RPC behavior. Add targeted integration tests for those requirements.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

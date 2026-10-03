@@ -30,3 +30,7 @@ The researched baseline is **aiogram 3.31.0**, released **2026-08-26**, **Python
 [assets/starter/bot.py](assets/starter/bot.py) is an original complete polling entrypoint with echo, a typed menu and a validated private-chat FSM form. Install [requirements](assets/starter/requirements.txt), set `BOT_TOKEN`, and run it only when Telegram interaction is intended. Optional `REDIS_URL` selects Redis storage plus matching event isolation; without it, state is process-local.
 
 [assets/starter/offline_check.py](assets/starter/offline_check.py) tests command parsing, callback bounds and form cancellation/validation without Telegram or Redis connections. The guide's webhook/middleware/scheduler snippets are application patterns with stated integration requirements.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

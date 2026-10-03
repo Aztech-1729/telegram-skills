@@ -1,0 +1,87 @@
+name: Eligible dependency auto-merge
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+permissions: {}
+
+concurrency:
+  group: dependabot-merge-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  enable:
+    if: >-
+      github.repository == 'Aztech-1729/telegram-skills' &&
+      github.event.pull_request.user.login == 'dependabot[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.base.ref == github.event.repository.default_branch &&
+      !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      # This privileged workflow never checks out or executes pull-request code.
+      - name: Verify Dependabot metadata and commit signatures
+        id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3
+      - name: Verify allowed paths and enable protected auto-merge
+        if: >-
+          (steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+           steps.metadata.outputs.update-type == 'version-update:semver-minor') &&
+          steps.metadata.outputs.maintainer-changes != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha }}
+        shell: python
+        run: |
+          import json, os, re, subprocess
+          repo, number, sha = os.environ['REPOSITORY'], os.environ['PR_NUMBER'], os.environ['EXPECTED_SHA']
+          assert repo == 'Aztech-1729/telegram-skills' and number.isdigit() and re.fullmatch('[0-9a-f]{40}', sha)
+          def api(path):
+              return json.loads(subprocess.check_output(['gh', 'api', path]))
+          pr = api(f'repos/{repo}/pulls/{number}')
+          assert pr['user']['login'] == 'dependabot[bot]' and pr['state'] == 'open' and not pr['draft']
+          assert pr['head']['repo']['full_name'] == repo and pr['head']['sha'] == sha
+          protection = api(f'repos/{repo}/branches/main')
+          assert 'validation' in protection['protection']['required_status_checks']['contexts'], 'Required validation gate is not configured'
+          allowed = {'requirements-dev.txt'}
+          python_dirs = ['telegram-bot-python-telegram-bot/assets/starter', 'telegram-bot-aiogram/assets/starter',
+                         'telegram-bot-telethon/assets/starter', 'telegram-bot-recipes/assets']
+          allowed.update(f'{p}/requirements.txt' for p in python_dirs)
+          for folder in ['go-telegram-echo', 'gotgbot-echo', 'classic-echo']:
+              allowed.update(f'telegram-bot-go-botapi/assets/{folder}/{f}' for f in ['go.mod', 'go.sum'])
+          for folder in ['telegram-bot-gotd/assets/echo', 'telegram-bot-gotd-contrib/assets/reliable-echo']:
+              allowed.update(f'{folder}/{f}' for f in ['go.mod', 'go.sum'])
+          allowed.update({'telegram-bot-javascript/assets/starter/package.json',
+                          'telegram-bot-javascript/assets/starter/package-lock.json',
+                          'telegram-bot-java/assets/echo/pom.xml',
+                          'telegram-bot-dotnet/assets/starter/TelegramStarter.csproj',
+                          'telegram-bot-dotnet/assets/starter/packages.lock.json',
+                          'telegram-bot-php/assets/starter/composer.json',
+                          'telegram-bot-php/assets/starter/composer.lock',
+                          'telegram-bot-rust/assets/echo/Cargo.toml',
+                          'telegram-bot-rust/assets/echo/Cargo.lock'})
+          files = []
+          for page in range(1, 31):
+              batch = api(f'repos/{repo}/pulls/{number}/files?per_page=100&page={page}')
+              files.extend(batch)
+              if len(batch) < 100: break
+          assert len(files) == pr['changed_files'] and files
+          for file in files:
+              path = file['filename']
+              assert file['status'] in {'modified', 'added'}, f'Unexpected file operation: {path}'
+              if path in allowed: continue
+              assert path.startswith('.github/workflows/') and path.endswith(('.yml', '.yaml')), f'Unexpected file: {path}'
+              # Action updates can only change immutable action references, never scripts or permissions.
+              patch = file.get('patch', '')
+              changed = [line[1:] for line in patch.splitlines() if line[:1] in '+-' and not line.startswith(('+++', '---'))]
+              assert changed and file['status'] == 'modified'
+              assert all(re.fullmatch(r'\s*(?:-\s*)?uses:\s*[A-Za-z0-9_.-]+/[A-Za-z0-9_./-]+@[0-9a-f]{40}(?:\s+#.*)?\s*', line) for line in changed)
+          subprocess.run(['gh', 'pr', 'merge', number, '--repo', repo, '--auto', '--squash',
+                          '--match-head-commit', sha], check=True)

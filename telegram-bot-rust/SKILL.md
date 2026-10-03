@@ -21,3 +21,7 @@ Use for Rust HTTP bots with teloxide. MTProto user-account clients require a sep
 [assets/echo/Cargo.toml](assets/echo/Cargo.toml) and [src/main.rs](assets/echo/src/main.rs) provide a minimal text echo design. It reads TELOXIDE_TOKEN. The source record states whether compilation was available; source review alone is not a cargo check.
 
 Use the feature guides for interaction design, Stars, Mini Apps, and operations when relevant, translating examples to Rust.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

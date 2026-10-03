@@ -20,3 +20,7 @@ Use with the fundamentals guide for HTTP bots written in Go. For Go user-account
 The guide links three small applications under assets/, one for each library. They read TELEGRAM_BOT_TOKEN and intentionally send plain text. Do not run them during documentation checks: construction or polling can contact Telegram.
 
 Add keyboards/UI, payments, Mini Apps, or deployment guides only for the requested feature. Framework choice does not change Telegram's API permissions or rate limits.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

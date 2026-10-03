@@ -35,3 +35,7 @@ A .NET 8 SDK is required to build the starter. Its API signatures were checked a
 Use a scoped database unit of work per operation; a singleton bot client does not make a shared DbContext safe. Validate webhook secrets and duplicates, check bot/user permissions, and make payment fulfillment durable. Match newer fields/methods to the installed package rather than translating Python names into C# guesses.
 
 Load the shared [UI](../telegram-bot-keyboards-ui/SKILL.md), [payments](../telegram-bot-payments-stars/SKILL.md), [Mini Apps](../telegram-bot-miniapps/SKILL.md), [rich messaging](../telegram-bot-rich-messaging/SKILL.md), and [operations](../telegram-bot-advanced-features/SKILL.md) guides as needed.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

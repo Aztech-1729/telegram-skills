@@ -31,3 +31,7 @@ Read [the guide](references/guide.md) for launch selection, SDK integration, aut
 - [scripts/test_miniapp_security.py](scripts/test_miniapp_security.py): offline signature, ownership, expiry, persistence and in-process HTTP tests. Run `python -m unittest discover -s telegram-bot-miniapps/scripts -p 'test_*.py'` from the repository root.
 
 Combine with a framework skill for bot startup, Keyboards UI for chat entry points, Payments for invoices, and Advanced Features for deployment and distributed storage.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

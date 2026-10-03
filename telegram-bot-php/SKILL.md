@@ -37,3 +37,7 @@ Configure `TELEGRAM_BOT_TOKEN` and `TELEGRAM_WEBHOOK_SECRET` in the HTTP worker 
 ## Task companions
 
 Load [UI](../telegram-bot-keyboards-ui/SKILL.md), [payments](../telegram-bot-payments-stars/SKILL.md), [Mini Apps](../telegram-bot-miniapps/SKILL.md), [rich messaging](../telegram-bot-rich-messaging/SKILL.md), and [advanced operations](../telegram-bot-advanced-features/SKILL.md) for the relevant application behavior. Adapt their conceptual examples to PHP rather than mixing Python/Go wrapper syntax.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

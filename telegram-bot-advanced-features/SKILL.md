@@ -32,3 +32,7 @@ Read [the engineering guide](references/guide.md) for database/session lifecycle
 - [offline tests](scripts/test_durable_ops.py) and [async state tests](scripts/test_state_lifecycle.py): run `python -m unittest discover -s telegram-bot-advanced-features/scripts -p 'test_*.py'` from the repository root. SQLAlchemy/aiosqlite are needed for the second test module.
 
 Combine with Payments for receipt/fulfillment durability, Mini Apps for backend sessions, and Keyboards UI for callback authorization and sending policy.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.

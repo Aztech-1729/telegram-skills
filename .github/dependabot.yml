@@ -1,0 +1,91 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directories:
+      - /
+      - /telegram-bot-python-telegram-bot/assets/starter
+      - /telegram-bot-aiogram/assets/starter
+      - /telegram-bot-telethon/assets/starter
+      - /telegram-bot-recipes/assets
+    schedule:
+      interval: weekly
+      day: monday
+      time: '03:17'
+      timezone: Etc/UTC
+    open-pull-requests-limit: 5
+    groups:
+      routine:
+        patterns: ['*']
+        update-types: [minor, patch]
+        group-by: dependency-name
+      security:
+        applies-to: security-updates
+        patterns: ['*']
+  - package-ecosystem: npm
+    directory: /telegram-bot-javascript/assets/starter
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    groups:
+      routine:
+        patterns: ['*']
+        update-types: [minor, patch]
+  - package-ecosystem: gomod
+    directories:
+      - /telegram-bot-go-botapi/assets/go-telegram-echo
+      - /telegram-bot-go-botapi/assets/gotgbot-echo
+      - /telegram-bot-go-botapi/assets/classic-echo
+      - /telegram-bot-gotd/assets/echo
+      - /telegram-bot-gotd-contrib/assets/reliable-echo
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      routine:
+        patterns: ['*']
+        update-types: [minor, patch]
+  - package-ecosystem: maven
+    directory: /telegram-bot-java/assets/echo
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    groups:
+      routine:
+        patterns: ['*']
+        update-types: [minor, patch]
+  - package-ecosystem: nuget
+    directory: /telegram-bot-dotnet/assets/starter
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    groups:
+      routine:
+        patterns: ['*']
+        update-types: [minor, patch]
+  - package-ecosystem: composer
+    directory: /telegram-bot-php/assets/starter
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    groups:
+      routine:
+        patterns: ['*']
+        update-types: [minor, patch]
+  - package-ecosystem: cargo
+    directory: /telegram-bot-rust/assets/echo
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    groups:
+      routine:
+        patterns: ['*']
+        update-types: [minor, patch]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    groups:
+      routine:
+        patterns: ['*']
+        update-types: [minor, patch]

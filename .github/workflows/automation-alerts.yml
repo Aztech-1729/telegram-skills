@@ -1,0 +1,32 @@
+name: Automation health alerts
+
+on:
+  workflow_run:
+    workflows: [Validate skill pack, Refresh upstream evidence]
+    types: [completed]
+
+permissions: {}
+
+concurrency:
+  group: automation-alert-${{ github.event.workflow_run.workflow_id }}
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    if: github.repository == 'Aztech-1729/telegram-skills' && github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+      actions: read
+    steps:
+      # Always use trusted main. Never download or execute workflow-run artifacts.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Open or resolve one issue per failed workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/automation_github.py alert "$GITHUB_EVENT_PATH"

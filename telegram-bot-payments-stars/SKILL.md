@@ -31,3 +31,7 @@ Read [the payment guide](references/guide.md) for rail selection, invoice/checko
 - [scripts/test_payment_ledger.py](scripts/test_payment_ledger.py): price/user/currency checks, concurrent duplicates, rollback, persistence and user-bound refund replay tests. Run `python -m unittest discover -s telegram-bot-payments-stars/scripts -p 'test_*.py'` from the repository root.
 
 Combine with a framework skill for handlers, Mini Apps for in-app checkout, Keyboards UI for invoice entry points, and Advanced Features for durable queues and operations.
+
+## Upstream status
+
+Before adopting a newer API or dependency, check [automated source observations](references/upstream-status.md) and compare them with the reviewed baseline.
