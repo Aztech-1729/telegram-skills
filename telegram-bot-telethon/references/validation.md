@@ -8,6 +8,6 @@ actual event builders, raw-request constructors and incompatible button families
 
 Run that file from its starter directory with
 [requirements.txt](../assets/starter/requirements.txt) installed. The repository
-[validation record](../../docs/VALIDATION.md) supplies the combined runner.
+[validation record](https://github.com/Aztech-1729/telegram-skills/blob/main/docs/VALIDATION.md) supplies the combined runner.
 Authentication, permissions, history/media retrieval and FloodWait behavior were
 not exercised against a live account.

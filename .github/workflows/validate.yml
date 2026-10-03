@@ -42,6 +42,10 @@ jobs:
         with:
           node-version: '24'
           package-manager-cache: false
+      - name: Install locked skill distribution test tool
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Verify all-agent and copied skill installation
+        run: python scripts/check_installation.py
       - run: npm ci --ignore-scripts --no-audit --no-fund
         working-directory: telegram-bot-javascript/assets/starter
       - run: npm test

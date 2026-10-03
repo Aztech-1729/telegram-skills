@@ -10,6 +10,7 @@ import tomllib
 from urllib.parse import unquote, urlsplit
 import xml.etree.ElementTree as ET
 import yaml
+import validate_plugins
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = sorted(ROOT.glob('telegram-bot-*/SKILL.md'))
@@ -36,6 +37,10 @@ def anchors(text):
 
 def main():
     errors = []
+    try:
+        validate_plugins.validate(ROOT)
+    except (ValueError, KeyError, TypeError, OSError, ET.ParseError) as exc:
+        errors.append(f'Native plugin metadata: {exc}')
     if len(SKILLS) != 18:
         errors.append(f'Expected 18 skills, found {len(SKILLS)}; update catalog and validator together')
     for path in SKILLS:
