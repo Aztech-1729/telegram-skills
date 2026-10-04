@@ -6,7 +6,9 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, Mock
 
-from telegram.ext import ConversationHandler, PicklePersistence
+from telegram import CallbackQuery, Update, User
+from telegram.error import NetworkError
+from telegram.ext import CallbackQueryHandler, ConversationHandler, PicklePersistence
 
 import bot
 
@@ -62,6 +64,46 @@ class StarterChecks(unittest.IsolatedAsyncioTestCase):
         await bot.close_menu(SimpleNamespace(callback_query=query), SimpleNamespace())
         query.answer.assert_awaited_once_with("This menu belongs to another user.", show_alert=True)
         query.edit_message_text.assert_not_awaited()
+
+    async def test_failed_completion_preserves_form_for_retry(self):
+        reply = AsyncMock(side_effect=NetworkError("offline failure"))
+        update = SimpleNamespace(effective_message=SimpleNamespace(text="30", reply_text=reply))
+        context = SimpleNamespace(user_data={bot.FORM_KEY: {"name": "<Ada>"}, "other": True})
+        with self.assertRaises(NetworkError):
+            await bot.receive_age(update, context)
+        self.assertEqual(context.user_data[bot.FORM_KEY], {"name": "<Ada>"})
+        reply.side_effect = None
+        self.assertEqual(await bot.receive_age(update, context), ConversationHandler.END)
+        reply.assert_awaited_with("Saved this demo response: &lt;Ada&gt;, age 30.")
+        self.assertEqual(context.user_data, {"other": True})
+
+    async def test_stale_callback_selects_recovery_after_specific_route(self):
+        app = bot.build_application(FAKE_TOKEN)
+        callbacks = [handler for handler in app.handlers[0] if isinstance(handler, CallbackQueryHandler)]
+        for payload, expected in (("menu:close:20", bot.close_menu), ("old:unknown", bot.expired_menu)):
+            update = Update(1, callback_query=CallbackQuery("offline", User(20, "Ada", False), "chat", data=payload))
+            selected = next(handler for handler in callbacks if handler.check_update(update))
+            self.assertIs(selected.callback, expected)
+        query = SimpleNamespace(answer=AsyncMock(), edit_message_text=AsyncMock())
+        await bot.expired_menu(SimpleNamespace(callback_query=query), SimpleNamespace())
+        query.answer.assert_awaited_once_with("This menu expired. Open /menu again.")
+        query.edit_message_text.assert_not_awaited()
+
+    async def test_nontext_form_input_selects_hint_and_keeps_state(self):
+        app = bot.build_application(FAKE_TOKEN)
+        conversation = app.handlers[0][0]
+        update = Update.de_json({"update_id": 2, "message": {
+            "message_id": 1, "date": 1, "chat": {"id": 10, "type": "private"},
+            "photo": [{"file_id": "offline", "file_unique_id": "offline", "width": 1, "height": 1}],
+        }}, app.bot)
+        for state in (bot.ASK_NAME, bot.ASK_AGE):
+            selected = next(handler for handler in conversation.states[state] if handler.check_update(update))
+            self.assertIs(selected.callback, bot.form_input_hint)
+        message = SimpleNamespace(reply_text=AsyncMock())
+        context = SimpleNamespace(user_data={bot.FORM_KEY: {"name": "Ada"}})
+        result = await bot.form_input_hint(SimpleNamespace(effective_message=message), context)
+        self.assertIsNone(result)  # ConversationHandler retains the current state.
+        self.assertEqual(context.user_data[bot.FORM_KEY], {"name": "Ada"})
 
 
 if __name__ == "__main__":

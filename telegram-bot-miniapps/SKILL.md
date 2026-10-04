@@ -5,7 +5,12 @@ description: Build Telegram Mini Apps with correct launch contexts, WebApp JS in
 
 # Telegram Mini Apps
 
-Read [the guide](references/guide.md) for launch selection, SDK integration, authentication, deployment and the persistent todo example. Consult [sources and compatibility](references/sources.md) for the 2026-10-03 baseline. The WebApp API exposed by a client and the bot's server API are distinct version checks.
+For visual tokens, responsive components and native-control lifecycle, use
+[Mini App design](../telegram-bot-miniapp-design/SKILL.md). Use
+[Accessibility](../telegram-bot-accessibility/SKILL.md) for contrast, labels,
+focus and acceptance checks; this skill owns launch/auth/backend integration.
+
+Read [the guide](references/guide.md) for launch selection, SDK integration, authentication, deployment and the persistent todo example. Consult [sources and compatibility](references/sources.md) for the 2026-10-04 baseline. The WebApp API exposed by a client and the bot's server API are distinct version checks.
 
 ## Workflow
 

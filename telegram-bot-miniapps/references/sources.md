@@ -1,6 +1,6 @@
 # Sources and compatibility ledger
 
-Checked: **2026-10-03**. Cutoff: **2026-10-03**. References are primary documentation; claims about application sessions/rate limits are design choices in this repository.
+Checked: **2026-10-04**. Cutoff: **2026-10-04**. References are primary documentation; claims about application sessions/rate limits are design choices in this repository.
 
 | Primary source | Checked scope |
 |---|---|
@@ -15,4 +15,11 @@ Checked: **2026-10-03**. Cutoff: **2026-10-03**. References are primary document
 
 Verified API milestones: SecondaryButton/BottomButton in **7.10**; fullscreen/safe areas in **8.0**; DeviceStorage/SecureStorage in **9.0**. User clients still need the corresponding WebApp API. This is a checked snapshot, not a promise of universal device support. PTB **22.8** and aiogram **3.31.0** documentation were inspected; no runtime wrapper installation is required by the local helper. Offline tests exercise Python auth/storage and in-process HTTP behavior, not Telegram network integration.
 
-Executed offline environment: Python **3.12.1**, FastAPI **0.115.3**, Pydantic **2.9.2**, HTTPX **0.25.2**; Uvicorn **0.34.0** was present but no external server was started. These are tested installed versions, not a recommendation to choose older versions for a new deployment. Record and check your project's selected versions separately.
+Original offline environment (2026-10-03): Python **3.12.1**, FastAPI **0.115.3**, Pydantic **2.9.2**, HTTPX **0.25.2**; Uvicorn **0.34.0** was present but no external server was started. These are historical installed versions, not deployment recommendations.
+
+The 2026-10-04 audit also passed all five auth/storage/HTTP tests with the root's
+current FastAPI **0.142.2**, HTTPX **0.28.1** and Python **3.12.1** environment.
+Nine JavaScript tests verify frontend duplicate/uncertain writes, expired sessions,
+delete confirmation, known-success feedback, field errors and enabled-control focus
+using a local fake DOM/transport. No actual Telegram WebView or screen reader was
+exercised. Record and check your project's selected versions separately.

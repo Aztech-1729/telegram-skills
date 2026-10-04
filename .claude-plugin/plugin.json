@@ -1,16 +1,32 @@
 {
   "name": "telegram",
   "displayName": "Telegram Skills",
-  "version": "1.0.0",
-  "description": "18 Telegram skills for Bot API, MTProto and Mini App development across Python, Go, JavaScript/TypeScript, Java, .NET, PHP and Rust.",
+  "version": "1.1.0",
+  "description": "21 Telegram skills for bots, MTProto, Mini Apps, UI/UX and accessibility across Python, Go, JavaScript/TypeScript, Java, .NET, PHP and Rust.",
   "author": {
     "name": "Aztech",
     "url": "https://github.com/Aztech-1729"
   },
   "homepage": "https://github.com/Aztech-1729/telegram-skills",
   "repository": "https://github.com/Aztech-1729/telegram-skills",
-  "keywords": ["telegram", "bot-api", "mtproto", "mini-apps", "python", "go", "javascript", "java", "dotnet", "php", "rust"],
+  "keywords": [
+    "telegram",
+    "bot-api",
+    "mtproto",
+    "mini-apps",
+    "python",
+    "go",
+    "javascript",
+    "java",
+    "dotnet",
+    "php",
+    "rust",
+    "ux",
+    "ui",
+    "accessibility"
+  ],
   "skills": [
+    "./telegram-bot-accessibility",
     "./telegram-bot-advanced-features",
     "./telegram-bot-aiogram",
     "./telegram-bot-dotnet",
@@ -21,6 +37,7 @@
     "./telegram-bot-java",
     "./telegram-bot-javascript",
     "./telegram-bot-keyboards-ui",
+    "./telegram-bot-miniapp-design",
     "./telegram-bot-miniapps",
     "./telegram-bot-payments-stars",
     "./telegram-bot-php",
@@ -28,6 +45,7 @@
     "./telegram-bot-recipes",
     "./telegram-bot-rich-messaging",
     "./telegram-bot-rust",
-    "./telegram-bot-telethon"
+    "./telegram-bot-telethon",
+    "./telegram-bot-ux"
   ]
 }

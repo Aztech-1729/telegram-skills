@@ -33,3 +33,6 @@ Some fetched `tl.telethon.dev` raw-reference pages returned unrelated content du
 
 See [validation.md](validation.md) for exact offline checks and their limits.
 
+## Focused audit — 2026-10-04
+
+The [official release feed](https://pypi.org/pypi/Telethon/json) still reports 1.45.0. The [event reference](https://docs.telethon.dev/en/stable/modules/events.html) and exact installed 1.45.0 CallbackQuery builders support the disjoint func filters used for recognized/recovery callbacks. Eight offline checks pass, including actual builder filtering of valid, stale, zero-owner and oversized data, acknowledgment without editing unknown menus, identity refusal and layer 229 constructors. Authentication guidance now keeps business handlers disabled until the restored identity is verified.

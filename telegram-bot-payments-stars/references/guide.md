@@ -1,6 +1,6 @@
 # Payment implementation guide
 
-Checked 2026-10-03. Contents: rails/orders; invoices and handlers; recurring lifecycle; refunds/reconciliation; physical shipping; gifts and Mini Apps. [Sources](sources.md) record the checked API/library baseline. Code fragments do not register live bots or perform payments by themselves.
+Checked 2026-10-04. Contents: rails/orders; invoices and handlers; recurring lifecycle; refunds/reconciliation; physical shipping; paid media; gifts and Mini Apps. [Sources](sources.md) record the checked API/library baseline. Code fragments do not register live bots or perform payments by themselves.
 
 ## Rail and order design
 
@@ -21,6 +21,7 @@ PTB v22.8 integration fragment (the application supplies a configured bot, ledge
 ```python
 import asyncio
 import secrets
+import sqlite3
 import time
 from telegram import LabeledPrice
 from telegram.ext import CommandHandler, MessageHandler, PreCheckoutQueryHandler, filters
@@ -38,10 +39,13 @@ async def buy(update, context):
 
 async def pre_checkout(update, context):
     q = update.pre_checkout_query
-    ok = await asyncio.to_thread(
-        ledger.validate_checkout, q.invoice_payload, q.from_user.id,
-        q.currency, q.total_amount, now=int(time.time()),
-    )
+    try:
+        ok = await asyncio.wait_for(asyncio.to_thread(
+            ledger.validate_checkout, q.invoice_payload, q.from_user.id,
+            q.currency, q.total_amount, now=int(time.time()),
+        ), timeout=3)
+    except (asyncio.TimeoutError, sqlite3.Error):
+        ok = False  # Decline unavailable checkout before Telegram's ten-second deadline.
     await q.answer(ok=ok, error_message=None if ok else "Order unavailable. Please create a new invoice.")
 
 async def paid(update, context):
@@ -58,12 +62,13 @@ app.add_handler(PreCheckoutQueryHandler(pre_checkout))
 app.add_handler(MessageHandler(filters.SUCCESSFUL_PAYMENT, paid))
 ```
 
-This fragment assumes `ledger` is an initialized `PaymentLedger` and `app` is the application's PTB Application. Store/retry unexpected paid events through an inbox and alert on mismatch. Set a short bounded DB/query timeout so a failure produces a declined pre-checkout before its ten-second deadline; do not wait on external inventory services indefinitely.
+This fragment assumes `ledger` is an initialized `PaymentLedger` and `app` is the application's PTB Application. Store/retry unexpected paid events through an inbox and alert on mismatch. The three-second read budget leaves time to answer; configure the framework's request timeout accordingly and log timeout/error categories without payment contents. `wait_for` cannot stop an already running thread, so its timed operation is read-only. Inventory reservation, if needed, requires its own transactional expiry/release design; do not approve against an unbounded external inventory call.
 
 aiogram 3 handler fragment uses the same service:
 
 ```python
 import asyncio
+import sqlite3
 import time
 from aiogram import F, Router
 from aiogram.types import Message, PreCheckoutQuery
@@ -72,10 +77,13 @@ router = Router()
 
 @router.pre_checkout_query()
 async def check(q: PreCheckoutQuery):
-    ok = await asyncio.to_thread(
-        ledger.validate_checkout, q.invoice_payload, q.from_user.id,
-        q.currency, q.total_amount, now=int(time.time()),
-    )
+    try:
+        ok = await asyncio.wait_for(asyncio.to_thread(
+            ledger.validate_checkout, q.invoice_payload, q.from_user.id,
+            q.currency, q.total_amount, now=int(time.time()),
+        ), timeout=3)
+    except (asyncio.TimeoutError, sqlite3.Error):
+        ok = False
     await q.answer(ok=ok, error_message=None if ok else "Order unavailable.")
 
 @router.message(F.successful_payment)
@@ -129,11 +137,25 @@ await bot.refund_star_payment(user_id=recorded_user_id,
 # Only after confirmed success, record the completed refund in your service.
 ```
 
-The helper's `record_completed_refund` reverses the original credited units once and does not request refunds. In an application where credits were already consumed this may create debt; define restriction/manual-review policy instead of assuming balances cannot become negative. Recurring refunds require a period/contract-specific entitlement policy, not the one-time helper.
+The helper's `record_completed_refund` reverses the original credited units once and does not request refunds. For a trusted `Message.refunded_payment` event, pass its payload, currency and amount as well as the recorded original user's ID:
+
+```python
+ledger.record_completed_refund(
+    refund.telegram_payment_charge_id, original_payment_user_id,
+    payload=refund.invoice_payload, currency=refund.currency,
+    amount=refund.total_amount,
+)
+```
+
+It rejects conflicting event fields before reversal. Obtain the original buyer from your payment record; the refund object itself does not contain a buyer field. A confirmation received before its payment record needs deferred inbox reconciliation, not an invented order or a dropped event. In an application where credits were already consumed this may create debt; define restriction/manual-review policy instead of assuming balances cannot become negative. Recurring refunds require a period/contract-specific entitlement policy, not the one-time helper.
 
 Use `getMyStarBalance` for bot balance and `getStarTransactions(offset, limit)` for history; the return field is `transactions`, not `star_transactions`. Current per-page limit is 1–100. Reconcile incoming and outgoing records, including refunds/chargebacks and paid-broadcast fees; a transaction ID can coincide with the original payment/refund, so include direction/type in a history key. Fragment handles eligible earned-Star reward/withdrawal flows; do not invent a Bot API withdrawal method or guarantee timing/exchange value.
 
 Keep a payment support path, terms/refund policy and `/paysupport` handling as required by the [Stars guide](https://core.telegram.org/bots/payments-stars). Preserve financial audit data while minimizing retained personal data.
+
+Build support around the buyer's authenticated order history: show purchase status, paid-through date and refund status without exposing another user's charge IDs. Keep cancellation, refund and loss of access as separate visible outcomes. After payment acceptance, a failed confirmation message must not reverse the paid entitlement; let `/status` or reopening the Mini App recover the authoritative result. Use [bot UX](../../telegram-bot-ux/SKILL.md) for checkout copy/recovery and [accessibility](../../telegram-bot-accessibility/SKILL.md) for readable totals and alternatives to media-only product descriptions.
+
+Reconciliation is a resumable job: fetch bounded history pages, retain direction/type and fractional `nanostar_amount`, and upsert inspected records without issuing new fulfillment or refunds from balance differences alone. History offsets are counts, not durable transaction cursors; overlap/rescan windows and dedupe records when new history can arrive during a run. Track unmatched payments, refund requests waiting for confirmation and accepted payments waiting for external fulfillment. Never derive a buyer's entitlement from the bot's aggregate Star balance.
 
 ## Physical goods and shipping
 
@@ -144,6 +166,10 @@ Choose one shipping-price model: item-only initial prices plus selected shipping
 Webhook allowed updates must include message, pre-checkout and, where used, shipping/subscription update types. Verify the webhook secret header and deduplicate receipts. Provider and bot tokens belong in secret storage; do not log either.
 
 ## Gifts and Mini Apps
+
+### Paid media is a separate purchase flow
+
+Use [sendPaidMedia](https://core.telegram.org/bots/api#sendpaidmedia) for Telegram's built-in media unlock. Channel proceeds go to the channel balance; other supported destinations credit the bot balance. `purchased_paid_media` is documented for non-channel purchases with a nonempty payload. The event has buyer and payload, but no successful-payment charge ID/amount, so it cannot be fed into the included credit ledger. Deduplicate the update and bind the payload to the media offer for any additional application benefit; do not promise per-buyer channel purchase notifications or invent an invoice `successful_payment` for this flow. Paid-broadcast fees are outgoing API expenses and need a separate budget/reconciliation category.
 
 Use [getAvailableGifts](https://core.telegram.org/bots/api#getavailablegifts) to discover gift IDs/price metadata; `sendGift` spends bot Stars, and business-account gift management has separate connection/right requirements. User/chat gift-list, unique-gift and upgrade/transfer APIs have distinct purposes; do not guess method/permission equivalence. Consult current gift sections before automating spending.
 
@@ -157,4 +183,4 @@ For Mini Apps, create invoices on an authenticated backend, bind orders to the v
 python -m unittest discover -s telegram-bot-payments-stars/scripts -p 'test_*.py' -v
 ```
 
-The standard-library tests cover amount/user/currency mismatches, checkout expiry, concurrent duplicate charge delivery, conflicting replay rollback, database reopening, and user-bound idempotent refund bookkeeping. They make no Telegram requests and prove only the one-time local-ledger behavior.
+The standard-library tests cover amount/user/currency mismatches, checkout expiry/input bounds, concurrent duplicate charge delivery, conflicting replay rollback, database reopening, and user-bound idempotent refund bookkeeping including conflicting event fields. They make no Telegram requests and prove only the one-time local-ledger behavior.

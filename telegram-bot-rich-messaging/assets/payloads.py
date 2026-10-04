@@ -16,6 +16,8 @@ def final_rich_payload(chat_id, **representation):
     return {"chat_id": chat_id, "rich_message": rich_message(**representation)}
 
 def draft_payload(chat_id, draft_id, content, *, rich=False, thread_id=None, can_stop=False, keep_on_stop=False):
+    if any(type(value) is not bool for value in (rich, can_stop, keep_on_stop)):
+        raise ValueError("rich and stop options must be booleans")
     if not isinstance(chat_id, int) or isinstance(chat_id, bool) or chat_id <= 0:
         raise ValueError("Drafts require a private chat ID")
     if not isinstance(draft_id, int) or isinstance(draft_id, bool) or draft_id == 0:
@@ -27,7 +29,7 @@ def draft_payload(chat_id, draft_id, content, *, rich=False, thread_id=None, can
     elif not isinstance(content, str):
         raise ValueError("Plain draft content must be text")
     result = {"chat_id": chat_id, "draft_id": draft_id, "rich_message" if rich else "text": content,
-              "can_stop": bool(can_stop), "keep_on_stop": bool(keep_on_stop)}
+              "can_stop": can_stop, "keep_on_stop": keep_on_stop}
     if thread_id is not None:
         if not isinstance(thread_id, int) or isinstance(thread_id, bool) or thread_id <= 0:
             raise ValueError("thread_id must be positive")

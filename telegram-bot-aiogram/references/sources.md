@@ -30,3 +30,7 @@ Checked **2026-10-03**. Baseline **aiogram 3.31.0**, released **2026-08-26**, do
 | https://apscheduler.readthedocs.io/en/3.x/userguide.html | APScheduler 3 AsyncIOScheduler, job IDs, stores/misfire/ownership decisions |
 
 The original starter has offline checks; no Telegram or Redis connections were used for them. These establish import/configuration and selected state behavior, not permissions, delivery or deployment guarantees. See [validation record](validation.md).
+
+## Focused audit — 2026-10-04
+
+The [official release feed](https://pypi.org/pypi/aiogram/json) still reports 3.31.0. The pinned [DefaultKeyBuilder source](https://docs.aiogram.dev/en/v3.31.0/_modules/aiogram/fsm/storage/base.html) defaults with_bot_id to False; the starter now explicitly includes it and shares that builder with Redis event isolation. Its key tests do not connect to Redis. The [dispatcher implementation](https://docs.aiogram.dev/en/v3.31.0/_modules/aiogram/dispatcher/dispatcher.html) establishes the polling task/shutdown boundary described in the guide. Eight offline tests passed, including real stale-callback feed_update with a mocked bot session and failed-reply state retention.

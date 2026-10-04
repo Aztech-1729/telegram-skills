@@ -7,9 +7,14 @@ failing updates. Eligible changes merge after independent review and required
 validation. The [agent runbook](AGENT_MAINTENANCE.md) defines its scope and merge
 conditions.
 
-The skill source registers retain their **2026-10-03 editorial review date** until
-the relevant content is actually reviewed again. A later successful fetch is a
-separate observation, not a new review date.
+Source registers record actual editorial review dates. The full skill audit on
+**2026-10-04** advanced the reviewed content records; later successful fetches
+remain separate observations, not new editorial reviews.
+
+The 21-skill pack now includes bot UX, Mini App design and accessibility. Daily
+monitoring includes their primary W3C sources under explicit approved paths.
+Required validation also runs contrast/frontend behavior checks and the new
+native Go, Java, .NET, PHP and Rust starter checks. See the [audit](AUDIT.md).
 
 ## Active workflows
 

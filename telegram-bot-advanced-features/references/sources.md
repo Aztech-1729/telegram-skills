@@ -2,6 +2,8 @@
 
 Checked: **2026-10-03**. Cutoff: **2026-10-03**. Primary documentation. Design choices such as inbox/outbox schemas, lease policy and retry budget are original repository guidance.
 
+Focused re-review **2026-10-04**: confirmed Bot API 10.3/update retention and webhook information, FAQ rate context, PTB 22.8 receiver/JobQueue behavior, aiogram 3.31.0 webhook behavior, SQLAlchemy 2 async lifecycle and APScheduler 3 coordination. Infrastructure fragments retain their 2026-10-03 review; they were not deployed.
+
 | Primary source | Checked scope / baseline |
 |---|---|
 | [Bot API](https://core.telegram.org/bots/api) | **10.3, 2026-08-24**; update transport, webhook secrets, local server capabilities |
@@ -9,6 +11,7 @@ Checked: **2026-10-03**. Cutoff: **2026-10-03**. Primary documentation. Design c
 | [Official local server](https://github.com/tdlib/telegram-bot-api) / [local mode](https://core.telegram.org/bots/api#using-a-local-bot-api-server) | Hosted/local migration and file/network limits |
 | [SQLAlchemy 2 async](https://docs.sqlalchemy.org/en/20/orm/extensions/asyncio.html) / [SQLite upsert](https://docs.sqlalchemy.org/en/20/dialects/sqlite.html#insert-on-conflict-upsert) | Declarative base, per-task sessions, engine disposal and dialect-specific conflict strategy |
 | [PTB JobQueue v22.8](https://docs.python-telegram-bot.org/en/v22.8/telegram.ext.jobqueue.html) | `job-queue` extra, timezone/weekdays, async callbacks |
+| [PTB Updater v22.8](https://docs.python-telegram-bot.org/en/v22.8/telegram.ext.updater.html) | Received updates are queued; a handler-level inbox is not automatically the transport acknowledgment boundary |
 | [PTB AIORateLimiter](https://docs.python-telegram-bot.org/en/stable/telegram.ext.aioratelimiter.html) | Page identified as **v22.8**; `rate-limiter` extra, default zero retries, reference implementation scope |
 | [aiogram webhook v3.31.0](https://docs.aiogram.dev/en/v3.31.0/dispatcher/webhook.html) / [FSM storages](https://docs.aiogram.dev/en/v3.31.0/dispatcher/finite_state_machine/storages.html) | Secret validation, background acknowledgment, Redis state |
 | [APScheduler 3 user guide](https://apscheduler.readthedocs.io/en/3.x/userguide.html) / [asyncio scheduler](https://apscheduler.readthedocs.io/en/3.x/modules/schedulers/asyncio.html) | Explicit **3.x** API family; persistence/misfire/coalescing and scheduler lifecycle; no claim about latest release |

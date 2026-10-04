@@ -1,8 +1,11 @@
 <?php
 declare(strict_types=1);
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/WebhookInput.php';
 
 use Telegram\Bot\Api;
+use TelegramStarter\IngressError;
+use function TelegramStarter\decodeWebhook;
+use function TelegramStarter\echoRequest;
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     http_response_code(405);
@@ -25,20 +28,16 @@ if ($raw === false || strlen($raw) > 524288) {
     exit;
 }
 try {
-    $payload = json_decode($raw, true, 64, JSON_THROW_ON_ERROR);
-    if (!is_array($payload) || !isset($payload['update_id']) || !is_int($payload['update_id'])) {
-        http_response_code(400);
-        exit;
-    }
-    // Deliberately echo only ordinary text messages, not edited/business/callback updates.
-    $message = $payload['message'] ?? null;
-    if (is_array($message) && isset($message['chat']['id'], $message['text']) && is_string($message['text'])) {
+    $payload = decodeWebhook($_SERVER['REQUEST_METHOD'], $secret, $supplied, $raw);
+    $request = echoRequest($payload);
+    if ($request !== null) {
+        require __DIR__ . '/vendor/autoload.php';
         $telegram = new Api($token);
-        $telegram->sendMessage(['chat_id' => $message['chat']['id'], 'text' => $message['text']]);
+        $telegram->sendMessage($request);
     }
     http_response_code(200);
-} catch (JsonException $error) {
-    http_response_code(400);
+} catch (IngressError $error) {
+    http_response_code($error->status);
 } catch (Throwable $error) {
     error_log('Telegram webhook failure: ' . get_class($error));
     http_response_code(503);

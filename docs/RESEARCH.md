@@ -1,5 +1,10 @@
 # Research record — 2026-10-03
 
+The [2026-10-04 audit](AUDIT.md) reviewed the complete 18-skill pack, fixed
+behavioral defects and added three UI/UX/accessibility specialists for **21 total**.
+The original audit and version snapshot below are retained as history; each skill's
+source register records the relevant subsequent review.
+
 ## Scope and method
 
 All original repository files were read. The 13 original skills were revised and

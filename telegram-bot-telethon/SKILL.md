@@ -20,7 +20,7 @@ Use the installed project version first. The researched baseline is **Telethon 1
 - Protect API hashes, bot tokens, SQLite sessions, and string sessions. A saved session can authenticate as a different account than a supplied token; verify the logged-in identity.
 - Create and use a client in one event loop. Do not mix synchronous helpers with an already running async server or reuse a connected client across loops.
 - Scope events with supported filters: `incoming`, `chats`, `from_users`, `pattern`, and `func`. Use `func=lambda e: e.is_private` for private messages; there are no `private=True` or `group=True` constructor filters.
-- Answer callback queries promptly; validate bytes, expiry, ownership, and permissions before mutation. Inline buttons and reply keyboard buttons belong in separate markups.
+- Answer callback queries promptly; validate bytes, expiry, ownership, and permissions before mutation. Give unknown/stale payloads a recovery route. Telethon can dispatch several matching handlers, so stop propagation or make callback routes disjoint. Inline buttons and reply keyboard buttons belong in separate markups.
 - Resolve entities with the current account; integer IDs need appropriate access hashes/cache. MTProto does not bypass bot privacy, membership, or user-only method restrictions.
 - Use actual wrappers or generated raw requests with all required fields. Do not invent client methods or event classes from their intended action.
 - Respect flood wait durations and use finite retries. Replaying a timed-out mutation can repeat a side effect; multiple accounts are not a rate-limit workaround.
@@ -33,7 +33,9 @@ Use the installed project version first. The researched baseline is **Telethon 1
 - [Runnable bot starter](assets/starter/bot.py), [pinned requirements](assets/starter/requirements.txt), and [offline checks](assets/starter/offline_check.py)
 - [Validation record and live limits](references/validation.md)
 
-The starter covers private text, commands, callback ownership, and verified bot identity. User login, history export, moderation, inline queries, media pipelines, and distributed state are separate application patterns requiring their own configuration.
+The starter covers private text, commands, callback ownership/stale-menu recovery, and verified bot identity. User login, history export, moderation, inline queries, media pipelines, and distributed state are separate application patterns requiring their own configuration.
+
+For a bot account's conversation or transfer feedback, add [bot UX](../telegram-bot-ux/SKILL.md) and [accessibility](../telegram-bot-accessibility/SKILL.md). For user login, keep credential entry in the authorized application's own interface. A separate web Mini App uses [Mini App design](../telegram-bot-miniapp-design/SKILL.md) and its HTTP/backend validation contract; an MTProto session does not validate Mini App launch data.
 
 ## Upstream status
 

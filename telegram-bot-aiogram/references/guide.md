@@ -2,7 +2,7 @@
 
 Cutoff **2026-10-03**; baseline **3.31.0 / Bot API 10.3**, released **2026-08-26**, Python **3.10+**. [Sources](sources.md) fixes verified scope. The supplied `assets/starter/bot.py` is a complete original polling program. Snippets here are **application patterns** requiring the stated surrounding services/configuration.
 
-Contents: setup/migration; routers and filters; typed callbacks; FSM/storage/isolation; DI/middleware; messages/media; webhooks/lifecycle; scheduling; i18n; errors and tests.
+Contents: setup/migration; routers and filters; typed callbacks; FSM/storage/isolation; DI/middleware; messages/media; webhooks/lifecycle; scheduling; i18n; errors and tests; state/routing recovery.
 
 ## Setup, version boundaries and framework choice
 
@@ -65,6 +65,8 @@ dp = Dispatcher(storage=storage, events_isolation=storage.create_isolation())
 
 Choose TTLs, namespace, bot/account/topic identity and lock timeout for the application. `SimpleEventIsolation` supplies process-local keyed locking; Redis isolation coordinates workers using matching keys. Long external calls need deliberate lock duration/transaction boundaries. Restart survival is not a database backup or exactly-once delivery guarantee. Store orders/payment fulfillment/reminder intent in durable repositories with idempotency. Scenes Wizard can organize more complex reusable flows; use plain FSM when it is sufficient. Preserve or migrate serialized state names between releases. [FSM](https://docs.aiogram.dev/en/v3.31.0/dispatcher/finite_state_machine/index.html), [storage](https://docs.aiogram.dev/en/v3.31.0/dispatcher/finite_state_machine/storages.html), [Redis isolation implementation](https://docs.aiogram.dev/en/v3.31.0/_modules/aiogram/fsm/storage/redis.html), [Scenes](https://docs.aiogram.dev/en/v3.31.0/dispatcher/finite_state_machine/scene.html).
 
+At this pin, DefaultKeyBuilder's `with_bot_id` defaults to False. Two bots using the same Redis prefix/chat/user can therefore collide unless configured otherwise. The starter now includes bot_id and obtains isolation from that storage. Existing deployments changing their keys must migrate/expire the old namespace deliberately and give users a restart route; silently changing keys does not migrate active forms. Topic/business/destiny identity must also match the application's FSMStrategy and intended flow. [Key builder implementation](https://docs.aiogram.dev/en/v3.31.0/_modules/aiogram/fsm/storage/base.html).
+
 ## DI and middleware boundaries
 
 Context values are injected by **parameter name**; type annotations aid clarity but do not select an arbitrary dependency by type. Standard names include `bot`, `state`, `event_from_user`, `event_chat` and matching filter outputs such as `command`/`callback_data`. Supply application services via Dispatcher contextual data, polling kwargs or middleware dictionaries; avoid overwriting framework keys.
@@ -109,6 +111,8 @@ For FastAPI/another ASGI framework, implement lifespan startup/shutdown, validat
 
 Stop receiving, await/cancel owned work, emit framework shutdown and close bot sessions/FSM/DB/HTTP resources. Handle partial startup failure. Do not automatically delete a shared webhook when a rolling-deployment replica exits. [Dispatcher](https://docs.aiogram.dev/en/v3.31.0/dispatcher/dispatcher.html), [webhook integration](https://docs.aiogram.dev/en/v3.31.0/dispatcher/webhook.html).
 
+`tasks_concurrency_limit` bounds spawned polling update tasks when `handle_as_tasks=True`; it does not make state durable or guarantee those tasks drain before resources close. At 3.31.0, start_polling's shutdown stops polling tasks and emits shutdown without awaiting its tracked per-update task set. If completing work before shutdown is required, use application-supervised workers/inbox records, or choose sequential `handle_as_tasks=False` when suitable, and define recovery for interrupted work. Do not rely on the dispatcher's private task set as a stable integration API. [Pinned dispatcher implementation](https://docs.aiogram.dev/en/v3.31.0/_modules/aiogram/dispatcher/dispatcher.html).
+
 ## Scheduling and restart recovery
 
 aiogram has no bundled JobQueue. For APScheduler **3.x**, use `AsyncIOScheduler` with an explicit timezone; pin `APScheduler>=3.10,<4` if adopting this API. Register cron/interval/date jobs inside the application's running loop and shut down the scheduler during owned shutdown. The application supplies async callbacks, Bot/service arguments, job IDs and misfire/coalescing policy. Do not paste a v4 scheduler API into a v3 recipe.
@@ -126,3 +130,15 @@ Register router/dispatcher ErrorEvent handlers; `True` handles the error, it doe
 Keep config/lifecycle, routers, keyboards/CallbackData, middleware, states, repositories and business services separate when useful. Use reusable async HTTP clients and per-request DB sessions; offload blocking work while keeping framework objects on their event loop. Protect external writes through transactional/idempotent business services.
 
 Run `python assets/starter/offline_check.py` with requirements installed. Also exercise routing of actual fabricated Updates through `Dispatcher.feed_update` with a mocked Bot session when extending the app. Validate concurrent forms, cancellation/reentry, nontext input, callback limits/expiry, Redis key migration, failed operations and shutdown. Dedicated live tests confirm TLS, webhook secret rejection, permission grants, inline/BotFather settings, command scopes and actual delivery. Report offline and live outcomes separately.
+
+## State and routing recovery
+
+| Symptom | Inspect first | Expected behavior |
+| --- | --- | --- |
+| A command is consumed as form input | Command/state-wide handler order and F filters | Cancellation/reentry commands win; the form remains in its step after invalid content |
+| Old buttons spin or reach the wrong handler | CallbackData prefix/version and fallback position | A final callback route acknowledges unknown payloads with a recovery action, without interpreting them as new commands |
+| One bot sees another bot's form | Redis key builder, bot_id, matching isolation | State and locks have account/flow-scoped keys |
+| A completion reply fails | clear/update ordering and durable operation status | Keep demo data until the reply succeeds; reconcile an already committed business effect before retrying it |
+| Dependency injection fails | Context dictionary keys and filter outputs | Parameter names match injected services; no accidental override of framework keys |
+
+Use state-specific hints for unexpected media, keep a cancellation route visible, and preserve accepted answers when validation fails. Localize prompts/buttons in the same request locale, and translate before escaping interpolated user content. Provide a clear final summary; a keyboard disappearing alone is insufficient completion feedback. When throttling a callback, acknowledge it and explain the retry route. Read [bot UX](../../telegram-bot-ux/SKILL.md) for navigation/copy, [accessibility](../../telegram-bot-accessibility/SKILL.md) for nonvisual and localized checks, and [Mini App design](../../telegram-bot-miniapp-design/SKILL.md) with [Mini App security](../../telegram-bot-miniapps/SKILL.md) for a requested web surface.

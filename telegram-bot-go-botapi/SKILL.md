@@ -13,13 +13,14 @@ Use with the fundamentals guide for HTTP bots written in Go. For Go user-account
 - Read [the framework guide](references/guide.md) for the selected library, handler and webhook wiring, media, error handling, and migration differences.
 - Check [the dated source record](references/sources.md) before using a version-sensitive method. A Bot API release and a Go library release are separate compatibility decisions.
 - Complete configuration, callback authorization, durable business state, and update ownership before running a bot. Use one polling receiver or a coordinated webhook deployment per token.
+- At go-telegram/bot v1.27.0, the native webhook handler logs rejected secrets/JSON but returns implicit HTTP 200. Supply explicit HTTP validation, bounded request bodies and the required acknowledgment policy around it; its queue is process memory.
 - Validate compilation and relevant update behavior with a fake client or fixture before live integration. Report compilation separately from Telegram integration tests.
 
 ## Starters
 
 The guide links three small applications under assets/, one for each library. They read TELEGRAM_BOT_TOKEN and intentionally send plain text. Do not run them during documentation checks: construction or polling can contact Telegram.
 
-Add keyboards/UI, payments, Mini Apps, or deployment guides only for the requested feature. Framework choice does not change Telegram's API permissions or rate limits.
+For a requested chat interface, add [bot UX](../telegram-bot-ux/SKILL.md) and [accessibility](../telegram-bot-accessibility/SKILL.md); for a web interface add [Mini App design](../telegram-bot-miniapp-design/SKILL.md) and [Mini App security](../telegram-bot-miniapps/SKILL.md). Framework choice does not change Telegram's API permissions or rate limits.
 
 ## Upstream status
 

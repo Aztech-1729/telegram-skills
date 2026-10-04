@@ -28,12 +28,24 @@ class RetryDecision:
     delay: float = 0
 
 
+def _finite_number(value, name):
+    try:
+        valid = type(value) in {int, float} and math.isfinite(value)
+    except OverflowError:
+        valid = False
+    if not valid:
+        raise ValueError(f"{name} must be finite")
+    return value
+
+
 def retry_decision(kind: str, attempt: int, *, max_attempts: int = 4,
                    retry_after: int | float | timedelta | None = None,
                    safe_replay: bool = False) -> RetryDecision:
     if type(attempt) is not int or type(max_attempts) is not int or not 1 <= attempt <= max_attempts:
         raise ValueError("attempt must be inside a positive retry budget")
-    if kind == "forbidden":
+    if type(safe_replay) is not bool:
+        raise ValueError("safe_replay must be a deliberate Boolean")
+    if kind == "recipient_blocked":
         return RetryDecision("blocked")
     if kind in {"network", "timeout", "server_error"} and not safe_replay:
         return RetryDecision("uncertain")
@@ -45,7 +57,7 @@ def retry_decision(kind: str, attempt: int, *, max_attempts: int = 4,
             raise ValueError("valid retry_after is required")
         delay = float(seconds) + 0.1
     else:
-        delay = min(2 ** (attempt - 1), 60)
+        delay = min(2 ** min(attempt - 1, 6), 60)
     return RetryDecision("failed") if attempt >= max_attempts else RetryDecision("retry", delay)
 
 
@@ -77,6 +89,9 @@ class Outbox:
     def enqueue(self, key: str, payload: dict, *, now: float, safe_replay: bool = False, max_attempts: int = 4) -> int:
         if not isinstance(key, str) or not key or not isinstance(payload, dict) or type(max_attempts) is not int or max_attempts < 1:
             raise ValueError("invalid job")
+        _finite_number(now, "now")
+        if type(safe_replay) is not bool:
+            raise ValueError("safe_replay must be a deliberate Boolean")
         encoded = json.dumps(payload, sort_keys=True, separators=(",", ":"), allow_nan=False)
         with self._db() as db:
             db.execute("BEGIN IMMEDIATE")
@@ -89,6 +104,9 @@ class Outbox:
                                  VALUES (?,?,?,?,?)""", (key, encoded, int(safe_replay), max_attempts, now)).lastrowid
 
     def claim(self, *, now: float, lease_seconds: float = 30) -> dict | None:
+        _finite_number(now, "now")
+        _finite_number(lease_seconds, "lease_seconds")
+        _finite_number(now + lease_seconds, "lease end")
         if lease_seconds <= 0:
             raise ValueError("positive lease required")
         with self._db() as db:
@@ -112,12 +130,16 @@ class Outbox:
                     "attempts": row["attempts"] + 1, "lease_token": token, "lease_until": now + lease_seconds}
 
     def complete(self, job_id: int, token: str, *, now: float) -> bool:
+        _finite_number(now, "now")
         with self._db() as db:
             return db.execute("""UPDATE outbox SET state='sent',lease_token=NULL WHERE id=?
                               AND state='inflight' AND lease_token=? AND lease_until>?""",
                               (job_id, token, now)).rowcount == 1
 
     def resolve_attempt(self, job_id: int, token: str, decision: RetryDecision, *, now: float) -> bool:
+        _finite_number(now, "now")
+        _finite_number(decision.delay, "delay")
+        _finite_number(now + decision.delay, "retry time")
         states = {"retry": "pending", "failed": "failed", "blocked": "blocked", "uncertain": "uncertain"}
         if decision.action not in states or not math.isfinite(decision.delay) or decision.delay < 0:
             raise ValueError("invalid retry decision")
@@ -133,6 +155,15 @@ class Outbox:
             db.execute("UPDATE outbox SET state=?,available=?,lease_token=NULL,lease_until=NULL WHERE id=?",
                        (state, now + decision.delay, job_id))
             return True
+
+    def summary(self, *, now: float) -> dict:
+        """Small operational view with no payloads, webhook secrets or lease tokens."""
+        _finite_number(now, "now")
+        with self._db() as db:
+            states = dict(db.execute("SELECT state,count(*) FROM outbox GROUP BY state").fetchall())
+            oldest = db.execute("SELECT min(available) FROM outbox WHERE state='pending' AND available<=?",
+                                (now,)).fetchone()[0]
+        return {"states": states, "oldest_due_age": None if oldest is None else now - oldest}
 
     def state(self, job_id: int) -> str:
         with self._db() as db:

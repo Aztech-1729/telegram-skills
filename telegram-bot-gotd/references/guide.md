@@ -4,7 +4,7 @@ Checked on **2026-10-03** against gotd/td **v0.162.0**, with Go **1.25.0** in it
 
 ## Contents
 
-Protocol selection; setup and bot lifecycle; user/QR authentication; update dispatch and recovery; sessions and peers; message/media helpers; raw RPCs; connection options; wrappers; verification.
+Protocol selection; setup and bot lifecycle; user/QR authentication; update dispatch and recovery; sessions and peers; message/media helpers; raw RPCs; connection options; wrappers; verification; failure diagnosis and interaction feedback.
 
 ## 1. Select MTProto for a concrete requirement
 
@@ -32,9 +32,12 @@ Keep the session file or database outside source control, with account-specific 
 - Core `session.FileStorage{Path: ...}`; the former `contrib/storage.FileSession` example was not the correct API.
 - A sender constructed from client.API(), captured in handlers.
 - Auth().Status followed by Auth().Bot only when authorization is absent.
+- Self's bot flag and ID checked against the token before the update chain is enabled.
 - A Run callback that stays alive until cancellation.
 
-Build from [its module](../assets/echo/go.mod) with `go build .`. Set APP_ID, APP_HASH, BOT_TOKEN and optionally SESSION_FILE before deliberately running it. An existing session must belong to the intended account; a production multi-account system should verify Self's identity.
+Build from [its module](../assets/echo/go.mod) with `go build .`, and run `go test ./...` for [offline identity/handler checks](../assets/echo/main_test.go). Set APP_ID, APP_HASH, BOT_TOKEN and optionally SESSION_FILE before deliberately running it. An authorized saved session is reused even if a different token is supplied. The starter refuses a user or different bot; changing tokens does not switch the file's account. Select another account-specific session path or handle an intentional account change through the application's authentication flow.
+
+The ready gate drops incoming updates before identity verification and after shutdown; it avoids effects from the wrong restored account, but is not a durable startup buffer. This plain dispatcher starter does not recover those updates. For loss-sensitive applications, integrate the recovery manager/durable inbox after identity verification and test its startup/reconnect boundary.
 
 The starter handles incoming ordinary text messages, including basic-group messages, and ignores outgoing/media-only messages. It does not claim to process supergroup/channel updates or notify administrators.
 
@@ -151,3 +154,18 @@ GoTGProto is a wrapper with its own helpers and storage conventions. The former 
 Build the pinned application without starting it. Unit-test command predicates and business effects using typed updates, fixtures or a fake invoker. Integration-test session restore, gap recovery, permissions, transfers and proxy behavior only in an authorized test environment.
 
 Report the actual validation. A compile check neither authenticates an account nor verifies real-server reconnect, loss recovery or media limits.
+
+## 14. Failure diagnosis and interaction feedback
+
+| Symptom | Inspect first | Fix or prove |
+| --- | --- | --- |
+| Unexpected account handles updates | Restored Self ID/type and session path | Verify intended identity before dispatch, stores or sends; do not silently replace an authorized session |
+| Reply reports `chat/user not found` | tg.Entities supplied with the event | sender.Reply extracts a typed peer from those entities; a numeric ID alone is insufficient |
+| Channel messages never arrive at the handler | OnNewMessage versus OnNewChannelMessage | Handle the intended generated update constructor and verify membership/rights |
+| Updates disappear across a restart | Manager.Run, StateStorage/access-hash stores and gap callbacks | Session restore supplies authorization; separately prove the needed recovery behavior |
+| A send returns an error after a business write | Committed operation record, random_id and outbound response | Preserve the intended operation identity; reconcile ambiguity rather than repeating fulfillment |
+| A Run callback exits immediately | Callback lifetime/owned worker supervision | Returning ends the connection run; keep the intended service lifetime explicit |
+
+The offline reply test supplies a basic group's actual entity along with its message, verifies the outgoing peer/text through a fake invoker, and preserves its returned error. Test private/channel peers with suitable fixtures when those routes are implemented; do not fabricate access hashes.
+
+For a bot interface, answer bot callbacks with the corresponding generated RPC before slow work, authorize the actor, then describe the actual result in the message. Long transfers need paced progress and cancellation; a queued/deferred action should say so instead of claiming completion. Keep login code/password and QR expiry handling in the authorized user application's own flow. Use [bot UX](../../telegram-bot-ux/SKILL.md) and [accessibility](../../telegram-bot-accessibility/SKILL.md) when designing chat interactions. Add [Mini App design](../../telegram-bot-miniapp-design/SKILL.md) and [Mini App security](../../telegram-bot-miniapps/SKILL.md) only for a separate web surface; an MTProto session is not a launch-data validator.

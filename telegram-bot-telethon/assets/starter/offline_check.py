@@ -8,7 +8,7 @@ from telethon import Button, TelegramClient, events
 from telethon.sessions import StringSession
 from telethon.tl import alltlobjects, functions, types
 
-from bot import Config, callback_owner, close_data, close_menu, echo, ensure_bot_identity, menu, register_handlers
+from bot import Config, callback_owner, close_data, close_menu, echo, ensure_bot_identity, expired_menu, menu, register_handlers
 
 
 class FakeEvent:
@@ -69,11 +69,25 @@ class OfflineTests(unittest.IsolatedAsyncioTestCase):
             await menu(event)
         self.assertIn('buttons', event.actions[1][2])
 
+    async def test_stale_callbacks_use_disjoint_recovery_route(self):
+        client = TelegramClient(StringSession(), 12345, 'a' * 32)
+        register_handlers(client)
+        routes = [(handler, builder) for handler, builder in client.list_event_handlers() if isinstance(builder, events.CallbackQuery)]
+        for _, builder in routes:
+            await builder.resolve(client)
+        for data, expected in ((b'close:42', close_menu), (b'close:0', expired_menu), (b'old:unknown', expired_menu), (b'x' * 65, expired_menu)):
+            event = FakeEvent(data=data)
+            selected = [handler for handler, builder in routes if builder.filter(event)]
+            self.assertEqual(selected, [expected])
+        event = FakeEvent(data=b'old:unknown')
+        await expired_menu(event)
+        self.assertEqual(event.actions, [('answer', 'This menu expired. Open /menu again.', {})])
+
     def test_real_v1_builders_raw_requests_and_button_families(self):
         client = TelegramClient(StringSession(), 12345, 'a' * 32)
         register_handlers(client)
         handlers = client.list_event_handlers()
-        self.assertEqual(len(handlers), 3)
+        self.assertEqual(len(handlers), 4)
         self.assertIsInstance(handlers[0][1], events.NewMessage)
         self.assertIsInstance(handlers[-1][1], events.CallbackQuery)
         self.assertTrue(handlers[0][1].pattern('/menu'))
@@ -100,4 +114,3 @@ class OfflineTests(unittest.IsolatedAsyncioTestCase):
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
-

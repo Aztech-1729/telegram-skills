@@ -32,3 +32,12 @@ The starter's package MSRV describes its selected released crate baseline. Trans
 No cargo/rustc toolchain was installed in the available environment. The original Cargo.toml/main.rs asset and guide fragments were reviewed against the published documentation and primary source, but **cargo check and cargo fmt were not run**.
 
 No Rust program was started; no Telegram request or webhook operation was made. The guide directs the implementing agent to compile the chosen feature set before relying on these examples.
+
+## Focused dispatch/routing audit: 2026-10-04
+
+- [Published Dispatcher implementation](https://github.com/teloxide/teloxide/blob/v0.17.0/crates/teloxide/src/dispatching/dispatcher.rs): default chat distribution, no-key concurrency and custom key contract.
+- [Message](https://docs.rs/teloxide/0.17.0/teloxide/types/struct.Message.html) and [SendMessage payload](https://docs.rs/teloxide/0.17.0/teloxide/payloads/struct.SendMessage.html): forum ThreadId and lazy request payload fields.
+- [Published JsonRequest](https://github.com/teloxide/teloxide/blob/v0.17.0/crates/teloxide-core/src/requests/json.rs) and [HasPayload](https://github.com/teloxide/teloxide/blob/v0.17.0/crates/teloxide-core/src/requests/has_payload.rs): constructing/inspecting requests without sending.
+- [Webhook Options](https://docs.rs/teloxide/0.17.0/teloxide/update_listeners/webhooks/struct.Options.html): explicit/generated secret and service integration fields.
+
+Two request-construction fixtures were added; local Cargo remained unavailable, so they are source-reviewed until native CI executes them. No token, listener registration or Telegram request was used. The earlier release/development snapshot boundary stays dated 2026-10-03.

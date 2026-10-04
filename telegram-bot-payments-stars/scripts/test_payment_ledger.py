@@ -49,6 +49,24 @@ class LedgerTests(unittest.TestCase):
         self.assertFalse(self.ledger.accept_payment("charge-1", "order-1", 101, "XTR", 100))
         self.assertEqual(PaymentLedger(self.path).balance(101), 0)
 
+    def test_refund_event_mismatch_cannot_reverse_credit(self):
+        self.ledger.accept_payment("charge-1", "order-1", 101, "XTR", 100)
+        for fields in [{'payload': 'order-2', 'currency': 'XTR', 'amount': 100},
+                       {'payload': 'order-1', 'currency': 'USD', 'amount': 100},
+                       {'payload': 'order-1', 'currency': 'XTR', 'amount': 99},
+                       {'amount': 100}]:
+            with self.assertRaises(ValueError):
+                self.ledger.record_completed_refund('charge-1', 101, **fields)
+        self.assertEqual(self.ledger.balance(101), 25)
+        self.assertTrue(self.ledger.record_completed_refund('charge-1', 101,
+                        payload='order-1', currency='XTR', amount=100))
+        self.assertEqual(PaymentLedger(self.path).balance(101), 0)
+
+    def test_invalid_order_expiry_is_rejected_before_storage(self):
+        for expires in [True, 0, 1.5, 2**63]:
+            with self.assertRaises(ValueError):
+                self.ledger.create_order('bad', 101, 1, 1, expires=expires)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -3,8 +3,13 @@
 [![Validate skill pack](https://github.com/Aztech-1729/telegram-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/Aztech-1729/telegram-skills/actions/workflows/validate.yml)
 [![Refresh upstream evidence](https://github.com/Aztech-1729/telegram-skills/actions/workflows/upstream-refresh.yml/badge.svg)](https://github.com/Aztech-1729/telegram-skills/actions/workflows/upstream-refresh.yml)
 
-**18 focused skills for AI agents building Telegram bots and Mini Apps across
+**21 focused skills for AI agents building Telegram bots and Mini Apps across
 Python, Go, JavaScript/TypeScript, Java, .NET, PHP and Rust.**
+
+Includes dedicated guidance for chat UX, Mini App visual systems and accessibility:
+button roles/colors, navigation, responsive forms, themes, contrast, focus,
+localization and recovery states. The [2026-10-04 audit](docs/AUDIT.md) records
+the concrete reliability fixes and validation boundaries.
 
 Choose a framework, load the feature skills needed for the task, then use the
 linked reference and starter. Each skill has concise activation metadata,
@@ -18,7 +23,7 @@ Run this from the project where your agent works:
 npx --yes skills add Aztech-1729/telegram-skills --all
 ```
 
-This installs all **18 complete skills** and targets every agent supported by the
+This installs all **21 complete skills** and targets every agent supported by the
 [skills CLI](https://github.com/vercel-labs/skills#supported-agents), including
 Codex, Claude Code and OpenCode. Unconfigured agent directories may be skipped;
 check the installer output and rerun after configuring a host. The command does
@@ -37,7 +42,7 @@ plugins, update/removal commands, discovery paths and an instruction you can giv
 your agent. Install the complete pack once; let the agent select the framework
 and feature skills relevant to each task.
 
-**Documentation review:** 2026-10-03 · **Telegram baseline:** Bot API 10.3
+**Documentation review:** 2026-10-04 · **Telegram baseline:** Bot API 10.3
 · [Research and versions](docs/RESEARCH.md) · [Validation and limits](docs/VALIDATION.md)
 · [Upstream observations](docs/UPSTREAM_STATUS.md) · [Automation](docs/AUTOMATION.md)
 
@@ -56,6 +61,9 @@ and actual content review remain separate records.
 | Work in an existing project | Its [framework skill](#framework-skills), preserving the chosen stack |
 | Build a particular bot product | [Recipes](telegram-bot-recipes/SKILL.md) |
 | Add a web interface | [Mini Apps](telegram-bot-miniapps/SKILL.md) |
+| Choose button colors, wording and a usable journey | [Bot UX](telegram-bot-ux/SKILL.md) |
+| Style a themed, responsive browser interface | [Mini App design](telegram-bot-miniapp-design/SKILL.md) |
+| Improve labels, contrast, keyboard/focus and access | [Accessibility](telegram-bot-accessibility/SKILL.md) |
 | Sell digital goods or paid access | [Stars payments](telegram-bot-payments-stars/SKILL.md) |
 | Make a reliable deployed service | [Advanced features](telegram-bot-advanced-features/SKILL.md) |
 
@@ -116,12 +124,17 @@ authorization. It does not grant a bot unrestricted user-account capabilities.
 | [telegram-bot-payments-stars](telegram-bot-payments-stars/SKILL.md) | Invoices, checkout, atomic one-time fulfillment, refunds and recurring-access design | Durable SQLite ledger and duplicate/rollback tests |
 | [telegram-bot-advanced-features](telegram-bot-advanced-features/SKILL.md) | Persistent state, webhooks, queues, retries, deployment and observability | Leased outbox, bounded retry and SQLAlchemy examples |
 | [telegram-bot-recipes](telegram-bot-recipes/SKILL.md) | Moderation, reminders, quiz, RSS, AI, media downloader and URL shortener | Seven selectable modes, database store and redirect service |
+| [telegram-bot-ux](telegram-bot-ux/SKILL.md) | Onboarding, journeys, semantic button colors, confirmation, microcopy and recovery | Action/color decision table, concrete flows and review template |
+| [telegram-bot-miniapp-design](telegram-bot-miniapp-design/SKILL.md) | Theme tokens, responsive components, form states and native-control lifecycle | Extractable CSS and screen patterns |
+| [telegram-bot-accessibility](telegram-bot-accessibility/SKILL.md) | Native labels and web contrast, focus, targets, status and localization | Contrast checker and observable acceptance scenarios |
 
 ### Common task bundles
 
 | Request | Load |
 |---|---|
 | Menu or catalog bot | Chosen framework + keyboards-ui + rich-messaging |
+| Refine menus, colors and recovery | Framework + bot-ux + keyboards-ui; accessibility for acceptance |
+| Design a polished Mini App | miniapps + miniapp-design + accessibility; bot-ux for the entry journey |
 | Store with digital purchases | Framework + payments-stars + rich-messaging; advanced-features for fulfillment jobs |
 | Paid Mini App | Framework + miniapps + payments-stars; share backend user/entitlement identity |
 | AI assistant with live drafts | Framework + recipes + rich-messaging streaming reference |
@@ -147,7 +160,7 @@ cd telegram-skills
 
 Read the skills directly from the clone, or use the installer above to register
 them with your agent. Keep each skill's `references/`, `assets/` and `scripts/`
-resources together. All 18 folders preserve links between framework and feature
+resources together. All 21 folders preserve links between framework and feature
 skills; shared repository records are also available on GitHub. Copying only
 `SKILL.md` omits the resources its instructions rely on.
 
@@ -158,6 +171,7 @@ README.md                         Catalog, task routing and setup
 docs/INSTALLATION.md               Installer, agent discovery and native plugins
 docs/RESEARCH.md                   Dated baselines, sources and coverage boundaries
 docs/VALIDATION.md                 What was checked and how to repeat it
+docs/AUDIT.md                      Per-family defects, fixes and UI/UX expansion
 docs/AUTOMATION.md                 Schedules, permissions and review procedure
 docs/AGENT_MAINTENANCE.md           Daily Codex content review and repair runbook
 docs/UPSTREAM_STATUS.md            Generated source changes, failures and versions
@@ -241,7 +255,7 @@ python scripts/run_offline_checks.py
 python -m unittest discover -s tests -p 'test_*.py'
 ```
 
-The pack validator checks both native plugin manifests against the 18 source
+The pack validator checks both native plugin manifests against the 21 source
 skills. The installer check uses temporary projects, the real locked CLI and
 both linked and copied installation modes to verify resources and local routes.
 When the maintenance agent updates reviewed skill content, it updates both native

@@ -4,7 +4,7 @@ Checked **2026-10-03** with contrib **v0.25.0** and gotd/td **v0.162.0**. See [s
 
 ## Contents
 
-Package map; retries and limiter ordering; storage concerns; peer caches; recovery lifecycle; original starter; background client/pools; instrumentation; I/O/auth helpers; verification.
+Package map; retries and limiter ordering; storage concerns; peer caches; recovery lifecycle; original starter; background client/pools; instrumentation; I/O/auth helpers; verification; recovery diagnosis and user-facing status.
 
 ## 1. Verified package map
 
@@ -98,9 +98,11 @@ Configure OnTooLong/OnChannelTooLong and newer load/access callbacks for reconci
 - A peer-collecting UpdateHook.
 - A typed ordinary-message echo handler.
 - Waiter plus limiter, with bounded retries.
-- Status-gated bot authentication and manager.Run for the client lifetime.
+- Status-gated bot authentication, verified Self ID/type before peer/recovery update forwarding, and manager.Run for the client lifetime.
 
-[The module](../assets/reliable-echo/go.mod) pins dependencies; build it using `go build .`. Its bot.db contains account authorization. Set APP_ID/APP_HASH/BOT_TOKEN and choose an appropriate working directory before deliberate execution.
+[The module](../assets/reliable-echo/go.mod) pins dependencies; build it using `go build .`, and run `go test ./...` for [offline tests](../assets/reliable-echo/main_test.go). The starter module requires **Go 1.26.0**, including golang.org/x/time **v0.16.0**; the core/contrib upstream directives alone do not describe this resolved example's toolchain floor. Its bot.db contains account authorization. Set APP_ID/APP_HASH/BOT_TOKEN and choose an account-specific working directory before deliberate execution.
+
+An already authorized session can be a different bot or a user. The starter checks Self.Bot and Self.ID before permitting the whole update chain, including peer collection. Supplying another token does not switch the stored account. Updates during that check are dropped by the ready gate; manager recovery after verification is separate, and its supported scope still needs an integration test. The local test proves session/global/channel-pts state survives bbolt close/reopen and stays scoped by account ID; it does not prove channel access hashes or real Telegram gaps are restored.
 
 This is an infrastructure starting point, not exactly-once delivery, a persisted channel hash adapter, a durable outgoing retry queue, or a business-state implementation.
 
@@ -145,3 +147,16 @@ Clock helpers address skewed time sources. Prefer correct host time and measure 
 Compile against the selected modules. Test handler and retry logic locally with a fake invoker. Test a chosen database adapter's session/state restore using a temporary local store without Telegram credentials.
 
 For deployment, explicitly exercise cancellation during waits, missing/corrupt store state, disconnected databases, gap-too-long reconciliation, and bounded concurrency in an authorized environment. Documentation or compilation alone does not validate live reconnect/recovery.
+
+## 13. Recovery diagnosis and truthful user status
+
+| Symptom | Inspect first | Relevant store/lifecycle |
+| --- | --- | --- |
+| bot.db opens as the wrong account | Restored Self and configured session key/path | Refuse before the peer/recovery chain; separate account-owned databases |
+| Login is restored but missed work is absent | manager.Run and StateStorage plus business inbox | Authorization, protocol position and committed effects are distinct records |
+| Channel recovery loses peers after restart | ChannelAccessHasher/UserAccessHasher wiring | PeerStorage's API is not the recovery engine's hash interface |
+| Waiter appears configured but jobs stall | Same waiter in middleware and waiter.Run | Scheduler lifetime must cover the client; total wait/retry budgets belong to operations |
+| bbolt stays locked after a crash/redeploy | Process ownership and close/startup ordering | Resolve the competing writer and access-controlled volume, rather than weakening locks |
+| Metrics report success but a user sees no result | RPC spans, business status and outbound record | Transport completion cannot substitute for fulfillment or a delivered UI update |
+
+Keep progress/status in a business job record when work outlives the handler. Distinguish accepted, queued, waiting until a retry time, completed and failed states. A limiter or floodwait retry is an internal mechanism; the user needs an accurate action/recovery description and a cancellation policy that matches what can still be stopped. Rate-limit progress edits too, and provide text alternatives rather than a spinner alone. Use [bot UX](../../telegram-bot-ux/SKILL.md) and [accessibility](../../telegram-bot-accessibility/SKILL.md) for this interface layer. These helpers do not add a Mini App frontend, authenticate web launch data or persist a business outbox by themselves.

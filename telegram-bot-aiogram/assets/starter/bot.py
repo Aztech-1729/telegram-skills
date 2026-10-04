@@ -14,6 +14,7 @@ from aiogram.filters import Command, CommandStart, StateFilter
 from aiogram.filters.callback_data import CallbackData
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
+from aiogram.fsm.storage.base import DefaultKeyBuilder
 from aiogram.fsm.storage.memory import MemoryStorage, SimpleEventIsolation
 from aiogram.fsm.storage.redis import RedisStorage
 from aiogram.types import (
@@ -108,6 +109,10 @@ async def echo(message: Message) -> None:
     await message.answer(message.text or "", parse_mode=None)
 
 
+async def expired_menu(query: CallbackQuery) -> None:
+    await query.answer("This menu expired. Open /menu again.")
+
+
 async def on_error(event: ErrorEvent) -> bool:
     LOGGER.error("Update handler failed (%s)", type(event.exception).__name__)
     return True
@@ -115,7 +120,7 @@ async def on_error(event: ErrorEvent) -> bool:
 
 def build_dispatcher(redis_url: str | None = None) -> Dispatcher:
     if redis_url:
-        storage = RedisStorage.from_url(redis_url)
+        storage = RedisStorage.from_url(redis_url, key_builder=DefaultKeyBuilder(with_bot_id=True))
         isolation = storage.create_isolation()
     else:
         storage = MemoryStorage()
@@ -131,6 +136,7 @@ def build_dispatcher(redis_url: str | None = None) -> Dispatcher:
     router.message.register(form_input_hint, StateFilter(Form.name, Form.age))
     router.message.register(echo, StateFilter(None), F.text, ~F.text.startswith("/"))
     router.callback_query.register(close_menu, MenuCB.filter(F.action == "close"))
+    router.callback_query.register(expired_menu)
     router.errors.register(on_error)
     dp.include_router(router)
     return dp

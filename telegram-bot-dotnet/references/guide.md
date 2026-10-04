@@ -20,6 +20,8 @@ Use a specific endpoint exemption only where framework antiforgery middleware wo
 
 Use strongly typed request/markup objects from the chosen package. Answer callback queries promptly; validate resource ownership and actor/bot rights before subsequent work. Inline mode and payments require different update routing. Escape dynamic HTML or send plain text. Use proper file input/stream types, dispose opened streams, and check individual upload/download constraints. Add user/chat/topic/business identifiers to state keys where the feature requires them.
 
+The starter's Echo.BuildReply constructs a SendMessageRequest with forum MessageThreadId and DirectMessagesTopicId when present. It deliberately ignores edits/business updates; routing those modes needs separate business context and authorization. `--self-test` checks the builder before creating any Telegram client.
+
 ## Reliability and state
 
 Store dialog state separately from orders or other transactional records. A shared DbContext cannot be used concurrently across handlers; create a scoped unit of work per operation. Serialize conflicting state changes or use database concurrency controls. Parameterized SQL and migrations belong in the application's data layer.
@@ -29,3 +31,5 @@ The tagged client has configurable retry behavior for 429 responses; inspect its
 ## Validation
 
 Compile against the selected package/runtime, unit-test dispatch and authorization with a fake client/transport, and cover duplicate updates, callbacks, cancellation, transient failures and persistent state. Verify webhook serialization and secret rejection with request fixtures. Actual Telegram rendering, reception and deployment need a separate controlled integration test.
+
+For a symptom-specific investigation, use [diagnostics](troubleshooting.md). The 2026-10-04 focused audit source-checked the new builder/test against tagged types; this local host had no .NET SDK, so native build/self-test results belong in the repository validation report.

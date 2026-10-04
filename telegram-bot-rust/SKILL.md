@@ -10,6 +10,7 @@ Use for Rust HTTP bots with teloxide. MTProto user-account clients require a sep
 ## Implement against the published crate
 
 - Read [the Rust guide](references/guide.md) for feature flags, REPL versus Dispatcher, commands, dependency injection, dialogue storage, callbacks, media, errors, and webhook listeners.
+- Use [teloxide diagnostics](references/troubleshooting.md) for feature/toolchain failures, dispatch scope, topic routing and stalled async work.
 - Read [the dated source record](references/sources.md) before relying on a recent Bot API field. Published teloxide 0.17.0 and the development branch have different coverage.
 - Use Tokio-compatible async work; move blocking operations to bounded worker tasks. Do not hold synchronous locks across await points.
 - Use one update receiver, explicit authorization, durable application state, and bounded retries. Request adaptors assist delivery; they do not make effects exactly once.
@@ -20,7 +21,11 @@ Use for Rust HTTP bots with teloxide. MTProto user-account clients require a sep
 
 [assets/echo/Cargo.toml](assets/echo/Cargo.toml) and [src/main.rs](assets/echo/src/main.rs) provide a minimal text echo design. It reads TELOXIDE_TOKEN. The source record states whether compilation was available; source review alone is not a cargo check.
 
+`cargo test` exercises plain-text/topic request construction and ignored non-text messages without awaiting Telegram requests. `cargo run` is the separate live receiver entrypoint.
+
 Use the feature guides for interaction design, Stars, Mini Apps, and operations when relevant, translating examples to Rust.
+
+Load [bot UX](../telegram-bot-ux/SKILL.md) for product flows and [accessibility](../telegram-bot-accessibility/SKILL.md) for usable labels and feedback, then map actions to the published crate's actual fields.
 
 ## Upstream status
 

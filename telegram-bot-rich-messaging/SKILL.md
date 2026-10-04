@@ -5,9 +5,13 @@ description: Design formatted Telegram reports, product catalogs, storefront mes
 
 # Rich messaging and generated replies
 
+Use [Bot UX](../telegram-bot-ux/SKILL.md) for journeys/button hierarchy and
+[Accessibility](../telegram-bot-accessibility/SKILL.md) for readable content and
+linear reading order; this skill owns rendering/payload/streaming behavior.
+
 ## Choose the output mode
 
-Read [rendering guide](references/guide.md) for formatting, catalogs, reports and media layout. Read [streaming guide](references/streaming.md) for native drafts, stop handling and edit-based fallback. [Sources](references/sources.md) record the 2026-10-03 / Bot API 10.3 baseline.
+Read [rendering guide](references/guide.md) for formatting, catalogs, reports and media layout. Read [streaming guide](references/streaming.md) for native drafts, stop handling and edit-based fallback. [Sources](references/sources.md) record the 2026-10-04 / Bot API 10.3 baseline.
 
 - **Plain text:** simplest reliable output, including transient status and arbitrary user text.
 - **Regular formatted messages:** HTML/MarkdownV2 or explicit entities for ordinary chat output.

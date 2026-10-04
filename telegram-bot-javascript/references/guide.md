@@ -38,4 +38,4 @@ For a new feature, inspect the installed API types and current schema. grammY's 
 
 ## Verification scope
 
-`npm test` covers synthetic `/start` and callback flows, correct query acknowledgment, request payloads and absence of real Telegram transport. Check long input, invalid/expired callbacks, shared-state concurrency, webhook secret/replay and graceful termination in the actual application. Live client rendering and deployment are separate checks.
+`npm test` covers synthetic `/start`, topic-aware plain-text echoes, chat/inline/stale callback acknowledgment, ignored edits/media and absence of real Telegram transport. Check shared-state concurrency, webhook secret/replay and graceful termination in the actual application. Use [diagnostics](troubleshooting.md) for pinned lifecycle/error boundaries. Live client rendering and deployment are separate checks.

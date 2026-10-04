@@ -10,7 +10,7 @@ For an interactive **user** application, create `TelegramClient(session_path, ap
 
 Default SQLite sessions retain authorization and entity information. Use a persistent, access-controlled volume and exclude `*.session`, `*.session-journal`, exported session strings, and secret files from version control. Do not run two independent writers against the same SQLite session. One session per intentional account/client avoids identity and locking surprises. `StringSession(saved_value)` can restore authorization, but a fresh `StringSession()` does not magically authenticate and exporting it discloses a credential. Store strings in a secret manager and revoke compromised sessions through Telegram.
 
-Create a client, register handlers, authenticate, then `await client.run_until_disconnected()` in one loop; always `await client.disconnect()` in `finally`. In an async web application, await Telethon methods directly and integrate startup/shutdown with the host lifecycle. `telethon.sync` helpers and nested `asyncio.run()` are unsuitable inside an already running loop. Keep strong references to supervised background tasks, cancel and await them on shutdown, and observe failures. No polling/webhook server is required for MTProto's update connection; network reachability, update handling, and reconnect supervision still matter.
+Create a client, authenticate and verify the intended identity before enabling handlers/business work, then `await client.run_until_disconnected()` in one loop; always `await client.disconnect()` in `finally`. A login flow that itself needs update listeners should keep those listeners separate from business handlers until authentication succeeds. In an async web application, await Telethon methods directly and integrate startup/shutdown with the host lifecycle. `telethon.sync` helpers and nested `asyncio.run()` are unsuitable inside an already running loop. Keep strong references to supervised background tasks, cancel and await them on shutdown, and observe failures. No polling/webhook server is required for MTProto's update connection; network reachability, update handling, and reconnect supervision still matter.
 
 The starter accepts `API_ID`, `API_HASH`, `BOT_TOKEN`, optional `TG_SESSION` (secret string), or `TG_SESSION_FILE` (default `mtproto-bot`). It verifies the bot ID embedded in the token against the authorized session.
 
@@ -126,3 +126,17 @@ By default, updates may run concurrently. `sequential_updates=True` preserves di
 
 Structure real applications around configuration, client lifecycle, scoped event modules, domain services, and storage. Test authorization/input validation and state transitions offline with fakes; test real permissions, reconnects, media, flood waits, and update delivery only with an authorized controlled account. See [validation](validation.md) for exactly what was checked here.
 
+## Diagnose dispatch, identity and recovery
+
+| Symptom | Inspect first | Correct boundary |
+| --- | --- | --- |
+| Supplied bot token appears ignored | get_me, saved session identity/type | Refuse a user/different-bot session before activating business handlers |
+| One button is answered or edited twice | Overlapping CallbackQuery builders | Telethon can run multiple matching handlers; use StopPropagation or disjoint supported func predicates |
+| Old/invalid buttons keep spinning | Bytes parser and fallback predicate | Acknowledge unknown data with a reopening route; do not execute a mutation from an unrecognized payload |
+| Numeric target fails with missing entity | Current account's entity cache/input peer | Resolve an authorized peer/access hash instead of borrowing another account's cache |
+| Later steps stop arriving | A global sequential handler awaiting a future update | Keep handlers short; use per-flow state/locks and supervised work |
+| A bot history/join call is rejected | Actual account type and method eligibility | A generated request can exist even when Telegram disallows that method for bots |
+
+The starter's recognized and expired callback routes are disjoint, including oversized/malformed owner data, so each callback gets one acknowledgment. For a real stateful menu, include a compact version/resource ID and check its server-side expiry. Give the user a readable recovery action rather than silently dropping the callback. Copy, navigation and text alternatives belong to [bot UX](../../telegram-bot-ux/SKILL.md) and [accessibility](../../telegram-bot-accessibility/SKILL.md).
+
+For media, display the current operation and whether it can be cancelled; throttle progress edits and show an explicit completed/failed/deferred state. A FloodWait may defer an operation beyond the chat interaction's lifetime, so the business job owns its status and retry time. For an authorized user login, distinguish code, password, QR expiry and revocation states inside that application's interface; never solicit credentials in unrelated bot chats. A web Mini App has its own [design](../../telegram-bot-miniapp-design/SKILL.md) and [launch-data security](../../telegram-bot-miniapps/SKILL.md); Telethon authorization supplies neither contract.

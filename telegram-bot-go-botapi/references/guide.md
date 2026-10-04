@@ -43,14 +43,14 @@ These starters echo text only. They do not implement a shop, durable workflow, c
 
 A handler receives `context.Context`, `*bot.Bot`, and `*models.Update`. The update's message/callback fields are optional. Check the variant before dereferencing.
 
-Use `RegisterHandler` for text or callback-data matching and `RegisterHandlerMatchFunc` for arbitrary predicates. Command matching is preferable to a literal "/start" equality when mentions or arguments should be accepted:
+Use `RegisterHandler` for text or callback-data matching and `RegisterHandlerMatchFunc` for arbitrary predicates. Entity-based command matching accepts arguments after the command, but at v1.27.0 **does not strip an @botname mention**:
 
 ```go
 b.RegisterHandler(bot.HandlerTypeMessageText, "start", bot.MatchTypeCommandStartOnly, startHandler)
 b.RegisterHandler(bot.HandlerTypeCallbackQueryData, "page:", bot.MatchTypePrefix, pageHandler)
 ```
 
-These registration fragments assume existing handler functions with the declared signature. Exact, prefix, contains, command, and regexp matching have distinct semantics; inspect the chosen tag's handler implementation before relying on match order.
+These registration fragments assume existing handler functions with the declared signature. For `/start@YourBot`, explicitly register `start@YourBot` or implement a command-entity parser that validates the mention against the current bot. Do not accept another bot's addressed command. Telegram entity offsets/lengths are UTF-16 units; a general parser cannot blindly slice Go UTF-8 bytes. Exact, prefix, contains, command, and regexp matching have distinct semantics; inspect the chosen tag's handler implementation before relying on match order.
 
 Use `WithDefaultHandler` for a fallback, `WithAllowedUpdates` for receiver filtering, and `WithErrorsHandler` for framework errors. `WithMiddlewares` accepts wrappers around HandlerFunc. Handle both returns from `bot.New`:
 
@@ -101,7 +101,9 @@ The classic README's webhook example embeds the token in the URL. Prefer a separ
 
 ## 7. Webhooks: receiver plus HTTP server
 
-For go-telegram/bot, configure `WithWebhookSecretToken(secret)` at construction. Supply the same secret in SetWebhookParams. Run `go b.StartWebhook(ctx)` and mount `b.WebhookHandler()` on the intended route in an HTTP server.
+For go-telegram/bot, configure `WithWebhookSecretToken(secret)` at construction. Supply the same secret in SetWebhookParams. Run `go b.StartWebhook(ctx)` and mount a validated HTTP adapter around `b.WebhookHandler()` on the intended route.
+
+At **v1.27.0**, the native handler logs wrong/missing configured secrets and malformed JSON, then returns without writing a response: HTTP servers ordinarily return **200**. It reads the whole request body and enqueues accepted updates in process memory. Add method/header validation with explicit 4xx responses, a body limit (`http.MaxBytesReader` or an equivalent proxy/application boundary), and request deadlines before delegation. Reject invalid JSON without recording its raw body. If accepted work must survive a crash, persist the update/inbox before acknowledging and dispatch it from an application worker; the native queue alone cannot establish that contract. [Pinned receiver source](https://github.com/go-telegram/bot/blob/v1.27.0/webhook_handler.go).
 
 StartWebhook accepts the context; it does not itself listen on a port. The application must provide:
 
@@ -128,3 +130,17 @@ Framework workers and goroutines do not serialize shared state for you. Protect 
 Preserve update semantics, filters, callback routes, deadlines, parse modes, file reuse, and error propagation when changing libraries. Recheck account permissions and BotFather privacy settings rather than assuming a library migration fixes them.
 
 For offline verification: build the selected asset/application, use captured Update fixtures for routing, and fake the outgoing client for sends and callback answers. For webhook verification: test malformed JSON, incorrect/missing secret, and shutdown locally. A build alone does not validate live delivery or Telegram's permissions.
+
+[The go-telegram offline tests](../assets/go-telegram-echo/main_test.go), run with `go test ./...` in that asset directory, exercise the actual pinned SDK's command-mention and webhook rejection/dispatch/worker-stop behavior. They deliberately skip getMe and never poll or send. The tests document the receiver's implicit-200 limit; they do not certify an application's outer HTTP adapter.
+
+## 10. Diagnose the boundary that failed
+
+| Symptom | Inspect first | Repair at the right layer |
+| --- | --- | --- |
+| Private commands work, group commands do not | BotFather privacy, addressed command entities, allowed updates, handler order | Test the selected SDK with a mention fixture; keep actor/bot authorization distinct |
+| Webhook URL is 200 but no handler runs | Secret, decoding/error hook, mounted route and running workers | Verify the SDK's actual status behavior and application acknowledgment policy |
+| Duplicates appear after restart | Poll offset/queue lifetime, overlapping receivers and effect records | Receiver progress is separate from a committed business effect; use a durable inbox/idempotency key where needed |
+| State races despite a worker count | Handler goroutines, state key, map/DB synchronization | Bound receiver work and serialize each stateful flow explicitly |
+| Send hangs or returns permission/429 errors | Method deadline, bot/chat rights and typed error | Use per-operation cancellation, retry only eligible failures, and show an accurate outcome |
+
+For menus, use the selected SDK's callback answer method before slow work, then look up trusted state and replace the relevant message. An expired payload needs a short recovery action, such as reopening the menu; successful acknowledgment is not successful fulfillment. Put text describing the current choice beside buttons, retain a `/cancel` or command alternative for forms, and avoid success copy before a durable operation commits. Read [bot UX](../../telegram-bot-ux/SKILL.md) for dialogue/navigation, [accessibility](../../telegram-bot-accessibility/SKILL.md) for nonvisual/localized operation, and [Mini App design](../../telegram-bot-miniapp-design/SKILL.md) plus [Mini App security](../../telegram-bot-miniapps/SKILL.md) when the requested interface includes the web client.

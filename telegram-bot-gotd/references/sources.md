@@ -31,3 +31,7 @@ These projects' full behavior was not compiled/integration-tested in this pack.
 The original echo asset passed **go build using Go 1.27.0 on Windows**, pinned to gotd/td v0.162.0. Dependencies/go.sum were resolved with go mod tidy. No application was executed and no Telegram authentication, session migration, proxy, upload/download or update-recovery integration test was performed.
 
 The guide deliberately separates protocol/session recovery from application durability and avoids universal claims of API completeness, TDLib equivalence or restriction avoidance.
+
+## Focused audit — 2026-10-04
+
+The [official module release feed](https://proxy.golang.org/github.com/gotd/td/@latest) still reports v0.162.0. [Client.Self](https://pkg.go.dev/github.com/gotd/td@v0.162.0/telegram#Client.Self) returns the current tg.User; its Bot flag and ID identify the restored account. The starter now refuses a user/different-bot session and gates the whole update chain until verification. [Update-handler adapters](https://github.com/gotd/td/blob/v0.162.0/telegram/client.go) and [peer helpers](https://github.com/gotd/td/blob/v0.162.0/telegram/message/peer.go) establish the tested wiring. Three offline tests pass with Go 1.27.0, covering token/identity refusal, readiness and typed reply/error propagation through a fake invoker; module checksums verify. No application authentication or real recovery was performed.

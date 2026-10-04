@@ -7,6 +7,8 @@ description: Implement PHP Telegram HTTP Bot API applications with irazasyed/tel
 
 Checked **2026-10-03**: Telegram Bot SDK **3.16.0**, published 2026-03-23. Read [guide](references/guide.md) for SDK selection, commands, webhooks, Laravel, storage, files and API lag; [sources](references/sources.md) record primary references.
 
+For ingress rejection, stale Laravel config, replayed jobs or missing wrappers, use [PHP diagnostics](references/troubleshooting.md).
+
 ## Select the implementation
 
 Keep the framework already in use. `irazasyed/telegram-bot-sdk` provides `Telegram\Bot\Api`, command handling, multi-bot configuration and Laravel integration. `php-telegram-bot/core` uses the `Longman\TelegramBot` architecture and its own commands/request/database flow; do not exchange their objects or methods.
@@ -30,13 +32,18 @@ For a new SDK project, pin the Composer dependency and select standalone PHP or 
 cd telegram-bot-php/assets/starter
 composer install
 php -l webhook.php
+php test.php
 ```
 
 Configure `TELEGRAM_BOT_TOKEN` and `TELEGRAM_WEBHOOK_SECRET` in the HTTP worker environment, expose the script through the chosen HTTPS host, and register that endpoint with the same secret. Do not use the sample command as proof of a deployed webhook.
 
+`test.php` exercises secret/JSON/size rejection and topic-aware request construction without loading the SDK or contacting Telegram. Copy WebhookInput.php with the endpoint; it is the shared input/routing helper.
+
 ## Task companions
 
 Load [UI](../telegram-bot-keyboards-ui/SKILL.md), [payments](../telegram-bot-payments-stars/SKILL.md), [Mini Apps](../telegram-bot-miniapps/SKILL.md), [rich messaging](../telegram-bot-rich-messaging/SKILL.md), and [advanced operations](../telegram-bot-advanced-features/SKILL.md) for the relevant application behavior. Adapt their conceptual examples to PHP rather than mixing Python/Go wrapper syntax.
+
+Use [bot UX](../telegram-bot-ux/SKILL.md) for product flows and [accessibility](../telegram-bot-accessibility/SKILL.md) for labels and recoverable feedback.
 
 ## Upstream status
 

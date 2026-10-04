@@ -37,6 +37,8 @@ Check TLS/backend dependency compatibility rather than enabling full by default.
 
 [assets/echo/src/main.rs](../assets/echo/src/main.rs) reads TELOXIDE_TOKEN, rejects an empty token, and uses repl for plain-text echoes. It ignores non-text messages. pretty_env_logger/log supplies local logging.
 
+The request builder copies a source forum ThreadId when present. Its tests serialize the lazy request payload without awaiting a Telegram request; run `cargo test` alongside `cargo check`. It does not claim support for newer destination modes missing from published 0.17.0.
+
 Copy the whole asset directory into an application location. `cargo check` verifies code/types without starting reception. `cargo run` deliberately starts a real Telegram receiver after TELOXIDE_TOKEN is set.
 
 A REPL is useful for a simple message endpoint. For callbacks, multiple update variants, dependencies, dialogues, custom errors or shutdown, use Dispatcher. Do not run a REPL alongside a Dispatcher/second listener for the same token.
@@ -69,6 +71,8 @@ DispatcherBuilder.dependencies takes dptree::deps! values such as application co
 Model multi-step state with an enum, Dialogue and a chosen storage implementation. InMemStorage loses state on process exit. Persist state when the user's workflow must survive restart and validate state schema changes during upgrades.
 
 Dialogue storage is separate from orders, reminders, payments, inbox/outbox, and other business tables. Understand the storage key/scope used by teloxide; if the workflow needs independent per-user conversations in a group, design the application state accordingly.
+
+At 0.17.0, default Dispatcher distribution serializes updates sharing a chat; updates without a key run concurrently. Built-in dialogue storage is keyed by chat. If choosing a custom distribution function, align it with every conflicting resource; different users can still modify one order/group record. See [diagnostics](troubleshooting.md).
 
 ## 6. Callbacks and messages
 

@@ -9,7 +9,7 @@
     {
       "name": "telegram",
       "source": "./",
-      "description": "18 Telegram skills with framework references and runnable examples.",
+      "description": "21 Telegram skills with framework examples, UI/UX and accessibility guidance.",
       "category": "Developer Tools",
       "strict": true
     }

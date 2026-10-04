@@ -13,6 +13,8 @@ Checked **2026-10-03**: grammY **1.46.0**, Telegraf **4.16.3**. Their Bot API co
 
 Read [implementation guide](references/guide.md) for state, concurrency, media, webhooks, plugins, errors and deployment. Read only the plugin documentation needed by the task.
 
+For a failing handler, missing API, session race or shutdown issue, use [framework diagnostics](references/troubleshooting.md) before changing transport/framework. The focused audit there is dated separately from the release baseline.
+
 ## Implementation workflow
 
 1. Establish bot token configuration (`TELEGRAM_BOT_TOKEN` in pack starters), runtime/module format, dependency lockfile, and one update transport.
@@ -27,7 +29,7 @@ The [starter assets](assets/starter/package.json) include separate grammY and Te
 
 ```bash
 cd telegram-bot-javascript/assets/starter
-npm install
+npm ci --ignore-scripts
 npm test
 node grammy.mjs
 # Or choose the Telegraf entrypoint, not both for one token:
@@ -46,6 +48,8 @@ Install the chosen framework in the actual project, rather than carrying both de
 - Graceful shutdown must stop reception and drain accepted work, with a deployment-appropriate deadline.
 
 Combine with [keyboards](../telegram-bot-keyboards-ui/SKILL.md), [payments](../telegram-bot-payments-stars/SKILL.md), [Mini Apps](../telegram-bot-miniapps/SKILL.md), [rich messaging](../telegram-bot-rich-messaging/SKILL.md) or [advanced operations](../telegram-bot-advanced-features/SKILL.md) when requested.
+
+For product flows, load [bot UX](../telegram-bot-ux/SKILL.md); for keyboard/focus or readable feedback, load [accessibility](../telegram-bot-accessibility/SKILL.md). These decisions complement the framework handlers.
 
 ## Upstream status
 

@@ -51,6 +51,8 @@ jobs:
       - run: npm test
         working-directory: telegram-bot-javascript/assets/starter
       - run: node --check telegram-bot-miniapps/assets/todo/app.js
+      - name: Test Mini App controls, session expiry and recovery
+        run: node --test telegram-bot-miniapps/scripts/test_frontend.mjs
       - run: git diff --check
 
   go:
@@ -82,6 +84,7 @@ jobs:
           go mod download
           go mod verify
           go build -p 2 ./...
+          go test -p 2 ./...
 
   java:
     runs-on: ubuntu-24.04
@@ -109,6 +112,8 @@ jobs:
           dotnet-version: '8.0.x'
       - run: dotnet build --configuration Release --nologo
         working-directory: telegram-bot-dotnet/assets/starter
+      - run: dotnet run --configuration Release --no-build -- --self-test
+        working-directory: telegram-bot-dotnet/assets/starter
 
   php:
     runs-on: ubuntu-24.04
@@ -129,6 +134,7 @@ jobs:
         working-directory: telegram-bot-php/assets/starter
         run: |
           php -l webhook.php
+          php test.php
           php -r 'require "vendor/autoload.php"; exit(class_exists("Telegram\\Bot\\Api") ? 0 : 1);'
 
   rust:
@@ -144,6 +150,8 @@ jobs:
           rustc --version
           cargo --version
       - run: cargo check
+        working-directory: telegram-bot-rust/assets/echo
+      - run: cargo test
         working-directory: telegram-bot-rust/assets/echo
 
   public-online:

@@ -1,4 +1,7 @@
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import org.telegram.telegrambots.client.okhttp.OkHttpTelegramClient;
 import org.telegram.telegrambots.longpolling.TelegramBotsLongPollingApplication;
 import org.telegram.telegrambots.longpolling.util.DefaultLongPollingUpdateConsumer;
@@ -11,7 +14,11 @@ public final class EchoBot extends DefaultLongPollingUpdateConsumer {
     private final TelegramClient client;
 
     private EchoBot(String token) {
-        client = new OkHttpTelegramClient(token);
+        this(new OkHttpTelegramClient(token));
+    }
+
+    EchoBot(TelegramClient client) {
+        this.client = client;
     }
 
     @Override
@@ -19,9 +26,22 @@ public final class EchoBot extends DefaultLongPollingUpdateConsumer {
         if (!update.hasMessage() || !update.getMessage().hasText()) {
             return;
         }
+        Integer directTopic = null;
+        if (update.getMessage().hasDirectMessagesTopic()) {
+            Long topicId = update.getMessage().getDirectMessagesTopic().getTopicId();
+            // 10.3.0 receives a Long but its SendMessage setter accepts Integer.
+            if (topicId == null || topicId <= 0 || topicId > Integer.MAX_VALUE) {
+                System.err.println("Direct-message topic exceeds this SDK request field; use a compatible adapter");
+                return;
+            }
+            directTopic = topicId.intValue();
+        }
         SendMessage reply = SendMessage.builder()
                 .chatId(update.getMessage().getChatId())
                 .text(update.getMessage().getText())
+                .messageThreadId(Boolean.TRUE.equals(update.getMessage().getIsTopicMessage())
+                        ? update.getMessage().getMessageThreadId() : null)
+                .directMessagesTopicId(directTopic)
                 .build();
         try {
             client.execute(reply);
@@ -35,19 +55,30 @@ public final class EchoBot extends DefaultLongPollingUpdateConsumer {
         if (token == null || token.isBlank()) {
             throw new IllegalArgumentException("Set TELEGRAM_BOT_TOKEN");
         }
-        TelegramBotsLongPollingApplication application = new TelegramBotsLongPollingApplication();
+        ScheduledExecutorService pollingExecutor = Executors.newSingleThreadScheduledExecutor();
+        TelegramBotsLongPollingApplication application = new TelegramBotsLongPollingApplication(
+                com.fasterxml.jackson.databind.ObjectMapper::new,
+                new org.telegram.telegrambots.longpolling.util.TelegramOkHttpClientFactory.DefaultOkHttpClientCreator(),
+                () -> pollingExecutor);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
                 application.close();
             } catch (Exception e) {
                 System.err.println("Polling shutdown failed");
+            } finally {
+                pollingExecutor.shutdownNow();
             }
         }));
         try {
             application.registerBot(token, new EchoBot(token));
             new CountDownLatch(1).await();
         } finally {
-            application.close();
+            try {
+                application.close();
+            } finally {
+                pollingExecutor.shutdownNow();
+                pollingExecutor.awaitTermination(5, TimeUnit.SECONDS);
+            }
         }
     }
 }

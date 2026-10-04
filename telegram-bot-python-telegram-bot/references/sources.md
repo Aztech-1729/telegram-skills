@@ -31,3 +31,7 @@ Checked **2026-10-03**. Baseline: **PTB 22.8**, released **2026-06-12**, Python 
 | https://core.telegram.org/bots/features#deep-linking | Start payload/launch semantics |
 
 The starter is original code. Offline checks do not validate Telegram credentials, delivery, permission grants, webhook hosting or throughput. See [validation record](validation.md).
+
+## Focused audit — 2026-10-04
+
+The [official release feed](https://pypi.org/pypi/python-telegram-bot/json) still reports 22.8. The [ConversationHandler contract](https://docs.python-telegram-bot.org/en/v22.8/telegram.ext.conversationhandler.html) and installed 22.8 implementation confirm state is applied after the awaited callback returns. The completion handler now retains data across reply failure; actual handler/filter checks also cover nontext input and specific-before-recovery callback routing. Eight offline tests passed in an isolated Python 3.12 environment. The native Bot API 10.0 versus server 10.3 boundary remains unchanged.

@@ -1,6 +1,6 @@
 # Durable bot engineering guide
 
-Checked 2026-10-03. Contents: state/session lifecycle; scheduling; inbox/outbox/retries; webhooks/deployment; broadcasts; local API; logs/tests/troubleshooting. [Sources](sources.md) give verified scopes. These are design patterns and tested local utilities, not a deployable full bot.
+Checked 2026-10-04. Contents: state/session lifecycle; scheduling; inbox/outbox/retries; webhooks/deployment; broadcasts; local API; logs/tests/troubleshooting. [Sources](sources.md) give verified scopes. These are design patterns and tested local utilities, not a deployable full bot.
 
 ## Persistent state and database lifecycle
 
@@ -62,9 +62,15 @@ APScheduler 3 job stores should not be shared across independent schedulers as a
 
 Webhook retries, repeated polling offsets and concurrent workers can produce duplicate work. Store an inbound `update_id` with a unique constraint scoped to the bot. Commit the update/work intent before acknowledging durable receipt. Duplicate receipt is a successful no-op once the durable record exists; processing failures remain visible for retry/manual resolution.
 
+Separate inbox **receipt** from **completion**. A useful row holds `(bot_id, update_id)`, the trusted raw payload, received time, processing state, attempt count and error category. A duplicate receiver can acknowledge an existing row, while a worker still retries ready/expired-processing rows. Do not mark an update completed just because an ID was inserted: if the business transaction fails afterward, that shortcut permanently suppresses required processing. Mark completion in the business transaction or record a durable handoff to the appropriate service. Retain high-value paid events long enough for reconciliation under the application's retention policy.
+
+Check the transport implementation before claiming durable acceptance. PTB's default Updater queues received updates in an `asyncio.Queue`; a business handler's transaction is later. Similar background webhook/polling paths can acknowledge before your handler runs. Use a receiver that commits the inbox before its 2xx response or before advancing the polling offset when that crash window is unacceptable. A sequential handler setting changes concurrency, not the acknowledgment boundary. Telegram's 24-hour server retention and bounded webhook retries are not a replacement for a recovery queue.
+
 For a business mutation plus external notification, insert the notification outbox row in the **same transaction** as the business change. This requires integrating the outbox table/service with the business database; the standalone SQLite helper's separate `enqueue()` call does not magically join another service's transaction.
 
 The local [Outbox helper](../scripts/durable_ops.py) provides dedupe keys, persisted attempt counts, due times, unique lease tokens and states: pending, inflight, sent, blocked, failed and uncertain. Claim/ack fencing prevents an expired worker from overwriting a newer lease. A crashed non-replay-safe job becomes uncertain; a replay-safe job can be reclaimed. Separate sessions/connections are used per call. Call these synchronous SQLite operations through `asyncio.to_thread` when integrating them into an async event loop.
+
+Map the worker's known outcome to the helper deliberately. `recipient_blocked` maps to blocked; generic `forbidden` maps to failed until the application identifies whether the cause is a recipient block, missing rights or another permission failure. The helper requires actual Boolean replay flags and finite clocks/delays so malformed configuration cannot create immortal leases or jobs that never become due. Use `summary(now=...)` for state counts and oldest due age; it excludes payloads and lease tokens.
 
 `safe_replay=True` means **your receiver/action** tolerates repeated execution. A normal Telegram `sendMessage` has no client idempotency key and is generally not replay-safe. Choosing at-least-once notifications and accepting occasional duplicates is a product decision; reconciliation/manual review may be better for high-impact sends, refunds or spending. A lease does not prevent a slow worker's external side effect after expiry; use appropriate deadlines and never claim exactly-once external delivery.
 
@@ -80,6 +86,8 @@ Classify errors by context:
 | Safe/idempotent transient operation | Bounded exponential delay plus optional jitter/deadline |
 
 The deterministic retry helper caps attempts and preserves long Telegram retry delays rather than shortening them. Production workers may add bounded jitter, centralized per-chat/global budgets and a total deadline. Never swallow cancellation; release/mark leases according to the known outcome and shutdown policy. Idempotent edit-to-a-known-state operations can be replayed with appropriate handling of “message not modified”; create/send/spend operations need their own uncertainty policy.
+
+For uncertain work, inspect the external system/receipt records before an operator resolves it. Telegram has no general Bot API chat-history query or universal lookup for a lost send result. If evidence cannot distinguish delivery from failure, choose a documented duplicate-tolerant retry or manual outcome; do not present reconciliation as an automatic answer to every send timeout. Audit who resolved the row, the evidence and the resulting business action in the application's operations store. The bundled helper intentionally does not provide an external reconciliation service or a public retry control.
 
 PTB `AIORateLimiter` requires the `rate-limiter` optional dependency and defaults to `max_retries=0`. It is a reference limiter, not a universal network-error retry mechanism. If multiple sender processes share a token, coordinate budgets centrally rather than assuming each process may use the full quota.
 
@@ -146,6 +154,8 @@ The server itself requires an API ID/hash (`TELEGRAM_API_ID` / `TELEGRAM_API_HAS
 Emit structured records containing bot/update/job/campaign IDs, method, outcome, duration and retry count. Redact bot tokens in request URLs, webhook secrets, Mini App initData, session tokens and sensitive payment/profile content. Ordinary text rotating logs are not a turnkey JSON/Sentry integration. Choose the logger/exporter for the actual deployment; avoid blocking file/network log handlers in an async loop.
 
 Track oldest queue age, retries/uncertain work, successful sends, webhook failure/backlog, DB errors and payment reconciliation. Admin notifications need their own rate limiting/redaction so a failure cannot cause a notification loop.
+
+Monitor `getWebhookInfo` pending count and last error together with the receiver's accepted/processed counts. A rising Telegram backlog suggests endpoint/TLS/authentication capacity problems; a low Telegram backlog with rising inbox age suggests internal worker failure. Alert on lack of completed work while due rows exist, and expose uncertain/failed work to operators with an explicit repair path. After restore or schema rollout, run the worker against a paused queue first and verify its leases, destination aliases and payment dedupe records before resuming delivery.
 
 Run:
 

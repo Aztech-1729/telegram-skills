@@ -2,10 +2,11 @@ import asyncio
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 import sys
+import sqlite3
 import tempfile
 import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "assets"))
-from recipe_store import Store, deliver_due, public_url
+from recipe_store import Store, deliver_due, public_url, text_parts
 
 QUESTIONS = [("Q", ["A", "B"], 0)]
 
@@ -56,13 +57,76 @@ class StoreTests(unittest.TestCase):
         self.assertEqual(Store(self.path).due(101), [])
 
     def test_shortener_roundtrip_and_schemes(self):
-        for value in ["javascript:alert(1)", "file:///etc/passwd", "https://user:pass@example.org", "https://example.org/ bad"]:
+        for value in ["javascript:alert(1)", "file:///etc/passwd", "https://user:pass@example.org", "https://example.org/ bad", "https://example.org/a\nb", "https://example.org:wrong"]:
             with self.assertRaises(ValueError):
                 public_url(value)
         code = self.store.shorten("https://example.org/a?b=1")
         self.assertEqual(len(code), 8)
         self.assertEqual(Store(self.path).resolve(code), "https://example.org/a?b=1")
         self.assertIsNone(self.store.resolve("missing"))
+
+    def test_chunks_preserve_text_with_astral_characters(self):
+        text = "A" + "😀" * 4000 + " end"
+        parts = list(text_parts(text))
+        self.assertEqual("".join(parts), text)
+        self.assertTrue(all(0 < len(part.encode("utf-16-le")) // 2 <= 4000 for part in parts))
+
+    def test_reminder_ownership_retry_isolation_and_topic(self):
+        blocked = self.store.remind(1, "blocked", 100, user=7)
+        good = self.store.remind(2, "topic", 100, user=8, thread=44)
+        retry = self.store.remind(3, "retry", 100, user=9)
+        delivered = []
+        async def send(chat, text, **kwargs):
+            if chat != 2:
+                raise RuntimeError("do not retain this sensitive exception body")
+            delivered.append((chat, text, kwargs))
+        attempts = iter([None, 50])
+        asyncio.run(deliver_due(self.store, send, 101, lambda error, attempt: next(attempts)))
+        self.assertEqual(delivered, [(2, "Reminder: topic", {"message_thread_id": 44})])
+        self.assertEqual(self.store.due(150), [])
+        self.assertEqual(Store(self.path).due(151)[0][0], retry)
+        self.assertFalse(self.store.cancel_reminder(retry, 8, 3))
+        self.assertFalse(self.store.cancel_reminder(retry, 9, 2))
+        self.assertTrue(self.store.cancel_reminder(retry, 9, 3))
+        self.assertFalse(self.store.cancel_reminder(retry, 9, 3))
+        self.assertEqual(self.store.reminders(7, 1)[0][3], 1)
+        bounded = self.store.remind(4, "bounded", 100, user=10)
+        async def always_fail(*args, **kwargs):
+            raise RuntimeError("redact me")
+        for _ in range(5):
+            asyncio.run(deliver_due(self.store, always_fail, 151, lambda error, attempt: 0))
+        self.assertEqual(self.store.due(151), [])
+        with self.store.connect() as db:
+            self.assertEqual(db.execute("SELECT attempts,last_error,failed FROM reminders WHERE id=?", (bounded,)).fetchone(),
+                             (5, "RuntimeError", 1))
+
+    def test_earlier_reminder_schema_migrates_and_keeps_pending_work(self):
+        old_path = Path(self.temp.name) / "old.db"
+        db = sqlite3.connect(old_path)
+        try:
+            db.execute("CREATE TABLE reminders(id INTEGER PRIMARY KEY,chat INTEGER,text TEXT,due INTEGER,done INTEGER NOT NULL DEFAULT 0)")
+            db.execute("INSERT INTO reminders VALUES(1,2,'existing',100,0)")
+            db.commit()
+        finally:
+            db.close()
+        old = Store(old_path)
+        self.assertEqual(old.due(101)[0][:3], (1, 2, "existing"))
+        self.assertFalse(old.cancel_reminder(1, 7, 2))
+
+    def test_rate_limit_pauses_remaining_batch_across_restart(self):
+        first = self.store.remind(1, 'first', 100)
+        second = self.store.remind(2, 'second', 100)
+        attempts = []
+        async def rate_limited(chat, text):
+            attempts.append(chat)
+            raise RuntimeError('rate limit')
+        asyncio.run(deliver_due(self.store, rate_limited, 101, lambda error, attempt: 90,
+                               pause_on_error=lambda error: True))
+        self.assertEqual(attempts, [1])
+        self.assertEqual(Store(self.path).due(190), [])
+        self.assertEqual([row[0] for row in Store(self.path).due(191)], [first, second])
+        with self.store.connect() as db:
+            self.assertEqual(db.execute('SELECT attempts FROM reminders WHERE id=?', (second,)).fetchone(), (0,))
 
     def test_warnings_scoped_and_persistent(self):
         self.assertEqual(self.store.warn(1, 9), 1)

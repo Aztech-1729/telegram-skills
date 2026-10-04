@@ -21,7 +21,11 @@ Keep `.env`, user sessions, local databases, downloaded files, and build outputs
 
 Choose polling for a simple continuously running worker, or webhooks when the deployment already supports a reachable HTTP endpoint. Delete an existing webhook deliberately before starting polling. Avoid automatically discarding pending updates during restarts; that is a data-loss decision.
 
+Select `allowed_updates` for the actual handlers. Omitting it preserves the prior setting; an empty list includes most updates but excludes `chat_member`, `message_reaction` and `message_reaction_count`. Those subscriptions need an explicit name and their documented administrator rights. New subscriptions do not filter already queued updates retroactively, so tolerate unfamiliar update shapes at the receiver. Telegram retains unreceived updates for at most 24 hours; a long outage needs business reconciliation, not an assumption of unlimited server backlog.
+
 Webhook handlers validate `X-Telegram-Bot-Api-Secret-Token`, constrain body size, parse an Update, and accept it into durable processing before acknowledging when the task requires reliable delivery. Acknowledge quickly; slow external work belongs in a bounded worker/queue. Use a unique bot/update key for replay handling. Polling offsets and webhook delivery are transport acknowledgments, not proof that an order or job finished.
+
+Inspect the chosen runner's acknowledgment boundary. A framework may enqueue to memory and confirm transport before a handler commits its inbox; adding a ledger inside that handler does not recover a process crash in between. For required durable receipt, commit through a custom webhook receiver before 2xx, or a polling receiver before its next higher offset, then dispatch persisted work. Read the advanced guide for inbox states and recovery.
 
 | Incoming interaction | Route and implementation concern |
 | --- | --- |
@@ -43,6 +47,8 @@ Raw HTTP uses methods such as `getMe`, `sendMessage`, `setWebhook`; Python wrapp
 The response envelope has `ok` and result/error information. Preserve machine-readable `error_code` and `parameters` for decisions, and sanitize transport errors containing token-bearing URLs. Store chat/user IDs in suitable integer types; negative chat IDs are meaningful. Entity offsets use UTF-16 units; escaping and splitting must preserve valid formatting. Prefer plain text when a parse mode provides no benefit.
 
 Reuse Telegram `file_id` when available. A hosted Bot API file workflow, URL fetch, local Bot API server, and MTProto transfer have different restrictions; check the selected method instead of applying one universal upload limit. See [local server](https://core.telegram.org/bots/api#using-a-local-bot-api-server) and the advanced guide for migration.
+
+Record a group-to-supergroup migration as an alias from the old chat ID to the new one. Handle `migrate_to_chat_id`/`migrate_from_chat_id` service messages and `ResponseParameters.migrate_to_chat_id`; transfer chat settings, reminder destinations and ownership keys transactionally. Resolve outgoing destinations through that alias and prevent duplicate migration handling from creating duplicate schedules. Recheck rights in the new chat before moderation. `file_unique_id` identifies a file for comparison; it cannot replace `file_id` when downloading or sending, and a file ID is bound to the bot that received it.
 
 ## State, rates and permissions
 

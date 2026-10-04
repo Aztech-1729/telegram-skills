@@ -1,6 +1,6 @@
 # Sources and compatibility ledger
 
-Checked: **2026-10-03**. Cutoff: **2026-10-03**. Primary references only. These are documentation checks; no Telegram/client smoke test or SDK-wide compatibility certification was performed.
+Checked: **2026-10-04**. Cutoff: **2026-10-04**. Primary references only. These are documentation checks; no Telegram/client smoke test or SDK-wide compatibility certification was performed.
 
 | Primary source | Checked scope / version |
 |---|---|
