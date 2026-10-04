@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "scripts": { "test": "node --test test.mjs" },
-  "dependencies": { "grammy": "1.46.0", "telegraf": "4.16.3" }
+  "scripts": {
+    "test": "node --test test.mjs test_feedback.mjs"
+  },
+  "dependencies": {
+    "@grammyjs/conversations": "2.1.1",
+    "grammy": "1.46.0",
+    "telegraf": "4.16.3"
+  }
 }

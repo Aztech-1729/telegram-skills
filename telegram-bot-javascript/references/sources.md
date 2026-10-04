@@ -28,3 +28,12 @@ Plugin packages need independent version checks; a core framework baseline does 
 - The sessions, conversations, runner and error guides above were reread for state/replay/error distinctions.
 
 Both expanded starter tests passed with a local fake API on 2026-10-04. Entry modules passed Node syntax checks. No real receiver, webhook or Telegram request ran; startup signal races and durable storage remain application checks. This focused review does not advance unrelated release/plugin baselines.
+
+## Conversation comparison follow-up: 2026-10-04
+
+The official conversations/session guides above were reread for inner/outer
+contexts, replayed API operations, external results, storage/version keys and
+update-driven wait expiry. The installed `@grammyjs/conversations` **2.1.1**
+package metadata and declarations were checked independently of grammY 1.46.0.
+Five new fake-transport tests exercise the feedback factory. Production
+persistence and cross-process recovery remain application checks.

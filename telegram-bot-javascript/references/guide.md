@@ -16,6 +16,11 @@ Use grammY session middleware for scoped dialog data, with a fresh initial objec
 
 When using grammY conversations, understand replay and use the documented external operation boundary for database/network reads or side effects. Persist conversation state only through a supported adapter and version migrations; conversations-plugin versions have their own compatibility constraints. Read [sessions](https://grammy.dev/plugins/session) and [conversations](https://grammy.dev/plugins/conversations) when those modes apply.
 
+Use the [dialog reference](conversations.md) and tested feedback factory for finite
+input/confirmation flows. The starter pins conversations 2.1.1; install the
+optional plugin in a project only when needed. Its memory replay store does not
+make application writes durable or exactly once.
+
 Parallel updates can lose session changes unless conflicting keys are serialized. grammY runner's concurrency should be combined with `sequentialize` based on the same session/resource keys. Multiple processes need a cross-process design or database transactions; an in-process lock is insufficient. Read [runner](https://grammy.dev/plugins/runner) and [scaling](https://grammy.dev/advanced/scaling).
 
 ## Keyboards, inline mode and media

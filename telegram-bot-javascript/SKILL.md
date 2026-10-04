@@ -13,6 +13,10 @@ Checked **2026-10-03**: grammY **1.46.0**, Telegraf **4.16.3**. Their Bot API co
 
 Read [implementation guide](references/guide.md) for state, concurrency, media, webhooks, plugins, errors and deployment. Read only the plugin documentation needed by the task.
 
+For multi-step grammY input, read [dialogs and replay](references/conversations.md)
+and its tested private-chat feedback factory for confirmation, external operations,
+cached authorization, cancellation and durable idempotency boundaries.
+
 For a failing handler, missing API, session race or shutdown issue, use [framework diagnostics](references/troubleshooting.md) before changing transport/framework. The focused audit there is dated separately from the release baseline.
 
 ## Implementation workflow

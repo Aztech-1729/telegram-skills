@@ -1,5 +1,11 @@
 # Skill audit — 2026-10-04
 
+The subsequent [public-pack comparison](COMPARISON.md) records a focused follow-up:
+an inline-keyboard validator, tested grammY dialog/replay factory and a slow-batch
+reminder retry correction, released together as proposed plugin patch **1.1.1**.
+Its [validation record](VALIDATION.md#public-pack-comparison-follow-up--2026-10-04)
+keeps those checks separate from the completed full audit below.
+
 The complete pre-audit pack of **18 skills and 137 skill resources** was read,
 including instructions, references, starters, tests and dependency manifests.
 Ignored downloads/build outputs were excluded. The pack now contains **21 skills**

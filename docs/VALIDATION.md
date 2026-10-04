@@ -1,6 +1,26 @@
 # Validation record
 
-## Full skill audit — 2026-10-04
+## Public-pack comparison follow-up — 2026-10-04
+
+Local checks passed **90 Python behavior tests in ten isolated suites**, **147
+maintenance tests**, **seven JavaScript fake-transport tests** (including five
+real conversations-plugin tests), **nine Mini App frontend tests**, all **14
+public endpoint checks** and pack/skill-creator validation for all 21 entrypoints.
+The new tests cover inline-keyboard invariants and reminder retries after slow
+requests; [the comparison](COMPARISON.md) records the focused review and gaps.
+
+The locked skills CLI passed linked/all-agent and selected-agent copy installs,
+verifying **21 skills and 176 skill resources**. Isolated native Codex 0.160.0
+and Claude Code 2.1.282 installs discovered the same complete catalog and resources
+as plugin version **1.1.1**. These are local fixture installs; the published main
+retains its earlier version until protected merge.
+
+Native PR validation and independent exact-diff review are separate publication
+gates. This follow-up does not claim a completed second whole-pack content audit
+or new live message/payment/client tests. The earlier audit records below retain
+their original counts and run identities.
+
+## Published full skill audit — 2026-10-04
 
 All 18 original skill folders and 137 resources were read in full. The pack now
 contains **21 skills** with bot UX, Mini App design and accessibility additions.

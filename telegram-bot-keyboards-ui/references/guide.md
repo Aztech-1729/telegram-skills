@@ -67,6 +67,21 @@ for checkout, permission requests and confirmation patterns.
 
 ## Callbacks, authorization and pagination
 
+Validate raw inline markup locally with
+`python telegram-bot-keyboards-ui/scripts/validate_keyboard.py keyboard.json --chat-type private`
+from the pack root. The file contains an `InlineKeyboardMarkup` object, not a
+whole send request. Add `--invoice` for invoice markup, `--business` for business
+senders or `--ephemeral` where applicable. Exit 1 means an error; warnings prompt
+review and do not invent server limits. An empty inline keyboard can remove the
+markup. Empty inline-switch queries and empty `disabled`/`callback_game` objects
+remain valid actions, so checks count field presence rather than truthiness.
+
+The validator rejects fields outside the reviewed schema instead of silently
+accepting a typo. Update it against official documentation before adding newer
+fields. It checks the listed payload/context invariants, not every surrounding
+message constraint, bot entitlement, registered login domain or authorization.
+No URL is fetched and no bot credential is needed.
+
 Use [the offline helpers](../scripts/ui_helpers.py) to encode/check callbacks and build bounded page rows. Persist menu ownership and any expiry/version independently of callback text. A visible button can outlive its record. Reject unknown prefixes, invalid indices, expired records and unauthorized users with a short callback answer; return without executing the action. An opaque record ID helps compactness but does not secure access.
 
 Answer the callback before slow I/O. Then choose the correct edit target: a chat/message pair when accessible, or `inline_message_id` for an inline result. Do not assume `callback_query.message` is present or editable. Make action execution idempotent; repeated taps can race. Suppress identical edits where practical and handle the specific 'message not modified' condition without hiding unrelated errors.
