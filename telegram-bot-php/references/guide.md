@@ -31,3 +31,7 @@ The PHP SDK baseline does not establish automatic Bot API 10.3 coverage. For a m
 Keep business records in transactions rather than PHP memory. Scope sessions per bot/user/chat/topic as appropriate; workers across processes need shared storage. Queue jobs with bounded retries; treat timeout-after-send as an uncertain outcome. Log error classes/codes and correlation IDs rather than full token-bearing URLs or user payloads.
 
 Validate with Composer dependency resolution, `php -l`, fixtures for valid/invalid secrets, malformed updates and duplicate handling, plus application tests for authorization and durable processing. The starter is a constrained echo example and does not include an order ledger, worker queue or completed hosting configuration.
+
+`php test.php` checks the extracted WebhookInput.php boundary with no SDK/client. The endpoint copies forum and direct-message topic IDs into the plain-text send request. The fixture suite checks incorrect method/secret, oversized/invalid JSON, invalid numeric IDs and ignored non-message/edit updates. It does not implement deduplication. The 2026-10-04 local audit could not execute PHP: no installed runtime, and the official portable download failed certificate validation. Native lint/test results are recorded separately.
+
+Use [diagnostics](troubleshooting.md) for SDK return-shape corrections, configuration caching, worker retries and raw-method fallback.

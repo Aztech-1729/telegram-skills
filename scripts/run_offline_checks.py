@@ -9,6 +9,7 @@ SUITES = [
     ('telegram-bot-aiogram/assets/starter', ['offline_check.py']),
     ('telegram-bot-telethon/assets/starter', ['offline_check.py']),
     ('telegram-bot-keyboards-ui/scripts', ['-m', 'unittest', 'discover', '-p', 'test_*.py']),
+    ('telegram-bot-accessibility/scripts', ['-m', 'unittest', 'discover', '-p', 'test_*.py']),
     ('telegram-bot-miniapps/scripts', ['-m', 'unittest', 'discover', '-p', 'test_*.py']),
     ('telegram-bot-payments-stars/scripts', ['-m', 'unittest', 'discover', '-p', 'test_*.py']),
     ('telegram-bot-advanced-features/scripts', ['-m', 'unittest', 'discover', '-p', 'test_*.py']),

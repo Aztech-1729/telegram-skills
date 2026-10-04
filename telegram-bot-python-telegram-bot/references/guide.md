@@ -2,7 +2,7 @@
 
 Research cutoff: **2026-10-03**. Target **22.8** unless the project pins another version. [Source register](sources.md) records verified scope. This guide contains **application patterns**; only `assets/starter/bot.py` is supplied as a complete polling entrypoint.
 
-Contents: setup and migration; handlers/context; callback menus; conversations/persistence; scheduling; media; lifecycle/webhooks; inline/admin features; errors/performance; verification.
+Contents: setup and migration; handlers/context; callback menus; conversations/persistence; scheduling; media; lifecycle/webhooks; inline/admin features; errors/performance; verification; recovery and interface diagnostics.
 
 ## Setup and compatibility
 
@@ -112,3 +112,17 @@ Reuse async HTTP clients/DB sessions. Move unavoidable blocking calls to `asynci
 Separate config, handler registration, keyboards, services, repositories and lifecycle as complexity warrants. Modules can expose `register(app)` before initialization. Keep per-request DB resources out of persisted context; persist versioned records rather than clients/application objects.
 
 Run `python assets/starter/offline_check.py` with starter requirements installed. A copied application should also exercise routing overlap, nontext messages, expired callbacks, permission denial, cancellation/reentry, invalid input, restart state, scheduling units, duplicate delivery and graceful stop. Dedicated live checks confirm privacy/inline settings, actual admin rights, TLS/secret validation and update subscriptions. Report offline and live validation separately.
+
+## Recovery and interface diagnostics
+
+ConversationHandler applies a returned state after the awaited callback finishes. In the demo, change form data only after the transition's reply succeeds: reset it after a reentry prompt, record the name after the age prompt, and remove it after completion/cancellation confirmation. If a reply raises, the old state and input remain usable. This prevents a local retry from crashing; it does not make an ambiguous Telegram send or a database write exactly once. Real forms should commit their business record with an operation ID, then recover/render its actual status rather than repeating fulfillment when the user retries.
+
+| Symptom | Inspect | Useful next check |
+| --- | --- | --- |
+| A photo during a text step gets silence | State-specific filters and fallback order | Route nontext input to a hint that returns None, preserving the current state |
+| A button spins after a deployment | Callback schema, expired arbitrary-data cache, subscription | Place a recovery CallbackQueryHandler last in the group; acknowledge and offer `/menu` without executing unknown data |
+| Conversation resets after restart | Persistence wiring, stable name/state keys, file access | Restore an actual opted-in conversation; pickle presence alone is insufficient |
+| Conversation mixes users or messages | per_chat/per_user/per_message and concurrent_updates | Verify the intended conversation key and sequential processing before changing the handlers |
+| Handler is never reached | First match in each group and allowed_updates | Use an actual Update fixture, including command entities and optional fields |
+
+Prompts should state the accepted input and a cancellation route; repeat the current step after validation failure without removing already accepted data. Keep completion copy truthful about the demo or persisted result. Acknowledging a button removes the loading indicator; the edited message must separately describe what happened. Use readable action labels and a text/command alternative where the task needs it. Review [bot UX](../../telegram-bot-ux/SKILL.md) for flow design and [accessibility](../../telegram-bot-accessibility/SKILL.md) for assistive-technology, language and text-alternative checks. For a requested web interface, add [Mini App design](../../telegram-bot-miniapp-design/SKILL.md) and [Mini App security](../../telegram-bot-miniapps/SKILL.md); a ConversationHandler does not validate web launch data.

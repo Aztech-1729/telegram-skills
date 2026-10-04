@@ -5,7 +5,7 @@ description: Design persistent state, durable jobs, webhook deployment, broadcas
 
 # Telegram bot production engineering
 
-Read [the engineering guide](references/guide.md) for database/session lifecycle, jobs, inbox/outbox, webhooks, containers, local Bot API servers, broadcasts and troubleshooting. Read [the source ledger](references/sources.md) for the 2026-10-03 API/framework baseline.
+Read [the engineering guide](references/guide.md) for database/session lifecycle, jobs, inbox/outbox, webhooks, containers, local Bot API servers, broadcasts and troubleshooting. Read [the source ledger](references/sources.md) for the 2026-10-04 API/framework baseline.
 
 ## Workflow
 
@@ -21,6 +21,7 @@ Read [the engineering guide](references/guide.md) for database/session lifecycle
 - `AsyncSession` is not safe to share among concurrent tasks. Close sessions and dispose the async engine on shutdown; do not perform slow network I/O inside business transactions.
 - In-memory state/jobs may be suitable for ephemeral flows, but durable business outcomes require persistent storage and a defined restart policy.
 - An outbox prevents lost intent; leases and dedupe keys do not make a Telegram send exactly once. A timeout after dispatch can mean the send succeeded.
+- Inspect the receiver's acknowledgment boundary: handler persistence after an in-memory queue does not protect the crash window before that handler starts. Track inbox receipt and processing completion separately.
 - Rate limits vary by method/chat/global traffic. A fixed 25/s loop is not sufficient for every workload. Paid broadcasts spend Stars and must be a deliberate, authorized choice.
 - Verify `X-Telegram-Bot-Api-Secret-Token` before processing a webhook; deduplicate separately. An obscured URL is not a substitute for the secret header.
 - Local Bot API operation changes file/webhook limits, not every Telegram constraint. Do not describe it as “no limits.”

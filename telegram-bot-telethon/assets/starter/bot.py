@@ -62,8 +62,8 @@ def close_data(sender_id: int) -> bytes:
     return data
 
 
-def callback_owner(data: bytes) -> int | None:
-    if len(data) > 64:
+def callback_owner(data: bytes | None) -> int | None:
+    if not isinstance(data, bytes) or len(data) > 64:
         return None
     match = OWNER.fullmatch(data)
     if not match:
@@ -110,6 +110,10 @@ async def close_menu(event: events.CallbackQuery.Event) -> None:
         pass
 
 
+async def expired_menu(event: events.CallbackQuery.Event) -> None:
+    await event.answer('This menu expired. Open /menu again.')
+
+
 def register_handlers(client: TelegramClient) -> None:
     client.add_event_handler(menu, events.NewMessage(
         incoming=True, pattern=r'^/(?:start|menu)(?:@\w+)?(?:\s.*)?$',
@@ -118,7 +122,8 @@ def register_handlers(client: TelegramClient) -> None:
     client.add_event_handler(echo, events.NewMessage(
         incoming=True, func=lambda e: e.is_private and bool(e.raw_text) and not e.raw_text.startswith('/'),
     ))
-    client.add_event_handler(close_menu, events.CallbackQuery(data=OWNER))
+    client.add_event_handler(close_menu, events.CallbackQuery(func=lambda e: callback_owner(e.data) is not None))
+    client.add_event_handler(expired_menu, events.CallbackQuery(func=lambda e: callback_owner(e.data) is None))
 
 
 async def main() -> None:

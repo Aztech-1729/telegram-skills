@@ -2,6 +2,8 @@
 
 Checked: **2026-10-03**. Cutoff: **2026-10-03**. Only primary sources; prices/eligibility must be checked again before live operations.
 
+Focused re-review **2026-10-04**: rechecked Bot API 10.3 invoice/subscription/refund/history and paid-media schemas, Stars support responsibilities, PTB's stable documentation identified as 22.8 and aiogram's versioned 3.31.0 invoice link. Provider onboarding/country eligibility and live financial behavior remain unverified.
+
 | Primary source | Checked scope / baseline |
 |---|---|
 | [Bot API](https://core.telegram.org/bots/api) / [changelog](https://core.telegram.org/bots/api-changelog) | **10.3, 2026-08-24**; 10.2 subscription state updates |
@@ -9,6 +11,7 @@ Checked: **2026-10-03**. Cutoff: **2026-10-03**. Only primary sources; prices/el
 | [Provider payments](https://core.telegram.org/bots/payments) / [currency exponents](https://core.telegram.org/bots/payments/currencies.json) | Physical-goods checkout and currency amounts; no provider-availability guarantee |
 | [sendInvoice](https://core.telegram.org/bots/api#sendinvoice) / [createInvoiceLink](https://core.telegram.org/bots/api#createinvoicelink) | Empty Stars provider token, one price, payload size, recurring-link parameters |
 | [SuccessfulPayment](https://core.telegram.org/bots/api#successfulpayment) / [BotSubscriptionUpdated](https://core.telegram.org/bots/api#botsubscriptionupdated) | Charge IDs, recurring expiry/flags and renewal-state update |
+| [RefundedPayment](https://core.telegram.org/bots/api#refundedpayment) / [PaidMediaPurchased](https://core.telegram.org/bots/api#paidmediapurchased) / [sendPaidMedia](https://core.telegram.org/bots/api#sendpaidmedia) | Refund event fields; non-channel payload-bound unlock notifications; channel versus bot proceeds |
 | [refundStarPayment](https://core.telegram.org/bots/api#refundstarpayment) / [editUserStarSubscription](https://core.telegram.org/bots/api#edituserstarsubscription) | User-bound refund and renewal controls |
 | [getMyStarBalance](https://core.telegram.org/bots/api#getmystarbalance) / [getStarTransactions](https://core.telegram.org/bots/api#getstartransactions) | Separate balance/history, 1–100 history page size |
 | [giftPremiumSubscription](https://core.telegram.org/bots/api#giftpremiumsubscription) / [getAvailableGifts](https://core.telegram.org/bots/api#getavailablegifts) | Checked duration/Star-price pairs and gift discovery |

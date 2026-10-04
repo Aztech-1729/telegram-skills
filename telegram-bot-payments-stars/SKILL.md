@@ -1,6 +1,6 @@
 ---
 name: telegram-bot-payments-stars
-description: Implement Telegram Stars or provider checkout, trusted payment fulfillment, recurring subscriptions, refunds, reconciliation, gifts and Mini App invoices. Use for bot monetization; it does not authorize spending, refunding or gifting on its own.
+description: Implement Telegram Stars or provider checkout, trusted payment fulfillment, recurring subscriptions, refunds, reconciliation, paid media, gifts and Mini App invoices. Use for bot monetization; it does not authorize spending, refunding or gifting on its own.
 ---
 
 # Telegram payments and Stars
@@ -23,6 +23,7 @@ Read [the payment guide](references/guide.md) for rail selection, invoice/checko
 - `createInvoiceLink` supports Stars recurring invoices with the documented subscription period. A title saying “subscription” does not create recurrence.
 - Cancellation stops future renewal; preserve paid access through the recorded period. Refund API success/confirmation is distinct from requesting a refund.
 - Webhook authentication and database idempotency solve different problems; keep both.
+- Paid-media unlock events, invoice receipts and outgoing Stars expenses have different fields and fulfillment rules; route each to its own ledger/service.
 - Tokens stay in the environment/secret manager. Do not put Mini App auth validation snippets here; use the Mini Apps skill's tested implementation.
 
 ## Resources

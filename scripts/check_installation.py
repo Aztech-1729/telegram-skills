@@ -62,8 +62,8 @@ def check(root=ROOT, remote_source=None):
         raise ValueError("Node.js is required for the installation smoke check")
     files = skill_files(root)
     names = {Path(name).parts[0] for name in files}
-    if len(names) != 18 or not all(f"{name}/SKILL.md" in files for name in names):
-        raise ValueError("Expected all 18 complete source skills")
+    if len(names) != 21 or not all(f"{name}/SKILL.md" in files for name in names):
+        raise ValueError("Expected all 21 complete source skills")
     version = json.loads((root / "node_modules/skills/package.json").read_text(encoding="utf-8"))["version"]
     results = []
     with TemporaryDirectory(prefix="telegram-install-") as directory:

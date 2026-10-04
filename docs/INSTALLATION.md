@@ -2,7 +2,7 @@
 
 The canonical source is
 [Aztech-1729/telegram-skills](https://github.com/Aztech-1729/telegram-skills).
-Install the complete 18-skill pack to preserve its framework/feature links and
+Install the complete 21-skill pack to preserve its framework/feature links and
 supporting resources. Installation makes instructions available to your agent;
 running a starter later requires its own language dependencies and bot
 configuration.
@@ -72,7 +72,7 @@ by your installed host. Custom configuration roots can change a global location.
 and [OpenCode discovery](https://opencode.ai/docs/skills/#place-files) describe
 the native rules.
 
-All 18 skill folders include their references, scripts and assets where supplied.
+All 21 skill folders include their references, scripts and assets where supplied.
 The skill installer does not copy every repository file: shared research,
 validation and automation records remain available in
 [the repository docs](https://github.com/Aztech-1729/telegram-skills/tree/main/docs).
@@ -108,7 +108,7 @@ avoid duplicate skill entries. Native plugin scope and updates follow the
 host's plugin manager rather than `skills update`.
 
 The native packaging was checked with Codex **0.160.0** and Claude Code
-**2.1.282**, using isolated configurations. All 18 skills and their assets were
+**2.1.282**, using isolated configurations. All 21 skills and their assets were
 retained. See the official
 [Codex plugin guide](https://developers.openai.com/plugins/build/plugins) and
 [Claude Code plugin reference](https://code.claude.com/docs/en/plugins-reference)
@@ -122,7 +122,7 @@ List this project's installed skills:
 npx --yes skills list --agent codex claude-code opencode
 ```
 
-For a global install, add `--global`. The complete pack has 18 names beginning
+For a global install, add `--global`. The complete pack has 21 names beginning
 with `telegram-bot-`. Check that the selected host can see the same skills in its
 selector or skill tool. Start a new session or restart the host if its discovery
 view is stale.
@@ -138,14 +138,14 @@ Plugin-installed skills can use a host's namespaced selector, such as
 in Claude Code. Native hosts can also select skills from the request and their
 activation descriptions. Read the
 [task catalog](../README.md#start-here), select the existing framework, then add
-the needed feature skills. Installing all 18 does not require loading all their
+the needed feature skills. Installing all 21 does not require loading all their
 bodies and references into every conversation.
 
 Give a terminal-capable agent this instruction when you want it to install and
 use the pack:
 
 ```text
-Install all 18 skills from Aztech-1729/telegram-skills into this project for
+Install all 21 skills from Aztech-1729/telegram-skills into this project for
 my agent, preserving every skill's supporting resources. Use the skills CLI
 with --skill '*' and my agent's ID; report any missing installation prerequisite.
 Verify the installed names. For my Telegram task, identify the existing framework,
@@ -167,7 +167,7 @@ python scripts/check_installation.py
 ```
 
 Pack validation includes the native plugin manifests, marketplace identities,
-versions and all 18 skill paths. The installation check verifies every supplied
+versions and all 21 skill paths. The installation check verifies every supplied
 skill resource, allowing Git text line-ending normalization, and resolves local
 Markdown routes in both
 all-supported-agent mode and independent copies for Codex, Claude Code and
@@ -202,7 +202,7 @@ npx --yes skills remove telegram-bot-aiogram --agent codex claude-code opencode 
 
 Add `--global` to remove it from a global installation. To remove the complete
 pack while preserving other packs, use the interactive command and select only
-the 18 `telegram-bot-` entries:
+the 21 `telegram-bot-` entries:
 
 ```sh
 npx --yes skills remove --agent codex claude-code opencode

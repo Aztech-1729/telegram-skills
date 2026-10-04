@@ -41,8 +41,10 @@ class PaymentLedger:
             raise ValueError("payload must contain 1–128 UTF-8 bytes")
         if type(user_id) is not int or not 0 < user_id < 2**63:
             raise ValueError("invalid user ID")
-        if type(amount) is not int or amount <= 0 or type(units) is not int or units <= 0:
-            raise ValueError("positive integer amount and units required")
+        if type(amount) is not int or not 0 < amount < 2**63 or type(units) is not int or not 0 < units < 2**63:
+            raise ValueError("positive SQLite integer amount and units required")
+        if type(expires) is not int or not 0 < expires < 2**63:
+            raise ValueError("positive integer checkout expiry required")
         with self._db() as db:
             db.execute("INSERT INTO orders VALUES (?, ?, 'XTR', ?, ?, ?)",
                        (payload, user_id, amount, units, expires))
@@ -90,17 +92,24 @@ class PaymentLedger:
                        (user_id, order[3]))
             return True
 
-    def record_completed_refund(self, charge_id: str, user_id: int) -> bool:
+    def record_completed_refund(self, charge_id: str, user_id: int, *,
+                                payload: str | None = None, currency: str | None = None,
+                                amount: int | None = None) -> bool:
         """Reconcile trusted refund confirmation; this does not request a refund.
 
         An application must decide how consumed credits/debt affect access.
         """
         with self._db() as db:
             db.execute("BEGIN IMMEDIATE")
-            row = db.execute("""SELECT p.user_id,p.refunded,o.units FROM payments p
+            row = db.execute("""SELECT p.user_id,p.refunded,o.units,p.payload,p.currency,p.amount FROM payments p
                                JOIN orders o USING(payload) WHERE p.charge_id=?""", (charge_id,)).fetchone()
             if row is None or type(user_id) is not int or row[0] != user_id:
                 raise ValueError("refund does not match payment user")
+            # API success can be reconciled from the stored request. A refund
+            # event supplies all three fields and must match before reversal.
+            if any(value is not None for value in (payload, currency, amount)):
+                if type(amount) is not int or row[3:] != (payload, currency, amount):
+                    raise ValueError("refund event conflicts with recorded payment")
             if row[1]:
                 return False
             db.execute("UPDATE payments SET refunded=1 WHERE charge_id=?", (charge_id,))

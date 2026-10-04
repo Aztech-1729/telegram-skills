@@ -41,7 +41,7 @@ class PluginTests(unittest.TestCase):
 
     def test_all_skills_share_one_canonical_package_identity(self):
         result = plugins.validate(self.root)
-        self.assertEqual(result, {"plugin": "telegram@aztech", "version": "1.0.0", "skills": 18})
+        self.assertEqual(result, {"plugin": "telegram@aztech", "version": "1.0.0", "skills": len(self.manifests[plugins.MANIFESTS[0]]["skills"])})
 
     def test_missing_duplicate_reordered_or_untracked_skill_is_rejected(self):
         original = self.manifests[plugins.MANIFESTS[0]]["skills"]

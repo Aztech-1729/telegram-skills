@@ -1,0 +1,38 @@
+/* Extractable starting tokens/components; measure actual host-theme contrast. */
+:root {
+  color-scheme: light dark;
+  --app-bg: var(--tg-theme-bg-color, #ffffff);
+  --app-surface: var(--tg-theme-secondary-bg-color, #f1f5f9);
+  --app-text: var(--tg-theme-text-color, #172033);
+  --app-action: var(--tg-theme-button-color, #1d4ed8);
+  --app-action-text: var(--tg-theme-button-text-color, #ffffff);
+  --app-danger: #b91c1c;
+  --app-success: #166534;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 1rem/1.5 system-ui, sans-serif; color: var(--app-text); background: var(--app-bg); }
+.app-shell {
+  max-width: 40rem; margin-inline: auto;
+  padding: calc(1rem + var(--tg-content-safe-area-inset-top, 0px))
+           calc(1rem + var(--tg-content-safe-area-inset-right, 0px))
+           calc(1rem + var(--tg-content-safe-area-inset-bottom, 0px))
+           calc(1rem + var(--tg-content-safe-area-inset-left, 0px));
+}
+.surface { padding: 1rem; border-radius: .75rem; background: var(--app-surface); }
+input, select, textarea, button { font: inherit; max-width: 100%; }
+input, select, textarea { width: 100%; padding: .75rem; color: var(--app-text); background: var(--app-bg); border: 1px solid currentColor; border-radius: .5rem; }
+label { display: block; margin-block-end: .5rem; }
+.button { min-height: 44px; padding: .625rem 1rem; border: 1px solid currentColor; border-radius: .5rem; white-space: normal; color: var(--app-text); background: var(--app-surface); cursor: pointer; }
+.button--primary { background: var(--app-action); color: var(--app-action-text); border-color: transparent; }
+.button--danger { background: var(--app-danger); color: #ffffff; border-color: transparent; }
+.button--success { background: var(--app-success); color: #ffffff; border-color: transparent; }
+.button:disabled { cursor: default; }
+:focus-visible { outline: 3px solid var(--app-text); outline-offset: 3px; box-shadow: 0 0 0 3px var(--app-bg); }
+a { color: var(--tg-theme-link-color, #1d4ed8); text-decoration: underline; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.actions > * { flex: 1 1 auto; }
+.wrap { overflow-wrap: anywhere; }
+@media (forced-colors: active) { :focus-visible { outline-color: Highlight; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+}

@@ -32,3 +32,11 @@ All three original asset applications passed go build with **Go 1.27.0 on Window
 The reference's conditional integration fragments were checked against project signatures; they are not standalone applications. No real Telegram token, webhook registration, callback, media upload, or live-server test was used.
 
 Refresh the release/API check before adding later Bot API features, and preserve the application's actual module versions when repairing an existing project.
+
+## Focused audit — 2026-10-04
+
+The [classic v5.5.1 transport](https://github.com/go-telegram-bot-api/telegram-bot-api/blob/v5.5.1/bot.go) propagates HTTP URL errors and logs polling failures internally. Its starter now uses a client adapter that redacts both the credential-bearing URL and nested error message before they enter the SDK, while preserving errors.Is/As for inspection. Two additional offline tests exercise real SDK startup/polling against a fake transport; no network calls are made. Together with the modern HTTP/core/contrib checks, the repository now runs eleven Go behavior tests.
+
+The official Go module service's release feeds still report the pins above: [go-telegram/bot](https://proxy.golang.org/github.com/go-telegram/bot/@latest), [gotgbot/v2](https://proxy.golang.org/github.com/!paul!son!of!lars/gotgbot/v2/@latest), and [classic v5](https://proxy.golang.org/github.com/go-telegram-bot-api/telegram-bot-api/v5/@latest).
+
+The [pinned webhook receiver](https://github.com/go-telegram/bot/blob/v1.27.0/webhook_handler.go) reads an unbounded body, logs invalid secret/JSON and returns implicit 200, and queues accepted updates in memory. The [command matcher](https://github.com/go-telegram/bot/blob/v1.27.0/handlers.go) compares the entire command entity, including any @mention. The guide now distinguishes these limits from application HTTP validation/durability and mention parsing. Two offline tests exercise the real SDK with getMe skipped: webhook rejection/accepted dispatch/worker shutdown and bare-versus-mentioned command routing. All three assets pass go test and module checksum verification with Go 1.27.0. No Bot API requests were made.

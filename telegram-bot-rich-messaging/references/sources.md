@@ -1,6 +1,6 @@
 # Primary sources
 
-Checked 2026-10-03; Bot API 10.3 (2026-08-24).
+Checked 2026-10-04; Bot API 10.3 (2026-08-24).
 
 - [AI features for bots](https://core.telegram.org/api/bots/ai): generation, drafts, topics and stopping.
 - [Bot API](https://core.telegram.org/bots/api#inputrichmessage): input representation and required payload parameters.

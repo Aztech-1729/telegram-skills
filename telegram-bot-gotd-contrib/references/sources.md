@@ -25,6 +25,10 @@ The starter persists session and recovery state and collects peers. It leaves up
 
 ## Validation
 
-The original reliable-echo asset passed **go build with Go 1.27.0 on Windows**, using the module pins above, bbolt v1.5.0 and golang.org/x/time v0.15.0. go mod tidy generated its dependency records.
+The reliable-echo asset passes **go test with Go 1.27.0 on Windows**, using the module pins above, bbolt v1.5.0 and golang.org/x/time **v0.16.0**. The example's resolved module directive is **Go 1.26.0**; distinguish that requirement from core/contrib's upstream Go 1.25.0 directives. Existing dependency records are preserved and module checksums verify.
 
-No application was run. Real Telegram RPCs, local database runtime/restore, Redis/S3/Vault services, OpenTelemetry exporters, background-client lifecycle and floodwait timing were not integration-tested. Constructor signatures outside the asset were reviewed in the pinned sources.
+No Telegram application was run. Four offline tests cover identity/update-chain gating, typed reply/error propagation, and an actual temporary bbolt session/global/channel-pts close/reopen with account separation. Real Telegram RPCs, Redis/S3/Vault services, OpenTelemetry exporters, background-client lifecycle and floodwait timing were not integration-tested. Constructor signatures outside the asset were reviewed in the pinned sources.
+
+## Focused audit — 2026-10-04
+
+The [contrib release feed](https://proxy.golang.org/github.com/gotd/contrib/@latest) and [core release feed](https://proxy.golang.org/github.com/gotd/td/@latest) still report v0.25.0 and v0.162.0. The [bbolt session adapter](https://github.com/gotd/contrib/blob/v0.25.0/bbolt/session.go) and [state adapter](https://github.com/gotd/contrib/blob/v0.25.0/bbolt/state_storage.go) define the separately tested interfaces. [Self's identity](https://pkg.go.dev/github.com/gotd/td@v0.162.0/telegram#Client.Self) is verified before peer collection or recovery update forwarding. The ready gate deliberately drops pre-verification updates; its local tests do not prove real startup/channel gap recovery or a durable business outbox.

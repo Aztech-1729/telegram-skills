@@ -1,6 +1,6 @@
 # Chat UI implementation guide
 
-Checked 2026-10-03. Contents: interaction choice; buttons and contexts; callbacks and paging; formatting and emoji; inline mode; media and UX. The [source ledger](sources.md) distinguishes Bot API support from SDK support. Examples below are integration fragments unless a runnable helper is linked.
+Checked 2026-10-04. Contents: interaction choice; buttons and contexts; callbacks and paging; formatting and emoji; inline mode; media and UX. The [source ledger](sources.md) distinguishes Bot API support from SDK support. Examples below are integration fragments unless a runnable helper is linked.
 
 ## Choose the interaction
 
@@ -29,7 +29,7 @@ from telegram import (
 
 menu = InlineKeyboardMarkup([
     [InlineKeyboardButton("Confirm", callback_data="v1:confirm:42", style="success"),
-     InlineKeyboardButton("Cancel", callback_data="v1:cancel:42", style="danger")],
+     InlineKeyboardButton("Cancel", callback_data="v1:cancel:42")],
     [InlineKeyboardButton("Open app", web_app=WebAppInfo("https://app.example.com"))],
 ])
 await update.effective_message.reply_text("Review item 42", reply_markup=menu)
@@ -51,12 +51,19 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 menu = InlineKeyboardMarkup(inline_keyboard=[[
     InlineKeyboardButton(text="Confirm", callback_data="v1:confirm:42", style="success"),
-    InlineKeyboardButton(text="Cancel", callback_data="v1:cancel:42", style="danger"),
+    InlineKeyboardButton(text="Cancel", callback_data="v1:cancel:42"),
 ]])
 await message.answer("Review item 42", reply_markup=menu)
 ```
 
 Raw `reply_markup` has `{"inline_keyboard": [[{"text": "Confirm", "callback_data": "v1:confirm:42", "style": "success"}]]}`. In Go, use the selected library's typed markup model; JSON field names do not become guessed Go struct field names. Confirm wrapper support against its versioned documentation.
+
+Use blue `primary` for an important next action, green `success` where positive
+commitment is useful, red `danger` for destructive consequences and default style
+for Back/Cancel or equal peer choices. These are recommendations, not button-count
+limits. A meaningful label remains necessary when clients ignore color. Read
+[the UX decision table](../../telegram-bot-ux/references/guide.md#what-color-belongs-to-which-button)
+for checkout, permission requests and confirmation patterns.
 
 ## Callbacks, authorization and pagination
 

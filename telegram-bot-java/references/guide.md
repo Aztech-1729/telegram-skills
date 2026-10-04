@@ -35,9 +35,9 @@ Keep an existing framework when it meets the user's task. Avoid importing both l
 </dependency>
 ```
 
-The [original EchoBot](../assets/echo/src/main/java/EchoBot.java) uses DefaultLongPollingUpdateConsumer, OkHttpTelegramClient, and TelegramBotsLongPollingApplication. It replies with plain text and closes reception during JVM shutdown. It reads TELEGRAM_BOT_TOKEN.
+The [original EchoBot](../assets/echo/src/main/java/EchoBot.java) uses DefaultLongPollingUpdateConsumer, OkHttpTelegramClient, and TelegramBotsLongPollingApplication. It replies with plain text in the source topic, owns the scheduled polling executor and stops it during JVM shutdown. It reads TELEGRAM_BOT_TOKEN. Consumer queue draining and durable receipt are separate service concerns; see [diagnostics](troubleshooting.md).
 
-Copy the asset directory into the application's chosen location. `mvn package` compiles it; `mvn exec:java -Dexec.mainClass=EchoBot` deliberately starts polling after configuration. Running registers/connects a real bot; documentation checks must not execute it.
+Copy the asset directory into the application's chosen location. `mvn verify` compiles it and runs the offline fixture tests; `mvn exec:java -Dexec.mainClass=EchoBot` deliberately starts polling after configuration. Running registers/connects a real bot; documentation checks must not execute it.
 
 TelegramBots separates the HTTP client from the update receiver. Old TelegramLongPollingBot/TelegramBotsApi tutorials belong to a different generation and cannot be combined with the modular setup by renaming one import.
 
@@ -58,6 +58,8 @@ If adding an SDK command extension, check its module and event contract at the p
 TelegramBots methods are objects such as SendMessage, AnswerCallbackQuery, SendPhoto and SetWebhook. Execute them through TelegramClient. Builders supply required and optional fields; handle TelegramApiException rather than assuming a return indicates business completion.
 
 For media, use the appropriate InputFile variant and preserve stream/file lifetime until the request finishes. Reuse file_id when suitable. Escape user-provided values under HTML/Markdown or send plain text. Builder names are Java API conventions; wire method names remain sendMessage and similar Bot API names.
+
+TelegramBots 10.3.0 has a checked type mismatch: received DirectMessagesTopic.topicId is Long, but SendMessage.directMessagesTopicId is Integer. The starter accepts only positive representable values and rejects overflow without truncation. For larger topic IDs, select a corrected SDK or a tested wire adapter; never blindly cast a Telegram identifier.
 
 For callback buttons, construct an InlineKeyboardMarkup containing InlineKeyboardButton rows. A callback acknowledgement is a separate AnswerCallbackQuery request. Check callback data, requesting user, chat/message ownership and expiry against application state before changing an order or permission.
 
@@ -132,6 +134,6 @@ Compile against the project's selected release. For current Bot API fields missi
 
 ## 10. Verification
 
-The asset's Java source was compiled with javac --release 17 against published TelegramBots jars. Maven packaging/runtime dependencies and live polling were not exercised during this documentation update.
+On 2026-10-04 the asset passed full `mvn verify` with Maven 3.10.0/JDK 21, compiling for Java 17 and running four offline fixtures through a substituted TelegramClient. This checks forum/direct-message routing, large-ID refusal, plain text and ignored update variants. Live polling was not started.
 
 For an application, compile its whole dependency graph, test dispatch with deserialized fixtures and mock client requests, then verify webhook secrets locally. Live token/permissions, media, payments and delivery tests require an explicitly configured test environment.

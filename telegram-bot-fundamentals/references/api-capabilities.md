@@ -1,6 +1,6 @@
 # Telegram capability routing and integration decisions
 
-Checked **2026-10-03**, against the Telegram feature guide, Bot API 10.3 reference, and topic guides. This map covers feature families relevant to application design; consult the linked reference for the full method/schema inventory.
+Checked **2026-10-04**, against the Telegram feature guide, Bot API 10.3 reference, and topic guides. This map covers feature families relevant to application design; consult the linked reference for the full method/schema inventory. Links under `/api/` describe native MTProto; use the HTTP Bot API types/methods below when implementing a bot-token application.
 
 ## Traditional Bot API domains
 
@@ -21,19 +21,21 @@ Checked **2026-10-03**, against the Telegram feature guide, Bot API 10.3 referen
 
 ### Business / Secretary connections
 
-Read [Business bots](https://core.telegram.org/api/bots/connected-business-bots) and [Business API](https://core.telegram.org/api/business) when acting through an account connection. Persist connection identity, enabled state, granted rights and revocation. Use `business_connection_id` only where the method supports it. Scope jobs and data to that connection; a normal bot-token send is not equivalent to sending on behalf of an account. Gate replies/read/delete/gift/story actions individually and stop queued actions when rights change.
+Start with HTTP [BusinessConnection](https://core.telegram.org/bots/api#businessconnection), [BusinessBotRights](https://core.telegram.org/bots/api#businessbotrights) and [getBusinessConnection](https://core.telegram.org/bots/api#getbusinessconnection). Handle connection plus business-message/edit/delete updates. Persist connection identity, enabled state, granted rights and revocation; fetch an unknown connection after restart before acting. Reply permission has a recent-incoming-message condition in eligible private chats, so an old queued reply must be revalidated at dispatch. Use `business_connection_id` only where the method supports it. Scope jobs and data to that connection; a normal bot-token send is not equivalent to sending on behalf of an account. Gate replies/read/delete/gift/story actions individually and stop queued actions when rights change. Read [native connected bots](https://core.telegram.org/api/bots/connected-business-bots) for MTProto datacenter/connection wrapping.
 
 ### Managed bots
 
-Read [managed bots](https://core.telegram.org/api/bots/managed-bots). Model manager and managed identities separately, store tokens in a secret store, record token replacement/owner changes, and isolate each bot's updates/configuration. Requests to create/select a managed bot are not blanket permission to operate every connected bot. Design lifecycle recovery for rotated credentials and revoked management.
+Use the [Bot API managed-bot flow](https://core.telegram.org/bots/features#managed-bots): enable manager capability in BotFather, present the creation request/deep link, handle `managed_bot`, then use `getManagedBotToken` for the granted managed identity. `replaceManagedBotToken` rotates credentials; access-settings methods manage the documented restrictions. Creation is confirmed by the user; do not invent a bot-token `createBot` method. The [native guide](https://core.telegram.org/api/bots/managed-bots) explains user-only MTProto creation. Model manager and managed identities separately, store tokens in a secret store, record token replacement/owner changes, and isolate each bot's updates/configuration. Requests to create/select a managed bot are not blanket permission to operate every connected bot. Design lifecycle recovery for rotated credentials and revoked management.
 
 ### Guest mode and bot-to-bot work
 
-Read [guest mode](https://core.telegram.org/api/bots/guest-mode) and the feature guide's [bot-to-bot section](https://core.telegram.org/bots/features#bot-to-bot-communication). A guest invocation supplies bounded context and a scoped reply route, not history access. Keep caller identity distinct from the bot that supplied a request. Prevent message loops, cap delegation depth, validate the external action requested, and keep application authorization outside generated text.
+For HTTP guest mode, handle `Update.guest_message` and answer its `Message.guest_query_id` through [answerGuestQuery](https://core.telegram.org/bots/api#answerguestquery); the [native guest guide](https://core.telegram.org/api/bots/guest-mode) uses a different update/result path. A guest invocation supplies bounded context and a scoped reply route, not history access. Keep caller user/chat identity separate from the message author. The [bot-to-bot guide](https://core.telegram.org/bots/features#bot-to-bot-communication) has different enablement rules for groups, private bot usernames and business-account chats; private bot-to-bot sending requires both bots to enable the capability. Prevent message loops, cap delegation depth, validate the external action requested, and keep application authorization outside generated text.
 
 ### Topics, communities and channel direct messages
 
 Model topic IDs in addition to chat IDs. A forum topic, private bot topic and channel direct-message topic have distinct APIs and permission requirements; do not substitute `message_thread_id` for every context. Preserve the incoming context when replying. Read [topics](https://core.telegram.org/api/forum) and [feature guide](https://core.telegram.org/bots/features#channel-direct-messages-and-suggested-posts). Communities add membership/linkage events; track them without assuming all linked chats share permissions or user lists.
+
+Store forum/private bot threads as `message_thread_id`; channel direct-message destinations use `direct_messages_topic_id` on supported sends. Preserve `business_connection_id` separately. A callback may reference an inaccessible message or an inline message without a chat ID; do not manufacture ordinary reply context from missing fields. Community-linked chat joins are service messages within `Update.message`; they are not a new universal membership permission.
 
 ### Rich, ephemeral and generated messages
 

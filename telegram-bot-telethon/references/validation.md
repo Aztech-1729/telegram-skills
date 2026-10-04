@@ -1,10 +1,11 @@
-# Offline validation — 2026-10-03
+# Offline validation — 2026-10-04
 
-The starter was checked against installed Telethon 1.45.0, MTProto layer 229.
-Seven tests in [offline_check.py](../assets/starter/offline_check.py) pass without
+The starter was checked against Telethon 1.45.0, MTProto layer 229, on Python 3.12 in an isolated environment.
+Eight tests in [offline_check.py](../assets/starter/offline_check.py) pass without
 connecting to Telegram. They cover credential shape, existing-session identity,
 callback byte limits and ownership, acknowledgment before edit, echo/menu behavior,
-actual event builders, raw-request constructors and incompatible button families.
+actual event builders, raw-request constructors, incompatible button families,
+and disjoint recovery routing for malformed/oversized/stale callbacks.
 
 Run that file from its starter directory with
 [requirements.txt](../assets/starter/requirements.txt) installed. The repository

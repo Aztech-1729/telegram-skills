@@ -75,6 +75,11 @@ async def close_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
                 raise
 
 
+async def expired_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if update.callback_query is not None:
+        await update.callback_query.answer("This menu expired. Open /menu again.")
+
+
 async def remind(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if not update.effective_message or not update.effective_chat:
         return
@@ -99,8 +104,8 @@ async def deliver_reminder(context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def begin_form(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    context.user_data[FORM_KEY] = {}
     await update.effective_message.reply_text("What is your name? Use /cancel to stop.")
+    context.user_data[FORM_KEY] = {}
     return ASK_NAME
 
 
@@ -109,8 +114,8 @@ async def receive_name(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
     if not name or len(name) > 100:
         await update.effective_message.reply_text("Send a name of 1 to 100 characters.")
         return ASK_NAME
-    context.user_data[FORM_KEY]["name"] = name
     await update.effective_message.reply_text("How old are you? Send an integer from 0 to 130.")
+    context.user_data[FORM_KEY]["name"] = name
     return ASK_AGE
 
 
@@ -119,16 +124,22 @@ async def receive_age(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
     if not text.isascii() or not text.isdigit() or len(text) > 3 or not 0 <= int(text) <= 130:
         await update.effective_message.reply_text("Send an integer from 0 to 130.")
         return ASK_AGE
-    form = context.user_data.pop(FORM_KEY)
+    form = context.user_data[FORM_KEY]
     await update.effective_message.reply_text(
         f"Saved this demo response: {html.escape(form['name'])}, age {int(text)}."
     )
+    # A failed reply must leave the conversation's data available for retry.
+    context.user_data.pop(FORM_KEY)
     return ConversationHandler.END
 
 
+async def form_input_hint(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.effective_message.reply_text("Send text for this form, or /cancel.")
+
+
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    context.user_data.pop(FORM_KEY, None)
     await update.effective_message.reply_text("Form cancelled.")
+    context.user_data.pop(FORM_KEY, None)
     return ConversationHandler.END
 
 
@@ -156,8 +167,14 @@ def build_application(token: str, state_file: str | Path | None = None) -> Appli
     form = ConversationHandler(
         entry_points=[CommandHandler("form", begin_form, filters=filters.ChatType.PRIVATE)],
         states={
-            ASK_NAME: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_name)],
-            ASK_AGE: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_age)],
+            ASK_NAME: [
+                MessageHandler(filters.TEXT & ~filters.COMMAND, receive_name),
+                MessageHandler(filters.ALL & ~filters.COMMAND, form_input_hint),
+            ],
+            ASK_AGE: [
+                MessageHandler(filters.TEXT & ~filters.COMMAND, receive_age),
+                MessageHandler(filters.ALL & ~filters.COMMAND, form_input_hint),
+            ],
         },
         fallbacks=[CommandHandler("cancel", cancel)],
         name="starter_form_v1", persistent=bool(state_file), allow_reentry=True,
@@ -168,6 +185,7 @@ def build_application(token: str, state_file: str | Path | None = None) -> Appli
     app.add_handler(CommandHandler("remind", remind))
     app.add_handler(CommandHandler("cancel", cancel))
     app.add_handler(CallbackQueryHandler(close_menu, pattern=r"^menu:close:[0-9]+$"))
+    app.add_handler(CallbackQueryHandler(expired_menu))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
     app.add_error_handler(on_error)
     return app

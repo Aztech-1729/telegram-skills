@@ -1,4 +1,31 @@
-# Validation record — 2026-10-03
+# Validation record
+
+## Full skill audit — 2026-10-04
+
+All 18 original skill folders and 137 resources were read in full. The pack now
+contains **21 skills** with bot UX, Mini App design and accessibility additions.
+The [audit](AUDIT.md) records the concrete corrections and remaining live checks.
+
+Local validation passed **78 Python behavioral tests in ten isolated suites**,
+**147 root maintenance tests**, **nine Mini App frontend tests**, two framework
+JavaScript transport suites, eleven Go behavior tests and four Java JUnit tests.
+All five Go module graphs passed checksum verification. Native .NET/PHP/Rust
+behavior checks are wired into required hosted validation; their actual results
+are established by the new workflow run, not by local source review.
+
+Isolated native Codex 0.160.0 and Claude Code 2.1.282 installation/discovery
+verified **21 skills and 171 resource files** each with normalized text contents.
+The real skills CLI additionally checks all-agent and selected-agent copy modes.
+These checks preserve resources and local routes; they do not establish how every
+AI host loads them or how Telegram clients render a finished product.
+
+An independent appointment/reminder forward-test reviewed the new design skills
+and the todo frontend. Its findings led to explicit deletion confirmation,
+uncertain-write commit locking, known-success feedback after a failed refresh,
+whitespace errors and focus restoration after controls are re-enabled.
+
+The records below describe earlier successful runs and retain their original
+counts. The active workflow reports the current results.
 
 ## Scope
 

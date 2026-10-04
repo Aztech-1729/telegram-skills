@@ -2,6 +2,13 @@
   "schema_version": 1,
   "description": "Authoritative source origins and release feeds. Harvested URLs and every redirect must pass this static allowlist. Changing this file changes the trust boundary.",
   "allowed_origins": {
+    "https://proxy.golang.org": [
+      "/github.com/go-telegram/bot",
+      "/github.com/!paul!son!of!lars/gotgbot/v2",
+      "/github.com/go-telegram-bot-api/telegram-bot-api/v5",
+      "/github.com/gotd/td",
+      "/github.com/gotd/contrib"
+    ],
     "https://api.github.com": [
       "/repos/PaulSonOfLars/gotgbot",
       "/repos/TelegramBots/Telegram.Bot",
@@ -166,6 +173,10 @@
     ],
     "https://repo1.maven.org": [
       "/maven2/org/telegram"
+    ],
+    "https://www.w3.org": [
+      "/WAI",
+      "/TR/WCAG22"
     ]
   },
   "additional_sources": [

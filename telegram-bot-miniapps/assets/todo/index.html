@@ -14,11 +14,18 @@
     <p id="status" role="status">Signing in…</p>
     <form id="form">
       <label for="text">New todo</label>
-      <input id="text" maxlength="500" required disabled>
-      <button id="add" disabled>Add</button>
+      <input id="text" maxlength="500" required disabled aria-describedby="text-help text-error">
+      <p id="text-help">Up to 500 characters. Your todo is saved only after confirmation.</p>
+      <p id="text-error" hidden></p>
+      <button id="add" class="primary" disabled>Add todo</button>
     </form>
-    <ul id="list"></ul>
-    <button id="logout" disabled>Sign out</button>
+    <h2 id="list-title" tabindex="-1">Saved todos</h2>
+    <p id="empty" hidden>No todos yet. Add your first one above.</p>
+    <ul id="list" aria-labelledby="list-title"></ul>
+    <div class="actions">
+      <button id="reload" disabled>Reload todos</button>
+      <button id="logout" disabled>Sign out</button>
+    </div>
   </main>
 </body>
 </html>

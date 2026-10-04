@@ -1,6 +1,6 @@
 # Native drafts and edit-based streaming
 
-Checked against [Telegram AI features](https://core.telegram.org/api/bots/ai) and the Bot API 10.3 reference on 2026-10-03. SDK support may lag the server feature; inspect the installed framework's raw-request path before adapting code.
+Checked against [Telegram AI features](https://core.telegram.org/api/bots/ai) and the Bot API 10.3 reference on 2026-10-04. SDK support may lag the server feature; inspect the installed framework's raw-request path before adapting code.
 
 ## Native draft lifecycle
 

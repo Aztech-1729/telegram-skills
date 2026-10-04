@@ -32,10 +32,13 @@ Keep the selected framework's types, update dispatch, and lifecycle consistent. 
 
 | Task | Read |
 | --- | --- |
+| Onboarding, journeys, command wording, recovery and consent | [bot UX](../telegram-bot-ux/SKILL.md) |
+| Accessible text, buttons, media and interaction alternatives | [accessibility](../telegram-bot-accessibility/SKILL.md) |
 | Buttons, callbacks, inline results, pagination | [keyboards/UI](../telegram-bot-keyboards-ui/SKILL.md) |
 | Rich output, catalogs, reports, streaming | [rich messaging](../telegram-bot-rich-messaging/SKILL.md) |
 | Invoices, Stars, refunds, subscriptions, gifts | [payments](../telegram-bot-payments-stars/SKILL.md) |
 | Telegram web frontend and backend authentication | [Mini Apps](../telegram-bot-miniapps/SKILL.md) |
+| Mini App layout, navigation and client interaction design | [Mini App design](../telegram-bot-miniapp-design/SKILL.md) |
 | Database state, retries, broadcast, webhook, deployment | [advanced features](../telegram-bot-advanced-features/SKILL.md) |
 | Moderation, reminders, quiz, RSS, AI, download, shortener | [recipes](../telegram-bot-recipes/SKILL.md) |
 | Business connections, managed/guest bots, topics, communities, channel DMs, stickers, stories, paid media | [capability routing](references/api-capabilities.md) |
@@ -54,7 +57,7 @@ Read only the selected references; the pack is a routing system rather than a re
 
 ## Compatibility and evidence
 
-Research cutoff: **2026-10-03**. Telegram's documented Bot API baseline is **10.3**; framework baselines vary. [Sources](references/sources.md) record the checked primary references. Examples are starters or explicitly marked patterns; validate the actual project behavior and report the checks performed.
+Research cutoff: **2026-10-04**. Telegram's documented Bot API baseline is **10.3**; framework baselines vary. [Sources](references/sources.md) record the checked primary references. Examples are starters or explicitly marked patterns; validate the actual project behavior and report the checks performed.
 
 ## Upstream status
 

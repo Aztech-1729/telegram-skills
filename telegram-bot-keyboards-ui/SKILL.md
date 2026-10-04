@@ -1,11 +1,14 @@
 ---
 name: telegram-bot-keyboards-ui
-description: Build Telegram chat interfaces with inline and reply keyboards, callback menus, pagination, inline mode, formatted text, custom emoji, polls, media and reactions. Use for bot interaction design; use the Mini Apps skill for browser interfaces.
+description: Implement Telegram inline and reply keyboards, callback menus, pagination, inline-mode controls and safe text/entity formatting. Use for native chat UI payloads and handlers; use bot-ux for journey design and Mini Apps for browser interfaces.
 ---
 
 # Telegram bot keyboards and chat UI
 
 Choose the interaction from the user's task: inline keyboards for actions on a message, reply keyboards for constrained input or native data requests, and ForceReply for a reply prompt. Do not impose one navigation style on every bot.
+
+For action hierarchy, color choices and recovery copy, read [Bot UX](../telegram-bot-ux/SKILL.md).
+For native-client label checks or Mini App criteria, read [Accessibility](../telegram-bot-accessibility/SKILL.md).
 
 Read [the implementation guide](references/guide.md) for button types, PTB/aiogram patterns, pagination, inline mode, formatting and media. Read [the source/version ledger](references/sources.md) before using newer fields or explaining compatibility.
 

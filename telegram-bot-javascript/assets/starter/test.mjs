@@ -37,6 +37,30 @@ for (const [name, factory] of [['grammY', makeGrammy], ['Telegraf', makeTelegraf
       assert.equal(answer.payload.callback_query_id, 'fixture-query');
       const first = calls.find(x => x.method === 'sendMessage');
       assert.equal(first.payload.reply_markup.inline_keyboard[0][0].callback_data, 'help');
+      assert.ok(calls.indexOf(answer) < calls.findIndex((x, i) => i > 0 && x.method === 'sendMessage'));
+      await bot.handleUpdate({ update_id: 3, message: { ...msg('<plain & text>'),
+        chat: { id: -1001234567890, type: 'supergroup', title: 'Fixture' },
+        is_topic_message: true, message_thread_id: 42 } });
+      const topic = calls.at(-1).payload;
+      assert.equal(topic.chat_id, -1001234567890);
+      assert.equal(topic.message_thread_id, 42);
+      assert.equal(topic.text, '<plain & text>');
+      assert.equal(topic.parse_mode, undefined);
+      await bot.handleUpdate({ update_id: 4, callback_query: { id: 'inline-query', from: user,
+        chat_instance: 'fixture-inline', inline_message_id: 'fixture-message', data: 'help' } });
+      assert.equal(calls.at(-1).method, 'answerCallbackQuery');
+      assert.equal(calls.at(-1).payload.callback_query_id, 'inline-query');
+      assert.equal(calls.at(-1).payload.text, 'Use /help or send text.');
+      await bot.handleUpdate({ update_id: 5, callback_query: { id: 'stale-query', from: user,
+        chat_instance: 'fixture-chat', data: 'deleted-action', message: msg('menu') } });
+      assert.equal(calls.at(-1).payload.callback_query_id, 'stale-query');
+      assert.equal(calls.at(-1).payload.text, 'This button is no longer available.');
+      const count = calls.length;
+      await bot.handleUpdate({ update_id: 6, edited_message: msg('Edited') });
+      const { text: unusedText, ...nonText } = msg('');
+      await bot.handleUpdate({ update_id: 7, message: { ...nonText,
+        photo: [{ file_id: 'fixture', file_unique_id: 'fixture', width: 1, height: 1 }] } });
+      assert.equal(calls.length, count);
       assert.ok(calls.every(x => ['sendMessage', 'answerCallbackQuery'].includes(x.method)));
     } finally {
       server.closeAllConnections();

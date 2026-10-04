@@ -1,9 +1,20 @@
 :root { color-scheme: light dark; }
-body { margin: 0; font: 16px system-ui, sans-serif; background: var(--tg-theme-bg-color, #fff); color: var(--tg-theme-text-color, #161616); }
-main { max-width: 34rem; margin: auto; padding: calc(1rem + var(--tg-content-safe-area-inset-top, 0px)) 1rem calc(1rem + var(--tg-content-safe-area-inset-bottom, 0px)); }
+* { box-sizing: border-box; }
+body { margin: 0; font: 16px/1.5 system-ui, sans-serif; background: var(--tg-theme-bg-color, #fff); color: var(--tg-theme-text-color, #172033); }
+main { max-width: 34rem; margin: auto; padding: calc(1rem + var(--tg-content-safe-area-inset-top, 0px)) calc(1rem + var(--tg-content-safe-area-inset-right, 0px)) calc(1rem + var(--tg-content-safe-area-inset-bottom, 0px)) calc(1rem + var(--tg-content-safe-area-inset-left, 0px)); }
 label { display: block; margin-bottom: .5rem; }
-input, button { padding: .7rem; border-radius: .5rem; border: 1px solid var(--tg-theme-hint-color, #777); }
-button { cursor: pointer; background: var(--tg-theme-button-color, #2563eb); color: var(--tg-theme-button-text-color, white); }
-button:disabled { opacity: .5; cursor: default; }
-li { display: flex; justify-content: space-between; gap: 1rem; margin: 1rem 0; overflow-wrap: anywhere; }
-#status { color: var(--tg-theme-hint-color, #555); }
+input, button { font: inherit; padding: .7rem; border-radius: .5rem; border: 1px solid currentColor; max-width: 100%; }
+input { width: 100%; color: inherit; background: var(--tg-theme-bg-color, #fff); }
+button { min-height: 44px; cursor: pointer; white-space: normal; color: var(--tg-theme-text-color, #172033); background: var(--tg-theme-secondary-bg-color, #f1f5f9); }
+button.primary { background: var(--tg-theme-button-color, #1d4ed8); color: var(--tg-theme-button-text-color, #fff); border-color: transparent; }
+button.danger { background: #b91c1c; color: #fff; border-color: transparent; }
+button:disabled { cursor: default; }
+:focus-visible { outline: 3px solid var(--tg-theme-text-color, #172033); outline-offset: 3px; }
+ul { padding: 0; list-style: none; }
+li { display: flex; flex-wrap: wrap; align-items: start; justify-content: space-between; gap: 1rem; margin: 1rem 0; overflow-wrap: anywhere; }
+li span { min-width: 0; flex: 1; }
+li button { flex: 0 0 auto; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+#status { min-height: 1.5em; }
+@media (max-width: 22rem) { li { flex-direction: column; } }
+@media (forced-colors: active) { :focus-visible { outline-color: Highlight; } }

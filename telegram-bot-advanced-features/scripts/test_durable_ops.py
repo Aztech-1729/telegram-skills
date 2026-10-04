@@ -19,7 +19,8 @@ class PolicyTests(unittest.TestCase):
         self.assertEqual(retry_decision("network", 1, safe_replay=True), RetryDecision("retry", 1))
         self.assertEqual(retry_decision("rate_limit", 1, retry_after=timedelta(seconds=90)).delay, 90.1)
         self.assertEqual(retry_decision("rate_limit", 4, retry_after=5).action, "failed")
-        self.assertEqual(retry_decision("forbidden", 1).action, "blocked")
+        self.assertEqual(retry_decision("forbidden", 1).action, "failed")
+        self.assertEqual(retry_decision("recipient_blocked", 1).action, "blocked")
         self.assertEqual(retry_decision("bad_request", 1).action, "failed")
         with self.assertRaises(ValueError):
             retry_decision("rate_limit", 1, retry_after=float("nan"))
@@ -69,6 +70,31 @@ class OutboxTests(unittest.TestCase):
         self.assertTrue(self.box.resolve_attempt(job_id, second["lease_token"], RetryDecision("retry", 1), now=152))
         self.assertEqual(self.box.state(job_id), "failed")
         self.assertIsNone(self.box.claim(now=200))
+
+    def test_invalid_clocks_or_replay_flags_cannot_create_unclaimable_jobs(self):
+        for clock in [float('nan'), float('inf'), True]:
+            with self.assertRaises(ValueError):
+                self.box.enqueue('bad', {}, now=clock)
+            with self.assertRaises(ValueError):
+                self.box.claim(now=clock)
+        with self.assertRaises(ValueError):
+            self.box.enqueue('bad', {}, now=100, safe_replay='false')
+        job_id = self.box.enqueue('valid', {}, now=100)
+        for lease in [float('nan'), float('inf'), True]:
+            with self.assertRaises(ValueError):
+                self.box.claim(now=100, lease_seconds=lease)
+        self.assertEqual(self.box.state(job_id), 'pending')
+
+    def test_queue_summary_tracks_backlog_and_terminal_states_without_payloads(self):
+        self.box.enqueue('pending', {'secret': 'must not appear'}, now=100)
+        job_id = self.box.enqueue('uncertain', {}, now=101)
+        first = self.box.claim(now=100, lease_seconds=1)
+        self.box.complete(first['id'], first['lease_token'], now=100)
+        self.box.claim(now=101, lease_seconds=1)
+        self.box.claim(now=102)
+        self.assertEqual(self.box.summary(now=110), {'states': {'sent': 1, 'uncertain': 1}, 'oldest_due_age': None})
+        self.box.enqueue('late', {}, now=105)
+        self.assertEqual(self.box.summary(now=110)['oldest_due_age'], 5)
 
 
 if __name__ == "__main__":

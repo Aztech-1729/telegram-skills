@@ -20,6 +20,7 @@ Use the project's installed PTB version and architecture. The researched baselin
 - ConversationHandler requires sequential update processing: keep `concurrent_updates(False)`. Give persisted conversations a stable `name`, `persistent=True`, and Application persistence. Persistence alone does not opt a conversation into saving.
 - Numeric JobQueue delays are **seconds**. Convert minutes explicitly. JobQueue needs the `job-queue` extra; restart-safe reminders also need durable records and recovery logic.
 - Answer callback queries promptly, validate their data and check the actor's permission. A callback may have an inline message ID or an inaccessible message; do not assume `update.message` exists.
+- Preserve flow data when a reply fails. Conversation state changes after its callback returns; removing data before an awaited completion reply can strand the previous state. Place an expired-menu callback fallback after specific routes.
 - Register specific handlers before catch-all handlers within a group. `filters.TEXT` also includes commands unless excluded. Administrative status is an API/authorization check, not `filters.StatusFilter.ADMIN`.
 - Polling and a webhook are mutually exclusive for one bot token. Put `secret_token` on `run_webhook`, `start_webhook`, or Bot API `set_webhook`, not ApplicationBuilder. Keep an Updater when using PTB's webhook receiver.
 - Avoid blocking I/O, unbounded background work and shared mutable per-user globals. Match concurrency, connection-pool capacity, state locking and retry policy to the application.
@@ -29,7 +30,9 @@ Use the project's installed PTB version and architecture. The researched baselin
 
 [assets/starter/bot.py](assets/starter/bot.py) is an original, self-contained polling bot with echo, callback menu, validated reminders and a two-step form. Install [its requirements](assets/starter/requirements.txt), set `BOT_TOKEN`, and run the file only when Telegram interaction is intended. Optional `BOT_STATE_FILE` enables local trusted-file persistence for the form; scheduled reminders remain process-local.
 
-[assets/starter/offline_check.py](assets/starter/offline_check.py) checks routing configuration, minute conversion, invalid reminder input and persistence round-tripping without contacting Telegram. It can be run before supplying any token. Detailed deployment and feature snippets in the guide are explicitly **application patterns**, with their integration boundaries stated.
+[assets/starter/offline_check.py](assets/starter/offline_check.py) checks routing, stale-menu recovery, failed-reply state retention, nontext form input, scheduling units and persistence without contacting Telegram. It can be run before supplying any token. Detailed deployment and feature snippets in the guide are **application patterns**, with their integration boundaries stated.
+
+For onboarding, form copy or navigation, add [bot UX](../telegram-bot-ux/SKILL.md). For text alternatives, localization and assistive-technology checks, add [accessibility](../telegram-bot-accessibility/SKILL.md). A requested web interface also needs [Mini App design](../telegram-bot-miniapp-design/SKILL.md) and [Mini App security](../telegram-bot-miniapps/SKILL.md).
 
 ## Upstream status
 

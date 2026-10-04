@@ -1,8 +1,14 @@
 using Telegram.Bot;
 using Telegram.Bot.Types.Enums;
 
-var token = Environment.GetEnvironmentVariable("TELEGRAM_BOT_TOKEN")
-    ?? throw new InvalidOperationException("TELEGRAM_BOT_TOKEN is required");
+if (args.SequenceEqual(new[] { "--self-test" }))
+{
+    EchoSelfTest.Run();
+    return;
+}
+var token = Environment.GetEnvironmentVariable("TELEGRAM_BOT_TOKEN");
+if (string.IsNullOrWhiteSpace(token))
+    throw new InvalidOperationException("TELEGRAM_BOT_TOKEN is required");
 using var cancellation = new CancellationTokenSource();
 var bot = new TelegramBotClient(token, cancellationToken: cancellation.Token);
 bot.OnError += (exception, source) =>
@@ -12,8 +18,8 @@ bot.OnError += (exception, source) =>
 };
 bot.OnMessage += async (message, type) =>
 {
-    if (type != UpdateType.Message || message.Text is null) return;
-    await bot.SendMessage(message.Chat.Id, message.Text, cancellationToken: cancellation.Token);
+    var request = Echo.BuildReply(message, type);
+    if (request is not null) await bot.SendRequest(request, cancellation.Token);
 };
 Console.CancelKeyPress += (_, args) => { args.Cancel = true; cancellation.Cancel(); };
 Console.WriteLine("Bot started. Press Ctrl+C to stop.");

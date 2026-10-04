@@ -44,6 +44,19 @@ Build callback buttons with the framework skill; validate a page against the cur
 
 ## Reports and layouts
 
+| Content | Useful structure | Design check |
+|---|---|---|
+| Short outcome | Result, affected object, next action | Success describes a confirmed operation, not a queued attempt |
+| Catalog detail | Title, relevant attributes, price/currency, availability, action | Price is current; button references the authorized object |
+| Report | Summary, period/timezone, units, values, detail/export | Reading order survives without a visual table |
+| Warning/error | Consequence, retained state, recovery | No secrets/internal trace; color alone isn't the explanation |
+| Generated answer | Partial status, final result, relevant sources | Don't present invented data or a draft as verified final output |
+
+Use [the UX guide](../../telegram-bot-ux/references/guide.md) for primary/secondary,
+positive/destructive action roles. Rich buttons use their own schema; its `link`
+style doesn't apply to ordinary inline buttons. Meaningful labels, text status and
+linear reading order serve users who cannot rely on color or visual alignment.
+
 Group related metrics; show the reporting period/timezone and define ambiguous units. Include the data's timestamp when relevant. Use a short summary followed by detail, rather than an unbounded formatted wall. For rich tables, map known columns and escape each cell; do not interpolate arbitrary HTML into structural tags. Attach documents when dense content is better read outside chat.
 
 Separate “generation in progress,” “completed,” and “delivery failed.” Do not represent partial data as a final result. Images/media captions need their own size/format checks; albums and inline rich media are different payload shapes. Decide whether a link preview improves the layout and verify it across clients.
@@ -51,3 +64,11 @@ Separate “generation in progress,” “completed,” and “delivery failed.�
 ## UI completion checklist
 
 Consistent navigation, a clear return path, command registration, meaningful empty/error states, bounded pagination, localized text where needed, current stock/price, escaped values, and server-side callback authorization. A visually polished storefront still needs the persistence, checkout and delivery checks from the other skills.
+
+When ordinary text exceeds its method's limit, split at deliberate content
+boundaries or attach a document. Preserve complete entities/tags and avoid
+breaking a grapheme merely to fit a byte count. Plain drafts may be empty to clear
+their content; stop flags in the helper must be actual booleans, not strings such
+as `"false"`. The builder validates representation and identity shape, not every
+rich block, media entitlement or rendering limit. Consult the exact method/schema
+before sending a new block type.

@@ -11,6 +11,7 @@ from urllib.parse import unquote, urlsplit
 import xml.etree.ElementTree as ET
 import yaml
 import validate_plugins
+import check_upstream
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = sorted(ROOT.glob('telegram-bot-*/SKILL.md'))
@@ -41,8 +42,13 @@ def main():
         validate_plugins.validate(ROOT)
     except (ValueError, KeyError, TypeError, OSError, ET.ParseError) as exc:
         errors.append(f'Native plugin metadata: {exc}')
-    if len(SKILLS) != 18:
-        errors.append(f'Expected 18 skills, found {len(SKILLS)}; update catalog and validator together')
+    try:
+        config = json.loads((ROOT / 'automation/sources.json').read_text(encoding='utf-8'))
+        check_upstream.load_sources(ROOT, config)  # Validate ledger origins/redirect targets offline.
+    except (check_upstream.CheckError, ValueError, KeyError, TypeError, OSError) as exc:
+        errors.append(f'Source monitoring configuration: {exc}')
+    if len(SKILLS) != 21:
+        errors.append(f'Expected 21 skills, found {len(SKILLS)}; update catalog and validator together')
     for path in SKILLS:
         text = path.read_text(encoding='utf-8')
         parts = text.split('---', 2)

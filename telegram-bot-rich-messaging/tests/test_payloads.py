@@ -31,5 +31,11 @@ class PayloadTests(unittest.TestCase):
     def test_plain_empty_draft_is_allowed(self):
         self.assertEqual(p.draft_payload(123, 1, "")["text"], "")
 
+    def test_string_or_numeric_flags_cannot_silently_change_stop_policy(self):
+        for flag in ("rich", "can_stop", "keep_on_stop"):
+            for value in ("false", 0, 1, None):
+                with self.subTest(flag=flag, value=value), self.assertRaises(ValueError):
+                    p.draft_payload(123, 1, "partial", **{flag: value})
+
 if __name__ == "__main__":
     unittest.main()

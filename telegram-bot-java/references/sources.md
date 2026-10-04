@@ -26,8 +26,16 @@ No universal promise of later Bot API support is made. Matching API-version rele
 
 ## Validation actually performed
 
-The original EchoBot.java passed **javac --release 17** using **JDK 21.0.12.1 on Windows**, against the published TelegramBots 10.3.0 client/longpolling/meta jars and Jackson annotations 2.17.2. This checked imports, consumer class, builders and execute/register signatures.
+The revised EchoBot passed **Maven 3.10.0 verify**, using **JDK 21.0.12.1 on Windows** and Java 17 compilation, on **2026-10-04**. The complete dependency graph resolved and four JUnit fixtures passed without a network TelegramClient. They cover forum routing/plain text, direct-message topics, overflow refusal and ignored update variants.
 
-Maven was not available, so Maven package/plugin resolution and a complete runtime classpath were not exercised. Pengrad's illustrative fragment was source-checked, not compiled. No Java program was started and no Telegram request, webhook registration or payment operation was made.
+Pengrad's illustrative fragment remains source-checked, not compiled. No live Java receiver was started and no Telegram request, webhook registration or payment operation was made.
 
 Build the complete application with its selected dependency manager before running it; compilation is separate from live token/permissions/delivery validation.
+
+## Focused source audit: 2026-10-04
+
+- [TelegramBots application lifecycle](https://github.com/rubenlagus/TelegramBots/blob/v10.3.0/telegrambots-longpolling/src/main/java/org/telegram/telegrambots/longpolling/TelegramBotsLongPollingApplication.java), [BotSession](https://github.com/rubenlagus/TelegramBots/blob/v10.3.0/telegrambots-longpolling/src/main/java/org/telegram/telegrambots/longpolling/BotSession.java), and the consumer source above: registration, offset timing, consumer close and scheduled executor ownership.
+- [SendMessage model](https://github.com/rubenlagus/TelegramBots/blob/v10.3.0/telegrambots-meta/src/main/java/org/telegram/telegrambots/meta/api/methods/send/SendMessage.java) and [Message model](https://github.com/rubenlagus/TelegramBots/blob/v10.3.0/telegrambots-meta/src/main/java/org/telegram/telegrambots/meta/api/objects/message/Message.java): topic routing and the Long-received/Integer-send direct-topic mismatch, confirmed by compiling against the published artifacts.
+- [Pengrad 10.3.0 UpdatesListener](https://github.com/pengrad/java-telegram-bot-api/blob/10.3.0/library/src/main/java/com/pengrad/telegrambot/UpdatesListener.java): confirmation constants/callback contract.
+
+This focused audit preserves the earlier release/feature cutoff for sources not reread.

@@ -1,6 +1,6 @@
 # Mini App implementation guide
 
-Checked 2026-10-03. Contents: launch contexts; bot entry points; auth/session design; native UI; persistent todo example; deployment/testing. Read [sources](sources.md) for verified documentation scope. The security/storage design below is an original example, not a claim that Telegram supplies application authorization.
+Checked 2026-10-04. Contents: launch contexts; bot entry points; auth/session design; native UI; persistent todo example; deployment/testing. Read [sources](sources.md) for verified documentation scope. The security/storage design below is an original example, not a claim that Telegram supplies application authorization.
 
 ## Choose launch context first
 
@@ -54,6 +54,12 @@ The helper's five-minute freshness window, 30-second skew, one-hour bearer lifet
 Bearer sessions stay in the frontend's memory. This example uses no ambient cookies and requires the exact same origin on mutations, so it does not need a cookie CSRF pattern. If adopting cookies, add Secure/HttpOnly/SameSite attributes and explicit CSRF protection; if adopting cross-origin hosting, design CORS/credential policy deliberately. Origin checks complement authentication; arbitrary clients can forge Origin. Enforce record ownership in SQL regardless.
 
 ## Native UI and features
+
+Read [Mini App design](../../telegram-bot-miniapp-design/SKILL.md) for theme/color
+pairs, responsive forms and native-control lifecycle. Read
+[Accessibility](../../telegram-bot-accessibility/SKILL.md) for labels, focus,
+contrast and actual acceptance checks. A hardcoded brand color is an optional
+product choice; Telegram's theme pair is the starting point for native controls.
 
 Load `https://telegram.org/js/telegram-web-app.js` in the head before application code. `tg.ready()` hides the loader; `expand()` expands available height rather than requesting fullscreen. Use `themeParams`/theme CSS variables, stable viewport sizing and content safe areas. Keep layout functional outside the WebView for diagnostics without granting a fake identity.
 
@@ -114,3 +120,17 @@ python -m unittest discover -s telegram-bot-miniapps/scripts -p 'test_*.py' -v
 ```
 
 Tests cover encoded Unicode/plus signs, tampering, duplicate keys, invalid users, stale/future dates, wrong bot token, guessed IDs as sessions, revocation, cross-user deletion, restart persistence, origin policy and public-file boundaries. These tests do not certify real client rendering or external HTTPS hosting.
+
+Run `node --test telegram-bot-miniapps/scripts/test_frontend.mjs` for the frontend
+behavior checks. The example now distinguishes primary Add from neutral Reload/
+Sign out and destructive Delete, supports all four content safe insets, preserves
+failed input, blocks duplicate in-flight commits and locks/clears records after
+session expiry. Delete requires an explicit per-item confirmation and offers Keep
+todo; successful deletion moves focus to the named list heading. Timed-out or
+server-unconfirmed writes lock new commits until a successful reload; users must
+check the saved list before resubmitting. Known successful writes stay reported as
+saved even if the following refresh fails. Input focus returns after controls are
+enabled, and whitespace-only values get an accessible error. No write is retried automatically.
+These tests use a minimal fake DOM/transport and do not replace screen-reader or
+actual WebView checks. Todo creation is not an idempotent business ledger; for
+high-value writes, implement operation IDs and server reconciliation.

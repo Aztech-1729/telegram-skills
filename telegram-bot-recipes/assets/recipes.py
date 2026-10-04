@@ -1,6 +1,7 @@
 """Seven selectable PTB recipe starters; optional dependencies load by mode."""
 import argparse
 import asyncio
+from datetime import datetime, timezone
 import hashlib
 import logging
 import os
@@ -12,8 +13,9 @@ import time
 from urllib.parse import urlsplit
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.error import BadRequest, NetworkError, RetryAfter
 from telegram.ext import Application, CallbackQueryHandler, CommandHandler, MessageHandler, filters
-from recipe_store import Store, deliver_due, public_url
+from recipe_store import Store, deliver_due, public_url, text_parts
 
 QUESTIONS = [("Capital of France?", ["Berlin", "Paris", "Madrid"], 1),
              ("2 ** 10?", ["1024", "512", "2048"], 0)]
@@ -30,11 +32,14 @@ async def warn(update, context):
     msg, user = update.effective_message, update.effective_user
     if msg is None or user is None or update.effective_chat.type not in {"group", "supergroup"}:
         return
+    if getattr(msg, "sender_chat", None) is not None:
+        await msg.reply_text("Use your own administrator account to warn users.")
+        return
     if not await authorized(context.bot, msg.chat_id, user.id):
         await msg.reply_text("Only group administrators can warn users.")
         return
     target = msg.reply_to_message.from_user if msg.reply_to_message else None
-    if target is None or await authorized(context.bot, msg.chat_id, target.id):
+    if target is None or getattr(msg.reply_to_message, "sender_chat", None) is not None or await authorized(context.bot, msg.chat_id, target.id):
         await msg.reply_text("Reply to a non-administrator user's message.")
         return
     me = await context.bot.get_chat_member(msg.chat_id, context.bot.id)
@@ -66,18 +71,54 @@ async def remind(update, context):
             raise ValueError()
         seconds = int(match[1]) * {"m": 60, "h": 3600, "d": 86400}[match[2]]
         text = " ".join(context.args[1:])
-        if not text or len(text) > 3000 or seconds > 365*86400:
+        if not text or len(text.encode("utf-16-le")) // 2 > 3000 or seconds > 365*86400:
             raise ValueError()
     except (IndexError, ValueError):
         await msg.reply_text("Usage: /remind <30m|2h|1d> <text>; maximum one year.")
         return
     due = int(time.time()) + seconds
-    await asyncio.to_thread(context.bot_data["store"].remind, msg.chat_id, text, due)
-    await msg.reply_text("Reminder saved.")
+    reminder_id = await asyncio.to_thread(context.bot_data["store"].remind, msg.chat_id, text, due,
+                                         user=update.effective_user.id,
+                                         thread=getattr(msg, "message_thread_id", None))
+    await msg.reply_text(f"Reminder #{reminder_id} saved. Use /reminders or /cancelreminder {reminder_id}.")
+
+
+async def list_reminders(update, context):
+    rows = await asyncio.to_thread(context.bot_data["store"].reminders,
+                                  update.effective_user.id, update.effective_chat.id)
+    text = "\n".join(f"#{key}: {'Delivery failed' if failed else datetime.fromtimestamp(due, timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} — {content[:80]}"
+                     for key, due, content, failed in rows) or "You have no pending reminders in this chat."
+    for part in text_parts(text):
+        await update.effective_message.reply_text(part)
+
+
+async def cancel_reminder(update, context):
+    try:
+        key = int(context.args[0])
+        if key <= 0:
+            raise ValueError()
+    except (IndexError, ValueError):
+        await update.effective_message.reply_text("Usage: /cancelreminder <reminder number>")
+        return
+    canceled = await asyncio.to_thread(context.bot_data["store"].cancel_reminder, key,
+                                      update.effective_user.id, update.effective_chat.id)
+    await update.effective_message.reply_text("Reminder canceled." if canceled else "No pending reminder with that number belongs to you in this chat.")
+
+
+def reminder_failure(error, attempt):
+    LOG.warning("Reminder delivery attempt %s failed: %s", attempt, type(error).__name__)
+    if isinstance(error, RetryAfter):
+        value = error.retry_after
+        return (value.total_seconds() if hasattr(value, "total_seconds") else float(value)) + 1
+    if isinstance(error, NetworkError) and not isinstance(error, BadRequest):
+        # Reminders explicitly accept at-least-once delivery after ambiguous sends.
+        return min(30 * 2 ** (attempt - 1), 1800)
+    return None  # BadRequest/Forbidden/configuration failures need repair, not a loop.
 
 
 async def tick(context):
-    await deliver_due(context.bot_data["store"], context.bot.send_message, int(time.time()))
+    await deliver_due(context.bot_data["store"], context.bot.send_message, int(time.time()),
+                      reminder_failure, pause_on_error=lambda error: isinstance(error, RetryAfter))
 
 
 def quiz_markup(quiz_id, step):
@@ -93,8 +134,8 @@ async def quiz(update, context):
 
 async def answer(update, context):
     query = update.callback_query
-    await query.answer()
     if query.message is None:
+        await query.answer("This quiz is unavailable.")
         return
     try:
         _, quiz_id, step, choice = query.data.split(":")
@@ -102,8 +143,9 @@ async def answer(update, context):
         correct = await asyncio.to_thread(context.bot_data["store"].answer, quiz_id,
                                          query.from_user.id, query.message.chat.id, step, choice, QUESTIONS)
     except (ValueError, TypeError):
-        await context.bot.send_message(query.from_user.id, "This answer is invalid, expired, or already submitted.")
+        await query.answer("This answer is invalid, expired, or already submitted.", show_alert=True)
         return
+    await query.answer()
     next_step = step + 1
     prefix = "Correct. " if correct else "Incorrect. "
     if next_step < len(QUESTIONS):
@@ -136,7 +178,13 @@ async def publish(context):
                 guid = hashlib.sha256(str(item.get("id", link)).encode()).hexdigest()
                 if await asyncio.to_thread(store.seen, feed, guid):
                     continue
-                await context.bot.send_message(context.bot_data["channel"], str(item.get("title", "Article"))[:500] + "\n" + link)
+                # Never silently shorten a destination URL or send an overlong post.
+                title = next(text_parts(str(item.get("title", "Article")) or "Article", 500))
+                post = title + "\n" + link
+                if len(post.encode("utf-16-le")) // 2 > 4000:
+                    LOG.warning("RSS entry omitted: link exceeds message budget")
+                    continue
+                await context.bot.send_message(context.bot_data["channel"], post)
                 await asyncio.to_thread(store.mark_seen, feed, guid)
 
 
@@ -152,17 +200,7 @@ async def ai_chat(update, context):
                     instructions="Answer concisely in plain text for a Telegram chat.",
                     input=msg.text, max_output_tokens=1600, store=False)
     text = response.output_text or "No text answer was returned."
-    # Split by UTF-16 units so astral characters do not exceed Telegram's bound.
-    parts, part, units = [], "", 0
-    for char in text:
-        width = 2 if ord(char) > 0xFFFF else 1
-        if units + width > 4000:
-            parts.append(part)
-            part, units = "", 0
-        part += char
-        units += width
-    parts.append(part)
-    for part in parts:
+    for part in text_parts(text):
         await msg.reply_text(part)
 
 
@@ -184,12 +222,18 @@ async def download(update, context):
                 "--", url, stdout=asyncio.subprocess.DEVNULL, stderr=asyncio.subprocess.DEVNULL)
             try:
                 await asyncio.wait_for(process.wait(), timeout=180)
-            except (TimeoutError, asyncio.CancelledError):
-                process.kill()
+            except (asyncio.TimeoutError, asyncio.CancelledError):
+                if process.returncode is None:
+                    process.kill()
                 await process.wait()
                 raise
+            # --max-downloads 1 intentionally exits101 after a completed item.
+            # It is usable only if the complete bounded output checks below pass.
+            if process.returncode not in {0, 101}:
+                await msg.reply_text("The download failed. Try another supported public URL.")
+                return
             files = [p for p in Path(directory).iterdir() if p.is_file() and p.suffix not in {".part", ".ytdl"}]
-            if len(files) != 1 or files[0].stat().st_size > 45_000_000:
+            if len(files) != 1 or not 0 < files[0].stat().st_size <= 45_000_000:
                 await msg.reply_text("No file within the upload limit was produced.")
                 return
             with files[0].open("rb") as media:
@@ -217,7 +261,8 @@ async def allowlisted(update, context):
 
 
 async def on_error(update, context):
-    LOG.error("Recipe operation failed: %s", type(context.error).__name__)
+    LOG.error("Recipe operation failed: %s; update_id=%s", type(context.error).__name__,
+              getattr(update, "update_id", None))
 
 
 def main():
@@ -239,6 +284,8 @@ def main():
         app.add_handler(MessageHandler(filters.ChatType.GROUPS & filters.TEXT & ~filters.COMMAND, anti_link))
     elif args.mode == "reminders":
         app.add_handler(CommandHandler("remind", remind))
+        app.add_handler(CommandHandler("reminders", list_reminders))
+        app.add_handler(CommandHandler("cancelreminder", cancel_reminder))
         app.job_queue.run_repeating(tick, interval=30, first=5)
     elif args.mode == "quiz":
         app.add_handler(CommandHandler("quiz", quiz))

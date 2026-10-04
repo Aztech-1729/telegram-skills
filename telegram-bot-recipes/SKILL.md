@@ -14,7 +14,7 @@ the designs can be ported to another requested language without imposing Python.
 | Product | Mode | Relevant detail |
 |---|---|---|
 | Group moderation | `moderation` | Live administrator checks before warning writes; member rights |
-| Persistent reminders | `reminders` | UTC timestamps, single delivery worker, retry ambiguity |
+| Persistent reminders | `reminders` | Owned list/cancel flow, topic context, bounded single-worker retries |
 | Quiz | `quiz` | Owner/chat binding, expiry, atomic ordered scoring |
 | RSS to channel | `rss` | Configured feeds, bounded async fetch, send then record |
 | AI assistant | `ai` | Explicit model, Responses API, plain-text chunking |
@@ -47,7 +47,8 @@ Run the [store tests](tests/test_store.py) before modifying transaction behavior
 - Separate answer chunking from live streaming. For drafts, cancellation and final
   persistence use [streaming guidance](../telegram-bot-rich-messaging/references/streaming.md).
 
-Use [Mini Apps](../telegram-bot-miniapps/SKILL.md) for a web interface and
+Use [bot UX](../telegram-bot-ux/SKILL.md) when shaping onboarding, consent and
+failure recovery for a selected recipe. Use [Mini Apps](../telegram-bot-miniapps/SKILL.md) for a web interface and
 [Stars](../telegram-bot-payments-stars/SKILL.md) for paid digital access. Use the
 [PTB skill](../telegram-bot-python-telegram-bot/SKILL.md) for lifecycle and webhook
 integration. Keep one update receiver per token.

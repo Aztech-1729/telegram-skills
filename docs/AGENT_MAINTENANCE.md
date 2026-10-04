@@ -138,7 +138,7 @@ requires a separate foundation PR that stays unmerged until maintainer approval.
 Run `npm ci --ignore-scripts`, the pack validator and
 `python scripts/check_installation.py` for distribution changes. The pack
 validator checks native packaging, and the real installer smoke check verifies
-complete resources and local routes for all 18 skills in linked/copied temporary
+complete resources and local routes for all 21 skills in linked/copied temporary
 projects.
 Keep the resulting package version and actual checks in the PR description.
 
