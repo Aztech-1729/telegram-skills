@@ -77,6 +77,28 @@ class StarterChecks(unittest.IsolatedAsyncioTestCase):
         reply.assert_awaited_with("Saved this demo response: &lt;Ada&gt;, age 30.")
         self.assertEqual(context.user_data, {"other": True})
 
+    async def test_failed_reentry_preserves_old_form_until_prompt_succeeds(self):
+        reply = AsyncMock(side_effect=NetworkError("offline failure"))
+        update = SimpleNamespace(effective_message=SimpleNamespace(reply_text=reply))
+        context = SimpleNamespace(user_data={bot.FORM_KEY: {"name": "Ada"}, "other": True})
+        with self.assertRaises(NetworkError):
+            await bot.begin_form(update, context)
+        self.assertEqual(context.user_data[bot.FORM_KEY], {"name": "Ada"})
+        reply.side_effect = None
+        self.assertEqual(await bot.begin_form(update, context), bot.ASK_NAME)
+        self.assertEqual(context.user_data, {bot.FORM_KEY: {}, "other": True})
+
+    async def test_failed_cancellation_preserves_form_until_confirmation_succeeds(self):
+        reply = AsyncMock(side_effect=NetworkError("offline failure"))
+        update = SimpleNamespace(effective_message=SimpleNamespace(reply_text=reply))
+        context = SimpleNamespace(user_data={bot.FORM_KEY: {"name": "Ada"}, "other": True})
+        with self.assertRaises(NetworkError):
+            await bot.cancel(update, context)
+        self.assertEqual(context.user_data[bot.FORM_KEY], {"name": "Ada"})
+        reply.side_effect = None
+        self.assertEqual(await bot.cancel(update, context), ConversationHandler.END)
+        self.assertEqual(context.user_data, {"other": True})
+
     async def test_stale_callback_selects_recovery_after_specific_route(self):
         app = bot.build_application(FAKE_TOKEN)
         callbacks = [handler for handler in app.handlers[0] if isinstance(handler, CallbackQueryHandler)]

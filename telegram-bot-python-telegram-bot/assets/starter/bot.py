@@ -104,8 +104,8 @@ async def deliver_reminder(context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def begin_form(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    context.user_data[FORM_KEY] = {}
     await update.effective_message.reply_text("What is your name? Use /cancel to stop.")
+    context.user_data[FORM_KEY] = {}
     return ASK_NAME
 
 
@@ -114,8 +114,8 @@ async def receive_name(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
     if not name or len(name) > 100:
         await update.effective_message.reply_text("Send a name of 1 to 100 characters.")
         return ASK_NAME
-    context.user_data[FORM_KEY]["name"] = name
     await update.effective_message.reply_text("How old are you? Send an integer from 0 to 130.")
+    context.user_data[FORM_KEY]["name"] = name
     return ASK_AGE
 
 
@@ -138,8 +138,8 @@ async def form_input_hint(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 
 
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    context.user_data.pop(FORM_KEY, None)
     await update.effective_message.reply_text("Form cancelled.")
+    context.user_data.pop(FORM_KEY, None)
     return ConversationHandler.END
 
 

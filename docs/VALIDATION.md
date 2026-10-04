@@ -6,7 +6,7 @@ All 18 original skill folders and 137 resources were read in full. The pack now
 contains **21 skills** with bot UX, Mini App design and accessibility additions.
 The [audit](AUDIT.md) records the concrete corrections and remaining live checks.
 
-Local validation passed **75 Python behavioral tests in ten isolated suites**,
+Local validation passed **77 Python behavioral tests in ten isolated suites**,
 **147 root maintenance tests**, **nine Mini App frontend tests**, two framework
 JavaScript transport suites, nine Go behavior tests and four Java JUnit tests.
 All five Go module graphs passed checksum verification. Native .NET/PHP/Rust

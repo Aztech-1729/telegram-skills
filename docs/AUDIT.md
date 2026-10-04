@@ -16,7 +16,7 @@ observations and substantive review remain separate.
 
 | Area | Defect / gap addressed |
 |---|---|
-| PTB | Retain conversation state across a failed final reply; recover stale callbacks |
+| PTB | Retain conversation data across failed completion, cancellation and reentry replies; recover stale callbacks |
 | aiogram | Include bot identity in optional shared Redis keys; cover invalid/stale actions |
 | Telethon / gotd | Verify the identity associated with a reused session and keep session/auth boundaries explicit |
 | Go HTTP | Correct the SDK webhook's acknowledgment/body-limit/durability assumptions; exercise the actual receiver locally |

@@ -115,7 +115,7 @@ Run `python assets/starter/offline_check.py` with starter requirements installed
 
 ## Recovery and interface diagnostics
 
-ConversationHandler applies a returned state after the awaited callback finishes. In the demo, keep the collected name until the completion reply succeeds, then remove only this flow's data and return END. If the reply raises, the old state and input remain usable. This prevents a local retry from crashing; it does not make an ambiguous Telegram send or a database write exactly once. Real forms should commit their business record with an operation ID, then recover/render its actual status rather than repeating fulfillment when the user retries.
+ConversationHandler applies a returned state after the awaited callback finishes. In the demo, change form data only after the transition's reply succeeds: reset it after a reentry prompt, record the name after the age prompt, and remove it after completion/cancellation confirmation. If a reply raises, the old state and input remain usable. This prevents a local retry from crashing; it does not make an ambiguous Telegram send or a database write exactly once. Real forms should commit their business record with an operation ID, then recover/render its actual status rather than repeating fulfillment when the user retries.
 
 | Symptom | Inspect | Useful next check |
 | --- | --- | --- |
