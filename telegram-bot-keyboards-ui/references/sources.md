@@ -17,6 +17,6 @@ Local helpers target Python 3.10+ and use only the standard library. Callback sc
 
 The comparison follow-up reread the inline-button, WebAppInfo, LoginUrl,
 CopyTextButton and DisabledButton fields on 2026-10-04. The original offline
-validator checks those reviewed fields with ten behavioral tests, including
-duplicate JSON fields and valid empty-query/disabled actions. Reply-keyboard
+validator checks those reviewed fields with eleven behavioral tests, including
+duplicate JSON fields, a required enabled chosen-chat type and valid empty-query/disabled actions. Reply-keyboard
 validation and live client rendering remain outside that helper.

@@ -10,7 +10,8 @@ The [public-pack comparison](COMPARISON.md) records six selected peers at immuta
 commits, useful strengths and remaining gaps. Follow-up changes add an original
 inline-keyboard validator and a tested grammY dialog/replay factory, fix reminder
 retry deadlines after slow batches, and retain aiogram form state when step,
-restart or cancellation prompts fail. Both native plugin manifests use patch
+restart or cancellation prompts fail. Independent review also repaired chosen-chat
+validation so at least one chat type must be enabled. Both native plugin manifests use patch
 **1.1.1**. [PR #12](https://github.com/Aztech-1729/telegram-skills/pull/12) establishes
 publication status; its merge requires native validation and independent review
 of the exact final head/base/diff.

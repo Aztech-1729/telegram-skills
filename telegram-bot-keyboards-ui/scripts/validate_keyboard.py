@@ -141,6 +141,8 @@ def validate_inline_keyboard(markup, *, chat_type=None, business=False, invoice=
                         for key in flags.intersection(value):
                             if type(value[key]) is not bool:
                                 error(target + "." + key, "Expected a boolean")
+                        if not any(value.get(key) is True for key in flags):
+                            error(target, "Allow at least one chat type")
                 if action in {"pay", "callback_game"} and (r, c) != (0, 0):
                     error(target, "Must be the first button in the first row")
                 if action == "web_app" and (business or (chat_type is not None and chat_type != "private")):

@@ -77,6 +77,18 @@ class KeyboardValidationTests(unittest.TestCase):
         for flag in (1, "true", None):
             self.assertTrue(validate_inline_keyboard(markup({"text": "Share", "switch_inline_query_chosen_chat": {"allow_group_chats": flag}}))["errors"])
 
+    def test_chosen_chat_requires_an_enabled_chat_type(self):
+        flags = ("allow_user_chats", "allow_bot_chats", "allow_group_chats", "allow_channel_chats")
+        for value in ({}, {"query": "test"}, dict.fromkeys(flags, False)):
+            with self.subTest(value=value):
+                report = validate_inline_keyboard(markup({"text": "Share", "switch_inline_query_chosen_chat": value}))
+                self.assertTrue(report["errors"])
+        for flag in flags:
+            with self.subTest(flag=flag):
+                value = {**dict.fromkeys(flags, False), flag: True, "query": ""}
+                report = validate_inline_keyboard(markup({"text": "Share", "switch_inline_query_chosen_chat": value}))
+                self.assertEqual(report["errors"], [])
+
     def test_style_shape_and_optional_booleans(self):
         for value in (None, [], {"inline_keyboard": "rows"}, {"inline_keyboard": ["row"]}, markup("button"),
                       markup({"text": "X", "callback_data": "x", "style": "link"}),

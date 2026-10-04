@@ -2,7 +2,7 @@
 
 ## Second full audit and public-pack comparison — 2026-10-04
 
-Local checks passed **93 Python behavior tests in ten isolated suites**, **147
+Local checks passed **94 Python behavior tests in ten isolated suites**, **147
 maintenance tests**, **seven JavaScript fake-transport tests** (including five
 real conversations-plugin tests), **nine Mini App frontend tests**, all **14
 public endpoint checks** and pack/skill-creator validation for all 21 entrypoints.

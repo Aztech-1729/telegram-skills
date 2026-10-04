@@ -55,7 +55,9 @@ not grant Telegram access or deploy a bridge.
 
 - The keyboard helper counts action-field presence, accepts current disabled
   actions, checks context/type/bounds, rejects duplicate JSON fields and reports
-  errors without echoing payload values. Its ten new tests join existing UI tests.
+  errors without echoing payload values. Its eleven new tests join existing UI tests.
+  Independent review also caught and fixed chosen-chat payloads with no enabled
+  chat type, verified against the official server and its pinned TDLib source.
 - The grammY example tests actual replay through conversations 2.1.1, confirmation,
   cancellation, account denial, chat isolation and ambiguous-save recovery.
   Documentation identifies cached permission and crash/durable-idempotency limits.

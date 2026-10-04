@@ -76,6 +76,15 @@ review and do not invent server limits. An empty inline keyboard can remove the
 markup. Empty inline-switch queries and empty `disabled`/`callback_game` objects
 remain valid actions, so checks count field presence rather than truthiness.
 
+For `switch_inline_query_chosen_chat`, set at least one of `allow_user_chats`,
+`allow_bot_chats`, `allow_group_chats` or `allow_channel_chats` to `true`.
+Omitted flags default to false; an empty object, a query alone or all-false flags
+are rejected by the official server's
+[chosen-chat parser](https://github.com/tdlib/telegram-bot-api/blob/e3e9dd8e5b3d7ab8537cd5a10dc31d5ffa8f82d1/telegram-bot-api/Client.cpp#L9828-L9840)
+and its pinned TDLib
+[chat-type validation](https://github.com/tdlib/td/blob/bc9c263e2bfee06aaab41e82db51a103376030bc/td/telegram/TargetDialogTypes.cpp#L33-L52).
+An empty query is still valid when a chat type is enabled.
+
 The validator rejects fields outside the reviewed schema instead of silently
 accepting a typo. Update it against official documentation before adding newer
 fields. It checks the listed payload/context invariants, not every surrounding
