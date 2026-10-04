@@ -138,7 +138,14 @@ Run `python assets/starter/offline_check.py` with requirements installed. Also e
 | A command is consumed as form input | Command/state-wide handler order and F filters | Cancellation/reentry commands win; the form remains in its step after invalid content |
 | Old buttons spin or reach the wrong handler | CallbackData prefix/version and fallback position | A final callback route acknowledges unknown payloads with a recovery action, without interpreting them as new commands |
 | One bot sees another bot's form | Redis key builder, bot_id, matching isolation | State and locks have account/flow-scoped keys |
-| A completion reply fails | clear/update ordering and durable operation status | Keep demo data until the reply succeeds; reconcile an already committed business effect before retrying it |
+| A step, restart, cancellation or completion reply fails | clear/update ordering and durable operation status | Keep the previous demo state/data until the reply succeeds; reconcile an already committed business effect before retrying it |
 | Dependency injection fails | Context dictionary keys and filter outputs | Parameter names match injected services; no accidental override of framework keys |
+
+The starter sends each next prompt or cancellation acknowledgement before changing
+its demo state, under the configured per-flow event isolation. A failed send keeps
+the previous answers and step for a retry. Sending and FSM storage are not one
+transaction: a crash, ambiguous send outcome or failed Redis write still needs a
+restart/recovery policy. Durable business operations belong in their own service;
+do not delay a paid entitlement or repeat a committed effect to obtain a reply.
 
 Use state-specific hints for unexpected media, keep a cancellation route visible, and preserve accepted answers when validation fails. Localize prompts/buttons in the same request locale, and translate before escaping interpolated user content. Provide a clear final summary; a keyboard disappearing alone is insufficient completion feedback. When throttling a callback, acknowledge it and explain the retry route. Read [bot UX](../../telegram-bot-ux/SKILL.md) for navigation/copy, [accessibility](../../telegram-bot-accessibility/SKILL.md) for nonvisual and localized checks, and [Mini App design](../../telegram-bot-miniapp-design/SKILL.md) with [Mini App security](../../telegram-bot-miniapps/SKILL.md) for a requested web surface.

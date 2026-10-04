@@ -43,14 +43,14 @@ async def cancel(message: Message, state: FSMContext) -> None:
     if await state.get_state() is None:
         await message.answer("No active form.")
         return
-    await state.clear()
     await message.answer("Form cancelled.", reply_markup=ReplyKeyboardRemove())
+    await state.clear()
 
 
 async def begin_form(message: Message, state: FSMContext) -> None:
+    await message.answer("What is your name? Use /cancel to stop.")
     await state.clear()
     await state.set_state(Form.name)
-    await message.answer("What is your name? Use /cancel to stop.")
 
 
 async def receive_name(message: Message, state: FSMContext) -> None:
@@ -58,9 +58,9 @@ async def receive_name(message: Message, state: FSMContext) -> None:
     if not name or len(name) > 100:
         await message.answer("Send a name of 1 to 100 characters.")
         return
+    await message.answer("How old are you? Send an integer from 0 to 130.")
     await state.update_data(name=name)
     await state.set_state(Form.age)
-    await message.answer("How old are you? Send an integer from 0 to 130.")
 
 
 async def receive_age(message: Message, state: FSMContext) -> None:

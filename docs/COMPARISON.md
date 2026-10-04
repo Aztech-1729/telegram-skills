@@ -62,18 +62,25 @@ not grant Telegram access or deploy a bridge.
 - A separate audit finding fixed reminder deadlines calculated from batch-start
   time. Slow-batch and fractional-clock tests preserve the full retry delay after
   the failure arrives.
+- The full framework reread reproduced aiogram state loss/advance after failed
+  prompts. Three real-FSM failure/retry regressions now retain the previous state
+  and answers until step, restart or cancellation replies succeed. The guide
+  states the remaining send/storage crash and uncertainty boundaries.
 - README routing and validation evidence distinguish current results from older
   historical runs. Both native plugin versions advance together to 1.1.1.
 
 ## Remaining work and audit status
 
-The earlier [full audit](AUDIT.md) and its published validation remain separate
-from this follow-up. The new whole-pack reread was started, but complete independent
-coverage reports have not been delivered. Do not describe that interrupted reread
-as a completed second full audit.
-The focused fixes and comparison can be tested and published for review; merging
-still requires an actual independent review of the exact diff under the
-[maintenance runbook](AGENT_MAINTENANCE.md).
+The [second full audit](AUDIT.md) reread all **221 source files** across the 21
+skill folders and root tooling/configuration. Complete inventories cover 102
+framework files, 74 feature files, 19 root Python tools/tests and 26 root
+configuration/documentation files. The reproduced reminder and aiogram defects
+were fixed and tested. Root configuration and maintenance-code reviews found no
+additional material issue. This does not make the selected peer sample exhaustive
+or certify every platform feature. Publication still requires independent review
+of the exact final diff and native validation under the
+[maintenance runbook](AGENT_MAINTENANCE.md); [PR #12](https://github.com/Aztech-1729/telegram-skills/pull/12)
+records the actual result.
 
 The remaining product gaps are a visual development SDK mock, tested frontend and
 backend adapters, selected API-family implementations and an explicit license.

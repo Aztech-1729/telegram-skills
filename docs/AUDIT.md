@@ -1,10 +1,26 @@
 # Skill audit — 2026-10-04
 
-The subsequent [public-pack comparison](COMPARISON.md) records a focused follow-up:
-an inline-keyboard validator, tested grammY dialog/replay factory and a slow-batch
-reminder retry correction, released together as proposed plugin patch **1.1.1**.
-Its [validation record](VALIDATION.md#public-pack-comparison-follow-up--2026-10-04)
-keeps those checks separate from the completed full audit below.
+The second full audit reread **221 source files**: 102 files in eleven framework
+folders, 74 in ten feature folders, 19 root Python tools/tests and 26 root
+configuration/documentation files. This includes all 21 skill entrypoints and
+their examples, resources, dependency manifests and tests; ignored dependency
+downloads/build outputs were excluded.
+
+The [public-pack comparison](COMPARISON.md) records six selected peers at immutable
+commits, useful strengths and remaining gaps. Follow-up changes add an original
+inline-keyboard validator and a tested grammY dialog/replay factory, fix reminder
+retry deadlines after slow batches, and retain aiogram form state when step,
+restart or cancellation prompts fail. Both native plugin manifests use patch
+**1.1.1**. [PR #12](https://github.com/Aztech-1729/telegram-skills/pull/12) establishes
+publication status; its merge requires native validation and independent review
+of the exact final head/base/diff.
+
+The [validation record](VALIDATION.md#second-full-audit-and-public-pack-comparison--2026-10-04)
+separates these results from the first audit below. Complete read inventories
+were checked for missing paths; independent framework/root reviews supplied the
+additional aiogram finding and review of the maintenance code/configuration.
+
+## First audit and expanded design skills
 
 The complete pre-audit pack of **18 skills and 137 skill resources** was read,
 including instructions, references, starters, tests and dependency manifests.
