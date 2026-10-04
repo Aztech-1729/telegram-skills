@@ -62,8 +62,8 @@ def close_data(sender_id: int) -> bytes:
     return data
 
 
-def callback_owner(data: bytes) -> int | None:
-    if len(data) > 64:
+def callback_owner(data: bytes | None) -> int | None:
+    if not isinstance(data, bytes) or len(data) > 64:
         return None
     match = OWNER.fullmatch(data)
     if not match:

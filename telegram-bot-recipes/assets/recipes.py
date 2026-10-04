@@ -227,11 +227,13 @@ async def download(update, context):
                     process.kill()
                 await process.wait()
                 raise
-            if process.returncode != 0:
+            # --max-downloads 1 intentionally exits101 after a completed item.
+            # It is usable only if the complete bounded output checks below pass.
+            if process.returncode not in {0, 101}:
                 await msg.reply_text("The download failed. Try another supported public URL.")
                 return
             files = [p for p in Path(directory).iterdir() if p.is_file() and p.suffix not in {".part", ".ytdl"}]
-            if len(files) != 1 or files[0].stat().st_size > 45_000_000:
+            if len(files) != 1 or not 0 < files[0].stat().st_size <= 45_000_000:
                 await msg.reply_text("No file within the upload limit was produced.")
                 return
             with files[0].open("rb") as media:

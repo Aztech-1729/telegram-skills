@@ -37,6 +37,22 @@ class ModerationTests(unittest.IsolatedAsyncioTestCase):
 
 
 class InteractionTests(unittest.IsolatedAsyncioTestCase):
+    async def test_expected_download_limit_exit_requires_one_complete_nonempty_file(self):
+        for suffix, contents, uploads in (('mp4', b'complete media', True), ('part', b'partial', False), ('mp4', b'', False), (None, None, False)):
+            with self.subTest(suffix=suffix, contents=contents):
+                message = SimpleNamespace(reply_text=AsyncMock(), reply_document=AsyncMock())
+                context = SimpleNamespace(args=['https://example.org/video'], bot_data={
+                    'download_hosts': {'example.org'}, 'download_limit': asyncio.Semaphore(1)})
+                async def fake_process(*args, **kwargs):
+                    self.assertEqual(args[args.index('--max-downloads') + 1], '1')
+                    if suffix is not None:
+                        output = Path(args[args.index('--output') + 1].replace('%(ext)s', suffix))
+                        output.write_bytes(contents)
+                    return SimpleNamespace(returncode=101, wait=AsyncMock(return_value=101))
+                with patch('recipes.asyncio.create_subprocess_exec', side_effect=fake_process):
+                    await download(SimpleNamespace(effective_message=message), context)
+                self.assertEqual(message.reply_document.await_count, int(uploads))
+
     async def test_failed_download_does_not_upload_even_if_a_file_exists(self):
         message = SimpleNamespace(reply_text=AsyncMock(), reply_document=AsyncMock())
         context = SimpleNamespace(args=['https://example.org/video'], bot_data={

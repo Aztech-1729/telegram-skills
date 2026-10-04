@@ -19,7 +19,7 @@ observations and substantive review remain separate.
 | PTB | Retain conversation data across failed completion, cancellation and reentry replies; recover stale callbacks |
 | aiogram | Include bot identity in optional shared Redis keys; cover invalid/stale actions |
 | Telethon / gotd | Verify the identity associated with a reused session and keep session/auth boundaries explicit |
-| Go HTTP | Correct the SDK webhook's acknowledgment/body-limit/durability assumptions; exercise the actual receiver locally |
+| Go HTTP | Correct SDK webhook/command assumptions; exercise the actual receiver; redact credential-bearing classic SDK transport errors before internal logging |
 | JavaScript | Add topic, inline/stale callback and non-message-update behavior checks |
 | Java | Close the polling executor explicitly; check received versus send-model direct-message topic ranges |
 | .NET / PHP / Rust | Preserve topic context and add offline payload/dispatch checks with explicit wrapper boundaries |

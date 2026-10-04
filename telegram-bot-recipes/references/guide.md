@@ -134,8 +134,9 @@ its runtime dependencies; configure `DOWNLOAD_HOSTS` with exact approved hostnam
 `/dl` accepts an absolute HTTP(S) URL without embedded credentials. It uses an
 async argument-vector subprocess, disables external config and plugins, bounds
 time/concurrency, avoids playlists, writes into a temporary directory, checks
-the resulting file size and closes the upload stream. Nonzero process exits are
-reported as failures even if an output file exists. Timeout or cancellation kills
+the resulting file size and closes the upload stream. The expected exit101 from
+`--max-downloads 1` still requires one complete, nonempty file within the upload
+limit. Other nonzero exits are failures even if an output file exists. Timeout or cancellation kills
 and awaits the process before cleaning the temporary directory.
 
 The host check covers the initial URL. Extractors, redirects and media manifests

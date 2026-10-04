@@ -24,3 +24,5 @@ the prior reviewed API guidance and were not called in this audit.
 Only PTB is pinned in the base dependency file. Resolve and lock optional recipe
 dependencies for the deployment; their latest release is not claimed.
 No live API or downloader integration was executed during the pack audit.
+
+The 2026-10-04 follow-up inspected yt-dlp's official [download limit path](https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/YoutubeDL.py) and [CLI cancellation path](https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/__init__.py): MaxDownloadsReached after a completed item returns 101. The bounded downloader accepts that expected exit only with complete, nonempty, single-file size checks; other nonzero failures remain rejected. The synthetic regression covers complete/partial/empty/missing output. All eighteen recipe tests pass without live downloads.

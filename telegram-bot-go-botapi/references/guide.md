@@ -33,7 +33,7 @@ Keep go.mod and go.sum in application source control. The module directives at t
 
 - [go-telegram/bot echo](../assets/go-telegram-echo/main.go) with [go.mod](../assets/go-telegram-echo/go.mod): custom update predicate, checked send errors, and signal context.
 - [gotgbot echo](../assets/gotgbot-echo/main.go) with [go.mod](../assets/gotgbot-echo/go.mod): imported handlers/filter packages, bounded dispatcher concurrency, error hook, and updater lifecycle.
-- [classic v5 echo](../assets/classic-echo/main.go) with [go.mod](../assets/classic-echo/go.mod): explicit update-channel loop and shutdown.
+- [classic v5 echo](../assets/classic-echo/main.go) with [go.mod](../assets/classic-echo/go.mod): explicit update-channel loop and shutdown; a custom HTTP client redacts URL and nested transport-error text before the SDK can log them. The bot credential belongs in the request path, so sanitizing only your own logger is insufficient. Error identity remains available through errors.Is/As for inspection; avoid logging unwrapped sensitive details or enabling raw debug output.
 
 Copy one complete asset directory into the application's chosen location. From that directory, `go build .` checks compilation. Set TELEGRAM_BOT_TOKEN before deliberately starting it with `go run .`. Constructors may call getMe; running is a live Telegram operation.
 

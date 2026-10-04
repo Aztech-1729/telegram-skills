@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import AsyncMock
 from types import SimpleNamespace
 
 from telethon import Button, TelegramClient, events
@@ -43,7 +44,7 @@ class OfflineTests(unittest.IsolatedAsyncioTestCase):
 
     def test_callback_bytes_are_bounded_and_validated(self):
         self.assertEqual(callback_owner(close_data(42)), 42)
-        for data in (b'close:0', b'close:-1', b'close:42:extra', b'\xff', b'x' * 65):
+        for data in (None, 'close:42', b'close:0', b'close:-1', b'close:42:extra', b'\xff', b'x' * 65):
             self.assertIsNone(callback_owner(data))
         with self.assertRaises(ValueError):
             close_data(10 ** 70)
@@ -82,6 +83,14 @@ class OfflineTests(unittest.IsolatedAsyncioTestCase):
         event = FakeEvent(data=b'old:unknown')
         await expired_menu(event)
         self.assertEqual(event.actions, [('answer', 'This menu expired. Open /menu again.', {})])
+        game_update = types.UpdateBotCallbackQuery(query_id=1, user_id=42,
+            peer=types.PeerUser(42), msg_id=2, chat_instance=3, game_short_name='offline')
+        game_event = events.CallbackQuery.build(game_update)
+        self.assertIsNone(game_event.data)
+        self.assertEqual([handler for handler, builder in routes if builder.filter(game_event)], [expired_menu])
+        game_event.answer = AsyncMock()
+        await expired_menu(game_event)
+        game_event.answer.assert_awaited_once_with('This menu expired. Open /menu again.')
 
     def test_real_v1_builders_raw_requests_and_button_families(self):
         client = TelegramClient(StringSession(), 12345, 'a' * 32)
