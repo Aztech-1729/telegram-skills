@@ -1,10 +1,11 @@
 # Offline validation — 2026-10-04
 
-The starter was checked against aiogram 3.31.0 on Python 3.12 in an isolated environment with its Redis extra. Eight tests in
+The starter was checked against aiogram 3.31.0 on Python 3.12 in an isolated environment with its Redis extra. Eleven tests in
 [offline_check.py](../assets/starter/offline_check.py) pass without Telegram calls.
 They exercise state validation/cancellation, escaped output, callback ownership,
 callback payload limits, real stale-callback dispatch through feed_update with a mocked
-Bot session, failed-reply state retention, and Redis state/lock key separation by bot.
+Bot session, failed step/reentry/cancellation/completion reply state retention and
+successful retries, and Redis state/lock key separation by bot.
 The Redis client is constructed and closed locally; no Redis connection is made.
 Run that file from its
 starter directory with [requirements.txt](../assets/starter/requirements.txt) installed.

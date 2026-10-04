@@ -103,6 +103,46 @@ class StarterChecks(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(await self.state.get_state(), bot.Form.age.state)
         self.assertEqual(await self.state.get_data(), {"name": "Ada"})
 
+    async def test_failed_next_prompt_keeps_name_step_until_retry(self):
+        await self.state.set_state(bot.Form.name)
+        await self.state.set_data({"draft": "retained"})
+        message = SimpleNamespace(text="Ada", answer=AsyncMock(side_effect=RuntimeError("offline failure")))
+        with self.assertRaises(RuntimeError):
+            await bot.receive_name(message, self.state)
+        self.assertEqual(await self.state.get_state(), bot.Form.name.state)
+        self.assertEqual(await self.state.get_data(), {"draft": "retained"})
+        message.answer = AsyncMock()
+        await bot.receive_name(message, self.state)
+        self.assertEqual(await self.state.get_state(), bot.Form.age.state)
+        self.assertEqual(await self.state.get_data(), {"draft": "retained", "name": "Ada"})
+        message.answer.assert_awaited_once_with("How old are you? Send an integer from 0 to 130.")
+
+    async def test_failed_reentry_keeps_existing_answers_until_retry(self):
+        await self.state.set_state(bot.Form.age)
+        await self.state.set_data({"name": "Ada"})
+        message = SimpleNamespace(answer=AsyncMock(side_effect=RuntimeError("offline failure")))
+        with self.assertRaises(RuntimeError):
+            await bot.begin_form(message, self.state)
+        self.assertEqual(await self.state.get_state(), bot.Form.age.state)
+        self.assertEqual(await self.state.get_data(), {"name": "Ada"})
+        message.answer = AsyncMock()
+        await bot.begin_form(message, self.state)
+        self.assertEqual(await self.state.get_state(), bot.Form.name.state)
+        self.assertEqual(await self.state.get_data(), {})
+
+    async def test_failed_cancellation_keeps_existing_answers_until_retry(self):
+        await self.state.set_state(bot.Form.age)
+        await self.state.set_data({"name": "Ada"})
+        message = SimpleNamespace(answer=AsyncMock(side_effect=RuntimeError("offline failure")))
+        with self.assertRaises(RuntimeError):
+            await bot.cancel(message, self.state)
+        self.assertEqual(await self.state.get_state(), bot.Form.age.state)
+        self.assertEqual(await self.state.get_data(), {"name": "Ada"})
+        message.answer = AsyncMock()
+        await bot.cancel(message, self.state)
+        self.assertIsNone(await self.state.get_state())
+        self.assertEqual(await self.state.get_data(), {})
+
 
 if __name__ == "__main__":
     unittest.main()

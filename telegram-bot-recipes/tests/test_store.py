@@ -81,7 +81,7 @@ class StoreTests(unittest.TestCase):
                 raise RuntimeError("do not retain this sensitive exception body")
             delivered.append((chat, text, kwargs))
         attempts = iter([None, 50])
-        asyncio.run(deliver_due(self.store, send, 101, lambda error, attempt: next(attempts)))
+        asyncio.run(deliver_due(self.store, send, 101, lambda error, attempt: next(attempts), clock=lambda: 101))
         self.assertEqual(delivered, [(2, "Reminder: topic", {"message_thread_id": 44})])
         self.assertEqual(self.store.due(150), [])
         self.assertEqual(Store(self.path).due(151)[0][0], retry)
@@ -94,7 +94,7 @@ class StoreTests(unittest.TestCase):
         async def always_fail(*args, **kwargs):
             raise RuntimeError("redact me")
         for _ in range(5):
-            asyncio.run(deliver_due(self.store, always_fail, 151, lambda error, attempt: 0))
+            asyncio.run(deliver_due(self.store, always_fail, 151, lambda error, attempt: 0, clock=lambda: 151))
         self.assertEqual(self.store.due(151), [])
         with self.store.connect() as db:
             self.assertEqual(db.execute("SELECT attempts,last_error,failed FROM reminders WHERE id=?", (bounded,)).fetchone(),
@@ -121,7 +121,7 @@ class StoreTests(unittest.TestCase):
             attempts.append(chat)
             raise RuntimeError('rate limit')
         asyncio.run(deliver_due(self.store, rate_limited, 101, lambda error, attempt: 90,
-                               pause_on_error=lambda error: True))
+                               pause_on_error=lambda error: True, clock=lambda: 101))
         self.assertEqual(attempts, [1])
         self.assertEqual(Store(self.path).due(190), [])
         self.assertEqual([row[0] for row in Store(self.path).due(191)], [first, second])
@@ -132,6 +132,36 @@ class StoreTests(unittest.TestCase):
         self.assertEqual(self.store.warn(1, 9), 1)
         self.assertEqual(Store(self.path).warn(1, 9), 2)
         self.assertEqual(self.store.warn(2, 9), 1)
+
+    def test_slow_batch_rate_limit_starts_when_error_arrives(self):
+        self.store.remind(1, 'slow success', 100)
+        failed = self.store.remind(2, 'limited', 100)
+        pending = self.store.remind(3, 'not attempted', 100)
+        current = [101]
+        attempts = []
+
+        async def send(chat, text):
+            attempts.append(chat)
+            current[0] += 60
+            if chat == 2:
+                raise RuntimeError('rate limit received at 221')
+
+        asyncio.run(deliver_due(self.store, send, 101, lambda error, attempt: 90,
+                               pause_on_error=lambda error: True, clock=lambda: current[0]))
+        self.assertEqual(attempts, [1, 2])
+        self.assertEqual(Store(self.path).due(310), [])
+        self.assertEqual([row[0] for row in Store(self.path).due(311)], [failed, pending])
+
+    def test_transient_retry_starts_at_failure_with_fractional_clock(self):
+        reminder = self.store.remind(1, 'retry', 100)
+
+        async def fail(*args):
+            raise RuntimeError('late network failure')
+
+        asyncio.run(deliver_due(self.store, fail, 101, lambda error, attempt: 30,
+                               clock=lambda: 200.25))
+        self.assertEqual(Store(self.path).due(230), [])
+        self.assertEqual(Store(self.path).due(231)[0][0], reminder)
 
 
 if __name__ == "__main__":

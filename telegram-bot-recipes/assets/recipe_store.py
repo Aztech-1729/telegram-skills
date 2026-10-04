@@ -197,8 +197,12 @@ class ClosingConnection:
             self.db.close()
 
 
-async def deliver_due(store, send, now, failure_policy=None, pause_on_error=None):
-    """Single worker; optional policy isolates rows. Crash-after-send can duplicate."""
+async def deliver_due(store, send, now, failure_policy=None, pause_on_error=None, *, clock=None):
+    """Single worker; `now` selects due rows, but retries start when a send fails.
+
+    `clock` returns current Unix seconds and permits deterministic recovery tests.
+    Crash-after-send can duplicate; important deliveries need application idempotency.
+    """
     import asyncio
     for reminder_id, chat, text, thread, attempts in await asyncio.to_thread(store.due, now):
         try:
@@ -208,11 +212,14 @@ async def deliver_due(store, send, now, failure_policy=None, pause_on_error=None
             if failure_policy is None:
                 raise
             delay = failure_policy(error, attempts + 1)
-            await asyncio.to_thread(store.delivery_failed, reminder_id, type(error).__name__, now, delay)
+            failed_at = (time.time if clock is None else clock)()
+            if type(failed_at) not in {int, float} or not math.isfinite(failed_at):
+                raise ValueError("Invalid failure timestamp")
+            await asyncio.to_thread(store.delivery_failed, reminder_id, type(error).__name__, failed_at, delay)
             if pause_on_error is not None and pause_on_error(error):
                 if delay is None:
                     raise ValueError("A paused sender requires a retry delay")
-                await asyncio.to_thread(store.pause_delivery, now, delay)
+                await asyncio.to_thread(store.pause_delivery, failed_at, delay)
                 break
         else:
             await asyncio.to_thread(store.delivered, reminder_id)

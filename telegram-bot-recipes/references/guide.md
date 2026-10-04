@@ -64,6 +64,11 @@ possible duplicate delivery after an ambiguous send; a crash between send and
 commit can also repeat a message. Multiple workers need leases and fencing; use
 the advanced outbox implementation.
 
+Retry and pause deadlines start from the actual failure time, not the due-row
+selection time. This matters when earlier sends or the failed request are slow;
+the whole server-requested wait follows the received failure. Deterministic
+clock tests cover slow batches and fractional timestamps across a reopened store.
+
 `/reminders` lists the user's first 20 pending/failed reminders in that chat with
 UTC due times, and `/cancelreminder <id>` authorizes by both user and chat. Saved
 forum/private bot topic IDs are used when sending; closed/deleted topics need a

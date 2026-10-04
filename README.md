@@ -11,6 +11,10 @@ button roles/colors, navigation, responsive forms, themes, contrast, focus,
 localization and recovery states. The [2026-10-04 audit](docs/AUDIT.md) records
 the concrete reliability fixes and validation boundaries.
 
+The [public-pack comparison](docs/COMPARISON.md) records where other Telegram
+skills have deeper coverage and which gaps this pack addresses. It uses dated
+repository snapshots and concrete capabilities rather than an overall ranking.
+
 Choose a framework, load the feature skills needed for the task, then use the
 linked reference and starter. Each skill has concise activation metadata,
 practical implementation guidance and a dated primary-source register.
@@ -93,6 +97,20 @@ Skill folders can be discovered by compatible agents through their `name` and
 `description` frontmatter. If the host does not support skill discovery, provide
 the paths explicitly; ordinary Markdown reading works too.
 
+### When skills overlap
+
+| Decision | Primary owner / supporting skill |
+|---|---|
+| Lifecycle, handler order, SDK types or a framework dialog | The existing framework skill; fundamentals for protocol/rights |
+| What a menu should do and how it recovers | Bot UX; keyboards-ui for native markup and callback payloads |
+| Browser authentication versus visual layout | Mini Apps for SDK/auth/backend; Mini App design for theme/components |
+| Readable content and accessible interaction | Rich messaging for payloads; accessibility for labels, contrast and focus |
+| Purchase truth versus reliable job delivery | Payments for ledger/entitlements; advanced features for durable dispatch |
+
+Load supporting references for the actual decision. A UI suggestion does not
+override a framework's API signature, and a visible purchase button does not
+replace backend fulfillment checks.
+
 ## Framework skills
 
 | Language / protocol | Skill | Use when |
@@ -118,7 +136,7 @@ authorization. It does not grant a bot unrestricted user-account capabilities.
 | Skill | Capability | Useful resources |
 |---|---|---|
 | [telegram-bot-fundamentals](telegram-bot-fundamentals/SKILL.md) | BotFather, identity, transport, updates, rights, state, limits and capability routing | Planning guide and current Telegram capability map |
-| [telegram-bot-keyboards-ui](telegram-bot-keyboards-ui/SKILL.md) | Inline/reply keyboards, callbacks, navigation, inline mode and deep links | UI helpers and callback/format tests |
+| [telegram-bot-keyboards-ui](telegram-bot-keyboards-ui/SKILL.md) | Inline/reply keyboards, callbacks, navigation, inline mode and deep links | UI helpers, offline inline-markup validator and behavior tests |
 | [telegram-bot-rich-messaging](telegram-bot-rich-messaging/SKILL.md) | Safe formatting, Rich Messages, structured reports, drafts and final persistence | Payload builders and streaming lifecycle |
 | [telegram-bot-miniapps](telegram-bot-miniapps/SKILL.md) | Launch modes, WebApp SDK, signed authentication and backend-owned data | Runnable todo frontend/backend and auth tests |
 | [telegram-bot-payments-stars](telegram-bot-payments-stars/SKILL.md) | Invoices, checkout, atomic one-time fulfillment, refunds and recurring-access design | Durable SQLite ledger and duplicate/rollback tests |
@@ -172,6 +190,7 @@ docs/INSTALLATION.md               Installer, agent discovery and native plugins
 docs/RESEARCH.md                   Dated baselines, sources and coverage boundaries
 docs/VALIDATION.md                 What was checked and how to repeat it
 docs/AUDIT.md                      Per-family defects, fixes and UI/UX expansion
+docs/COMPARISON.md                 Pinned public peers, strengths and remaining gaps
 docs/AUTOMATION.md                 Schedules, permissions and review procedure
 docs/AGENT_MAINTENANCE.md           Daily Codex content review and repair runbook
 docs/UPSTREAM_STATUS.md            Generated source changes, failures and versions
@@ -222,9 +241,9 @@ Starters contain actual entrypoints and dependency manifests. Guides identify
 configuration, database and deployment assumptions. Offline tests cover selected
 behavior; build-only and source-reviewed examples are explicitly distinguished in
 the [validation record](docs/VALIDATION.md). The
-[successful hosted run](https://github.com/Aztech-1729/telegram-skills/actions/runs/37125986130)
-passed all 13 jobs across seven languages, including five Go builds, 49 Python
-behavioral tests, two JavaScript transport tests, maintenance tests, 14 public
+[published audit's hosted run](https://github.com/Aztech-1729/telegram-skills/actions/runs/37180272017)
+passed all 13 jobs across seven languages, including five Go builds, behavioral
+tests for frameworks and feature helpers, maintenance tests, 14 public
 HTTP checks and read-only `getMe` authentication with a dedicated test bot.
 It did not test live message delivery, payments or deployment.
 

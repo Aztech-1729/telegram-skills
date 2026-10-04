@@ -1,6 +1,38 @@
 # Validation record
 
-## Full skill audit — 2026-10-04
+## Second full audit and public-pack comparison — 2026-10-04
+
+Local checks passed **94 Python behavior tests in ten isolated suites**, **147
+maintenance tests**, **seven JavaScript fake-transport tests** (including five
+real conversations-plugin tests), **nine Mini App frontend tests**, all **14
+public endpoint checks** and pack/skill-creator validation for all 21 entrypoints.
+The new tests cover inline-keyboard invariants, reminder retries after slow
+requests and aiogram state recovery after failed step/reentry/cancellation replies.
+Fresh offline checks also passed eleven Go behavior tests, all five Go module
+checksum verifications and four Java fixtures. [The comparison](COMPARISON.md)
+records the peer evidence and remaining gaps.
+
+The locked skills CLI passed linked/all-agent and selected-agent copy installs,
+verifying **21 skills and 176 skill resources**. Isolated native Codex 0.160.0
+and Claude Code 2.1.282 installs discovered the same complete catalog and resources
+as plugin version **1.1.1**. These are isolated fixture installs;
+[PR #12](https://github.com/Aztech-1729/telegram-skills/pull/12) records publication.
+
+Native PR validation and independent exact-diff review are separate publication
+gates. The second content audit reread all 221 source files with complete
+inventories, including every skill resource and root tool/configuration file.
+No new live message/payment/client tests were performed. The earlier audit
+records below retain their original counts and run identities.
+
+The source refresh at **2026-10-04T07:32:14Z** fetched all **270 tracked official
+sources**, with no unavailable endpoint. The exact NuGet and teloxide pages were
+reviewed against their pinned starter APIs; the trusted acknowledgement helper
+refetched and matched each actual reviewed hash before clearing its pending
+marker. No unrelated source approval or editorial ledger date was advanced.
+Download counters and other future metadata changes may create new observations;
+the current review is not perpetual compatibility approval.
+
+## Published full skill audit — 2026-10-04
 
 All 18 original skill folders and 137 resources were read in full. The pack now
 contains **21 skills** with bot UX, Mini App design and accessibility additions.

@@ -5,6 +5,11 @@ behavioral defects and added three UI/UX/accessibility specialists for **21 tota
 The original audit and version snapshot below are retained as history; each skill's
 source register records the relevant subsequent review.
 
+The [public-pack comparison](COMPARISON.md), dated 2026-10-04, inspects selected
+primary resources at pinned peer commits. It records narrower areas where peers
+have deeper coverage and the original improvements made in response; it does not
+claim a universal ranking or an exhaustive web search.
+
 ## Scope and method
 
 All original repository files were read. The 13 original skills were revised and

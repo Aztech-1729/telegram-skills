@@ -1,7 +1,7 @@
 {
   "name": "telegram",
   "displayName": "Telegram Skills",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "21 Telegram skills for bots, MTProto, Mini Apps, UI/UX and accessibility across Python, Go, JavaScript/TypeScript, Java, .NET, PHP and Rust.",
   "author": {
     "name": "Aztech",

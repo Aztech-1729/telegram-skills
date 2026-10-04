@@ -33,6 +33,11 @@ Read [the implementation guide](references/guide.md) for button types, PTB/aiogr
 
 - [scripts/ui_helpers.py](scripts/ui_helpers.py): framework-independent byte validation, strict callback parsing, pagination and UTF-16 entity ranges.
 - [scripts/test_ui_helpers.py](scripts/test_ui_helpers.py): `python -m unittest discover -s telegram-bot-keyboards-ui/scripts -p 'test_*.py'` from the repository root; no Telegram calls.
+- [scripts/validate_keyboard.py](scripts/validate_keyboard.py): offline Bot API 10.3
+  inline-markup checks with field paths and explicit chat/invoice contexts. Check
+  action exclusivity, types, URLs, callback bytes, copy bounds, native styles,
+  disabled buttons and first pay/game placement. It does not validate reply
+  keyboards, SDK coverage, authorization or client rendering.
 
 Combine with the chosen framework skill for app startup, Mini Apps for web UI, Payments for invoice buttons, or Advanced Features for durable state and sending policy.
 

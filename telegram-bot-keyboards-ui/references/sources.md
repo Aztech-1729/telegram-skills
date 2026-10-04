@@ -14,3 +14,9 @@ Checked: **2026-10-04**. Cutoff: **2026-10-04**. Primary references only. These 
 | [aiogram InlineKeyboardButton v3.31.0](https://docs.aiogram.dev/en/v3.31.0/api/types/inline_keyboard_button.html) / [changelog](https://docs.aiogram.dev/en/v3.31.0/changelog.html) | **3.31.0, 2026-08-26**, Bot API 10.3 release; exact typed model remains the SDK authority |
 
 Local helpers target Python 3.10+ and use only the standard library. Callback schemas, clamping behavior and authorization policy in this skill are original application choices, not Telegram requirements. Keep dependency versions explicit in generated projects; distinguish server API, wrapper library and client rendering support.
+
+The comparison follow-up reread the inline-button, WebAppInfo, LoginUrl,
+CopyTextButton and DisabledButton fields on 2026-10-04. The original offline
+validator checks those reviewed fields with eleven behavioral tests, including
+duplicate JSON fields, a required enabled chosen-chat type and valid empty-query/disabled actions. Reply-keyboard
+validation and live client rendering remain outside that helper.
