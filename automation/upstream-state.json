@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "last_run_at": "2026-10-05T11:47:28Z",
+  "last_run_at": "2026-10-06T05:02:24Z",
   "sources": {
     "https://api.github.com/repos/PaulSonOfLars/gotgbot/releases?per_page=10": {
       "kind": "github-prerelease",
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "6e94655cb3e54392f174600221947988286070698050190aa4cb48cfcba1e65a",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://api.github.com/repos/PaulSonOfLars/gotgbot/releases?per_page=10",
       "release_versions": [
         "v2.0.0-rc.36",
@@ -29,10 +29,10 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "7cf5193201b877e55d424f7d97bc98c3960155684211b576b68bb66a64ee254f",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://api.github.com/repos/go-telegram/bot/releases?per_page=10",
       "release_versions": [
         "v1.27.0",
@@ -51,10 +51,10 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "47b83ee3b3cc807b7345490d242e37070d82b5a7cf465b30c62a797079cd87e7",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://api.github.com/repos/gotd/contrib/releases?per_page=10",
       "release_versions": [
         "v0.25.0",
@@ -74,10 +74,10 @@
         "telegram-bot-gotd",
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "dab2d8bbb7334654396925db32a32927ddd8612a2c6b7bdb0f6d67c1b3ac6e4e",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://api.github.com/repos/gotd/td/releases?per_page=10",
       "release_versions": [
         "v0.162.0",
@@ -96,10 +96,10 @@
       "skills": [
         "telegram-bot-php"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "1f2329491036e139d9e9ef3ab21ca1c4c8de571feb24a253e693c7c1def538bb",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://api.github.com/repos/irazasyed/telegram-bot-sdk/releases?per_page=10",
       "release_versions": [
         "v3.16.0",
@@ -118,10 +118,10 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "5767441b63180c360716e5a908c912a844c4f8f55a0d8cc6d88daf0464ae4307",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://api.github.com/repos/pengrad/java-telegram-bot-api/releases?per_page=10",
       "release_versions": [
         "10.3.0",
@@ -140,10 +140,10 @@
       "skills": [
         "telegram-bot-php"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "a7d9e8f41f9c5736052847181bb4d706d50083e1d21484d3be0fea855cec111e",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://api.github.com/repos/php-telegram-bot/core/releases?per_page=10",
       "release_versions": [
         "0.83.1",
@@ -162,10 +162,10 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "df2cf0464fa058f42feaf93613983bf14e15f1d4393e7144b26dce5c5e45f2eb",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://api.github.com/repos/rubenlagus/TelegramBots/releases?per_page=10",
       "release_versions": [
         "v10.3.0",
@@ -184,10 +184,10 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "5604c67c80b8a944a3a300c9b2a45b48bf1b5b43d07c19cefb129c3590d40269",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://api.github.com/repos/teloxide/teloxide/releases?per_page=10",
       "release_versions": [
         "v0.17.0",
@@ -206,10 +206,10 @@
       "skills": [
         "telegram-bot-dotnet"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "ec66a540c7e10a31fc5983a5790c73f7948ee7f670b259bc3d2164a4ceb6a53e",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://api.nuget.org/v3-flatcontainer/telegram.bot/index.json",
       "release_versions": [
         "22.10.3.2",
@@ -233,12 +233,12 @@
       "skills": [
         "telegram-bot-advanced-features"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-advanced-features": "2026-10-03"
       },
       "sha256": "69853d5d434d310b8018d0fb5b01e6c7e449226cff0a36f2abb6f8aed0b47966",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://apscheduler.readthedocs.io/en/3.x/modules/schedulers/asyncio.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -252,13 +252,13 @@
         "telegram-bot-advanced-features",
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-advanced-features": "2026-10-03",
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "ec1f9e05285103c1946a78645d674fddac162a93f8fc3281d6d847fb8c2d0560",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://apscheduler.readthedocs.io/en/3.x/userguide.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -271,12 +271,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "c8452e84d669005f2bb056b19afd7a5f134469113653d4d35b4073df811e5996",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/api",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -289,12 +289,12 @@
       "skills": [
         "telegram-bot-fundamentals"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-fundamentals": "2026-10-03"
       },
       "sha256": "c362b6991bef239d8d7e73d45ec7652e12e76127c8d5eacf01e566e3e6e8a803",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/api/bots",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -307,12 +307,12 @@
       "skills": [
         "telegram-bot-rich-messaging"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rich-messaging": "2026-10-04"
       },
       "sha256": "78cea1ba34f85aa884e46e9c283fefec92e9dd12635f8fd67120ae2f5cccf601",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/api/bots/ai",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -325,12 +325,12 @@
       "skills": [
         "telegram-bot-fundamentals"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-fundamentals": "2026-10-03"
       },
       "sha256": "abf97f8b0395ada1b88b2b4da9b3c81d268ed8cedffbc41c00bde83d83d58b66",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/api/bots/connected-business-bots",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
@@ -343,12 +343,12 @@
       "skills": [
         "telegram-bot-fundamentals"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-fundamentals": "2026-10-03"
       },
       "sha256": "174ba4867e7f9073ac4dffcbfa53ae53167947f6327d1352892b0700e4a56437",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/api/bots/guest-mode",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
@@ -361,12 +361,12 @@
       "skills": [
         "telegram-bot-fundamentals"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-fundamentals": "2026-10-03"
       },
       "sha256": "fdc7bf0375532368ac7090e1ad59e7719fd54dcc24d33f6f0e00941693790553",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/api/bots/managed-bots",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -379,12 +379,12 @@
       "skills": [
         "telegram-bot-fundamentals"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-fundamentals": "2026-10-03"
       },
       "sha256": "e5889e29ece0e45965ae70ad2a7df52e6e30ad6f53c1ae568c01a103c1563373",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/api/business",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -397,12 +397,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "aa43eedcfc47412076b8bbe8569ea9ed6f6175aa9bd4042f39eecda897ba6bac",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/api/files",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -415,12 +415,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "af6c23e345988807dd5429b285de640842f16fdf43fb1c938dfb6109873c1636",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/api/obtaining_api_id",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -433,12 +433,12 @@
       "skills": [
         "telegram-bot-fundamentals"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-fundamentals": "2026-10-03"
       },
       "sha256": "97f8f729b5de98b23403b6113b4ba8406025c3c65538a54a0f9bcf3eaf9b386f",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/api/stories",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -463,7 +463,7 @@
         "telegram-bot-rust",
         "telegram-bot-ux"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-advanced-features": "2026-10-03",
         "telegram-bot-aiogram": "2026-10-03",
@@ -480,7 +480,7 @@
         "telegram-bot-ux": "2026-10-04"
       },
       "sha256": "00fbdd6bc5636c08701ebdf1f817af720fce04976cb0a0135d094879f231ba74",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/bots/api",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -494,13 +494,13 @@
         "telegram-bot-keyboards-ui",
         "telegram-bot-payments-stars"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-keyboards-ui": "2026-10-04",
         "telegram-bot-payments-stars": "2026-10-03"
       },
       "sha256": "e21ec74b36e2a0db8c3420201cf1282f3f9d261a73c8b3b28176b6bd1892c68c",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/bots/api-changelog",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -515,14 +515,14 @@
         "telegram-bot-fundamentals",
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-advanced-features": "2026-10-03",
         "telegram-bot-fundamentals": "2026-10-03",
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "8ed5f16f2519ed7e5390ecfbb5c8d060d305076fbbc21cf3406aea2016626f76",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/bots/faq",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -537,14 +537,14 @@
         "telegram-bot-python-telegram-bot",
         "telegram-bot-rich-messaging"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-fundamentals": "2026-10-03",
         "telegram-bot-python-telegram-bot": "2026-10-03",
         "telegram-bot-rich-messaging": "2026-10-04"
       },
       "sha256": "8cb9a5c96d0e920850d63898f9d0194a9cc3b7f2a65379a268327f72d3d5e0bb",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/bots/features",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -557,12 +557,12 @@
       "skills": [
         "telegram-bot-ux"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-ux": "2026-10-04"
       },
       "sha256": "681836e740eaff093699d085b117909f242326d79442ee22f4ff3af9f3fc4283",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/bots/guidelines",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
@@ -575,12 +575,12 @@
       "skills": [
         "telegram-bot-payments-stars"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-payments-stars": "2026-10-03"
       },
       "sha256": "fd7e5c4a50a4b8e390e2aedb59c57403e8f88e6fbe5ef530e91f2bc4e5a2f7a8",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/bots/payments",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -593,12 +593,12 @@
       "skills": [
         "telegram-bot-payments-stars"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-payments-stars": "2026-10-03"
       },
       "sha256": "f6897dbf2a1db2371fc21250bc625fee8f681d9db641e1f986c004e9957ac78c",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/bots/payments-stars",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -611,12 +611,12 @@
       "skills": [
         "telegram-bot-payments-stars"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-payments-stars": "2026-10-03"
       },
       "sha256": "0fa1c10b830657016b3b8a407e5e6304013170d6da5ba267a55a8880505e2cd4",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/bots/payments/currencies.json",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -632,7 +632,7 @@
         "telegram-bot-miniapps",
         "telegram-bot-ux"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-accessibility": "2026-10-04",
         "telegram-bot-miniapp-design": "2026-10-04",
@@ -640,7 +640,7 @@
         "telegram-bot-ux": "2026-10-04"
       },
       "sha256": "f4e1eb13f7a7d64bfd741ad42518956ed5abe1d38fc489f384017dc4dc8d892e",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/bots/webapps",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -653,12 +653,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "b73bc9fa7229c8ac64ba71fff2faa6cd2b7a7b255542c0908e1f578cad138ee0",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/constructor/updateBotCallbackQuery",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:25:09Z",
@@ -671,12 +671,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "c455ca9bf6b64defead74cd1fdaf4e47ebd3d959d0adcbba4ca04f263062e1f5",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/method/account.updateProfile",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -689,12 +689,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "b5366afa8b9d84d815a8ed656820ed382b5b993d5ec7db39a0b63b7a089327f6",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/method/channels.joinChannel",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -707,12 +707,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "00d727f9bebd9b967b13118438f2344ffd022cc80dd33eb89f94dfcbe73054dd",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/method/messages.getHistory",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -725,12 +725,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "2d3b1690704094c96901dd24150fea3887ad8efc84e1ce39cc48976aeacf9b1b",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/method/messages.importChatInvite",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -743,12 +743,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "cac612386f1601f38d0f9b0411cd3301a42f18d98a9fb936f63c27e1bec8cdfb",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://core.telegram.org/mtproto",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -761,10 +761,10 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "0cfab401d940b91c45f7f8a4f2abbf4c235c5151f3f98bc3b4b9d2c60216bbc1",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://crates.io/api/v1/crates/teloxide",
       "release_versions": [
         "0.17.0"
@@ -779,38 +779,37 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
-      "sha256": "18ac0c5b2f4d01ecc81ec226f1d3ce071cda976b98c7dc62f1981a32a0fefb97",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "sha256": "303497c98307a3955aa50b9f0a543b329185d0d6cc9681fd1040c91d05b4582b",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://crates.io/api/v1/crates/teloxide/0.17.0",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "3290148c2f26f30cd2d6168ad7a41c85ba99e78d2c5cc519d4ec9faa45bff497",
-      "reviewed_sha256": "a540ba32a85462e18df921911c51f31d2b8d729e6021fcf107d63004234ecd77",
-      "editorial_reviewed_at": "2026-10-05T05:09:56Z",
-      "last_changed_at": "2026-10-05T11:47:28Z",
+      "reviewed_sha256": "303497c98307a3955aa50b9f0a543b329185d0d6cc9681fd1040c91d05b4582b",
+      "editorial_reviewed_at": "2026-10-06T05:11:04Z",
+      "last_changed_at": "2026-10-06T05:02:24Z",
       "review_method": "agent-content-review",
       "review_record": {
         "reviewer": "Codex /root primary-source content review",
         "decision": "cosmetic",
-        "notes": "Fully read the current normalized exact-version JSON and compared every field with saved reviewed cfce3dde333fcf59a19be6bf6951bece5f412a06235d7965c4bfe572b1d7d8a6 content. Only version.downloads changed from723318 to726157. Version0.17.0, edition2021, rust_version1.82, yanked=false, features, publication metadata and checksum84992abeed3ae42e8401b25d266d12bcba1def0abe59d22f6b9781167545f71e remain identical. Reviewed all seven Rust skill/resources and versioned SendMessage/JsonRequest APIs against the existing request fixtures. Native Rust cargo check/test passed on exact current main b073456 in run37266199501. No pin/instruction/example adaptation, listener, Telegram request or local Rust compilation was performed; dated source-ledger scope remains unchanged."
-      },
-      "pending_change_since": "2026-10-05T11:47:28Z"
+        "notes": "Read the complete current normalized exact-version JSON and structurally compared it with saved reviewed a540ba32a85462e18df921911c51f31d2b8d729e6021fcf107d63004234ecd77. The sole difference is version.downloads, from 726157 to 730062. Version 0.17.0, edition 2021, Rust 1.82 minimum, yanked=false, feature definitions, publication metadata and package checksum are identical. Rechecked the Rust entrypoint, source ledger, exact Cargo pin and complete echo/request fixtures against the unchanged versioned API scope; remaining guide/diagnostics resources retain their prior complete review. No dependency, instruction or example change is needed. Native validation evidence is recorded separately; no local Rust compilation, listener or live Telegram request was performed. This acknowledgement preserves the dated source-ledger scope and unrelated review markers."
+      }
     },
     "https://developers.openai.com/api/docs/guides/text?lang=python": {
       "kind": "document",
       "skills": [
         "telegram-bot-recipes"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-recipes": "2026-10-03"
       },
       "sha256": "7f56ba8bd6642bf86bd591c9add6d42f02177f765c65a338ef141e119ca98f2c",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://developers.openai.com/api/docs/guides/text?lang=python",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -823,28 +822,35 @@
       "skills": [
         "telegram-bot-recipes"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-recipes": "2026-10-03"
       },
-      "sha256": "85473ad45c0b67df58756558edef221bee1a7675c773d0a2335a42441b5525d9",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "sha256": "be226db5ac3c8a6b00f4c89a53f10ceae71eb0d79cf146f062390d0977027895",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://developers.openai.com/api/reference/python/resources/responses/methods/create",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "85473ad45c0b67df58756558edef221bee1a7675c773d0a2335a42441b5525d9",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null
+      "reviewed_sha256": "be226db5ac3c8a6b00f4c89a53f10ceae71eb0d79cf146f062390d0977027895",
+      "editorial_reviewed_at": "2026-10-06T05:11:04Z",
+      "last_changed_at": "2026-10-06T05:02:24Z",
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "Codex /root primary-source content review",
+        "decision": "not-applicable",
+        "notes": "Content reviewer /root/responses_source_review_20261006 independently verified the captured hash, read all 45,270 normalized characters and every telegram-bot-recipes resource and behavior test. Current Responses create schema still accepts the starter's configurable model, instructions, string input, max_output_tokens=1600 and store=False; the SDK output_text result path remains supported. Optional context, cache, access, moderation and service fields are not used by this starter. The official Python SDK guide also confirms awaited Responses calls, asynchronous client cleanup, numeric timeout and max_retries=1; the example supplies no custom transport. All 20 existing offline recipe tests passed. No prior normalized response is available, so this is a verified applicability review, not a claimed cosmetic diff. No instructions, pins or examples require adaptation. No authenticated OpenAI or Telegram request was performed, and model availability remains an operator configuration choice. Only this observed hash is acknowledged; unrelated ledger dates and approvals are preserved."
+      }
     },
     "https://docs.aiogram.dev/en/latest/": {
       "kind": "document",
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "71bd6a79237729d21a9ae3250b71e7a78f4d9bd4bb91f1bc2b8ca413e8a372aa",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/latest/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -857,12 +863,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "71bd6a79237729d21a9ae3250b71e7a78f4d9bd4bb91f1bc2b8ca413e8a372aa",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -875,12 +881,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "27466abe46d2705b8a3c003551b7a60468217475096bad99996455976aa371ed",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/_modules/aiogram/dispatcher/dispatcher.html",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -893,12 +899,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "ed8ff1d7878264b411f6fa3316ca59de063ef5ffb635fdd8b655d9e1c621af25",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/_modules/aiogram/fsm/storage/base.html",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -911,12 +917,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "a7a409d73d979293f5643024db1b77675ad2616308e9f1b9e2a413e7028283c2",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/_modules/aiogram/fsm/storage/redis.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -929,12 +935,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "0bf6cc9c324cc7307b58a3412a57d8540671d4ad1258f18e455653ed84f93e71",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/api/download_file.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -947,12 +953,12 @@
       "skills": [
         "telegram-bot-payments-stars"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-payments-stars": "2026-10-03"
       },
       "sha256": "674299281df5656e235fdbb1e998f46c0daa133d2eaff9ce2ed46ff52d5f8bd8",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/api/methods/create_invoice_link.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -965,12 +971,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "190bd76998068f321a746d33922880a6dc01e5e73b843fb2608f64445ac755c3",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/api/types/callback_query.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -983,12 +989,12 @@
       "skills": [
         "telegram-bot-keyboards-ui"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-keyboards-ui": "2026-10-04"
       },
       "sha256": "c240973e43ae22c7fb581c4d7db9f8d8667193e30144fc0e2479bb2d18807201",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/api/types/inline_keyboard_button.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1001,12 +1007,12 @@
       "skills": [
         "telegram-bot-miniapps"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-miniapps": "2026-10-04"
       },
       "sha256": "da54d010e68096f854782a1b3c39a5fa75f29d452034a467d685bf1ad2f23bd6",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/api/types/web_app_info.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1019,12 +1025,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "fe45db60a56116385df3a78c7f3675a0c18f2be449deba74ace11ef8324d93e0",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/api/upload_file.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1038,13 +1044,13 @@
         "telegram-bot-aiogram",
         "telegram-bot-keyboards-ui"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03",
         "telegram-bot-keyboards-ui": "2026-10-04"
       },
       "sha256": "ec9d65418acbdeb71df3312b6586453896c5ec71d549683f0862842f0403fa15",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/changelog.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1057,12 +1063,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "5f052811bf771ed6bd783a586627e8433ec39dfeb0761c3cf57958a9bc8c8473",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/dispatcher/dependency_injection.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1075,12 +1081,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "b83c34c340142128ea9000b5540d1c2c7cc91cad74a32cffe9acf0163d127ed8",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/dispatcher/dispatcher.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1093,12 +1099,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "e5125c28bfd63350110db32dfe71a2f58cc53f341d816b00409e5069c8d62848",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/dispatcher/errors.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1111,12 +1117,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "f3775fc88d1ba8548fa0772d22a0871f348dca9fef6ff18064f31be86665a0ea",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/dispatcher/filters/callback_data.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1129,12 +1135,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "e7220940417d1e2467830a6d7489369f32f8119b3a915bc0c3a6c14cc14a8bd7",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/dispatcher/filters/command.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1147,12 +1153,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "66a49e5c4b43e960c75fd585bc56dd263bc0f68a3cc115babc6cbac52294d81b",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/dispatcher/filters/magic_filters.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1165,12 +1171,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "45d4fef7778e34c90abc4d92b3e6198f10989f34f55bf61fe935362ae07a15e6",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/dispatcher/finite_state_machine/index.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1183,12 +1189,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "bca540cb66d39408a9bd7ac3635311834d9d5313d0db9992ec59cd4046269107",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/dispatcher/finite_state_machine/scene.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1202,13 +1208,13 @@
         "telegram-bot-advanced-features",
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-advanced-features": "2026-10-03",
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "06a019d454e46ec5ba7ddba635063f0d06030a13f457903f959a6e1570ac7a3a",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/dispatcher/finite_state_machine/storages.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1221,12 +1227,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "65b12daa927702e6876d0ea3ac07239f400ef6038129365af62af6bcc9666910",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/dispatcher/middlewares.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1239,12 +1245,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "3af5f760eddff149c110ae2f41a2f26bd9380e6f3d6cd76e3f4491946fb396e7",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/dispatcher/router.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1258,13 +1264,13 @@
         "telegram-bot-advanced-features",
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-advanced-features": "2026-10-03",
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "66f747d0f2c76aaf980f530c6d11920a16a77b35723f84e4d3ab97f4a92a330a",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/dispatcher/webhook.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1277,12 +1283,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "968dbfd1ff71ee349ff5f1f442b08ace9db171afc2cd60e532c09230a15bb066",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/migration_2_to_3.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1295,12 +1301,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "063ac11eb5c6776de1038014edde3ace526ab0a085958091657e4f0825129196",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/utils/i18n.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1313,12 +1319,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "71bafaa641f328fd8a42231124cc864f0d59a4e375600c691d4090ba00d01afd",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.aiogram.dev/en/v3.31.0/utils/media_group.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1331,12 +1337,12 @@
       "skills": [
         "telegram-bot-advanced-features"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-advanced-features": "2026-10-03"
       },
       "sha256": "17cccba4d4888e989dddc136fd76c7852d0ac37729a837d821182a76b90650ca",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.docker.com/build/building/best-practices/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1349,10 +1355,10 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "85c8f424917af0403af9eee0b13fddcd81dd722b5c46e3b1912f0fd275b5f7e7",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/stable/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1365,12 +1371,12 @@
       "skills": [
         "telegram-bot-payments-stars"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-payments-stars": "2026-10-03"
       },
       "sha256": "61a87d814947be97fc194ca24a28e65b6d41d9b46d6a9bad3cd9b82ff280491c",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/stable/telegram.bot.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1383,12 +1389,12 @@
       "skills": [
         "telegram-bot-recipes"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-recipes": "2026-10-03"
       },
       "sha256": "3896bc3171eb790eb4a20a4abb8391a5b924a11d3611282f28fdf186018c2618",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/stable/telegram.error.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
@@ -1401,12 +1407,12 @@
       "skills": [
         "telegram-bot-advanced-features"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-advanced-features": "2026-10-03"
       },
       "sha256": "118451f7670992010f63c7af72dbb0a2bde2b0f5aca09c5b8de939956536d691",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/stable/telegram.ext.aioratelimiter.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1419,12 +1425,12 @@
       "skills": [
         "telegram-bot-miniapps"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-miniapps": "2026-10-04"
       },
       "sha256": "1f1de4ecf87a1d2c8d58a5811c341ed290e958ad87959de08d667f38b135a964",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/stable/telegram.webappinfo.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1437,12 +1443,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "85c8f424917af0403af9eee0b13fddcd81dd722b5c46e3b1912f0fd275b5f7e7",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1455,12 +1461,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "53a78c926e6386133ae35ccb79044edb514e27f64b17b781b5192b3c3c8c5cbf",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/changelog.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1473,12 +1479,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "4052c127f91f52bc206a09e686a110f9307dec0b82fd1b3d1e10abdeb9bf8a00",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/examples.customwebhookbot.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1491,12 +1497,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "61a87d814947be97fc194ca24a28e65b6d41d9b46d6a9bad3cd9b82ff280491c",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.bot.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1509,12 +1515,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "fe5b3e55af467bd78ff99a7fe83887dd4c519d085ab61c14a820d08df1f920e3",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.callbackquery.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1527,12 +1533,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "3896bc3171eb790eb4a20a4abb8391a5b924a11d3611282f28fdf186018c2618",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.error.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1545,12 +1551,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "118451f7670992010f63c7af72dbb0a2bde2b0f5aca09c5b8de939956536d691",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.ext.aioratelimiter.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1564,13 +1570,13 @@
         "telegram-bot-python-telegram-bot",
         "telegram-bot-recipes"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03",
         "telegram-bot-recipes": "2026-10-03"
       },
       "sha256": "76d83736bd95ec23bbb231228fb0917d9f8e7abf643b0228a7d9b3e692942396",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.ext.application.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1583,12 +1589,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "96fc3c354ac53c19058e8a3d773684e7c4ac91dbc89894de1a94656a4d58492b",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.ext.applicationbuilder.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1601,12 +1607,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "fa072258980e667b719728732f6eed87d13f1ce3da08e714a3cc2fddb9548c97",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.ext.basepersistence.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1619,12 +1625,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "d0a4d7406b0f20f257fa0e5a0ca6bc13a585da4faa78c34d5798065e13eca6f0",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.ext.callbackcontext.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1637,12 +1643,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "4742778f895688ed04ceef456e89956eadc34ddb6a3eef00a279fc47891d1349",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.ext.callbackqueryhandler.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1655,12 +1661,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "4fb1754efe434264e3149e05d44f3560f919b935784dfc396efa8bd81f061f6a",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.ext.conversationhandler.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1673,12 +1679,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "34c44e8dc4f49cc50ce522006795f94d24e38fdb4878110b39a06808fedc3662",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.ext.filters.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1693,14 +1699,14 @@
         "telegram-bot-python-telegram-bot",
         "telegram-bot-recipes"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-advanced-features": "2026-10-03",
         "telegram-bot-python-telegram-bot": "2026-10-03",
         "telegram-bot-recipes": "2026-10-03"
       },
       "sha256": "ca7bb57ee36d276fef622d639d0664add51ae89b26f0807c514c87c4340a6724",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.ext.jobqueue.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1713,12 +1719,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "24add3fedba9f0390f8fd35302a56679abf26c21a41d8bbc065a3126d11acff4",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.ext.picklepersistence.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1734,7 +1740,7 @@
         "telegram-bot-python-telegram-bot",
         "telegram-bot-recipes"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-advanced-features": "2026-10-03",
         "telegram-bot-fundamentals": "2026-10-03",
@@ -1742,7 +1748,7 @@
         "telegram-bot-recipes": "2026-10-03"
       },
       "sha256": "47c8ba6a92adbd93af8df38aa8b805b5b3b9979f21638abb981620e7dc402c38",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.ext.updater.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1755,12 +1761,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "eff804d9b9bf46b385527b42f5e5e8c196ad51123a5c63053f9c5215f5a3c577",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.file.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1773,12 +1779,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "9b831e7f1ac2e0ec46fc5ac5f1cc9f1b67e3affca06236fe88abd5c136caa97a",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.helpers.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1791,12 +1797,12 @@
       "skills": [
         "telegram-bot-keyboards-ui"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-keyboards-ui": "2026-10-04"
       },
       "sha256": "5c3c2d708b3a3affcb15c95f04bcbc79515392c9ac5fafcdc42d708d443ed8e8",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.inlinekeyboardbutton.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1809,12 +1815,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "c8adfffa3e5b9464fbe6638fa637f9c2bb0c14260b0b01f407aecd10b79766c8",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.inlinequery.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1827,12 +1833,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "89e669fa0b0935b37aa99580f4a274d5d8826f89faf02e5b06a3cf0251b9b2f9",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python-telegram-bot.org/en/v22.8/telegram.inputfile.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1845,12 +1851,12 @@
       "skills": [
         "telegram-bot-miniapps"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-miniapps": "2026-10-04"
       },
       "sha256": "6da725954de0d049b00c1e05e1e6a7847fddb29cb66686886ce014f83d2e9d90",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python.org/3.12/library/sqlite3.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1863,12 +1869,12 @@
       "skills": [
         "telegram-bot-miniapps"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-miniapps": "2026-10-04"
       },
       "sha256": "12fe5760dd5de2cd7d246fa794b2584d859dd45d99a8572b4cbe157af12056b8",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python.org/3.12/library/urllib.parse.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1881,12 +1887,12 @@
       "skills": [
         "telegram-bot-recipes"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-recipes": "2026-10-03"
       },
       "sha256": "a92344758898cff4b4cad5e5f02d12b00d9d9229569fd88acc6b0b5216a1ec5b",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.python.org/3/library/sqlite3.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1899,12 +1905,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "794c4f3e2ebf5b57e3b731a7c40e2d5e3b1f1dae36385a5444b824d5b5cc3e99",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.rs/teloxide/0.17.0/teloxide/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1917,12 +1923,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "b023dab2a25352591fec40405c8a8c3f95b7dc7612bf2cde6cac35b6a7258752",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.rs/teloxide/0.17.0/teloxide/dispatching/dialogue/index.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1935,12 +1941,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "2f72b4e71510fb58b6c1e3c5aa42e80c9dfb6e2faf083f0c56f071c5a23aa26e",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.rs/teloxide/0.17.0/teloxide/dispatching/index.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1953,12 +1959,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "8e0e016f031bb154d877eaf8104a8fbb50ed338a747eebbcc95582eba53f65aa",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.rs/teloxide/0.17.0/teloxide/enum.RequestError.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -1971,12 +1977,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "5a69675f235bfd9c3efb3a5e9e58826127c2dfcf58fa82eb2b759acfa9ab1508",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.rs/teloxide/0.17.0/teloxide/payloads/struct.SendMessage.html",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -1989,12 +1995,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "463e55d806a210d9e558ed7208dafb6cd6ab26c1349118512831ac604ae73d63",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.rs/teloxide/0.17.0/teloxide/repls/fn.repl.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2007,12 +2013,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "3f77a6363cf00e6110baef78009e5592956f2b45de87753922f53d4f10274fdc",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/teloxide/teloxide/v0.17.0/crates/teloxide-core/src/requests/requester.rs",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:38:37Z",
@@ -2025,12 +2031,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "9bbfe6a5ab1dc8b7b9a4f4e07e468f03ae35fd043de5802f801b0355b9802805",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.rs/teloxide/0.17.0/teloxide/types/index.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2043,12 +2049,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "c7022a1efec45054426510d161025a164825b764cdc4179af472f9f09b1cb8c5",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.rs/teloxide/0.17.0/teloxide/types/struct.Message.html",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -2061,12 +2067,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "9b32434df8650449096681c6a0ddfbc0d55a7da79b4146e71d68aaffd10c137a",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.rs/teloxide/0.17.0/teloxide/update_listeners/webhooks/fn.axum.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2079,12 +2085,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "9ae8b60ab718f2d94083ae5e9a4623dce47212c8f5b78e5c4af2d4b927b64d84",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.rs/teloxide/0.17.0/teloxide/update_listeners/webhooks/struct.Options.html",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -2097,12 +2103,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "6c52c38863fdc75f371bc092cf9fb41ea98cf032c3baaf1febbd6d25caaf29d3",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.rs/teloxide/0.17.0/teloxide/utils/command/index.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2115,10 +2121,10 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "794c4f3e2ebf5b57e3b731a7c40e2d5e3b1f1dae36385a5444b824d5b5cc3e99",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.rs/teloxide/latest/teloxide/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2131,12 +2137,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "e30a2bb043693dfbbcfbfa841072a76658fe45e09b7b3b09b82c76f8014f628b",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.rs/tokio/latest/tokio/task/fn.spawn_blocking.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2149,48 +2155,62 @@
       "skills": [
         "telegram-bot-advanced-features"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-advanced-features": "2026-10-03"
       },
-      "sha256": "92423833463cb90ccb3bd5739d8464158fa4bd0be6f088614993575fdd834510",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "sha256": "8a340fe09b2ff01565f3d0295c2c5d2dc041e2e562b957e98202a03d9503c9ed",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.sqlalchemy.org/en/20/dialects/sqlite.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "92423833463cb90ccb3bd5739d8464158fa4bd0be6f088614993575fdd834510",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null
+      "reviewed_sha256": "8a340fe09b2ff01565f3d0295c2c5d2dc041e2e562b957e98202a03d9503c9ed",
+      "editorial_reviewed_at": "2026-10-06T05:11:04Z",
+      "last_changed_at": "2026-10-06T05:02:24Z",
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "Codex /root primary-source content review",
+        "decision": "not-applicable",
+        "notes": "Content reviewer /root/sqlalchemy_source_review_20261006 verified the capture hash and read all 70,737 normalized characters, all eight advanced-feature resources and the current 2.1 dialect documentation against SQLAlchemy[asyncio]==2.1.1 / aiosqlite==0.22.1. SQLite dialect insert/on_conflict_do_nothing, file-backed pooling, per-operation sessions, explicit DML transactions and awaited disposal remain compatible. The concurrent in-memory/StaticPool transaction warning does not affect the temporary file-backed demo and tests. These fixtures do not depend on foreign-key/savepoint/RETURNING-only behavior. All nine existing advanced-feature tests, the standalone demo and a supplemental file-backed DML rollback/pool check passed with SQLite 3.43.1. No prior normalized response is available: this establishes applicability, not a claimed cosmetic historical diff. No skill, dependency or example adaptation is required. No Telegram operation was performed. Unrelated editorial dates and source records are preserved."
+      }
     },
     "https://docs.sqlalchemy.org/en/20/orm/extensions/asyncio.html": {
       "kind": "document",
       "skills": [
         "telegram-bot-advanced-features"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-advanced-features": "2026-10-03"
       },
-      "sha256": "add0a0044287f4af6277d2b2baaf179adc14920d55daa1be85260456ac193454",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "sha256": "da1b31a9088bd6e97e4faa64fd89c9ffc547848848e96cc5c511841b8104659f",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.sqlalchemy.org/en/20/orm/extensions/asyncio.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "add0a0044287f4af6277d2b2baaf179adc14920d55daa1be85260456ac193454",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null
+      "reviewed_sha256": "da1b31a9088bd6e97e4faa64fd89c9ffc547848848e96cc5c511841b8104659f",
+      "editorial_reviewed_at": "2026-10-06T05:11:04Z",
+      "last_changed_at": "2026-10-06T05:02:24Z",
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "Codex /root primary-source content review",
+        "decision": "not-applicable",
+        "notes": "Content reviewer /root/sqlalchemy_source_review_20261006 verified the capture hash and read all 162,722 normalized characters, all advanced-feature resources and current 2.1 asyncio documentation. The implemented DeclarativeBase/Mapped schema, async_sessionmaker, one AsyncSession per task, explicit session.begin DML transaction, expire_on_commit=False scalar access and awaited engine.dispose conform to documented APIs and lifecycle. The fixture performs explicit SQL with no relationship/lazy-loading dependency. requirements-dev already includes SQLAlchemy[asyncio]==2.1.1, supplying the asyncio/greenlet extra required by 2.1. All nine existing advanced-feature tests and the standalone demo passed with Python 3.12.1 / aiosqlite 0.22.1; concurrent upsert, rollback and cleanup were also reviewed. There is no prior normalized body for a historical diff, so the decision records verified applicability. No instruction, dependency or example change is needed. No live Telegram call was made. Only this reviewed hash is acknowledged; unrelated dates and markers remain unchanged."
+      }
     },
     "https://docs.telethon.dev/en/stable/basic/signing-in.html": {
       "kind": "document",
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "1b4abb6cd486db8cec85cdec48e7e6f1e8ea2de653066e5fc07a3c61d539671a",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.telethon.dev/en/stable/basic/signing-in.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2203,12 +2223,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "315a72cfa6ba17e04e1f5105a5a044826dcccf0f228f18b8eb935ab411157f36",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.telethon.dev/en/stable/concepts/asyncio.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2221,12 +2241,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "52a31e55d2a649d21dc1aada1183dc542e609a75f398eda4612c41acc95649a0",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.telethon.dev/en/stable/concepts/entities.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2239,12 +2259,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "49c5d931fbc948d1e8509f7d59b47e44298b3609f1f4d62f11bd869e8a8fe8bd",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.telethon.dev/en/stable/concepts/errors.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2257,12 +2277,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "37dc2c42d02a4fbcdf2c194f57d8211f8757343c89be82ef2405f961948b1913",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.telethon.dev/en/stable/concepts/sessions.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2275,12 +2295,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "741ced505819378b65f64036e771c81bc75d3e5b4c4019f7d60003ebe1a76ea5",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.telethon.dev/en/stable/concepts/updates.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2293,12 +2313,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "1b9de2aaf714c75712a9976838c27740b34e320d0704bd6321b3a6539c123add",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.telethon.dev/en/stable/misc/changelog.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2311,12 +2331,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "fac5546041e08675e408e4b0be4ba3e4b94b0f34291c391da75698cd5f37c32c",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.telethon.dev/en/stable/modules/client.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2329,12 +2349,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "f397c3ecbacbe0c5f7e898d0d3c712042b541d11bc7150a4c89c5c7162cc107c",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.telethon.dev/en/stable/modules/custom.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2347,12 +2367,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "7eab7e93212267d802e37c55ff119ddc4805e89cc10bc5cb5fd424d20203bffb",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://docs.telethon.dev/en/stable/modules/events.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2365,12 +2385,12 @@
       "skills": [
         "telegram-bot-recipes"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-recipes": "2026-10-03"
       },
       "sha256": "f56149f359ab690b6a4091ddd2a22776cd091b29c087698f979fcbb8568151fc",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://fastapi.tiangolo.com/advanced/custom-response/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2383,12 +2403,12 @@
       "skills": [
         "telegram-bot-miniapps"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-miniapps": "2026-10-04"
       },
       "sha256": "9ba9754ef6d184013a6fab9ce203a167914d55905460076fa897f3ea2a7b1546",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://fastapi.tiangolo.com/tutorial/security/first-steps/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2401,12 +2421,12 @@
       "skills": [
         "telegram-bot-miniapps"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-miniapps": "2026-10-04"
       },
       "sha256": "95ab0009b49622fedf9e45d8ba475331aa9983767c55944735726b35eaf6edff",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://fastapi.tiangolo.com/tutorial/testing/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2419,12 +2439,12 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "ee15a1cd93a3f538f789ad450c0b7a0e73d1fe5b1195887456b271a4f807e62a",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/PaulSonOfLars/gotgbot/tree/v2.0.0-rc.36",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2437,12 +2457,12 @@
       "skills": [
         "telegram-bot-dotnet"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-dotnet": "2026-10-03"
       },
       "sha256": "c6bb0a7b9413987a934ccdbd636dad0dbe381ba07c43ab5a417268b905a5e6eb",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/TelegramBots/Telegram.Bot.Examples",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2455,12 +2475,12 @@
       "skills": [
         "telegram-bot-dotnet"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-dotnet": "2026-10-03"
       },
       "sha256": "4b83a785ecb1bf821f42a948ba8e88aefd30c9d2299bbef19bfa370cc3169aa2",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/TelegramBots/Telegram.Bot/v22.10.3.2/src/Telegram.Bot/Requests/Sending%20Messages/SendMessageRequest.cs",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -2473,12 +2493,12 @@
       "skills": [
         "telegram-bot-dotnet"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-dotnet": "2026-10-03"
       },
       "sha256": "40e1a8283297743f1a8aa2c5ec4c9e1bba48376be41cadc42f001a9292f1dc23",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/TelegramBots/Telegram.Bot/v22.10.3.2/src/Telegram.Bot/TelegramBotClient.cs",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2491,12 +2511,12 @@
       "skills": [
         "telegram-bot-dotnet"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-dotnet": "2026-10-03"
       },
       "sha256": "88ee57d97063780bd2329c464b6276579c4a9e1ceee98f488d49b1fc072614e6",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/TelegramBots/Telegram.Bot/v22.10.3.2/src/Telegram.Bot/TelegramBotClientExtensions.ApiMethods.cs",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -2509,12 +2529,12 @@
       "skills": [
         "telegram-bot-dotnet"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-dotnet": "2026-10-03"
       },
       "sha256": "d0256f5afc037e332ad6adcad1dce5c744b8ae41bc5ecb6871d85b4ab27275e3",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/TelegramBots/Telegram.Bot/v22.10.3.2/src/Telegram.Bot/Types/ChatId.cs",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -2527,12 +2547,12 @@
       "skills": [
         "telegram-bot-dotnet"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-dotnet": "2026-10-03"
       },
       "sha256": "0a0274f7ccdc4cdc6e8c6171e4ecdeb5213d05342ca0ae6cb910a4b67c8dd985",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/TelegramBots/Telegram.Bot/v22.10.3.2/src/Telegram.Bot/Types/DirectMessagesTopic.cs",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -2545,12 +2565,12 @@
       "skills": [
         "telegram-bot-dotnet"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-dotnet": "2026-10-03"
       },
       "sha256": "e734d961d60f00b71ad6e097becbd4a72ad8f06fe2433d10b82e1ff27c803dbb",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/TelegramBots/Telegram.Bot/v22.10.3.2/src/Telegram.Bot/Types/Message.cs",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -2563,12 +2583,12 @@
       "skills": [
         "telegram-bot-payments-stars"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-payments-stars": "2026-10-03"
       },
       "sha256": "1a067190ed33d41d09f46ed982b00d959a3a533b9548a11d9264c062005bb543",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/aiogram/aiogram/releases/tag/v3.31.0",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2581,12 +2601,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "ec0543a9504dea73bfbe96d4105ee4a7bef6223c77ac89fd58e62e603309d7bb",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/celestix/gotgproto",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2599,12 +2619,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "0ba0e13c495f31b5822381a6548b567a6b4ec4e5004f132fbfd7148cb2fa778e",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/etcd-io/bbolt",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2617,12 +2637,12 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "8146e3572c975e71314e85032ad9df357c3bcadb10c63e6d9dac5e81a8878386",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/go-telegram-bot-api/telegram-bot-api/v5.5.1/bot.go",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:25:09Z",
@@ -2635,12 +2655,12 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "d3d66b25546db350b325c3e75b09da0e6358ec6c7ae7db4caeeed0607467be17",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/go-telegram/bot/v1.27.0/CHANGELOG.md",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2653,12 +2673,12 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "b8bb1776c823afb3b1ac5cbe31a5e75e50e135054cdaddfa299534c8a6a52d74",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/go-telegram/bot/v1.27.0/README.md",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2671,12 +2691,12 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "eb3ec7ccfd88a7461a9e08df07a4cbdec075698f34615107ee079a8659bda490",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/go-telegram/bot/v1.27.0/errors.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2689,12 +2709,12 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "2484751258165b755067795da79bb2ea2571fd234a5ca1e41c51e9e6cc3ba638",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/go-telegram/bot/v1.27.0/handlers.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2707,12 +2727,12 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "e53ecbbf2eaf7ebda08410c76d4a86b55561200237220ae073470d3363d83900",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/go-telegram/bot/v1.27.0/options.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2725,12 +2745,12 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "3d6b71028ad72f0d7435bb687ccd9eb2d3a9350f9281aa860dd4ff85ac1832f7",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/go-telegram/bot/v1.27.0/webhook_handler.go",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -2743,12 +2763,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "ee0053e9d57a2120ffb19432db8b18757ab87aff053996453cf892ee966329a0",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/gotd/botapi",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2761,12 +2781,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "37bdc9c135bb33d6ebbfac6ce34bfc5e1bb1330ac585e35b586bc3c470b629e0",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/contrib/v0.25.0/bbolt/peer_storage.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2779,12 +2799,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "bbb0d2a959757e029e2bc6a6ecfe2bd3ffdce1a985bde6261d263ac62154ddcb",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/contrib/v0.25.0/bbolt/session.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2797,12 +2817,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "088583fc1f4c085dc0d4db845e0d9eaf94d15ca9b09b5d81a16e8de88da207e5",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/contrib/v0.25.0/bbolt/state_storage.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2815,12 +2835,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "00fce52996ace4a4ba7f27de5f35bf0d83f2de22b285f9c839c6cafacef44d93",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/contrib/v0.25.0/bg/connect.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2833,12 +2853,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "c766f2d867cdc963295fdf66e2292a54f0576f6b7e6779270ab491d64a323706",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/contrib/v0.25.0/middleware/ratelimit/ratelimit.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2851,12 +2871,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "c33ef29b17d9cf3acebb8906f3cdc5105576f50bafa379aa10929da5a2f9b1cc",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/contrib/v0.25.0/oteltg/middleware.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2869,12 +2889,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "ff5dc522a25e33f6443669493d0bbbd0b666046d1ea22cbe1d6bfbdbc7c896e7",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/contrib/v0.25.0/storage/hook.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2887,12 +2907,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "4c67ea9778bb118b494cb5e5fbda2f1a220dbd202bfe8cd90a8cea6ca21f865b",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/contrib/v0.25.0/storage/resolver_cache.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2905,12 +2925,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "b82dbc5a70905de721190d5ff14b7771808215f5fec61defddeecb6630e097bf",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/gotd/contrib/tree/v0.25.0",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2923,12 +2943,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "53db3f922b4944d0192873e05d34387ee183b20b3992168a4a0413bc2ace2361",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/gotd/contrib/tree/v0.25.0/invoker",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2941,12 +2961,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "f752e4e2a191f753ba8b56c3431ec4e63cd05f75e3760853f3210241bde46268",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/gotd/contrib/tree/v0.25.0/middleware/floodwait",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2959,12 +2979,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "0c5f70868323ad7aab437c9cc89f76a032d99b3c4d82dc0d141284bd5721a407",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/gotd/contrib/tree/v0.25.0/pebble",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2977,12 +2997,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "97e4119f51000feccc508637a4419c77fb77df41ccd7bdc13e30a014385213e9",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/gotd/contrib/tree/v0.25.0/redis",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -2995,12 +3015,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "cc9e27aab6625851bc9c568b14e1c9d104e2b0a81b0f0244fa380a5a6345e116",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/gotd/contrib/tree/v0.25.0/s3",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3013,12 +3033,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "1f30173898e09cffd984daee804f01d173a1e8e180714d740721828be637162a",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/gotd/contrib/tree/v0.25.0/vault",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3031,12 +3051,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "93cbec04377b9695c66d058f8d19c7fb313db121002ecb9e4bf90e8da1d98401",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/td/v0.162.0/examples/bot-auth-manual/main.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3049,12 +3069,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "bd47622b4be4d1c85388ca60915b011fca8ee71559016dea7334bbe25fe0736e",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/td/v0.162.0/examples/bot-echo/main.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3067,12 +3087,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "b48385a7eddb9df1e5d20fbb6ed6ae7eeaf18d9009003394d57f96f62938a53f",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/td/v0.162.0/examples/updates/main.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3085,12 +3105,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "8f070616355f5a24ef03717513c937a2fe1e67b597aa5d8a003f965e5e5b907e",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/td/v0.162.0/telegram/auth/bot.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3103,12 +3123,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "ab1965e368928d917f466047835b89e8fd997008f42364b312dd65781a157a93",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/td/v0.162.0/telegram/auth/flow.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3121,12 +3141,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "d8ee966f8bb8f6cdce9670c5d8d5328b9478809f6b6e225c9a5e58548d79d581",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/td/v0.162.0/telegram/client.go",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3139,12 +3159,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "af7d7daf9427c3903aeb4b78dc9d138b89accf997bd7fc9266b160f2da02617a",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/td/v0.162.0/telegram/message/peer.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3157,12 +3177,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "d7109cf6551044fb792c3f3287696b96096c95274b9246396be43a5dc0759ff4",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/td/v0.162.0/telegram/options.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3176,13 +3196,13 @@
         "telegram-bot-gotd",
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03",
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "37161c51ef0b202ee2c02150f96813607981d5a247bf4f5a439d04e149243d41",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/td/v0.162.0/telegram/pool.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3195,12 +3215,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "4f12aa3edbdeb70923debe46fe34f2b4c3f3ebd13d3cbbf4481e9540c97ba4be",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/td/v0.162.0/telegram/updates/config.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3213,12 +3233,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "e324570a0bea3d201c1687b66ca58274abff01b1f92e17dcba3c84ec601f73c7",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/td/v0.162.0/telegram/updates/manager.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3232,13 +3252,13 @@
         "telegram-bot-gotd",
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03",
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "1a6f9845b8021cf6b8f0223776ab1ae2ea51474a7d65bcb02909f95563a3ae75",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/gotd/td/v0.162.0/telegram/updates/storage.go",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3251,12 +3271,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "084c4f79a892fa2d8bcc7a58b3a1ad7af860e5bddda4bf9bd3e2c2f1b32bf121",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/gotd/td/tree/v0.162.0",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3269,12 +3289,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "3979c0e676783c2252e01e303f7c699e06f724c67a528788aea69eafe9f6c42e",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/grammyjs/grammY/v1.46.0/src/bot.ts",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3287,12 +3307,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "7a7a9280473d2301c7a87b8c05c24df7b4d076e95002aca265c208556f3abb06",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/grammyjs/grammY/v1.46.0/src/context.ts",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3305,12 +3325,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "b554c49a350c64ed54109378961ba71d35ab3987c9ec8b5c48afd7bafcf04c57",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/grammyjs/grammY/releases/tag/v1.46.0",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3323,12 +3343,12 @@
       "skills": [
         "telegram-bot-php"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-php": "2026-10-03"
       },
       "sha256": "5454b14bba5b408dc8884b1eebafc85facd757510a31d7367f3b8d1cb0c167ab",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/irazasyed/telegram-bot-sdk/v3.16.0/src/Methods/Update.php",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3341,12 +3361,12 @@
       "skills": [
         "telegram-bot-php"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-php": "2026-10-03"
       },
       "sha256": "bfaad19abb5d4784e083c8a1483a15fc926be7f49be39fd96d8b721940be905c",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/irazasyed/telegram-bot-sdk/v3.16.0/src/Traits/Http.php",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3359,12 +3379,12 @@
       "skills": [
         "telegram-bot-php"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-php": "2026-10-03"
       },
       "sha256": "f05f77625dbe6342f5a882eac33564476a06b39d128032de5a9708221149b569",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/irazasyed/telegram-bot-sdk/releases/tag/v3.16.0",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3377,12 +3397,12 @@
       "skills": [
         "telegram-bot-php"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-php": "2026-10-03"
       },
       "sha256": "a53fb3a5b893f3e27591dd7f69ee363a0a89aed8c68847cec40a1cd5d95acbc3",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/irazasyed/telegram-bot-sdk/tree/v3.16.0",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3395,12 +3415,12 @@
       "skills": [
         "telegram-bot-recipes"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-recipes": "2026-10-03"
       },
       "sha256": "856a854ab6591e398f2586972a25ee55f54d65b339e72546b1985401b327d1de",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/kurtmckee/feedparser",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3413,12 +3433,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "e03dd99f2abd99e509c798aa05e4bdf885c9224275521d4f919b423ec6d471b6",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/mtgo-labs/mtgo",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3431,12 +3451,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "4e34e19b0abe1278308b99a2ccc44388688840731aad88fa77b2a367d7877a90",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/pageton/gotg",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3449,12 +3469,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "adf5b48983a0d01b3cc4b24601da306ff16918db396127b134f478fd9d1aca28",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/pengrad/java-telegram-bot-api",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3467,12 +3487,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "727c230654e18ce3b39e0e88c2ae83e6c3be32b51488e786bb133d05c8bab159",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/pengrad/java-telegram-bot-api/10.3.0/library/src/main/java/com/pengrad/telegrambot/UpdatesListener.java",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3485,12 +3505,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "07285d1015dc947fb0a3b60a9c33ee13e9d7c5a45790eb1e92bd357ace546b3c",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/pengrad/java-telegram-bot-api/tree/master/library/src/main/java/com/pengrad/telegrambot/model",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3503,12 +3523,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "a12c356c375474b763db0f25d5c32e60dddb413cb12d0840fc8d73da48814a23",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/pengrad/java-telegram-bot-api/tree/master/library/src/main/java/com/pengrad/telegrambot/response",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3521,12 +3541,12 @@
       "skills": [
         "telegram-bot-php"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-php": "2026-10-03"
       },
       "sha256": "90da22a841fc09c7c9496702ffe6c9721434d60af641a34d19951462c429e6f8",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/php-telegram-bot/core",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3539,12 +3559,12 @@
       "skills": [
         "telegram-bot-keyboards-ui"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-keyboards-ui": "2026-10-04"
       },
       "sha256": "5667daac5ff8c29b140dd7298a7f4d20fc0ca6e0cb6ca1715c2c4bc94c2b023f",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/python-telegram-bot/python-telegram-bot/releases/tag/v22.8",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3557,12 +3577,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "3ec8221e54fa089a46c160a27ac1006a6847a396f20cb54495e24252545e432b",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/python-telegram-bot/python-telegram-bot/wiki/Bot-API-Forward-Compatibility",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:38:38Z",
@@ -3575,12 +3595,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "28fd1f553986794a900aab77e15063e9bb287b69b7446e5a5db55bce564df008",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/rubenlagus/TelegramBots",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3593,12 +3613,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "3fbebfa5935b04d92a5bd360f70c8930b2d7c54baa66ccf041ce3f80637ea183",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/rubenlagus/TelegramBots/v10.3.0/telegrambots-longpolling/src/main/java/org/telegram/telegrambots/longpolling/BotSession.java",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3611,12 +3631,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "333045e4d5a03fb18d79764225b8bdf6edd84b6a1fa49fd66c266d72fd951d41",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/rubenlagus/TelegramBots/v10.3.0/telegrambots-longpolling/src/main/java/org/telegram/telegrambots/longpolling/TelegramBotsLongPollingApplication.java",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3629,12 +3649,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "8ff7d7c727c23051a527339e3d3e6402921e754f469c3b094144bfb94cf3b44c",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/rubenlagus/TelegramBots/v10.3.0/telegrambots-longpolling/src/main/java/org/telegram/telegrambots/longpolling/util/DefaultLongPollingUpdateConsumer.java",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3647,12 +3667,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "bb56b02b327414cb0b3f31621751a690a8125a486ca7b92941d880104c981063",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/rubenlagus/TelegramBots/v10.3.0/telegrambots-longpolling/src/main/java/org/telegram/telegrambots/longpolling/util/LongPollingSingleThreadUpdateConsumer.java",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3665,12 +3685,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "26cb0685e13c8b30040fb08b4453cacc3234a63085671270a1df90f968c792af",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/rubenlagus/TelegramBots/v10.3.0/telegrambots-meta/src/main/java/org/telegram/telegrambots/meta/api/methods/send/SendMessage.java",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3683,12 +3703,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "7064b125736085bc032b29f03518fc00778a5099fd9bd546c83a517a01e8e7d3",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/rubenlagus/TelegramBots/v10.3.0/telegrambots-meta/src/main/java/org/telegram/telegrambots/meta/api/objects/message/Message.java",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3701,12 +3721,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "83d9d3e5302248f344c216bc08cc9c2a22a6d88029745832715f687df1ef3931",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/rubenlagus/TelegramBots/releases/tag/v10.3.0",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3720,13 +3740,13 @@
         "telegram-bot-advanced-features",
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-advanced-features": "2026-10-03",
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "9442d18657da5deb05453805c14ce5f326c01ebb52edf1e307cd63b609ef302f",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/tdlib/telegram-bot-api",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3739,12 +3759,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "9bcba622bda8f4f17bc06ed4413cbf252befc85785fda050ee0e32448f58d407",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/telegraf/telegraf/v4.16.3/src/context.ts",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3757,12 +3777,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "134d99b2d394bafaa8d3a51250d3f79ecce0f64265567c92152be6ae22f89f8c",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/telegraf/telegraf/v4.16.3/src/telegraf.ts",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3775,12 +3795,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "1198ee2ec5812f30c8e52837c0350bbf29891572e57af341dee33239bb94b874",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/telegraf/telegraf/releases/tag/v4.16.3",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3793,12 +3813,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "6247e5363996e01adc8acbdc037a0e741052af580c584084a0dd8c529d03df31",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/teloxide/teloxide/3c46b96e0dc0cabc75d6430c4566d7e2e12fd233/CHANGELOG.md",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3811,12 +3831,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "46655645803a7ddf1859fa65b075924cff5e0a3b71b9300d9b0c160c7f4dbcc5",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/teloxide/teloxide/3c46b96e0dc0cabc75d6430c4566d7e2e12fd233/Cargo.toml",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3829,12 +3849,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "b779c31c4cbd20ddb77c734b86b3c98d0d9208e2e2aaedd8571e3ddd0f98bc6d",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/teloxide/teloxide/v0.17.0/crates/teloxide-core/src/requests/has_payload.rs",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3847,12 +3867,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "c41f8e5fa0dfab04eb8d24866baa69983976e0b74df5df0aada6d910aa793cd1",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/teloxide/teloxide/v0.17.0/crates/teloxide-core/src/requests/json.rs",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3865,12 +3885,12 @@
       "skills": [
         "telegram-bot-rust"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-rust": "2026-10-03"
       },
       "sha256": "baaf3d7a260e456f7dd76e9f06963fad948b11e9756f26309abccf715e8358e0",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/teloxide/teloxide/v0.17.0/crates/teloxide/src/dispatching/dispatcher.rs",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -3883,12 +3903,12 @@
       "skills": [
         "telegram-bot-recipes"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-recipes": "2026-10-03"
       },
       "sha256": "a762fdafc6cd83786234bf828bcc040e7950319094c57d34a203a639761edbf9",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://github.com/yt-dlp/yt-dlp",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3901,12 +3921,12 @@
       "skills": [
         "telegram-bot-recipes"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-recipes": "2026-10-03"
       },
       "sha256": "5a2e18587cf8c5b131230c9a4212bb44280c0f71922e1b2e782046f90562e8ce",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/yt-dlp/yt-dlp/master/yt_dlp/YoutubeDL.py",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:25:09Z",
@@ -3919,12 +3939,12 @@
       "skills": [
         "telegram-bot-recipes"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-recipes": "2026-10-03"
       },
       "sha256": "ebf58fbda92b9b35601caee75ece2c8565b74973cdef2ac881fc0357713ead37",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/yt-dlp/yt-dlp/master/yt_dlp/__init__.py",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:25:09Z",
@@ -3937,12 +3957,12 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "dffd1a4d6333dc53693d1418d38efaf3e5ecf18fab016d556dab0d1dae824078",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/go-telegram-bot-api/telegram-bot-api/master/README.md",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3955,12 +3975,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "ad16da1053b4bf6e7b41457498bb8da2de574a13e824c1569eed148cdc550f9f",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://gotd.dev/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3973,12 +3993,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "33feb6540f3733b46a5170496a3160c237ff4ea9bb90dbc5d01594dac4a9eb6a",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://gotd.dev/docs/helpers/middleware/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -3991,12 +4011,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "f89de1590ecc4e6646335b0be2cc8b90dbd29fa3536f68b108504fb1a1abfd7b",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/guide/api.md",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4009,12 +4029,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "ae7f3275e6e4fa08345cc4e46647dc90fa81289bdbdcb8f1d2d42e4bed06b07c",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/guide/deployment-types.md",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4027,12 +4047,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "0523b12503950eefa5bc64fc120c6cb05148b01330a35100f73e11d4f95270e4",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/guide/errors.md",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4045,12 +4065,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "57fe83c666aa95a0525f0592c9b109503ebb54a8d09c185166e9666dfa15ff56",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/guide/getting-started.md",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4063,12 +4083,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "37653edee6e4b29c96961854146d1199b8dffd5bb0b0df282d72e04d7aebac50",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/guide/middleware.md",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4081,12 +4101,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "bb8c6af2e469ff891f7d3fd759e65c261dc5c8b3bb19819f05966657f11387a8",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/plugins/auto-retry.md",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4099,12 +4119,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "3dc144dbd77ce7e1e95cfc9cf2dc97a1190111e4ffcdd92fc4f35a229a31514a",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/plugins/conversations.md",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4117,12 +4137,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "23c796cda5287d2fc075f4d81ed7596c62441582c5ef399091702bad5944f6c1",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/plugins/runner.md",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4135,12 +4155,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "b71bf6f0197de9e46390b2ea3b941b476f0bd9a18b9945b9ff9a56640f2d362d",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/grammyjs/website/main/site/docs/plugins/session.md",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4153,12 +4173,12 @@
       "skills": [
         "telegram-bot-advanced-features"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-advanced-features": "2026-10-03"
       },
       "sha256": "aba9dda23070524fbf3c0496d92c9b453191b7da63af3c7d14c04436e505fa2e",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://raw.githubusercontent.com/nginx/nginx.org/main/xml/en/docs/http/ngx_http_proxy_module.xml",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4171,12 +4191,12 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "0c3c3131f0598bb7aacf31a9a51625b1859366758ca148a37fabcfaf79f3b1c6",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://pkg.go.dev/github.com/PaulSonOfLars/gotgbot/v2@v2.0.0-rc.36/ext",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4189,12 +4209,12 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "4b96c367e6d1625a5394febd7b230b67c200d66c81c842dc22c55b7dc25170ba",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://pkg.go.dev/github.com/go-telegram-bot-api/telegram-bot-api/v5@v5.5.1",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4207,12 +4227,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "7d92438f60cc6924a46df4e29b525919350f948a6052efc48ebb44e248ad44a3",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://pkg.go.dev/github.com/gotd/contrib@v0.25.0/middleware/floodwait",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4225,12 +4245,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "eb358cc20babf54d4e06cf999eb6cec8620f0d52aec009c80af9370d547b9fe6",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://pkg.go.dev/github.com/gotd/td@v0.162.0/session",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4244,13 +4264,13 @@
         "telegram-bot-gotd",
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03",
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "bb308b39d1ed1f89678ffbaa60c63963f42c5b3f5b169868709520286631ca29",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://pkg.go.dev/github.com/gotd/td@v0.162.0/telegram",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -4263,12 +4283,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "e5319f6af78b3dc573ed6d5fd3139b326005e33ca1cf134a5fdd4320365d7df6",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://pkg.go.dev/github.com/gotd/td@v0.162.0/telegram/downloader",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4281,12 +4301,12 @@
       "skills": [
         "telegram-bot-gotd"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03"
       },
       "sha256": "ef83008804f5b0d51a96edee6efc2f29526b71f176b44ccbb4ab853f6cd8b7b5",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://pkg.go.dev/github.com/gotd/td@v0.162.0/telegram/uploader",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4299,12 +4319,12 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "f7705668178c666d4afad90e509faada6c4b1047c49fa0752c77789f0a453ba3",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://proxy.golang.org/github.com/!paul!son!of!lars/gotgbot/v2/@latest",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -4317,12 +4337,12 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "47da2f991829bcaadda2cf3d1a3b5fbb8e8c3b76a64ec6c8bf5b1cf24c991780",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://proxy.golang.org/github.com/go-telegram-bot-api/telegram-bot-api/v5/@latest",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -4335,12 +4355,12 @@
       "skills": [
         "telegram-bot-go-botapi"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-go-botapi": "2026-10-03"
       },
       "sha256": "881b86bf201450b847de5566ab88ea185be353437b7ac6c16b9c313279cbdc57",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://proxy.golang.org/github.com/go-telegram/bot/@latest",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -4353,12 +4373,12 @@
       "skills": [
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "b413f67174d2e1a6dce7724a54c100ab4532d1b620ff086b0257c498dd4a7a6e",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://proxy.golang.org/github.com/gotd/contrib/@latest",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -4372,13 +4392,13 @@
         "telegram-bot-gotd",
         "telegram-bot-gotd-contrib"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-gotd": "2026-10-03",
         "telegram-bot-gotd-contrib": "2026-10-03"
       },
       "sha256": "2078d8f4d64b79f09e50ce2e77094d0f9234701bb5821b10037692a0ba18d18b",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://proxy.golang.org/github.com/gotd/td/@latest",
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
@@ -4391,12 +4411,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "1e8e745858b5902fce929e7a27646ea65aa00f89ea73a87a36f94af4df08000b",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://pypi.org/pypi/Telethon/1.45.0/json",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4409,12 +4429,12 @@
       "skills": [
         "telegram-bot-telethon"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-telethon": "2026-10-03"
       },
       "sha256": "92a0f90e618e9d0d229924aea12e15b8d7352fa29b734d0f3f002ecd6cd33ced",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://pypi.org/pypi/Telethon/json",
       "release_versions": [
         "1.45.0"
@@ -4429,12 +4449,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "7ec76c7c3cdf6b01ad39f6d754d108b0fd664a176c89e8724efdcb4ca19b4b6c",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://pypi.org/pypi/aiogram/3.31.0/json",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4447,12 +4467,12 @@
       "skills": [
         "telegram-bot-aiogram"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-aiogram": "2026-10-03"
       },
       "sha256": "21cd9d9d6bb457cab0e30475cfb05766ba9d88c5e84b519a8e38267ee79ec89d",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://pypi.org/pypi/aiogram/json",
       "release_versions": [
         "3.31.0"
@@ -4467,12 +4487,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "74c7d2edad4817b44b929abf19c35373dee19f2d4977ce313643640e012e6e60",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://pypi.org/pypi/python-telegram-bot/22.8/json",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4485,12 +4505,12 @@
       "skills": [
         "telegram-bot-python-telegram-bot"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-python-telegram-bot": "2026-10-03"
       },
       "sha256": "c28327941fe7ba1db3124c2da155e3f21d0d56692ee44612d113ac4cb795ef2e",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://pypi.org/pypi/python-telegram-bot/json",
       "release_versions": [
         "22.8"
@@ -4505,10 +4525,10 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "a7dfc9d876eb1a19faa65ab1a3b62e8fca645fe2ff0f696e42554e73bb5e78ca",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://registry.npmjs.org/grammy/latest",
       "release_versions": [
         "1.46.0"
@@ -4521,10 +4541,10 @@
     "https://registry.npmjs.org/skills/latest": {
       "kind": "npm-release",
       "skills": [],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "b2adee4f9bf83752c9ac0c1538bcfba50f03ae3c7c31e239267bc362432855a6",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://registry.npmjs.org/skills/latest",
       "release_versions": [
         "1.7.0"
@@ -4539,10 +4559,10 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "eafee1357efc1ac93d24eb9e3aa26cabd6ab58f8b8288ce96208a94c9508464c",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://registry.npmjs.org/telegraf/latest",
       "release_versions": [
         "4.16.3"
@@ -4557,12 +4577,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "1ec268207fac7b0df9c7236caf0b5f7cabb55bfed14bff6c9a312517801a8d08",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://repo1.maven.org/maven2/org/telegram/telegrambots-client/10.3.0/telegrambots-client-10.3.0.pom",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4575,12 +4595,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "9f98a22326cf551bba3a4f3b81709a071c65228b95516d76805fc2fae2e98363",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://repo1.maven.org/maven2/org/telegram/telegrambots-longpolling/10.3.0/telegrambots-longpolling-10.3.0.pom",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4593,12 +4613,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "54eb5e71c38d01ec9aa983fb564e3d239377feb948e38b4177e22ef1c03d24c2",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://repo1.maven.org/maven2/org/telegram/telegrambots-meta/10.3.0/telegrambots-meta-10.3.0.pom",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4611,10 +4631,10 @@
       "skills": [
         "telegram-bot-php"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {},
       "sha256": "4d3e47647f0879443dea3ec71581a7fa3b74b92990f90996b19e644f4c87a7be",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://repo.packagist.org/p2/irazasyed/telegram-bot-sdk.json",
       "release_versions": [
         "v3.16.0",
@@ -4633,12 +4653,12 @@
       "skills": [
         "telegram-bot-java"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-java": "2026-10-03"
       },
       "sha256": "9f4e366dc72b98d4de4df2a92684a54c155443820ee7e79baf6cdd6ac0afefb1",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://rubenlagus.github.io/TelegramBotsDocumentation/lesson-1.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4651,12 +4671,12 @@
       "skills": [
         "telegram-bot-javascript"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-javascript": "2026-10-03"
       },
       "sha256": "e8cf53d57260da3d7556a1af402068f2734a92596ee4f457ebf23dd418b48d8b",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://telegraf.js.org/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4669,12 +4689,12 @@
       "skills": [
         "telegram-bot-php"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-php": "2026-10-03"
       },
       "sha256": "6849e422f18c2d6477b96a93c9c74acd84644dec512a6e1a27ad052a1f079bad",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://telegram-bot-sdk.com/docs/getting-started/initialize/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4687,12 +4707,12 @@
       "skills": [
         "telegram-bot-php"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-php": "2026-10-03"
       },
       "sha256": "aa8633adf594fe6b95c971d87ea200fdbfaa63e576a6b4cea0e79fc61c82b10a",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://telegram-bot-sdk.com/docs/getting-started/installation/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4705,12 +4725,12 @@
       "skills": [
         "telegram-bot-php"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-php": "2026-10-03"
       },
       "sha256": "ff0bbd48c5b555baba54390bb447b92662ed86370868aa11ff8cb7eb357a8993",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://telegram-bot-sdk.com/docs/guides/commands-system/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4723,12 +4743,12 @@
       "skills": [
         "telegram-bot-php"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-php": "2026-10-03"
       },
       "sha256": "952cee783a0771dcbc45e338572ca545968962aaecb18ac875be126ae6ef32f2",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://telegram-bot-sdk.com/docs/guides/webhook-updates/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4741,12 +4761,12 @@
       "skills": [
         "telegram-bot-dotnet"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-dotnet": "2026-10-03"
       },
       "sha256": "817755710b8405817760e1152d5d6f64e010cb4510a27133d98835474bd5a2d9",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://telegrambots.github.io/book/1/example-bot.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4759,12 +4779,12 @@
       "skills": [
         "telegram-bot-dotnet"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-dotnet": "2026-10-03"
       },
       "sha256": "c978a5aecffa6db00e3215da99ef6d0c190288feea4018d0109f2b4b677278d3",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://telegrambots.github.io/book/1/quickstart.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
@@ -4777,38 +4797,37 @@
       "skills": [
         "telegram-bot-dotnet"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-dotnet": "2026-10-03"
       },
-      "sha256": "427a37841ab1b950cd3000a0f3a7f29ef938cd0c30e9bdd76056a22eb271c4d7",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "sha256": "8e8e4962bebc4f9f5a33bb4d9ece09dd0dacc442f5059c78af31c909fd765707",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://www.nuget.org/packages/Telegram.Bot/22.10.3.2",
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "9152bdafe39ef465a296e3997ec2b1beb2ad9e00ca9d01759312dc7e01789e1c",
-      "reviewed_sha256": "f401b95f8a9b12f7162144b8e656bdb9ac03f387e2ea2810e1efbb720a5fb760",
-      "editorial_reviewed_at": "2026-10-05T05:09:56Z",
-      "last_changed_at": "2026-10-05T11:47:28Z",
+      "reviewed_sha256": "8e8e4962bebc4f9f5a33bb4d9ece09dd0dacc442f5059c78af31c909fd765707",
+      "editorial_reviewed_at": "2026-10-06T05:11:04Z",
+      "last_changed_at": "2026-10-06T05:02:24Z",
       "review_method": "agent-content-review",
       "review_record": {
         "reviewer": "Codex /root primary-source content review",
         "decision": "cosmetic",
-        "notes": "Fully read the current normalized NuGet page and compared it with the saved previously reviewed e2d6113e1c7574e578d3cec1bdfbd8cef05d0a2cc7695898a55cdc8ec3013842 content. Differences are package-use/download/star statistics only; stable 22.10.3.2 identity, framework/dependency requirements, prerelease boundary and release notes are unchanged. Reviewed the complete .NET skill/resources and tagged TelegramBotClient/SendMessageRequest APIs used by the starter. No instruction, pin or example adaptation is needed. Native .NET build and offline self-test passed on exact current main b073456 in run37266199501; no live bot delivery or local .NET execution was performed. This review does not advance the dated source ledger."
-      },
-      "pending_change_since": "2026-10-05T11:47:28Z"
+        "notes": "Read the complete current normalized NuGet page and compared every token with the saved reviewed f401b95f8a9b12f7162144b8e656bdb9ac03f387e2ea2810e1efbb720a5fb760 response. All 24 changed spans are package-download or repository-star counters. Stable version 22.10.3.2, publication date, framework/dependency requirements, prerelease boundary and release notes are identical. Rechecked the .NET entrypoint, source ledger, guide, diagnostics, exact package pin and request builder; the independent content reviewer also verified tagged SendMessageRequest routing and client lifecycle APIs. No skill, dependency or example adaptation is needed. Native validation evidence is recorded separately; no local .NET compilation or live message operation was performed. Unrelated source approvals and dated ledgers remain unchanged."
+      }
     },
     "https://www.w3.org/TR/WCAG22/": {
       "kind": "document",
       "skills": [
         "telegram-bot-accessibility"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-accessibility": "2026-10-04"
       },
       "sha256": "1fb8650eaa7a4acbfc516fe4d34e6f2e934ab763e2ffe2b8577288f0dc682713",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://www.w3.org/TR/WCAG22/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
@@ -4821,12 +4840,12 @@
       "skills": [
         "telegram-bot-accessibility"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-accessibility": "2026-10-04"
       },
       "sha256": "225e0ddeb836e61ee073b0e934d39c9d77e34d084d0a5060a2ad103350471b76",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
@@ -4840,13 +4859,13 @@
         "telegram-bot-accessibility",
         "telegram-bot-miniapp-design"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-accessibility": "2026-10-04",
         "telegram-bot-miniapp-design": "2026-10-04"
       },
       "sha256": "5f8ed2e3c179b715662f1ae6766153155c9a7931df21a95faaceff94a23dcdaf",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
@@ -4859,12 +4878,12 @@
       "skills": [
         "telegram-bot-accessibility"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-accessibility": "2026-10-04"
       },
       "sha256": "2875ce1ece62500bf2bd847ee46b2c1da767dd73578707000bd9314bb0b63497",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
@@ -4877,12 +4896,12 @@
       "skills": [
         "telegram-bot-accessibility"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-accessibility": "2026-10-04"
       },
       "sha256": "50e72d89fdc48b4da73cced7819cd6d933b54e77a306c796ce61d134b887a6b0",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
@@ -4896,13 +4915,13 @@
         "telegram-bot-accessibility",
         "telegram-bot-miniapp-design"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-accessibility": "2026-10-04",
         "telegram-bot-miniapp-design": "2026-10-04"
       },
       "sha256": "c621cadcbe1334e0ac157d15eef25d2716ffd542ce9fc9b375a6e6e7e69dca57",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
@@ -4916,13 +4935,13 @@
         "telegram-bot-accessibility",
         "telegram-bot-miniapp-design"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-accessibility": "2026-10-04",
         "telegram-bot-miniapp-design": "2026-10-04"
       },
       "sha256": "3a4249a06e765db8adae4a8732ecd8d979c5d21a59d575f19efddca347ccd6f1",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
@@ -4936,13 +4955,13 @@
         "telegram-bot-accessibility",
         "telegram-bot-miniapp-design"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-accessibility": "2026-10-04",
         "telegram-bot-miniapp-design": "2026-10-04"
       },
       "sha256": "0c93f2992ed12f88addc444eb3522b32eb16e0cedf13c600b46e223ba3085302",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
@@ -4955,12 +4974,12 @@
       "skills": [
         "telegram-bot-accessibility"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-accessibility": "2026-10-04"
       },
       "sha256": "c2cae1bda9124bb86fb5e1a85e21c0f25aa1d866e26d23e48c1533e386a299ae",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
@@ -4973,12 +4992,12 @@
       "skills": [
         "telegram-bot-accessibility"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-accessibility": "2026-10-04"
       },
       "sha256": "7c08ce5649e5afdfd5f0d9b747013cf31922f2aacb90ed1023aee1a496bf1e86",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
@@ -4992,13 +5011,13 @@
         "telegram-bot-accessibility",
         "telegram-bot-ux"
       ],
-      "last_attempt_at": "2026-10-05T11:47:28Z",
+      "last_attempt_at": "2026-10-06T05:02:24Z",
       "skill_ledger_review_dates": {
         "telegram-bot-accessibility": "2026-10-04",
         "telegram-bot-ux": "2026-10-04"
       },
       "sha256": "b3fe07537ae532e376b755b3e60ff621fb820e47c643bc666fd92319a62ac198",
-      "last_checked_at": "2026-10-05T11:47:28Z",
+      "last_checked_at": "2026-10-06T05:02:24Z",
       "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html",
       "release_versions": [],
       "first_observed_at": "2026-10-03T21:18:41Z",
