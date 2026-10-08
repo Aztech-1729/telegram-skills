@@ -30,12 +30,12 @@ npx --yes skills add Aztech-1729/telegram-skills --skill '*' --agent codex claud
 
 Replace the agent list with the CLI IDs you use, such as `cursor` or
 `github-copilot`. Keep `'*'` quoted so your shell passes the wildcard to the
-installer. For a repeatable CLI version, replace `skills` with `skills@1.7.0`.
+installer. For a repeatable CLI version, replace `skills` with `skills@1.7.1`.
 The [CLI option definitions](https://github.com/vercel-labs/skills/blob/main/src/cli.ts)
 document those flags.
 
 Prerequisites are Git, npm and Node.js **22.20.0 or newer**, as declared by
-[skills 1.7.0](https://registry.npmjs.org/skills/1.7.0). The public download needs
+[skills 1.7.1](https://registry.npmjs.org/skills/1.7.1). The public download needs
 network access but no personal access token, Telegram token or AI API key. If
 PowerShell blocks the `npx.ps1` launcher, use `npx.cmd` with the same arguments.
 
@@ -52,7 +52,7 @@ For a user-wide installation to the three selected agents:
 npx --yes skills add Aztech-1729/telegram-skills --skill '*' --agent codex claude-code opencode --global --yes
 ```
 
-These are the selected CLI 1.7.0 destination directories; append a skill name,
+These are the selected CLI 1.7.1 destination directories; append a skill name,
 such as `telegram-bot-aiogram`, to find its complete folder:
 
 | Agent | Project destination | CLI global destination |

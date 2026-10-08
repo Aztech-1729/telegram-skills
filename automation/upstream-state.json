@@ -4652,10 +4652,15 @@
       ],
       "first_observed_at": "2026-10-03T16:17:01Z",
       "baseline_sha256": "b2adee4f9bf83752c9ac0c1538bcfba50f03ae3c7c31e239267bc362432855a6",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null,
+      "reviewed_sha256": "63367c7e9401a1f3c0c5989d22c217fedf4574e4dbe9c478222f9198b2bc9d01",
+      "editorial_reviewed_at": "2026-10-08T01:00:16Z",
       "last_changed_at": "2026-10-07T11:17:43Z",
-      "pending_change_since": "2026-10-07T11:17:43Z"
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "codex:/root with upstream code review by codex:/root/heartbeat_health_20261008",
+        "decision": "updated",
+        "notes": "Reviewed the normalized official npm release metadata and independent complete upstream skills 1.7.0-to-1.7.1 code comparison (14 commits, 16 files). The v1.7.1 tag 958f4b7389ba698b0a6a26a1e505ae2af82364d2 matches npm gitHead. The CLI parser/bin/source formats, lock schema, Codex/Claude Code/OpenCode destinations, Node >=22.20.0 requirement and tar/yaml dependency ranges remain compatible. The patch improves unchanged-folder update handling and global local-source bookkeeping, moves Pi to canonical .agents/skills, and preserves telemetry opt-outs/private-source handling. Updated only the root exact skills pin, its locked package version/resolved tarball/integrity and four installation-guide version references; all other locked packages and Node requirements remain unchanged. npm ci with lifecycle scripts/audit/funding disabled passed using Node 24.11.0/npm 11.6.1. The real installed CLI 1.7.1 passed both all-supported-agent and Codex/Claude Code/OpenCode copy-mode smoke checks in temporary projects: all 21 skills, 176 resources and every local Markdown route verified. Pack metadata/local links/syntax/credential-pattern validation and git diff --check passed. No user-wide skills were installed, no native plugin content/version change is required, and no Telegram/model API calls were made. Fresh exact-head hosted PR validation remains mandatory before protected merging."
+      }
     },
     "https://registry.npmjs.org/telegraf/latest": {
       "kind": "npm-release",

@@ -12,7 +12,7 @@ The original editorial audit is recorded separately in each skill's `references/
 
 | Official source | Affected skills | First detected |
 | --- | --- | --- |
-| [https://registry.npmjs.org/skills/latest](https://registry.npmjs.org/skills/latest) | shared infrastructure | 2026-10-07T11:17:43Z |
+| No changes since the observed baselines | — | — |
 
 ## Unavailable sources
 

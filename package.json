@@ -7,7 +7,7 @@
     "test:installation": "python scripts/check_installation.py"
   },
   "devDependencies": {
-    "skills": "1.7.0"
+    "skills": "1.7.1"
   },
   "engines": {
     "node": ">=22.20.0"
