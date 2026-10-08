@@ -827,16 +827,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "3290148c2f26f30cd2d6168ad7a41c85ba99e78d2c5cc519d4ec9faa45bff497",
-      "reviewed_sha256": "303497c98307a3955aa50b9f0a543b329185d0d6cc9681fd1040c91d05b4582b",
-      "editorial_reviewed_at": "2026-10-06T05:11:04Z",
+      "reviewed_sha256": "fbf266641e7fce4c0bacae4dc4ebf1f1adada4d1c10ab16ae17d9b8751ae9ed5",
+      "editorial_reviewed_at": "2026-10-08T00:56:41Z",
       "last_changed_at": "2026-10-08T00:45:34Z",
       "review_method": "agent-content-review",
       "review_record": {
-        "reviewer": "Codex /root primary-source content review",
+        "reviewer": "codex:/root/go_java_docs_review_20261008 with independent .NET/Rust crosscheck codex:/root/heartbeat_health_20261008",
         "decision": "cosmetic",
-        "notes": "Read the complete current normalized exact-version JSON and structurally compared it with saved reviewed a540ba32a85462e18df921911c51f31d2b8d729e6021fcf107d63004234ecd77. The sole difference is version.downloads, from 726157 to 730062. Version 0.17.0, edition 2021, Rust 1.82 minimum, yanked=false, feature definitions, publication metadata and package checksum are identical. Rechecked the Rust entrypoint, source ledger, exact Cargo pin and complete echo/request fixtures against the unchanged versioned API scope; remaining guide/diagnostics resources retain their prior complete review. No dependency, instruction or example change is needed. Native validation evidence is recorded separately; no local Rust compilation, listener or live Telegram request was performed. This acknowledgement preserves the dated source-ledger scope and unrelated review markers."
-      },
-      "pending_change_since": "2026-10-06T11:27:39Z"
+        "notes": "Compared the complete current and previously reviewed normalized exact-version JSON structurally, including all key sets, lists and values. The sole difference is $.version.downloads, 730062 to 740841; version 0.17.0, edition 2021, Rust minimum 1.82, yanked=false, features, publication metadata and checksum 84992abeed3ae42e8401b25d266d12bcba1def0abe59d22f6b9781167545f71e remain identical. Read the complete Rust skill, guide, source ledger, diagnostics and starter Cargo/main/request fixture resources. The exact teloxide =0.17.0 pin, published Bot API 9.1 scope and separate development/server-version guidance remain accurate. No package, instruction or example adaptation is required. This host has no cargo/rustc executable; no local Rust build, listener or Telegram call was performed. Native hosted validation is reported separately by the maintenance run. The final observed hash was checked against the second full monitor state, rather than the earlier capture index's obsolete observed hash."
+      }
     },
     "https://developers.openai.com/api/docs/guides/text?lang=python": {
       "kind": "document",
@@ -871,16 +870,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "85473ad45c0b67df58756558edef221bee1a7675c773d0a2335a42441b5525d9",
-      "reviewed_sha256": "be226db5ac3c8a6b00f4c89a53f10ceae71eb0d79cf146f062390d0977027895",
-      "editorial_reviewed_at": "2026-10-06T05:11:04Z",
+      "reviewed_sha256": "e0013fbbd7fb460ee06ce766768f8d540a49df097fcc22496e85adff67209433",
+      "editorial_reviewed_at": "2026-10-08T00:56:41Z",
       "last_changed_at": "2026-10-07T11:17:43Z",
       "review_method": "agent-content-review",
       "review_record": {
-        "reviewer": "Codex /root primary-source content review",
+        "reviewer": "codex:/root/go_java_docs_review_20261008 with independent .NET/Rust crosscheck codex:/root/heartbeat_health_20261008",
         "decision": "not-applicable",
-        "notes": "Content reviewer /root/responses_source_review_20261006 independently verified the captured hash, read all 45,270 normalized characters and every telegram-bot-recipes resource and behavior test. Current Responses create schema still accepts the starter's configurable model, instructions, string input, max_output_tokens=1600 and store=False; the SDK output_text result path remains supported. Optional context, cache, access, moderation and service fields are not used by this starter. The official Python SDK guide also confirms awaited Responses calls, asynchronous client cleanup, numeric timeout and max_retries=1; the example supplies no custom transport. All 20 existing offline recipe tests passed. No prior normalized response is available, so this is a verified applicability review, not a claimed cosmetic diff. No instructions, pins or examples require adaptation. No authenticated OpenAI or Telegram request was performed, and model availability remains an operator configuration choice. Only this observed hash is acknowledged; unrelated ledger dates and approvals are preserved."
-      },
-      "pending_change_since": "2026-10-07T11:17:43Z"
+        "notes": "Compared complete prior reviewed and current normalized Responses create bodies with token-level SequenceMatcher (autojunk disabled), read all four exact replacements and the complete affected parameter sections. Only safety_identifier's documented maximum and matching maxLength schema change from 64 to 128, each appearing in both request and response sections; all remaining tokens are identical. This is a semantic expansion of an optional field, not cosmetic page drift. Read the complete recipes skill/guide/source ledger and recipes.py, plus requirements and the optional AI recipe's bounds/privacy guidance. ai_chat uses AsyncOpenAI(timeout=45,max_retries=1), responses.create(model, instructions, input, max_output_tokens=1600, store=False) and response.output_text; neither the code nor guide specifies safety_identifier. Therefore the existing recipe remains compatible and requires no adaptation or added optional parameter. Opened the official API page for current primary-source review. No OpenAI/model request, credential access or extra integration test was performed; offline recipe validation is recorded separately by the root maintenance run."
+      }
     },
     "https://docs.aiogram.dev/en/latest/": {
       "kind": "document",
@@ -2205,16 +2203,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "92423833463cb90ccb3bd5739d8464158fa4bd0be6f088614993575fdd834510",
-      "reviewed_sha256": "8a340fe09b2ff01565f3d0295c2c5d2dc041e2e562b957e98202a03d9503c9ed",
-      "editorial_reviewed_at": "2026-10-06T05:11:04Z",
+      "reviewed_sha256": "6958cf22444d432ea0328472c7f57253de7733877fe985d11824f3b827f1e9c4",
+      "editorial_reviewed_at": "2026-10-08T00:56:41Z",
       "last_changed_at": "2026-10-08T00:37:46Z",
       "review_method": "agent-content-review",
       "review_record": {
-        "reviewer": "Codex /root primary-source content review",
-        "decision": "not-applicable",
-        "notes": "Content reviewer /root/sqlalchemy_source_review_20261006 verified the capture hash and read all 70,737 normalized characters, all eight advanced-feature resources and the current 2.1 dialect documentation against SQLAlchemy[asyncio]==2.1.1 / aiosqlite==0.22.1. SQLite dialect insert/on_conflict_do_nothing, file-backed pooling, per-operation sessions, explicit DML transactions and awaited disposal remain compatible. The concurrent in-memory/StaticPool transaction warning does not affect the temporary file-backed demo and tests. These fixtures do not depend on foreign-key/savepoint/RETURNING-only behavior. All nine existing advanced-feature tests, the standalone demo and a supplemental file-backed DML rollback/pool check passed with SQLite 3.43.1. No prior normalized response is available: this establishes applicability, not a claimed cosmetic historical diff. No skill, dependency or example adaptation is required. No Telegram operation was performed. Unrelated editorial dates and source records are preserved."
-      },
-      "pending_change_since": "2026-10-07T11:17:43Z"
+        "reviewer": "codex:/root/go_java_docs_review_20261008 with independent .NET/Rust crosscheck codex:/root/heartbeat_health_20261008",
+        "decision": "cosmetic",
+        "notes": "Compared both complete normalized SQLite dialect bodies against the saved reviewed hash and independently reproduced every token difference. The only two replacements are the documentation-generated footer date Mon 05 to Wed 07 and time 08:05:46 PM to 10:35:55 AM, retaining Oct 2026 EDT and Sphinx 9.1.0. All API descriptions, constraint warnings and example tokens remain identical. Read the complete advanced-features skill, guide, source ledger, current requirements-dev pins and SQLAlchemy state_lifecycle.py/test_state_lifecycle.py. Rechecked the official SQLite upsert guidance and relevant captured API sections: dialect-specific insert(User).on_conflict_do_nothing(index_elements=[User.id]) agrees with the example's one-row concurrent ensure_user behavior. SQLAlchemy[asyncio] remains pinned at 2.1.1 in current requirements; the guide's dated prior 2.0.36 smoke evidence remains historical. No dependency, instruction or example changes are warranted by footer-only regeneration. No additional tests or live calls were executed for this observation; applicable offline state-lifecycle validation is recorded separately by the root maintenance run."
+      }
     },
     "https://docs.sqlalchemy.org/en/20/orm/extensions/asyncio.html": {
       "kind": "document",
@@ -2231,16 +2228,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "add0a0044287f4af6277d2b2baaf179adc14920d55daa1be85260456ac193454",
-      "reviewed_sha256": "da1b31a9088bd6e97e4faa64fd89c9ffc547848848e96cc5c511841b8104659f",
-      "editorial_reviewed_at": "2026-10-06T05:11:04Z",
+      "reviewed_sha256": "be3d98c4995666c111ed77255b0edebb4a2d9cb354f1618856ac8aaab18eaf48",
+      "editorial_reviewed_at": "2026-10-08T00:56:41Z",
       "last_changed_at": "2026-10-08T00:37:46Z",
       "review_method": "agent-content-review",
       "review_record": {
-        "reviewer": "Codex /root primary-source content review",
-        "decision": "not-applicable",
-        "notes": "Content reviewer /root/sqlalchemy_source_review_20261006 verified the capture hash and read all 162,722 normalized characters, all advanced-feature resources and current 2.1 asyncio documentation. The implemented DeclarativeBase/Mapped schema, async_sessionmaker, one AsyncSession per task, explicit session.begin DML transaction, expire_on_commit=False scalar access and awaited engine.dispose conform to documented APIs and lifecycle. The fixture performs explicit SQL with no relationship/lazy-loading dependency. requirements-dev already includes SQLAlchemy[asyncio]==2.1.1, supplying the asyncio/greenlet extra required by 2.1. All nine existing advanced-feature tests and the standalone demo passed with Python 3.12.1 / aiosqlite 0.22.1; concurrent upsert, rollback and cleanup were also reviewed. There is no prior normalized body for a historical diff, so the decision records verified applicability. No instruction, dependency or example change is needed. No live Telegram call was made. Only this reviewed hash is acknowledged; unrelated dates and markers remain unchanged."
-      },
-      "pending_change_since": "2026-10-07T11:17:43Z"
+        "reviewer": "codex:/root/go_java_docs_review_20261008 with independent .NET/Rust crosscheck codex:/root/heartbeat_health_20261008",
+        "decision": "cosmetic",
+        "notes": "Compared both complete normalized asyncio-extension bodies against the saved reviewed hash and independently reproduced every token difference. Only the documentation-generated footer changes Mon 05/08:05:46 PM to Wed 07/10:35:55 AM, with the surrounding documentation content, examples, timestamps' month/year/zone and Sphinx version otherwise identical. Read the complete advanced-features skill, guide, source ledger, current requirements-dev pins and state_lifecycle.py/test_state_lifecycle.py. Opened official asyncio session guidance and checked the captured task-safety/expiration/disposal sections: separate AsyncSession per concurrent task, async_sessionmaker(expire_on_commit=False), explicit transactional scopes and await engine.dispose() agree with the current runnable example and concurrency/reopen fixtures. The SQLAlchemy[asyncio] 2.1.1/aiosqlite 0.22.1 current pins and the guide's dated historical validation remain distinct. No semantic update is needed. No additional tests or network bot/model calls were performed for this observation; the root maintenance run records applicable offline validation separately."
+      }
     },
     "https://docs.telethon.dev/en/stable/basic/signing-in.html": {
       "kind": "document",
@@ -2995,10 +2991,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "53db3f922b4944d0192873e05d34387ee183b20b3992168a4a0413bc2ace2361",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null,
+      "reviewed_sha256": "5bddc6918746a6958847857a0fd1d810202b6c3558edc17e5efb93d4671e02cf",
+      "editorial_reviewed_at": "2026-10-08T00:56:41Z",
       "last_changed_at": "2026-10-07T11:17:43Z",
-      "pending_change_since": "2026-10-07T11:17:43Z"
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "codex:/root/go_java_docs_review_20261008 with independent .NET/Rust crosscheck codex:/root/heartbeat_health_20261008",
+        "decision": "not-applicable",
+        "notes": "Read the complete captured normalized directory page and all affected telegram-bot-gotd-contrib instructions, guide, source register, observation report and starter/module/test resources. The remote v0.25.0 tag resolves to ed334076704da5eb15a2cbf436f8b78bd6e2bec9, matching the existing pinned Go module origin metadata; all 41 files across the six changed directories match live GitHub Git blob SHA values byte-for-byte. Evidence: heartbeat-contrib-immutable-proof-20261008.json. No old normalized HTML body is available, so this conclusion establishes current pinned API compatibility, not an asserted cosmetic old/new text diff. Four original reliable-echo offline tests pass with Go 1.27.0, including a real temporary bbolt session/state reopen and account separation. Both Go starters also finish go mod verify successfully (all modules verified); no Telegram client, remote store or live waiter was started. NewDebug(next) and WithOutput support the guide's explicit sensitive-payload warning; UpdateHook is a telegram.Middleware invoked only for tg.UpdatesBox results and returns hook errors. The guide distinguishes it from core updates/hooks and does not invent new APIs."
+      }
     },
     "https://github.com/gotd/contrib/tree/v0.25.0/middleware/floodwait": {
       "kind": "document",
@@ -3015,10 +3016,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "f752e4e2a191f753ba8b56c3431ec4e63cd05f75e3760853f3210241bde46268",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null,
+      "reviewed_sha256": "84d53bcaf3acccc556c9d18ed5acac1f0d10215e8681922f0dc02dd6249a0dc4",
+      "editorial_reviewed_at": "2026-10-08T00:56:41Z",
       "last_changed_at": "2026-10-07T11:17:43Z",
-      "pending_change_since": "2026-10-07T11:17:43Z"
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "codex:/root/go_java_docs_review_20261008 with independent .NET/Rust crosscheck codex:/root/heartbeat_health_20261008",
+        "decision": "not-applicable",
+        "notes": "Read the complete captured normalized directory page and all affected telegram-bot-gotd-contrib instructions, guide, source register, observation report and starter/module/test resources. The remote v0.25.0 tag resolves to ed334076704da5eb15a2cbf436f8b78bd6e2bec9, matching the existing pinned Go module origin metadata; all 41 files across the six changed directories match live GitHub Git blob SHA values byte-for-byte. Evidence: heartbeat-contrib-immutable-proof-20261008.json. No old normalized HTML body is available, so this conclusion establishes current pinned API compatibility, not an asserted cosmetic old/new text diff. Four original reliable-echo offline tests pass with Go 1.27.0, including a real temporary bbolt session/state reopen and account separation. Both Go starters also finish go mod verify successfully (all modules verified); no Telegram client, remote store or live waiter was started. Waiter.New/WithMaxRetries/WithMaxWait/Run and the explicit running guard match the documented/starter lifecycle. WithMaxWait is per attempt; total deadlines are separate and the guide already states operation-owned wait budgets. SimpleWaiter requires no scheduler Run. Existing bounded configuration remains valid."
+      }
     },
     "https://github.com/gotd/contrib/tree/v0.25.0/pebble": {
       "kind": "document",
@@ -3035,10 +3041,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "0c5f70868323ad7aab437c9cc89f76a032d99b3c4d82dc0d141284bd5721a407",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null,
+      "reviewed_sha256": "7a5a3afb16b2b97e2d24179408c8ee1673da91149a15f420c7d1e8bfa47eebd8",
+      "editorial_reviewed_at": "2026-10-08T00:56:41Z",
       "last_changed_at": "2026-10-07T11:17:43Z",
-      "pending_change_since": "2026-10-07T11:17:43Z"
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "codex:/root/go_java_docs_review_20261008 with independent .NET/Rust crosscheck codex:/root/heartbeat_health_20261008",
+        "decision": "not-applicable",
+        "notes": "Read the complete captured normalized directory page and all affected telegram-bot-gotd-contrib instructions, guide, source register, observation report and starter/module/test resources. The remote v0.25.0 tag resolves to ed334076704da5eb15a2cbf436f8b78bd6e2bec9, matching the existing pinned Go module origin metadata; all 41 files across the six changed directories match live GitHub Git blob SHA values byte-for-byte. Evidence: heartbeat-contrib-immutable-proof-20261008.json. No old normalized HTML body is available, so this conclusion establishes current pinned API compatibility, not an asserted cosmetic old/new text diff. Four original reliable-echo offline tests pass with Go 1.27.0, including a real temporary bbolt session/state reopen and account separation. Both Go starters also finish go mod verify successfully (all modules verified); no Telegram client, remote store or live waiter was started. NewSessionStorage(*pebble.DB, key) and NewPeerStorage(*pebble.DB) implement session.Storage and storage.PeerStorage respectively. This agrees with the separate-store guide; it does not imply update-engine access-hash/state storage or provisioned infrastructure."
+      }
     },
     "https://github.com/gotd/contrib/tree/v0.25.0/redis": {
       "kind": "document",
@@ -3055,10 +3066,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "97e4119f51000feccc508637a4419c77fb77df41ccd7bdc13e30a014385213e9",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null,
+      "reviewed_sha256": "eb93a68e396b0f53af644bb8be63f60b71fd44624dd5d13951269cc75f3f710e",
+      "editorial_reviewed_at": "2026-10-08T00:56:41Z",
       "last_changed_at": "2026-10-07T11:17:43Z",
-      "pending_change_since": "2026-10-07T11:17:43Z"
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "codex:/root/go_java_docs_review_20261008 with independent .NET/Rust crosscheck codex:/root/heartbeat_health_20261008",
+        "decision": "not-applicable",
+        "notes": "Read the complete captured normalized directory page and all affected telegram-bot-gotd-contrib instructions, guide, source register, observation report and starter/module/test resources. The remote v0.25.0 tag resolves to ed334076704da5eb15a2cbf436f8b78bd6e2bec9, matching the existing pinned Go module origin metadata; all 41 files across the six changed directories match live GitHub Git blob SHA values byte-for-byte. Evidence: heartbeat-contrib-immutable-proof-20261008.json. No old normalized HTML body is available, so this conclusion establishes current pinned API compatibility, not an asserted cosmetic old/new text diff. Four original reliable-echo offline tests pass with Go 1.27.0, including a real temporary bbolt session/state reopen and account separation. Both Go starters also finish go mod verify successfully (all modules verified); no Telegram client, remote store or live waiter was started. NewSessionStorage(*go-redis/redis/v8.Client, key) and NewPeerStorage(client) preserve the documented constructor contracts. The guide explicitly requires the pinned driver major and keeps protocol recovery/business stores separate."
+      }
     },
     "https://github.com/gotd/contrib/tree/v0.25.0/s3": {
       "kind": "document",
@@ -3075,10 +3091,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "cc9e27aab6625851bc9c568b14e1c9d104e2b0a81b0f0244fa380a5a6345e116",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null,
+      "reviewed_sha256": "2f41dfcaf2a428ed7ce3d56ceeb53c598b9e2027fbaac8e1fa2864e4833ad809",
+      "editorial_reviewed_at": "2026-10-08T00:56:41Z",
       "last_changed_at": "2026-10-07T11:17:43Z",
-      "pending_change_since": "2026-10-07T11:17:43Z"
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "codex:/root/go_java_docs_review_20261008 with independent .NET/Rust crosscheck codex:/root/heartbeat_health_20261008",
+        "decision": "not-applicable",
+        "notes": "Read the complete captured normalized directory page and all affected telegram-bot-gotd-contrib instructions, guide, source register, observation report and starter/module/test resources. The remote v0.25.0 tag resolves to ed334076704da5eb15a2cbf436f8b78bd6e2bec9, matching the existing pinned Go module origin metadata; all 41 files across the six changed directories match live GitHub Git blob SHA values byte-for-byte. Evidence: heartbeat-contrib-immutable-proof-20261008.json. No old normalized HTML body is available, so this conclusion establishes current pinned API compatibility, not an asserted cosmetic old/new text diff. Four original reliable-echo offline tests pass with Go 1.27.0, including a real temporary bbolt session/state reopen and account separation. Both Go starters also finish go mod verify successfully (all modules verified); no Telegram client, remote store or live waiter was started. The MinIO-backed NewSessionStorage(client,bucketName,objectName) implements session.Storage. The guide appropriately treats this as a configured object/session backend rather than a peer/recovery/business store, with service credentials and permissions remaining application responsibilities."
+      }
     },
     "https://github.com/gotd/contrib/tree/v0.25.0/vault": {
       "kind": "document",
@@ -3095,10 +3116,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "1f30173898e09cffd984daee804f01d173a1e8e180714d740721828be637162a",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null,
+      "reviewed_sha256": "ced6c7a31b1a9d22269751acb220c0506a531f09b98a9345e49df3a79a0f203a",
+      "editorial_reviewed_at": "2026-10-08T00:56:41Z",
       "last_changed_at": "2026-10-07T11:17:43Z",
-      "pending_change_since": "2026-10-07T11:17:43Z"
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "codex:/root/go_java_docs_review_20261008 with independent .NET/Rust crosscheck codex:/root/heartbeat_health_20261008",
+        "decision": "not-applicable",
+        "notes": "Read the complete captured normalized directory page and all affected telegram-bot-gotd-contrib instructions, guide, source register, observation report and starter/module/test resources. The remote v0.25.0 tag resolves to ed334076704da5eb15a2cbf436f8b78bd6e2bec9, matching the existing pinned Go module origin metadata; all 41 files across the six changed directories match live GitHub Git blob SHA values byte-for-byte. Evidence: heartbeat-contrib-immutable-proof-20261008.json. No old normalized HTML body is available, so this conclusion establishes current pinned API compatibility, not an asserted cosmetic old/new text diff. Four original reliable-echo offline tests pass with Go 1.27.0, including a real temporary bbolt session/state reopen and account separation. Both Go starters also finish go mod verify successfully (all modules verified); no Telegram client, remote store or live waiter was started. NewSessionStorage(*hashicorp/vault/api.Client,path,key) wraps the KV session adapter and implements session.Storage. The documented configured secret/session backend and separate recovery/business stores remain accurate."
+      }
     },
     "https://github.com/gotd/td/blob/v0.162.0/examples/bot-auth-manual/main.go": {
       "kind": "document",
@@ -3497,10 +3523,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "e03dd99f2abd99e509c798aa05e4bdf885c9224275521d4f919b423ec6d471b6",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null,
+      "reviewed_sha256": "e03dd99f2abd99e509c798aa05e4bdf885c9224275521d4f919b423ec6d471b6",
+      "editorial_reviewed_at": "2026-10-08T00:56:41Z",
       "last_changed_at": "2026-10-07T11:17:43Z",
-      "pending_change_since": "2026-10-06T11:27:39Z"
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "codex:/root/go_java_docs_review_20261008 with independent .NET/Rust crosscheck codex:/root/heartbeat_health_20261008",
+        "decision": "not-applicable",
+        "notes": "Read the entire captured current README and all affected telegram-bot-gotd instructions, complete guide/register/status and original starter/pins/tests/checksum records. Current mtgo main 6918243cc5134999331515cdfbccf0882dc6319b and its module/client source use the independent github.com/mtgo-labs/mtgo Go 1.26.2 module, own protocol/session/generated types and NewClient/Connect/Stop lifecycle. Its latest commit is the Oct6 OTel dependency merge; pageton/gotg remains archived. The guide only identifies mtgo as a separate successor alternative and explicitly avoids gotd import/API compatibility claims; no mtgo API is incorporated into the pinned gotd v0.162.0 starter. The official gotd latest release still reports v0.162.0. Three original gotd offline identity/readiness/reply-error tests pass with Go1.27.0 and go mod verify reports all modules verified. No mtgo or Telegram authentication/integration was performed, and no old/new README diff is asserted without its old body."
+      }
     },
     "https://github.com/pageton/gotg": {
       "kind": "document",
@@ -3571,10 +3602,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "07285d1015dc947fb0a3b60a9c33ee13e9d7c5a45790eb1e92bd357ace546b3c",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null,
+      "reviewed_sha256": "7080ddb094dbb62d70ce573150e3f67350ad2715fd3ba0c4171c651d50cadc7e",
+      "editorial_reviewed_at": "2026-10-08T00:56:41Z",
       "last_changed_at": "2026-10-07T11:17:43Z",
-      "pending_change_since": "2026-10-07T11:17:43Z"
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "codex:/root/go_java_docs_review_20261008 with independent .NET/Rust crosscheck codex:/root/heartbeat_health_20261008",
+        "decision": "not-applicable",
+        "notes": "Read the complete current normalized directory page and all telegram-bot-java instructions, complete guide/source register/troubleshooting/status and starter/POM/test resources. Both current master and pinned Pengrad 10.3.0 resolve to 543921500982018d0c42f2dc3c1f9c3c98eccb0f; the official compare endpoint reports identical with zero ahead/behind commits and no changed files, matching the existing clean research checkout. This verifies present release compatibility, not cosmetic old/new HTML changes whose old body is unavailable. The complete TelegramBots10.3.0 Maven verify passes with Maven3.10.0/JDK21 (Java17 compilation), all four offline fixtures pass; no Telegram receiver was started. The separate Pengrad example remains source-checked rather than compiled. Pinned Update/Message variants and nullable ResponseParameters.retryAfter() retain the guide's nullability/error rules. Long chat/topic model identifiers and Kotlin SendMessage/AbstractSendRequest constructors/fluent APIs were inspected without mixing them with TelegramBots types. The initial batch capture failed; one targeted guarded capture retry succeeded and matches the observed state hash."
+      }
     },
     "https://github.com/pengrad/java-telegram-bot-api/tree/master/library/src/main/java/com/pengrad/telegrambot/response": {
       "kind": "document",
@@ -3591,10 +3627,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "a12c356c375474b763db0f25d5c32e60dddb413cb12d0840fc8d73da48814a23",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null,
+      "reviewed_sha256": "8d3efc6145febf6948c6a7355da63c40bbd72daca829c292cae6e02da3b01322",
+      "editorial_reviewed_at": "2026-10-08T00:56:41Z",
       "last_changed_at": "2026-10-07T11:17:43Z",
-      "pending_change_since": "2026-10-07T11:17:43Z"
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "codex:/root/go_java_docs_review_20261008 with independent .NET/Rust crosscheck codex:/root/heartbeat_health_20261008",
+        "decision": "not-applicable",
+        "notes": "Read the complete current normalized directory page and all telegram-bot-java instructions, complete guide/source register/troubleshooting/status and starter/POM/test resources. Both current master and pinned Pengrad 10.3.0 resolve to 543921500982018d0c42f2dc3c1f9c3c98eccb0f; the official compare endpoint reports identical with zero ahead/behind commits and no changed files, matching the existing clean research checkout. This verifies present release compatibility, not cosmetic old/new HTML changes whose old body is unavailable. The complete TelegramBots10.3.0 Maven verify passes with Maven3.10.0/JDK21 (Java17 compilation), all four offline fixtures pass; no Telegram receiver was started. The separate Pengrad example remains source-checked rather than compiled. BaseResponse.isOk(), errorCode(), parameters() and SendResponse.message() match the guide's request/response contract. Nullable ResponseParameters.retryAfter(), Callback.onResponse/onFailure and actual listener offset-confirmation behavior were inspected, confirming existing asynchronous error paths and durable-acknowledgement advice."
+      }
     },
     "https://github.com/php-telegram-bot/core": {
       "kind": "document",
@@ -4869,16 +4910,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "9152bdafe39ef465a296e3997ec2b1beb2ad9e00ca9d01759312dc7e01789e1c",
-      "reviewed_sha256": "8e8e4962bebc4f9f5a33bb4d9ece09dd0dacc442f5059c78af31c909fd765707",
-      "editorial_reviewed_at": "2026-10-06T05:11:04Z",
+      "reviewed_sha256": "01bb210bb56f8b6d6b41367dfdc684d85e3adb20a60b1b5549519f314c49d101",
+      "editorial_reviewed_at": "2026-10-08T00:56:41Z",
       "last_changed_at": "2026-10-08T00:37:46Z",
       "review_method": "agent-content-review",
       "review_record": {
-        "reviewer": "Codex /root primary-source content review",
+        "reviewer": "codex:/root/go_java_docs_review_20261008 with independent .NET/Rust crosscheck codex:/root/heartbeat_health_20261008",
         "decision": "cosmetic",
-        "notes": "Read the complete current normalized NuGet page and compared every token with the saved reviewed f401b95f8a9b12f7162144b8e656bdb9ac03f387e2ea2810e1efbb720a5fb760 response. All 24 changed spans are package-download or repository-star counters. Stable version 22.10.3.2, publication date, framework/dependency requirements, prerelease boundary and release notes are identical. Rechecked the .NET entrypoint, source ledger, guide, diagnostics, exact package pin and request builder; the independent content reviewer also verified tagged SendMessageRequest routing and client lifecycle APIs. No skill, dependency or example adaptation is needed. Native validation evidence is recorded separately; no local .NET compilation or live message operation was performed. Unrelated source approvals and dated ledgers remain unchanged."
-      },
-      "pending_change_since": "2026-10-06T11:27:39Z"
+        "notes": "Compared complete prior reviewed and current normalized Telegram.Bot 22.10.3.2 NuGet pages, independently reproducing all 28 single numerical token replacements and reading every context. Changes are package/version download totals and dependent GitHub repository star counters only. README, release notes, framework/dependency requirements, version identities and publication dates remain identical, including stable 22.10.3.2 (2026-09-25) and newer development entries still marked prerelease. Read the complete .NET skill, guide, source ledger, diagnostics, exact package/target framework manifest and Program/Echo/EchoSelfTest resources. Telegram.Bot remains pinned 22.10.3.2 targeting net8.0; the self-test path precedes bot token access/client construction and checks text, large IDs and topic routing. No instruction or version migration is justified by statistics changes. A dotnet executable is now present locally, but this subagent did not run a duplicate .NET build/self-test; the health subagent's native validation is reported independently. No listener or Telegram call was performed."
+      }
     },
     "https://www.w3.org/TR/WCAG22/": {
       "kind": "document",

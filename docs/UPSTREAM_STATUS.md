@@ -12,21 +12,7 @@ The original editorial audit is recorded separately in each skill's `references/
 
 | Official source | Affected skills | First detected |
 | --- | --- | --- |
-| [https://crates.io/api/v1/crates/teloxide/0.17.0](https://crates.io/api/v1/crates/teloxide/0.17.0) | rust | 2026-10-06T11:27:39Z |
-| [https://developers.openai.com/api/reference/python/resources/responses/methods/create](https://developers.openai.com/api/reference/python/resources/responses/methods/create) | recipes | 2026-10-07T11:17:43Z |
-| [https://docs.sqlalchemy.org/en/20/dialects/sqlite.html](https://docs.sqlalchemy.org/en/20/dialects/sqlite.html) | advanced-features | 2026-10-07T11:17:43Z |
-| [https://docs.sqlalchemy.org/en/20/orm/extensions/asyncio.html](https://docs.sqlalchemy.org/en/20/orm/extensions/asyncio.html) | advanced-features | 2026-10-07T11:17:43Z |
-| [https://github.com/gotd/contrib/tree/v0.25.0/invoker](https://github.com/gotd/contrib/tree/v0.25.0/invoker) | gotd-contrib | 2026-10-07T11:17:43Z |
-| [https://github.com/gotd/contrib/tree/v0.25.0/middleware/floodwait](https://github.com/gotd/contrib/tree/v0.25.0/middleware/floodwait) | gotd-contrib | 2026-10-07T11:17:43Z |
-| [https://github.com/gotd/contrib/tree/v0.25.0/pebble](https://github.com/gotd/contrib/tree/v0.25.0/pebble) | gotd-contrib | 2026-10-07T11:17:43Z |
-| [https://github.com/gotd/contrib/tree/v0.25.0/redis](https://github.com/gotd/contrib/tree/v0.25.0/redis) | gotd-contrib | 2026-10-07T11:17:43Z |
-| [https://github.com/gotd/contrib/tree/v0.25.0/s3](https://github.com/gotd/contrib/tree/v0.25.0/s3) | gotd-contrib | 2026-10-07T11:17:43Z |
-| [https://github.com/gotd/contrib/tree/v0.25.0/vault](https://github.com/gotd/contrib/tree/v0.25.0/vault) | gotd-contrib | 2026-10-07T11:17:43Z |
-| [https://github.com/mtgo-labs/mtgo](https://github.com/mtgo-labs/mtgo) | gotd | 2026-10-06T11:27:39Z |
-| [https://github.com/pengrad/java-telegram-bot-api/tree/master/library/src/main/java/com/pengrad/telegrambot/model](https://github.com/pengrad/java-telegram-bot-api/tree/master/library/src/main/java/com/pengrad/telegrambot/model) | java | 2026-10-07T11:17:43Z |
-| [https://github.com/pengrad/java-telegram-bot-api/tree/master/library/src/main/java/com/pengrad/telegrambot/response](https://github.com/pengrad/java-telegram-bot-api/tree/master/library/src/main/java/com/pengrad/telegrambot/response) | java | 2026-10-07T11:17:43Z |
 | [https://registry.npmjs.org/skills/latest](https://registry.npmjs.org/skills/latest) | shared infrastructure | 2026-10-07T11:17:43Z |
-| [https://www.nuget.org/packages/Telegram.Bot/22.10.3.2](https://www.nuget.org/packages/Telegram.Bot/22.10.3.2) | dotnet | 2026-10-06T11:27:39Z |
 
 ## Unavailable sources
 
