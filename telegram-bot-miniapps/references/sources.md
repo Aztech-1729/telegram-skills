@@ -5,6 +5,7 @@ Checked: **2026-10-04**. Cutoff: **2026-10-04**. References are primary document
 | Primary source | Checked scope |
 |---|---|
 | [Telegram Mini Apps](https://core.telegram.org/bots/webapps) | Launch contexts, JS API, version gating, HMAC/Ed25519, storage, native UI and testing |
+| [Telegram Serverless](https://core.telegram.org/bots/serverless) | Reviewed 2026-10-08: hosted endpoint calls, platform-validated initData, application authorization; October 6 hosting/endpoints announcement |
 | [Launch contexts](https://core.telegram.org/bots/webapps#implementing-mini-apps) | Keyboard/inline/menu/profile/direct/inline-mode/attachment and join-request behavior |
 | [Validation](https://core.telegram.org/bots/webapps#validating-data-received-via-the-mini-app) / [third-party validation](https://core.telegram.org/bots/webapps#validating-data-for-third-party-use) | Bot-token HMAC versus Ed25519 signed payload; freshness |
 | [Testing](https://core.telegram.org/bots/webapps#testing-mini-apps) | Separate Telegram test server; HTTP exception applies there |
@@ -23,3 +24,10 @@ Nine JavaScript tests verify frontend duplicate/uncertain writes, expired sessio
 delete confirmation, known-success feedback, field errors and enabled-control focus
 using a local fake DOM/transport. No actual Telegram WebView or screen reader was
 exercised. Record and check your project's selected versions separately.
+
+Focused review **2026-10-08**: the complete Mini Apps and Serverless pages support
+the optional hosted backend route. Platform identity validation still requires
+application ownership and entitlement checks. The existing FastAPI example's
+signature/session protocol applies to independently hosted backends. No Serverless
+CLI, deployment or authenticated endpoint was run; earlier framework and full-ledger
+review dates remain the baseline for their original scopes.

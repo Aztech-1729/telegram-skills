@@ -67,8 +67,11 @@ Consistent navigation, a clear return path, command registration, meaningful emp
 
 When ordinary text exceeds its method's limit, split at deliberate content
 boundaries or attach a document. Preserve complete entities/tags and avoid
-breaking a grapheme merely to fit a byte count. Plain drafts may be empty to clear
-their content; stop flags in the helper must be actual booleans, not strings such
+breaking a grapheme merely to fit a byte count. Empty plain drafts display a
+temporary “Thinking…” placeholder. Rich drafts can use `<tg-thinking>` or
+`InputRichBlockThinking` for a visible progress placeholder; this represents UI
+status, not a transcript of model reasoning. See [streaming replies](https://core.telegram.org/bots/features#streaming-replies).
+Stop flags in the helper must be actual booleans, not strings such
 as `"false"`. The builder validates representation and identity shape, not every
 rich block, media entitlement or rendering limit. Consult the exact method/schema
 before sending a new block type.
