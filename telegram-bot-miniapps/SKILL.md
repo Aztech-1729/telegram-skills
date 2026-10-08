@@ -16,8 +16,8 @@ Read [the guide](references/guide.md) for launch selection, SDK integration, aut
 
 1. Choose the launch method before designing auth or data return. Reply-keyboard and inline-mode launches have empty initData; inline/menu launches support signed user context and Web App queries.
 2. Configure the bot entry point and serve an HTTPS app on the intended origin. Load the Telegram SDK early, then call `ready()` after essential UI is ready.
-3. Send raw `initData` to the backend. Verify HMAC over decoded fields, reject duplicate keys and stale/future authentication times, then issue your own expiring opaque session.
-4. Authorize every API operation from that session. Keep prices, entitlements, ownership and durable state on the server. `initDataUnsafe`, launch parameters and browser storage are not authorization.
+3. For your own backend, send raw `initData`, verify HMAC over decoded fields, reject duplicate keys and stale/future authentication times, then issue an expiring opaque session. For Telegram-hosted Serverless, use the platform-validated endpoint context described in the guide.
+4. Authorize every API operation from the verified session or hosted endpoint context. Keep prices, entitlements, ownership and durable state on the server. `initDataUnsafe`, launch parameters and browser storage are not authorization.
 5. Apply theme/safe-area/viewport behavior, loading/error/cancel states and version-gated native APIs. Test auth and persistence offline; verify actual WebView behavior separately before release.
 
 ## Invariants

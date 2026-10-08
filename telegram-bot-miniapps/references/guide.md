@@ -1,6 +1,6 @@
 # Mini App implementation guide
 
-Checked 2026-10-04. Contents: launch contexts; bot entry points; auth/session design; native UI; persistent todo example; deployment/testing. Read [sources](sources.md) for verified documentation scope. The security/storage design below is an original example, not a claim that Telegram supplies application authorization.
+Baseline checked 2026-10-04; hosted Serverless route reviewed 2026-10-08. Contents: launch contexts; bot entry points; hosted backend selection; auth/session design; native UI; persistent todo example; deployment/testing. Read [sources](sources.md) for verified documentation scope. The security/storage design below is an original example, not a claim that Telegram supplies application authorization.
 
 ## Choose launch context first
 
@@ -38,7 +38,23 @@ await context.bot.set_chat_menu_button(
 
 For aiogram 3 use `InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="Open app", web_app=WebAppInfo(url=url))]])` and `bot.set_chat_menu_button(menu_button=MenuButtonWebApp(text="Todos", web_app=WebAppInfo(url=url)))`. Import these types from `aiogram.types`. Configure the desired Main Mini App/menu/domain in BotFather. Domain-bound login URLs are a separate login mechanism; do not apply its registration assumptions to every Mini App launch.
 
-## Authentication and sessions
+## Optional Telegram-hosted backend
+
+For a Mini App hosted on [Telegram Serverless](https://core.telegram.org/bots/serverless#endpoints),
+invoke named `tgcloud/endpoints/*.js` functions through
+`Telegram.WebApp.Serverless.call(name, input, callback)`. The platform validates
+`initData` and supplies the caller through `ctx.initData.user`. Require a verified
+user for protected operations, validate input, and authorize record ownership and
+entitlements inside the endpoint. Feature-detect `Serverless.call`; no minimum
+client version is published for this object. Handle authentication and endpoint
+errors with clear loading and recovery states.
+
+This route uses the Telegram-hosted project. The FastAPI todo below uses your own
+backend and retains explicit signature validation and bearer sessions. Serverless
+hosting, deployed endpoints and actual WebView behavior have not been exercised
+by this pack's offline tests.
+
+## Authentication and sessions on your own backend
 
 The helper implements bot-token HMAC validation:
 
