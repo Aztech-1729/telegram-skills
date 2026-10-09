@@ -229,7 +229,7 @@ instructional source plus reusable examples; it is not a single deployed bot.
 | Go MTProto | gotd 0.162.0 · contrib 0.25.0 |
 | JavaScript | grammY 1.46.0 · Telegraf 4.16.3 |
 | Java | TelegramBots 10.3.0 · Pengrad 10.3.0 |
-| .NET | Telegram.Bot 22.10.3.2 |
+| .NET | Telegram.Bot 22.10.3.3 |
 | PHP | irazasyed SDK 3.16.0; Longman documented as a separate architecture |
 | Rust | teloxide 0.17.0 stable |
 
