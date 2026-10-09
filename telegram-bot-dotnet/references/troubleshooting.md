@@ -1,10 +1,11 @@
 # Telegram.Bot diagnostics
 
-Focused source review: **2026-10-04**, package 22.10.3.2. Use the actual NuGet lock/restore result and a small deserialized Update fixture; inspect the tagged client rather than translating an older tutorial.
+Event/routing source review: **2026-10-04**; package migration to **22.10.3.3** reviewed **2026-10-09**. Use the actual NuGet lock/restore result and a small deserialized Update fixture; inspect the tagged client rather than translating an older tutorial.
 
 | Symptom | Check and repair |
 | --- | --- |
 | SendMessageAsync or polling imports no longer compile | Current convenience calls use names such as `SendMessage`. Match the package's namespaces, method parameters and hosting model; avoid mixing generations. |
+| A custom media implementation stops compiling after .2 to .3 | `IAlbumInputMedia` and `IInputRichMedia` now expose Type, Media, Caption, ParseMode and CaptionEntities getters. Match those properties to the tagged interface; bundled media classes already supply them. |
 | Callback or payment code never runs | `OnMessage` consumes message-like updates when subscribed. Route other kinds through `OnUpdate`; successful payment is inside a message, while pre-checkout is a separate update. Starting a second receiver will not fix routing. |
 | An edit repeats a business action | The message event includes edits, channel posts and business messages. Filter UpdateType explicitly or route variants through the application's one dispatcher. The starter accepts only `UpdateType.Message`. |
 | A forum reply leaves its topic | SendMessageRequest needs MessageThreadId for a source topic. The starter's pure request builder preserves it and leaves it unset for ordinary messages. Business connections/direct-message topics require their own fields when that mode is supported. |

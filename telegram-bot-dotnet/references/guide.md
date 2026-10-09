@@ -2,11 +2,13 @@
 
 ## Baseline and migration
 
-Use the NuGet feed as the package release source, then inspect the matching tag/API. The checked package is 22.10.3.2 (2026-09-25). It targets .NET 6/.NET Standard 2.0; the example project chooses net8.0 deliberately. Modern API calls use names such as `GetMe` and `SendMessage`; older tutorials use `...Async` suffixes and older types. Do not combine those APIs blindly. See [NuGet package](https://www.nuget.org/packages/Telegram.Bot/22.10.3.2) and the [quickstart](https://telegrambots.github.io/book/1/quickstart.html).
+Use the NuGet feed as the package release source, then inspect the matching tag/API. The checked package is 22.10.3.3 (2026-10-09). It targets .NET 6/.NET Standard 2.0; the example project chooses net8.0 deliberately. Modern API calls use names such as `GetMe` and `SendMessage`; older tutorials use `...Async` suffixes and older types. Do not combine those APIs blindly. See [NuGet package](https://www.nuget.org/packages/Telegram.Bot/22.10.3.3) and the [quickstart](https://telegrambots.github.io/book/1/quickstart.html).
+
+The [.2 to .3 source comparison](https://github.com/TelegramBots/Telegram.Bot/compare/v22.10.3.2...v22.10.3.3) adds rich-message implicit conversions and media-interface getters, and fixes `HtmlText.PlainLength` to count a supplementary Unicode character once. The starter's client, event and request APIs are unchanged. Custom implementations of `IAlbumInputMedia` or `IInputRichMedia` must expose the new getters; verify those implementations during an application upgrade.
 
 ## Receiving and dispatch
 
-Event subscriptions start reception in the tagged client. `OnMessage` receives several message-like updates; explicitly filter the update type if an operation must run only once for an original message. When OnMessage is subscribed, those updates are handled there rather than also passed to OnUpdate. Route remaining update kinds through a single dispatcher. Install the error boundary before starting reception. See [tagged client](https://github.com/TelegramBots/Telegram.Bot/blob/v22.10.3.2/src/Telegram.Bot/TelegramBotClient.cs).
+Event subscriptions start reception in the tagged client. `OnMessage` receives several message-like updates; explicitly filter the update type if an operation must run only once for an original message. When OnMessage is subscribed, those updates are handled there rather than also passed to OnUpdate. Route remaining update kinds through a single dispatcher. Install the error boundary before starting reception. See [tagged client](https://github.com/TelegramBots/Telegram.Bot/blob/v22.10.3.3/src/Telegram.Bot/TelegramBotClient.cs).
 
 Alternatively, use the documented polling/receiver API when custom cancellation, allowed updates or hosting are required. An ASP.NET Core app should receive webhooks and dispatch Update objects through its own service. Do not subscribe polling events in a webhook application. Use a hosted-service stop token for long-running workers; Console.ReadLine is suitable only for an interactive console example.
 
@@ -33,3 +35,5 @@ The tagged client has configurable retry behavior for 429 responses; inspect its
 Compile against the selected package/runtime, unit-test dispatch and authorization with a fake client/transport, and cover duplicate updates, callbacks, cancellation, transient failures and persistent state. Verify webhook serialization and secret rejection with request fixtures. Actual Telegram rendering, reception and deployment need a separate controlled integration test.
 
 For a symptom-specific investigation, use [diagnostics](troubleshooting.md). The 2026-10-04 focused audit source-checked the new builder/test against tagged types; this local host had no .NET SDK, so native build/self-test results belong in the repository validation report.
+
+The 2026-10-09 package migration built the unchanged starter with .NET SDK 8.0.425 and passed its offline self-test against 22.10.3.3. That verifies compilation and the pure reply builder; live Telegram reception, rendering and host shutdown remain separate checks.

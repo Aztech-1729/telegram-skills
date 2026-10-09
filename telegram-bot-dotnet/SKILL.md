@@ -5,7 +5,7 @@ description: Build or maintain C#/.NET Telegram HTTP Bot API applications with T
 
 # Telegram.Bot for .NET
 
-Checked **2026-10-03**: NuGet stable baseline **Telegram.Bot 22.10.3.2**, published 2026-09-25. The GitHub Releases page is older than the NuGet stable feed; use package metadata and matching tagged source when verifying an API.
+Package migration reviewed **2026-10-09**: NuGet stable baseline **Telegram.Bot 22.10.3.3**, published 2026-10-09. The GitHub Releases page is older than the NuGet stable feed; use package metadata and matching tagged source when verifying an API. Earlier broad and event/routing reviews remain dated in the source register.
 
 Read [implementation guide](references/guide.md) for lifecycle, webhook hosting, routing, retries and persistence. [Sources](references/sources.md) record the primary checks.
 
