@@ -1,8 +1,8 @@
 # Upstream observations
 
-Generated from the source check at **2026-10-09T05:56:31Z**.
+Generated from the source check at **2026-10-09T11:28:46Z**.
 
-14 tracked sources; 0 unavailable; 0 changed sources await content review.
+14 tracked sources; 0 unavailable; 2 changed sources await content review.
 
 Read [the source register](sources.md) for the editorial review and framework baseline. These machine observations do not certify compatibility or advance that review date. Compare your installed dependency with the observed versions before using new APIs.
 
@@ -14,6 +14,7 @@ Read [the source register](sources.md) for the editorial review and framework ba
 
 ## Changes and availability
 
-All tracked sources were available and no unresolved change was detected against the stored observations.
+- Content changed: [https://www.nuget.org/packages/Telegram.Bot/22.10.3.2](https://www.nuget.org/packages/Telegram.Bot/22.10.3.2); first detected 2026-10-09T11:28:46Z.
+- Content changed: [https://www.nuget.org/packages/Telegram.Bot/22.10.3.3](https://www.nuget.org/packages/Telegram.Bot/22.10.3.3); first detected 2026-10-09T11:28:46Z.
 
 See the [repository source status](https://github.com/Aztech-1729/telegram-skills/blob/main/docs/UPSTREAM_STATUS.md) and [automation policy](https://github.com/Aztech-1729/telegram-skills/blob/main/docs/AUTOMATION.md) for coverage and review steps.
