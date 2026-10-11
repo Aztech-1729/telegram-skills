@@ -4986,13 +4986,13 @@
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "9152bdafe39ef465a296e3997ec2b1beb2ad9e00ca9d01759312dc7e01789e1c",
       "reviewed_sha256": "4b5ffafb43cb74265504dcd694b9a4ce0e6fa5a05aeb97b64e3842c80451c1df",
-      "editorial_reviewed_at": "2026-10-11T05:10:12Z",
+      "editorial_reviewed_at": "2026-10-11T05:15:42Z",
       "last_changed_at": "2026-10-11T05:03:07Z",
       "review_method": "agent-content-review",
       "review_record": {
         "reviewer": "codex:/root (Rust/NuGet) and codex:/root/sql_review_20261011 (SQL/Python/yt-dlp)",
         "decision": "cosmetic",
-        "notes": "Compared every token in the complete normalized old-version page with its retained Oct9 reviewed body. All replacements are download counts, daily download averages or the displayed dependent-repository count (26 to 28). Release/version list, framework targets, package requirements and API text are unchanged. Reread .NET skill, guide, source ledger and exact 22.10.3.3 pin; no package migration or guide change required. Current-main native .NET build and offline self-test passed. Earlier broad/event/package migration dates remain unchanged."
+        "notes": "Compared every token in the complete normalized old-version page with its retained Oct9 reviewed body. All replacements are download counts, daily download averages, dependent-repository star/popularity counts and the displayed dependent-repository count (26 to 28). Release/version list, framework targets, package requirements and API text are unchanged. Reread .NET skill, guide, source ledger and exact 22.10.3.3 pin; no package migration or guide change required. Current-main native .NET build and offline self-test passed. Earlier broad/event/package migration dates remain unchanged."
       }
     },
     "https://www.nuget.org/packages/Telegram.Bot/22.10.3.3": {
@@ -5011,12 +5011,12 @@
       "first_observed_at": "2026-10-09T05:56:31Z",
       "baseline_sha256": "7c9f9d3799da7eabf993104fe8fd5579776726f686b7c56de53b7555d6f50c3e",
       "reviewed_sha256": "093ae7713a8f29f642dea3999083c4efac8f372ca63cd8792a97583fbcfd91df",
-      "editorial_reviewed_at": "2026-10-11T05:10:12Z",
+      "editorial_reviewed_at": "2026-10-11T05:15:42Z",
       "review_method": "agent-content-review",
       "review_record": {
         "reviewer": "codex:/root (Rust/NuGet) and codex:/root/sql_review_20261011 (SQL/Python/yt-dlp)",
         "decision": "cosmetic",
-        "notes": "Compared every token in the complete normalized stable-package page with its retained Oct9 reviewed body. All replacements are download counts, daily download averages or the displayed dependent-repository count (26 to 28). Release/version list, framework targets, package requirements and API text are unchanged. Reread .NET skill, guide, source ledger and exact 22.10.3.3 pin; no package migration or guide change required. Current-main native .NET build and offline self-test passed. Earlier broad/event/package migration dates remain unchanged."
+        "notes": "Compared every token in the complete normalized stable-package page with its retained Oct9 reviewed body. All replacements are download counts, daily download averages, dependent-repository star/popularity counts and the displayed dependent-repository count (26 to 28). Release/version list, framework targets, package requirements and API text are unchanged. Reread .NET skill, guide, source ledger and exact 22.10.3.3 pin; no package migration or guide change required. Current-main native .NET build and offline self-test passed. Earlier broad/event/package migration dates remain unchanged."
       },
       "last_changed_at": "2026-10-11T05:03:07Z"
     },
