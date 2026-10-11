@@ -59,14 +59,18 @@ such as `telegram-bot-aiogram`, to find its complete folder:
 |---|---|---|
 | Codex | `.agents/skills/` | `~/.agents/skills/` |
 | Claude Code | `.claude/skills/` | `~/.claude/skills/`, or the configured `CLAUDE_CONFIG_DIR/skills/` |
-| OpenCode | `.agents/skills/` | `~/.config/opencode/skills/`, honoring the XDG configuration directory |
+| OpenCode | `.agents/skills/` | `~/.agents/skills/` |
 
 The [CLI's agent definitions](https://github.com/vercel-labs/skills/blob/main/src/agents.ts)
-are the source for these destinations. CLI 1.7.2 moves Codex global installs from
-`~/.codex/skills/` to `~/.agents/skills/`; `CODEX_HOME` still helps detect Codex,
-but does not select this CLI's global skill destination. Existing installations
-in the old directory are not moved automatically. Reinstall this pack at the
-new destination and verify discovery before removing an old duplicate.
+and [installer](https://github.com/vercel-labs/skills/blob/main/src/installer.ts)
+are the sources for these destinations. Codex and OpenCode use the CLI's shared
+canonical `~/.agents/skills/` tree for global installs in both link and copy
+modes. CLI 1.7.2 corrects Codex's declared agent metadata to match that tree;
+the universal-agent storage rule already existed in 1.7.1. `CODEX_HOME` helps
+detect Codex but does not select this CLI's global skill destination. OpenCode's
+native XDG configuration path is a separate discovery location. An older or
+manual copy under `~/.codex/skills/` or `~/.config/opencode/skills/` is not moved
+automatically; verify discovery before removing an old duplicate.
 Use the project install as the shared default, or the native plugin route below
 for Codex distribution. For a manual user install, use the location documented
 by your installed host. Custom configuration roots can change a global location.
