@@ -30,12 +30,12 @@ npx --yes skills add Aztech-1729/telegram-skills --skill '*' --agent codex claud
 
 Replace the agent list with the CLI IDs you use, such as `cursor` or
 `github-copilot`. Keep `'*'` quoted so your shell passes the wildcard to the
-installer. For a repeatable CLI version, replace `skills` with `skills@1.7.1`.
+installer. For a repeatable CLI version, replace `skills` with `skills@1.7.2`.
 The [CLI option definitions](https://github.com/vercel-labs/skills/blob/main/src/cli.ts)
 document those flags.
 
 Prerequisites are Git, npm and Node.js **22.20.0 or newer**, as declared by
-[skills 1.7.1](https://registry.npmjs.org/skills/1.7.1). The public download needs
+[skills 1.7.2](https://registry.npmjs.org/skills/1.7.2). The public download needs
 network access but no personal access token, Telegram token or AI API key. If
 PowerShell blocks the `npx.ps1` launcher, use `npx.cmd` with the same arguments.
 
@@ -52,18 +52,25 @@ For a user-wide installation to the three selected agents:
 npx --yes skills add Aztech-1729/telegram-skills --skill '*' --agent codex claude-code opencode --global --yes
 ```
 
-These are the selected CLI 1.7.1 destination directories; append a skill name,
+These are the selected CLI 1.7.2 destination directories; append a skill name,
 such as `telegram-bot-aiogram`, to find its complete folder:
 
 | Agent | Project destination | CLI global destination |
 |---|---|---|
-| Codex | `.agents/skills/` | `~/.codex/skills/`, or the configured `CODEX_HOME/skills/` |
+| Codex | `.agents/skills/` | `~/.agents/skills/` |
 | Claude Code | `.claude/skills/` | `~/.claude/skills/`, or the configured `CLAUDE_CONFIG_DIR/skills/` |
-| OpenCode | `.agents/skills/` | `~/.config/opencode/skills/`, honoring the XDG configuration directory |
+| OpenCode | `.agents/skills/` | `~/.agents/skills/` |
 
 The [CLI's agent definitions](https://github.com/vercel-labs/skills/blob/main/src/agents.ts)
-are the source for these destinations. Current Codex documentation also lists
-`~/.agents/skills/` for native user skills; its project path is `.agents/skills/`.
+and [installer](https://github.com/vercel-labs/skills/blob/main/src/installer.ts)
+are the sources for these destinations. Codex and OpenCode use the CLI's shared
+canonical `~/.agents/skills/` tree for global installs in both link and copy
+modes. CLI 1.7.2 corrects Codex's declared agent metadata to match that tree;
+the universal-agent storage rule already existed in 1.7.1. `CODEX_HOME` helps
+detect Codex but does not select this CLI's global skill destination. OpenCode's
+native XDG configuration path is a separate discovery location. An older or
+manual copy under `~/.codex/skills/` or `~/.config/opencode/skills/` is not moved
+automatically; verify discovery before removing an old duplicate.
 Use the project install as the shared default, or the native plugin route below
 for Codex distribution. For a manual user install, use the location documented
 by your installed host. Custom configuration roots can change a global location.
@@ -212,3 +219,10 @@ The [remove command](https://github.com/vercel-labs/skills#skills-remove) accept
 multiple explicit names. `skills remove --all` removes every skill in its scope;
 it is not a Telegram-pack-only removal command. Avoid editing the CLI's managed
 canonical copies or links by hand.
+
+The 2026-10-11 checks verified installation with CLI 1.7.2 in both linked and
+copied temporary projects. A separate source-removal check on Windows with Node
+24.11.0 exited abnormally with `UV_HANDLE_CLOSING`; removal is not validated on
+that combination. If the CLI crashes during removal, inspect the installed
+entries before another attempt because files may already have changed. Include
+the CLI, Node and platform versions in an upstream bug report.

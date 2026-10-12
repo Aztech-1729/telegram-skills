@@ -13,7 +13,6 @@ The original editorial audit is recorded separately in each skill's `references/
 | Official source | Affected skills | First detected |
 | --- | --- | --- |
 | [https://crates.io/api/v1/crates/teloxide/0.17.0](https://crates.io/api/v1/crates/teloxide/0.17.0) | rust | 2026-10-11T10:58:48Z |
-| [https://registry.npmjs.org/skills/latest](https://registry.npmjs.org/skills/latest) | shared infrastructure | 2026-10-10T10:46:13Z |
 | [https://www.nuget.org/packages/Telegram.Bot/22.10.3.2](https://www.nuget.org/packages/Telegram.Bot/22.10.3.2) | dotnet | 2026-10-11T10:58:48Z |
 | [https://www.nuget.org/packages/Telegram.Bot/22.10.3.3](https://www.nuget.org/packages/Telegram.Bot/22.10.3.3) | dotnet | 2026-10-11T10:58:48Z |
 
