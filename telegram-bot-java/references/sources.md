@@ -39,3 +39,9 @@ Build the complete application with its selected dependency manager before runni
 - [Pengrad 10.3.0 UpdatesListener](https://github.com/pengrad/java-telegram-bot-api/blob/10.3.0/library/src/main/java/com/pengrad/telegrambot/UpdatesListener.java): confirmation constants/callback contract.
 
 This focused audit preserves the earlier release/feature cutoff for sources not reread.
+
+## Focused test-tooling migration: 2026-10-11
+
+The starter's test-scoped `org.junit.jupiter:junit-jupiter` pin moved from 5.11.4 to 6.1.3. The official JUnit 6.1.3 overview, build support and release notes were reviewed, along with the published Maven artifact and the exact `Test`/`Assertions` APIs used by all four fixtures. [The guide](guide.md#2-dependencies-and-original-starter) links the runtime/build requirements. JUnit 6 requires Java 17 and Surefire/Failsafe 3.0.0 or newer; the existing Java 17 target and Surefire 3.6.0 satisfy them. All resolved JUnit test modules use 6.1.3.
+
+An isolated copy passed Maven 3.10.0 `verify` with JDK 21.0.12.1, compiling for Java 17 and running all four unchanged offline routing tests with zero failures, errors or skips. Direct Python HTTPS captures of the documentation/Maven endpoint failed certificate verification on this host; official documentation was inspected through the web tool and Maven resolved the public artifact without disabling TLS verification. This is a focused test-tooling check, not an advance of the earlier Telegram SDK or lifecycle audit dates. No bot token, polling or Telegram request was used.

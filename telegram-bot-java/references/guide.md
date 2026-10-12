@@ -39,6 +39,8 @@ The [original EchoBot](../assets/echo/src/main/java/EchoBot.java) uses DefaultLo
 
 Copy the asset directory into the application's chosen location. `mvn verify` compiles it and runs the offline fixture tests; `mvn exec:java -Dexec.mainClass=EchoBot` deliberately starts polling after configuration. Running registers/connects a real bot; documentation checks must not execute it.
 
+The starter's test-only dependency is JUnit Jupiter **6.1.3** with Maven Surefire **3.6.0**. JUnit 6 requires a [Java 17 or newer test runtime](https://docs.junit.org/6.1.3/overview.html) and [Surefire/Failsafe 3.0.0 or newer](https://docs.junit.org/6.1.3/running-tests/build-support.html). Keep JUnit Platform/Jupiter versions aligned when adding test modules; this test-tooling upgrade does not change the Telegram SDK or polling lifecycle.
+
 TelegramBots separates the HTTP client from the update receiver. Old TelegramLongPollingBot/TelegramBotsApi tutorials belong to a different generation and cannot be combined with the modular setup by renaming one import.
 
 LongPollingSingleThreadUpdateConsumer is deprecated in the checked source because its executor is shared. DefaultLongPollingUpdateConsumer owns a per-instance executor and has a close lifecycle. The asset was compiled against the published 10.3.0 jars, including this class.
@@ -135,5 +137,7 @@ Compile against the project's selected release. For current Bot API fields missi
 ## 10. Verification
 
 On 2026-10-04 the asset passed full `mvn verify` with Maven 3.10.0/JDK 21, compiling for Java 17 and running four offline fixtures through a substituted TelegramClient. This checks forum/direct-message routing, large-ID refusal, plain text and ignored update variants. Live polling was not started.
+
+The focused 2026-10-11 test-tooling migration repeated `mvn verify` with JUnit 6.1.3, Surefire 3.6.0, Maven 3.10.0 and JDK 21.0.12.1. Java 17 compilation and all four unchanged offline fixtures passed; no live client or receiver was started. The earlier SDK and lifecycle review dates remain unchanged.
 
 For an application, compile its whole dependency graph, test dispatch with deserialized fixtures and mock client requests, then verify webhook secrets locally. Live token/permissions, media, payments and delivery tests require an explicitly configured test environment.
