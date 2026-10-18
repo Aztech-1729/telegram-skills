@@ -1,6 +1,6 @@
 # Upstream observations
 
-Generated from the source check at **2026-10-17T08:45:15Z**.
+Generated from the source check at **2026-10-18T06:11:22Z**.
 
 18 tracked sources; 0 unavailable; 0 changed sources await content review.
 
@@ -10,7 +10,7 @@ Read [the source register](sources.md) for the editorial review and framework ba
 
 | Official feed | Observed versions |
 | --- | --- |
-| [https://api.github.com/repos/PaulSonOfLars/gotgbot/releases?per_page=10](https://api.github.com/repos/PaulSonOfLars/gotgbot/releases?per_page=10) (includes release candidates) | v2.0.0-rc.36, v2.0.0-rc.35, v2.0.0-rc.34, v2.0.0-rc.33, v2.0.0-rc.32 |
+| [https://api.github.com/repos/PaulSonOfLars/gotgbot/releases?per_page=10](https://api.github.com/repos/PaulSonOfLars/gotgbot/releases?per_page=10) (includes release candidates) | v2.0.0-rc.37, v2.0.0-rc.36, v2.0.0-rc.35, v2.0.0-rc.34, v2.0.0-rc.33 |
 | [https://api.github.com/repos/go-telegram/bot/releases?per_page=10](https://api.github.com/repos/go-telegram/bot/releases?per_page=10) | v1.27.0, v1.26.0, v1.25.0, v1.24.0, v1.23.0 |
 
 ## Changes and availability
