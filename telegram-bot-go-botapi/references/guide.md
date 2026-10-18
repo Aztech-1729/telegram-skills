@@ -1,6 +1,6 @@
 # Go HTTP frameworks: implementation reference
 
-Checked on **2026-10-03**. Read [sources.md](sources.md) for pinned versions and source scope.
+Checked on **2026-10-03**, with a focused gotgbot rc.37 review on **2026-10-18**. Read [sources.md](sources.md) for pinned versions and source scope.
 
 ## Contents
 
@@ -11,7 +11,7 @@ Selection and installation; starter applications; handlers and middleware; messa
 | Library | Appropriate fit | Compatibility decision |
 | --- | --- | --- |
 | go-telegram/bot | A framework with context-aware requests, matching, and middleware | Starter pins v1.27.0; examine its generated models for the exact feature. |
-| gotgbot/v2 | Updater/dispatcher structure, filters, handler groups, conversations | Starter pins v2.0.0-rc.36; this is a release candidate. Do not equate the current branch with that tag. |
+| gotgbot/v2 | Updater/dispatcher structure, filters, handler groups, conversations | Starter pins v2.0.0-rc.37; this is a release candidate. Do not equate the current branch with that tag. |
 | go-telegram-bot-api/v5 | Existing thin-binding applications with explicit routing | Starter pins v5.5.1, a 2021 release. New Bot API fields can be absent. |
 | gotd/td | User accounts or an MTProto-specific requirement | Separate protocol and credential/session workflow; use the gotd skill. |
 
@@ -22,7 +22,7 @@ In an application module, install only the selected library:
 ```bash
 go get github.com/go-telegram/bot@v1.27.0
 # Alternative:
-go get github.com/PaulSonOfLars/gotgbot/v2@v2.0.0-rc.36
+go get github.com/PaulSonOfLars/gotgbot/v2@v2.0.0-rc.37
 # Existing classic integration:
 go get github.com/go-telegram-bot-api/telegram-bot-api/v5@v5.5.1
 ```
@@ -85,11 +85,15 @@ The base package owns request methods and models. Extension packages provide dis
 - `ext.NewUpdater(dispatcher, opts)` uses that dispatcher.
 - `handlers.NewCommand`, `handlers.NewMessage`, and `handlers.NewCallback` live under `ext/handlers`.
 - Message/callback filters live under `ext/handlers/filters`, including the message.Text predicate used by the asset.
-- `updater.StartPolling(b, &ext.PollingOpts{})` starts reception; Idle keeps the program alive and handles shutdown.
+- `updater.StartPolling(b, &ext.PollingOpts{})` starts reception. `Idle` blocks until `Stop` closes its channel; wire operating-system signals to `updater.Stop()` for graceful shutdown.
 
 An ext.Context provides EffectiveMessage/EffectiveChat for applicable updates. It does not guarantee every update has a message. Handler return errors go to the configured dispatcher error hook. Conversations and handler groups are SDK facilities; persistent business state still needs an application store.
 
 Request methods generally take required positional arguments and an options pointer, rather than a context plus Params struct. For deadlines use RequestOpts supported by the chosen method. Refer to the official webhook and conversation samples for the pinned release rather than inventing ext constructors.
+
+The focused **rc.37** review verified the echo starter's constructor, dispatcher, filter, reply, and polling signatures against that tag; its Go directive remains **1.24**. The release includes a handler-registration concurrency fix and unknown-type decoding. Upstream labels it a prerelease and announces Bot API 10.3 support; check each required model and method rather than treating that announcement as proof of every Telegram feature or live behavior.
+
+When migrating another rc.36 application, recompile its actual API calls: `EditEphemeralMessageText` and its `WithContext` variant move text from a positional argument to `EditEphemeralMessageTextOpts.Text` (or use `RichMessage`). `CanManageTags` changes from `*bool` to `bool` in the affected rights/member structs, and the custom `GetCanManageTags` helpers are removed. The echo uses none of these APIs. The new types ending in `Unknown` retain a raw discriminator and JSON; their merged accessors can return zero values. Handle unknown variants explicitly and require a recognized rights/member type before making authorization decisions.
 
 ## 6. Classic v5: explicit control
 
