@@ -3,7 +3,7 @@ PyYAML==6.0.3
 python-telegram-bot[job-queue,rate-limiter,webhooks]==22.8
 aiogram[redis,i18n]==3.31.0
 Telethon==1.45.0
-fastapi==0.143.2
+fastapi==0.146.0
 httpx==0.28.1
 SQLAlchemy[asyncio]==2.1.5
 aiosqlite==0.22.1
