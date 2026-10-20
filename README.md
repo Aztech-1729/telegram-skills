@@ -28,7 +28,7 @@ npx --yes skills add Aztech-1729/telegram-skills --all
 ```
 
 This installs all **21 complete skills** and targets every agent supported by the
-[skills CLI](https://github.com/vercel-labs/skills#supported-agents), including
+[skills CLI](https://github.com/vercel-labs/skills/blob/v1.7.4/docs/agents.md), including
 Codex, Claude Code and OpenCode. Unconfigured agent directories may be skipped;
 check the installer output and rerun after configuring a host. The command does
 not install agent applications or deploy a Telegram bot. Node.js **22.20+**,
