@@ -18,7 +18,7 @@ npx --yes skills add Aztech-1729/telegram-skills --all
 `--all` selects all skills, targets every agent supported by the CLI and skips
 installer confirmation prompts. Unconfigured agent-specific project directories
 may be skipped; inspect the output and rerun after configuring that host.
-The [supported-agent list](https://github.com/vercel-labs/skills#supported-agents)
+The [supported-agent list](https://github.com/vercel-labs/skills/blob/v1.7.4/docs/agents.md)
 defines the actual coverage. A host needs a compatible skill filesystem; a chat
 interface without access to this project cannot discover a local installation.
 
@@ -30,12 +30,12 @@ npx --yes skills add Aztech-1729/telegram-skills --skill '*' --agent codex claud
 
 Replace the agent list with the CLI IDs you use, such as `cursor` or
 `github-copilot`. Keep `'*'` quoted so your shell passes the wildcard to the
-installer. For a repeatable CLI version, replace `skills` with `skills@1.7.2`.
-The [CLI option definitions](https://github.com/vercel-labs/skills/blob/main/src/cli.ts)
+installer. For a repeatable CLI version, replace `skills` with `skills@1.7.4`.
+The [CLI option definitions](https://github.com/vercel-labs/skills/blob/v1.7.4/src/cli.ts)
 document those flags.
 
 Prerequisites are Git, npm and Node.js **22.20.0 or newer**, as declared by
-[skills 1.7.2](https://registry.npmjs.org/skills/1.7.2). The public download needs
+[skills 1.7.4](https://registry.npmjs.org/skills/1.7.4). The public download needs
 network access but no personal access token, Telegram token or AI API key. If
 PowerShell blocks the `npx.ps1` launcher, use `npx.cmd` with the same arguments.
 
@@ -52,7 +52,7 @@ For a user-wide installation to the three selected agents:
 npx --yes skills add Aztech-1729/telegram-skills --skill '*' --agent codex claude-code opencode --global --yes
 ```
 
-These are the selected CLI 1.7.2 destination directories; append a skill name,
+These are the selected CLI 1.7.4 destination directories; append a skill name,
 such as `telegram-bot-aiogram`, to find its complete folder:
 
 | Agent | Project destination | CLI global destination |
@@ -61,8 +61,8 @@ such as `telegram-bot-aiogram`, to find its complete folder:
 | Claude Code | `.claude/skills/` | `~/.claude/skills/`, or the configured `CLAUDE_CONFIG_DIR/skills/` |
 | OpenCode | `.agents/skills/` | `~/.agents/skills/` |
 
-The [CLI's agent definitions](https://github.com/vercel-labs/skills/blob/main/src/agents.ts)
-and [installer](https://github.com/vercel-labs/skills/blob/main/src/installer.ts)
+The [CLI's agent definitions](https://github.com/vercel-labs/skills/blob/v1.7.4/src/agents.ts)
+and [installer](https://github.com/vercel-labs/skills/blob/v1.7.4/src/installer.ts)
 are the sources for these destinations. Codex and OpenCode use the CLI's shared
 canonical `~/.agents/skills/` tree for global installs in both link and copy
 modes. CLI 1.7.2 corrects Codex's declared agent metadata to match that tree;
@@ -198,7 +198,7 @@ npx --yes skills update --global --yes
 ```
 
 Each command updates all installed skills in that scope, including other packs.
-Its [update documentation](https://github.com/vercel-labs/skills#skills-update)
+Its [update documentation](https://github.com/vercel-labs/skills/blob/v1.7.4/docs/commands.md#skills-update)
 also describes selecting individual names.
 
 Remove one installed skill from the selected project agents:
@@ -215,14 +215,16 @@ the 21 `telegram-bot-` entries:
 npx --yes skills remove --agent codex claude-code opencode
 ```
 
-The [remove command](https://github.com/vercel-labs/skills#skills-remove) accepts
+The [remove command](https://github.com/vercel-labs/skills/blob/v1.7.4/docs/commands.md#skills-remove) accepts
 multiple explicit names. `skills remove --all` removes every skill in its scope;
 it is not a Telegram-pack-only removal command. Avoid editing the CLI's managed
 canonical copies or links by hand.
 
-The 2026-10-11 checks verified installation with CLI 1.7.2 in both linked and
-copied temporary projects. A separate source-removal check on Windows with Node
-24.11.0 exited abnormally with `UV_HANDLE_CLOSING`; removal is not validated on
-that combination. If the CLI crashes during removal, inspect the installed
+The 2026-10-20 checks verified all 21 skills and 176 resources with CLI 1.7.4 on
+Windows with Node 24.11.0, in both linked/all-agent and selected-agent copied
+temporary projects. The 2026-10-11 source-removal check with CLI 1.7.2 and the
+same Node version exited abnormally with `UV_HANDLE_CLOSING`. That failure
+remains unresolved; removal with CLI 1.7.4 was not retested. If the CLI crashes
+during removal, inspect the installed
 entries before another attempt because files may already have changed. Include
 the CLI, Node and platform versions in an upstream bug report.
