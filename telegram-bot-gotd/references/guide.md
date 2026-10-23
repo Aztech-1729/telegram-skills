@@ -1,6 +1,6 @@
 # gotd/td: MTProto implementation reference
 
-Checked on **2026-10-03** against gotd/td **v0.162.0**, with Go **1.25.0** in its module directive. See [sources.md](sources.md).
+Originally audited **2026-10-03**; the core dependency was reviewed **2026-10-23** at gotd/td **v0.163.0**, with its Go **1.25.0** module directive unchanged. See the focused migration review in [sources.md](sources.md).
 
 ## Contents
 
@@ -19,7 +19,7 @@ For large-file requirements compare the official local HTTP Bot API server with 
 Obtain application api_id/api_hash from my.telegram.org; configure APP_ID/APP_HASH. Bot accounts also require BOT_TOKEN. User accounts authenticate through a phone/code/password or supported QR flow.
 
 ```bash
-go get github.com/gotd/td@v0.162.0
+go get github.com/gotd/td@v0.163.0
 ```
 
 Keep the session file or database outside source control, with account-specific paths and restrictive filesystem/backup access. Application credentials, bot tokens and MTProto authorization keys are different secrets. Session persistence avoids unnecessary new authorization; it does not persist business data or update history.

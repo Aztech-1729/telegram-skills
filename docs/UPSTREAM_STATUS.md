@@ -12,8 +12,7 @@ The original editorial audit is recorded separately in each skill's `references/
 
 | Official source | Affected skills | First detected |
 | --- | --- | --- |
-| [https://api.github.com/repos/gotd/td/releases?per_page=10](https://api.github.com/repos/gotd/td/releases?per_page=10) | gotd, gotd-contrib | 2026-10-23T07:38:11Z |
-| [https://proxy.golang.org/github.com/gotd/td/@latest](https://proxy.golang.org/github.com/gotd/td/@latest) | gotd, gotd-contrib | 2026-10-23T07:38:11Z |
+| No changes since the observed baselines | — | — |
 
 ## Unavailable sources
 

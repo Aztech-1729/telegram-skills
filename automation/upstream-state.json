@@ -97,10 +97,15 @@
       ],
       "first_observed_at": "2026-10-03T13:35:28Z",
       "baseline_sha256": "dab2d8bbb7334654396925db32a32927ddd8612a2c6b7bdb0f6d67c1b3ac6e4e",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null,
+      "reviewed_sha256": "39a2bd7674124a6aab2474c376af60a64a49899ff484365e2c9c8b9f1a1ea856",
+      "editorial_reviewed_at": "2026-10-23T07:55:05Z",
       "last_changed_at": "2026-10-23T07:38:11Z",
-      "pending_change_since": "2026-10-23T07:38:11Z"
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "codex:/root",
+        "decision": "updated",
+        "notes": "Reviewed both complete official feed bodies, the immutable v0.163.0 module at 314d9de7c1d08f35534642de6230d8622d324399 and the complete v0.162.0-to-v0.163.0 module comparison. All 218 changed paths are accounted for by full official module ZIPs; the canonical schema advances layer229 to232. Entire session/auth/recovery implementations, upstream go.mod/go.sum and the identity/ordinary-message/dispatcher/reply APIs used by both starters remain unchanged. New generated schema surfaces include breaking custom-verification TextWithEntities, Firebase PNV passkey removal and withdrawal password-to-tmp_password changes; these are documented migration cautions outside the echoes, not a universal compatibility claim. Both exact starter pins and real Go-resolved checksums updated to v0.163.0; contrib0.25.0/bbolt1.5.0/x-time0.16.0 and module directives remain unchanged. Guides/current README pin and focused dated ledgers updated, preserving historical audits and all catalogue URLs/membership/dates; native manifests receive only the required paired1.1.5-to1.1.6 patch. Actual Go1.27.3 on Windows passed all seven existing offline tests, both go vet/build/module-checksum checks and a real temporary bbolt close/reopen, using fake invokers for Telegram requests. No application login, live recovery, wallet/payment operation or Telegram call. Full source evidence heartbeat-gotd-source-comparison-20261023.json; actual runtime heartbeat-gotd-runtime-20261023.json. Native PR/public installation validation remain separate protected publication gates."
+      }
     },
     "https://api.github.com/repos/irazasyed/telegram-bot-sdk/releases?per_page=10": {
       "kind": "github-release",
@@ -4614,10 +4619,15 @@
       "release_versions": [],
       "first_observed_at": "2026-10-04T05:06:32Z",
       "baseline_sha256": "2078d8f4d64b79f09e50ce2e77094d0f9234701bb5821b10037692a0ba18d18b",
-      "reviewed_sha256": null,
-      "editorial_reviewed_at": null,
+      "reviewed_sha256": "be0fc26175435498c8b3d573b0167776b355d2913f07aeeb7b6939240322146b",
+      "editorial_reviewed_at": "2026-10-23T07:55:05Z",
       "last_changed_at": "2026-10-23T07:38:11Z",
-      "pending_change_since": "2026-10-23T07:38:11Z"
+      "review_method": "agent-content-review",
+      "review_record": {
+        "reviewer": "codex:/root",
+        "decision": "updated",
+        "notes": "Reviewed both complete official feed bodies, the immutable v0.163.0 module at 314d9de7c1d08f35534642de6230d8622d324399 and the complete v0.162.0-to-v0.163.0 module comparison. All 218 changed paths are accounted for by full official module ZIPs; the canonical schema advances layer229 to232. Entire session/auth/recovery implementations, upstream go.mod/go.sum and the identity/ordinary-message/dispatcher/reply APIs used by both starters remain unchanged. New generated schema surfaces include breaking custom-verification TextWithEntities, Firebase PNV passkey removal and withdrawal password-to-tmp_password changes; these are documented migration cautions outside the echoes, not a universal compatibility claim. Both exact starter pins and real Go-resolved checksums updated to v0.163.0; contrib0.25.0/bbolt1.5.0/x-time0.16.0 and module directives remain unchanged. Guides/current README pin and focused dated ledgers updated, preserving historical audits and all catalogue URLs/membership/dates; native manifests receive only the required paired1.1.5-to1.1.6 patch. Actual Go1.27.3 on Windows passed all seven existing offline tests, both go vet/build/module-checksum checks and a real temporary bbolt close/reopen, using fake invokers for Telegram requests. No application login, live recovery, wallet/payment operation or Telegram call. Full source evidence heartbeat-gotd-source-comparison-20261023.json; actual runtime heartbeat-gotd-runtime-20261023.json. Native PR/public installation validation remain separate protected publication gates."
+      }
     },
     "https://pypi.org/pypi/Telethon/1.45.0/json": {
       "kind": "document",

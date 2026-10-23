@@ -1,6 +1,6 @@
 # Sources and validation
 
-**Research cutoff and review date: 2026-10-03.** This guide uses **github.com/gotd/td v0.162.0**, published **2026-09-18**, with a **Go 1.25.0** module directive.
+**Original research cutoff and review date: 2026-10-03.** The original baseline was **github.com/gotd/td v0.162.0**, published **2026-09-18**, with a **Go 1.25.0** module directive. The focused review below records the current starter pin.
 
 ## Primary project sources
 
@@ -35,3 +35,11 @@ The guide deliberately separates protocol/session recovery from application dura
 ## Focused audit — 2026-10-04
 
 The [official module release feed](https://proxy.golang.org/github.com/gotd/td/@latest) still reports v0.162.0. [Client.Self](https://pkg.go.dev/github.com/gotd/td@v0.162.0/telegram#Client.Self) returns the current tg.User; its Bot flag and ID identify the restored account. The starter now refuses a user/different-bot session and gates the whole update chain until verification. [Update-handler adapters](https://github.com/gotd/td/blob/v0.162.0/telegram/client.go) and [peer helpers](https://github.com/gotd/td/blob/v0.162.0/telegram/message/peer.go) establish the tested wiring. Three offline tests pass with Go 1.27.0, covering token/identity refusal, readiness and typed reply/error propagation through a fake invoker; module checksums verify. No application authentication or real recovery was performed.
+
+## Core dependency review — 2026-10-23
+
+The starter now pins **gotd/td v0.163.0**, published **2026-10-22**, as confirmed by the [official module feed](https://proxy.golang.org/github.com/gotd/td/@latest). The immutable tag resolves to `314d9de7c1d08f35534642de6230d8622d324399`. Its upstream Go **1.25.0** directive and dependency manifest are unchanged.
+
+The complete module comparison accounts for all 218 changed files and the schema advance from layer **229** to **232**. Session/authentication/recovery implementations and the used client, identity, ordinary-message, dispatcher and reply interfaces remain unchanged; the echo needs no application-source migration. The generated schema includes breaking changes outside the example: custom verification descriptions use `TextWithEntities`, the Firebase PNV passkey credential constructor is removed, and StarGift withdrawal uses `tmp_password` instead of `password`. Applications using those raw APIs need a separate migration; the echo's compatibility does not establish universal source compatibility.
+
+With **Go 1.27.3 on Windows**, all three existing offline tests, `go vet ./...`, `go build` and `go mod verify` pass at v0.163.0. Tests use a fake invoker for identity/update gating, reply routing and returned errors. No Telegram application, login, real-server recovery or transfer was run.
