@@ -226,7 +226,7 @@ instructional source plus reusable examples; it is not a single deployed bot.
 | Telegram | Bot API 10.3 · 2026-08-24 |
 | Python | PTB 22.8 · aiogram 3.31.0 · Telethon 1.45.0 |
 | Go HTTP | go-telegram/bot 1.27.0 · gotgbot 2.0.0-rc.37 (prerelease) · classic 5.5.1 |
-| Go MTProto | gotd 0.162.0 · contrib 0.25.0 |
+| Go MTProto | gotd 0.163.0 · contrib 0.25.0 |
 | JavaScript | grammY 1.46.0 · Telegraf 4.16.3 |
 | Java | TelegramBots 10.3.0 · Pengrad 10.3.0 |
 | .NET | Telegram.Bot 22.10.3.3 |

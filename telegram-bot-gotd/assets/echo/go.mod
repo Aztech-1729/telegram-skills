@@ -2,7 +2,7 @@ module example.com/telegram-gotd-echo
 
 go 1.25.0
 
-require github.com/gotd/td v0.162.0
+require github.com/gotd/td v0.163.0
 
 require (
 	github.com/andybalholm/brotli v1.2.1 // indirect

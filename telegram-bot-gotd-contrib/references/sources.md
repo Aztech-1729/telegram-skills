@@ -1,6 +1,6 @@
 # Sources and validation
 
-**Research cutoff and review date: 2026-10-03.** Checked module pins: **gotd/contrib v0.25.0** (2026-07-15) and **gotd/td v0.162.0** (2026-09-18); both declare Go **1.25.0**.
+**Original research cutoff and review date: 2026-10-03.** Original checked module pins: **gotd/contrib v0.25.0** (2026-07-15) and **gotd/td v0.162.0** (2026-09-18); both declare Go **1.25.0**. The focused review below records the current core pin.
 
 ## Primary references
 
@@ -32,3 +32,11 @@ No Telegram application was run. Four offline tests cover identity/update-chain 
 ## Focused audit — 2026-10-04
 
 The [contrib release feed](https://proxy.golang.org/github.com/gotd/contrib/@latest) and [core release feed](https://proxy.golang.org/github.com/gotd/td/@latest) still report v0.25.0 and v0.162.0. The [bbolt session adapter](https://github.com/gotd/contrib/blob/v0.25.0/bbolt/session.go) and [state adapter](https://github.com/gotd/contrib/blob/v0.25.0/bbolt/state_storage.go) define the separately tested interfaces. [Self's identity](https://pkg.go.dev/github.com/gotd/td@v0.162.0/telegram#Client.Self) is verified before peer collection or recovery update forwarding. The ready gate deliberately drops pre-verification updates; its local tests do not prove real startup/channel gap recovery or a durable business outbox.
+
+## Core dependency review — 2026-10-23
+
+The reliable starter now pins **gotd/td v0.163.0**, published **2026-10-22**, while **contrib v0.25.0**, **bbolt v1.5.0**, **x/time v0.16.0** and its resolved **Go 1.26.0** module directive remain unchanged. The [official core feed](https://proxy.golang.org/github.com/gotd/td/@latest) identifies immutable tag commit `314d9de7c1d08f35534642de6230d8622d324399`; the [contrib feed](https://proxy.golang.org/github.com/gotd/contrib/@latest) still reports v0.25.0.
+
+The complete core module comparison preserves the session, authentication and recovery implementations and the interfaces used by the unchanged contrib adapters. Layer **229** advances to **232** without requiring application-source edits in the reliable echo. See the [core migration review](../../telegram-bot-gotd/references/sources.md) for generated raw-API changes outside these examples; this review establishes compatibility for the bundled wiring, not all possible contrib applications or live recovery behavior.
+
+With **Go 1.27.3 on Windows**, all four existing offline tests, `go vet ./...`, `go build` and `go mod verify` pass with the new core pin. The temporary bbolt close/reopen test exercises session/global/channel-pts persistence and account separation; the other fixtures use a fake invoker. No Telegram application, authentication, live gap recovery, floodwait timing or external storage/exporter service was exercised.

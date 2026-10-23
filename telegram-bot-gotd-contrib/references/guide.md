@@ -1,6 +1,6 @@
 # gotd/contrib: operational integration reference
 
-Checked **2026-10-03** with contrib **v0.25.0** and gotd/td **v0.162.0**. See [sources.md](sources.md) for primary sources.
+Originally audited **2026-10-03** with contrib **v0.25.0**; the core dependency was reviewed **2026-10-23** at gotd/td **v0.163.0**. See the focused migration review in [sources.md](sources.md). The contrib pin remains unchanged.
 
 ## Contents
 
