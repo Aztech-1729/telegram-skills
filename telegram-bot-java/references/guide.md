@@ -39,7 +39,7 @@ The [original EchoBot](../assets/echo/src/main/java/EchoBot.java) uses DefaultLo
 
 Copy the asset directory into the application's chosen location. `mvn verify` compiles it and runs the offline fixture tests; `mvn exec:java -Dexec.mainClass=EchoBot` deliberately starts polling after configuration. Running registers/connects a real bot; documentation checks must not execute it.
 
-The starter's test-only dependency is JUnit Jupiter **6.1.3** with Maven Surefire **3.6.0**. JUnit 6 requires a [Java 17 or newer test runtime](https://docs.junit.org/6.1.3/overview.html) and [Surefire/Failsafe 3.0.0 or newer](https://docs.junit.org/6.1.3/running-tests/build-support.html). Keep JUnit Platform/Jupiter versions aligned when adding test modules; this test-tooling upgrade does not change the Telegram SDK or polling lifecycle.
+The starter's test-only dependency is JUnit Jupiter **6.1.3** with [Maven Surefire **3.6.1**](https://github.com/apache/maven-surefire/releases/tag/surefire-3.6.1). JUnit 6 requires a [Java 17 or newer test runtime](https://docs.junit.org/6.1.3/overview.html) and [Surefire/Failsafe 3.0.0 or newer](https://docs.junit.org/6.1.3/running-tests/build-support.html). Keep JUnit Platform/Jupiter versions aligned when adding test modules; this test-tooling upgrade does not change the Telegram SDK or polling lifecycle.
 
 TelegramBots separates the HTTP client from the update receiver. Old TelegramLongPollingBot/TelegramBotsApi tutorials belong to a different generation and cannot be combined with the modular setup by renaming one import.
 
