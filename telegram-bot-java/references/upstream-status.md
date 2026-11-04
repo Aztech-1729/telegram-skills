@@ -1,8 +1,8 @@
 # Upstream observations
 
-Generated from the source check at **2026-11-03T12:15:21Z**.
+Generated from the source check at **2026-11-04T12:26:54Z**.
 
-20 tracked sources; 0 unavailable; 0 changed sources await content review.
+20 tracked sources; 0 unavailable; 1 changed sources await content review.
 
 Read [the source register](sources.md) for the editorial review and framework baseline. These machine observations do not certify compatibility or advance that review date. Compare your installed dependency with the observed versions before using new APIs.
 
@@ -15,6 +15,6 @@ Read [the source register](sources.md) for the editorial review and framework ba
 
 ## Changes and availability
 
-All tracked sources were available and no unresolved change was detected against the stored observations.
+- Content changed: [https://github.com/pengrad/java-telegram-bot-api](https://github.com/pengrad/java-telegram-bot-api); first detected 2026-11-04T12:26:54Z.
 
 See the [repository source status](https://github.com/Aztech-1729/telegram-skills/blob/main/docs/UPSTREAM_STATUS.md) and [automation policy](https://github.com/Aztech-1729/telegram-skills/blob/main/docs/AUTOMATION.md) for coverage and review steps.
