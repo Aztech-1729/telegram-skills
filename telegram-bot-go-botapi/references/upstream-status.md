@@ -1,8 +1,8 @@
 # Upstream observations
 
-Generated from the source check at **2026-11-09T13:16:46Z**.
+Generated from the source check at **2026-11-10T12:54:48Z**.
 
-18 tracked sources; 0 unavailable; 1 changed sources await content review.
+18 tracked sources; 0 unavailable; 3 changed sources await content review.
 
 Read [the source register](sources.md) for the editorial review and framework baseline. These machine observations do not certify compatibility or advance that review date. Compare your installed dependency with the observed versions before using new APIs.
 
@@ -11,10 +11,12 @@ Read [the source register](sources.md) for the editorial review and framework ba
 | Official feed | Observed versions |
 | --- | --- |
 | [https://api.github.com/repos/PaulSonOfLars/gotgbot/releases?per_page=10](https://api.github.com/repos/PaulSonOfLars/gotgbot/releases?per_page=10) (includes release candidates) | v2.0.0-rc.37, v2.0.0-rc.36, v2.0.0-rc.35, v2.0.0-rc.34, v2.0.0-rc.33 |
-| [https://api.github.com/repos/go-telegram/bot/releases?per_page=10](https://api.github.com/repos/go-telegram/bot/releases?per_page=10) | v1.27.0, v1.26.0, v1.25.0, v1.24.0, v1.23.0 |
+| [https://api.github.com/repos/go-telegram/bot/releases?per_page=10](https://api.github.com/repos/go-telegram/bot/releases?per_page=10) | v1.28.0, v1.27.0, v1.26.0, v1.25.0, v1.24.0 |
 
 ## Changes and availability
 
+- Content changed: [https://api.github.com/repos/go-telegram/bot/releases?per_page=10](https://api.github.com/repos/go-telegram/bot/releases?per_page=10); first detected 2026-11-10T12:54:48Z.
 - Content changed: [https://core.telegram.org/bots/api](https://core.telegram.org/bots/api); first detected 2026-11-09T13:16:46Z.
+- Content changed: [https://proxy.golang.org/github.com/go-telegram/bot/@latest](https://proxy.golang.org/github.com/go-telegram/bot/@latest); first detected 2026-11-10T12:54:48Z.
 
 See the [repository source status](https://github.com/Aztech-1729/telegram-skills/blob/main/docs/UPSTREAM_STATUS.md) and [automation policy](https://github.com/Aztech-1729/telegram-skills/blob/main/docs/AUTOMATION.md) for coverage and review steps.
