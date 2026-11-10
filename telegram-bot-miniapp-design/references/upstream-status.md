@@ -1,8 +1,8 @@
 # Upstream observations
 
-Generated from the source check at **2026-11-09T13:16:46Z**.
+Generated from the source check at **2026-11-10T12:54:48Z**.
 
-5 tracked sources; 0 unavailable; 2 changed sources await content review.
+5 tracked sources; 0 unavailable; 3 changed sources await content review.
 
 Read [the source register](sources.md) for the editorial review and framework baseline. These machine observations do not certify compatibility or advance that review date. Compare your installed dependency with the observed versions before using new APIs.
 
@@ -14,6 +14,7 @@ Read [the source register](sources.md) for the editorial review and framework ba
 
 ## Changes and availability
 
+- Content changed: [https://core.telegram.org/bots/webapps](https://core.telegram.org/bots/webapps); first detected 2026-11-10T12:54:48Z.
 - Content changed: [https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html); first detected 2026-11-06T12:23:25Z.
 - Content changed: [https://www.w3.org/WAI/WCAG22/Understanding/reflow.html](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html); first detected 2026-11-06T12:23:25Z.
 

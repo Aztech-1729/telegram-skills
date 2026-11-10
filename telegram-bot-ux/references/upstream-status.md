@@ -1,8 +1,8 @@
 # Upstream observations
 
-Generated from the source check at **2026-11-09T13:16:46Z**.
+Generated from the source check at **2026-11-10T12:54:48Z**.
 
-4 tracked sources; 0 unavailable; 2 changed sources await content review.
+4 tracked sources; 0 unavailable; 3 changed sources await content review.
 
 Read [the source register](sources.md) for the editorial review and framework baseline. These machine observations do not certify compatibility or advance that review date. Compare your installed dependency with the observed versions before using new APIs.
 
@@ -15,6 +15,7 @@ Read [the source register](sources.md) for the editorial review and framework ba
 ## Changes and availability
 
 - Content changed: [https://core.telegram.org/bots/api](https://core.telegram.org/bots/api); first detected 2026-11-09T13:16:46Z.
+- Content changed: [https://core.telegram.org/bots/webapps](https://core.telegram.org/bots/webapps); first detected 2026-11-10T12:54:48Z.
 - Content changed: [https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html); first detected 2026-11-06T12:23:25Z.
 
 See the [repository source status](https://github.com/Aztech-1729/telegram-skills/blob/main/docs/UPSTREAM_STATUS.md) and [automation policy](https://github.com/Aztech-1729/telegram-skills/blob/main/docs/AUTOMATION.md) for coverage and review steps.
