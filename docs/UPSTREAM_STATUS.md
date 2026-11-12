@@ -1,8 +1,8 @@
 # Upstream source status
 
-Last attempted check: **2026-11-11T12:04:51Z**.
+Last attempted check: **2026-11-12T13:09:07Z**.
 
-274 sources: 266 unchanged, 8 changed this run, 0 newly observed, 0 unavailable.
+274 sources: 263 unchanged, 11 changed this run, 0 newly observed, 0 unavailable.
 
 This generated report checks the official source ledgers and configured release feeds. A successful fetch establishes an observed content hash. It does **not** certify that a person or agent reviewed the content, that the guides support the new release, or that examples were tested against it.
 
@@ -13,6 +13,8 @@ The original editorial audit is recorded separately in each skill's `references/
 | Official source | Affected skills | First detected |
 | --- | --- | --- |
 | [https://api.github.com/repos/go-telegram/bot/releases?per_page=10](https://api.github.com/repos/go-telegram/bot/releases?per_page=10) | go-botapi | 2026-11-10T12:54:48Z |
+| [https://api.github.com/repos/gotd/contrib/releases?per_page=10](https://api.github.com/repos/gotd/contrib/releases?per_page=10) | gotd-contrib | 2026-11-12T13:09:07Z |
+| [https://api.github.com/repos/gotd/td/releases?per_page=10](https://api.github.com/repos/gotd/td/releases?per_page=10) | gotd, gotd-contrib | 2026-11-12T13:09:07Z |
 | [https://api.github.com/repos/php-telegram-bot/core/releases?per_page=10](https://api.github.com/repos/php-telegram-bot/core/releases?per_page=10) | php | 2026-11-11T12:04:51Z |
 | [https://api.nuget.org/v3-flatcontainer/telegram.bot/index.json](https://api.nuget.org/v3-flatcontainer/telegram.bot/index.json) | dotnet | 2026-11-10T12:54:48Z |
 | [https://core.telegram.org/bots/api](https://core.telegram.org/bots/api) | advanced-features, aiogram, fundamentals, go-botapi, java, keyboards-ui, miniapps, payments-stars, python-telegram-bot, recipes, rich-messaging, rust, ux | 2026-11-09T13:16:46Z |
@@ -29,6 +31,8 @@ The original editorial audit is recorded separately in each skill's `references/
 | [https://github.com/php-telegram-bot/core](https://github.com/php-telegram-bot/core) | php | 2026-11-06T12:23:25Z |
 | [https://gotd.dev/docs/helpers/middleware/](https://gotd.dev/docs/helpers/middleware/) | gotd-contrib | 2026-11-08T11:28:10Z |
 | [https://proxy.golang.org/github.com/go-telegram/bot/@latest](https://proxy.golang.org/github.com/go-telegram/bot/@latest) | go-botapi | 2026-11-10T12:54:48Z |
+| [https://proxy.golang.org/github.com/gotd/contrib/@latest](https://proxy.golang.org/github.com/gotd/contrib/@latest) | gotd-contrib | 2026-11-12T13:09:07Z |
+| [https://proxy.golang.org/github.com/gotd/td/@latest](https://proxy.golang.org/github.com/gotd/td/@latest) | gotd, gotd-contrib | 2026-11-12T13:09:07Z |
 | [https://registry.npmjs.org/skills/latest](https://registry.npmjs.org/skills/latest) | shared infrastructure | 2026-11-03T04:59:40Z |
 | [https://www.nuget.org/packages/Telegram.Bot/22.10.3.2](https://www.nuget.org/packages/Telegram.Bot/22.10.3.2) | dotnet | 2026-11-03T12:15:21Z |
 | [https://www.nuget.org/packages/Telegram.Bot/22.10.3.3](https://www.nuget.org/packages/Telegram.Bot/22.10.3.3) | dotnet | 2026-11-03T12:15:21Z |
@@ -54,24 +58,24 @@ Versions below are upstream observations, not upgraded or certified example depe
 
 | Feed | Observed versions (gotgbot includes release candidates) | Last successful check |
 | --- | --- | --- |
-| [https://api.github.com/repos/PaulSonOfLars/gotgbot/releases?per_page=10](https://api.github.com/repos/PaulSonOfLars/gotgbot/releases?per_page=10) | v2.0.0-rc.37, v2.0.0-rc.36, v2.0.0-rc.35, v2.0.0-rc.34, v2.0.0-rc.33 | 2026-11-11T12:04:51Z |
-| [https://api.github.com/repos/go-telegram/bot/releases?per_page=10](https://api.github.com/repos/go-telegram/bot/releases?per_page=10) | v1.28.0, v1.27.0, v1.26.0, v1.25.0, v1.24.0 | 2026-11-11T12:04:51Z |
-| [https://api.github.com/repos/gotd/contrib/releases?per_page=10](https://api.github.com/repos/gotd/contrib/releases?per_page=10) | v0.25.0, v0.24.0, v0.23.0, v0.22.0, v0.21.1 | 2026-11-11T12:04:51Z |
-| [https://api.github.com/repos/gotd/td/releases?per_page=10](https://api.github.com/repos/gotd/td/releases?per_page=10) | v0.163.0, v0.162.0, v0.161.0, v0.160.0, v0.159.0 | 2026-11-11T12:04:51Z |
-| [https://api.github.com/repos/irazasyed/telegram-bot-sdk/releases?per_page=10](https://api.github.com/repos/irazasyed/telegram-bot-sdk/releases?per_page=10) | v3.16.0, v3.15.0, v3.14.0, v3.13.0, v3.12.0 | 2026-11-11T12:04:51Z |
-| [https://api.github.com/repos/pengrad/java-telegram-bot-api/releases?per_page=10](https://api.github.com/repos/pengrad/java-telegram-bot-api/releases?per_page=10) | 10.3.0, 10.1.0, 10.0.0, 9.6.0, 9.5.0 | 2026-11-11T12:04:51Z |
-| [https://api.github.com/repos/php-telegram-bot/core/releases?per_page=10](https://api.github.com/repos/php-telegram-bot/core/releases?per_page=10) | 0.84.0, 0.83.1, 0.83.0, 0.82.0, 0.81.0 | 2026-11-11T12:04:51Z |
-| [https://api.github.com/repos/rubenlagus/TelegramBots/releases?per_page=10](https://api.github.com/repos/rubenlagus/TelegramBots/releases?per_page=10) | v10.3.0, v10.2.1, v10.2.0, v10.1.1, v10.1.0 | 2026-11-11T12:04:51Z |
-| [https://api.github.com/repos/teloxide/teloxide/releases?per_page=10](https://api.github.com/repos/teloxide/teloxide/releases?per_page=10) | v0.17.0, v0.16.0, v0.15.0, v0.14.1, v0.14.0 | 2026-11-11T12:04:51Z |
-| [https://api.nuget.org/v3-flatcontainer/telegram.bot/index.json](https://api.nuget.org/v3-flatcontainer/telegram.bot/index.json) | 22.10.4, 22.10.3.4, 22.10.3.3, 22.10.3.2, 22.10.3.1 | 2026-11-11T12:04:51Z |
-| [https://crates.io/api/v1/crates/teloxide](https://crates.io/api/v1/crates/teloxide) | 0.17.0 | 2026-11-11T12:04:51Z |
-| [https://pypi.org/pypi/Telethon/json](https://pypi.org/pypi/Telethon/json) | 1.45.0 | 2026-11-11T12:04:51Z |
-| [https://pypi.org/pypi/aiogram/json](https://pypi.org/pypi/aiogram/json) | 3.31.0 | 2026-11-11T12:04:51Z |
-| [https://pypi.org/pypi/python-telegram-bot/json](https://pypi.org/pypi/python-telegram-bot/json) | 22.8 | 2026-11-11T12:04:51Z |
-| [https://registry.npmjs.org/grammy/latest](https://registry.npmjs.org/grammy/latest) | 1.46.0 | 2026-11-11T12:04:51Z |
-| [https://registry.npmjs.org/skills/latest](https://registry.npmjs.org/skills/latest) | 1.8.1 | 2026-11-11T12:04:51Z |
-| [https://registry.npmjs.org/telegraf/latest](https://registry.npmjs.org/telegraf/latest) | 4.16.3 | 2026-11-11T12:04:51Z |
-| [https://repo.packagist.org/p2/irazasyed/telegram-bot-sdk.json](https://repo.packagist.org/p2/irazasyed/telegram-bot-sdk.json) | v3.16.0, v3.15.0, v3.14.0, v3.13.0, v3.12.0 | 2026-11-11T12:04:51Z |
+| [https://api.github.com/repos/PaulSonOfLars/gotgbot/releases?per_page=10](https://api.github.com/repos/PaulSonOfLars/gotgbot/releases?per_page=10) | v2.0.0-rc.37, v2.0.0-rc.36, v2.0.0-rc.35, v2.0.0-rc.34, v2.0.0-rc.33 | 2026-11-12T13:09:07Z |
+| [https://api.github.com/repos/go-telegram/bot/releases?per_page=10](https://api.github.com/repos/go-telegram/bot/releases?per_page=10) | v1.28.0, v1.27.0, v1.26.0, v1.25.0, v1.24.0 | 2026-11-12T13:09:07Z |
+| [https://api.github.com/repos/gotd/contrib/releases?per_page=10](https://api.github.com/repos/gotd/contrib/releases?per_page=10) | v0.26.0, v0.25.0, v0.24.0, v0.23.0, v0.22.0 | 2026-11-12T13:09:07Z |
+| [https://api.github.com/repos/gotd/td/releases?per_page=10](https://api.github.com/repos/gotd/td/releases?per_page=10) | v0.165.0, v0.164.1, v0.164.0, v0.163.0, v0.162.0 | 2026-11-12T13:09:07Z |
+| [https://api.github.com/repos/irazasyed/telegram-bot-sdk/releases?per_page=10](https://api.github.com/repos/irazasyed/telegram-bot-sdk/releases?per_page=10) | v3.16.0, v3.15.0, v3.14.0, v3.13.0, v3.12.0 | 2026-11-12T13:09:07Z |
+| [https://api.github.com/repos/pengrad/java-telegram-bot-api/releases?per_page=10](https://api.github.com/repos/pengrad/java-telegram-bot-api/releases?per_page=10) | 10.3.0, 10.1.0, 10.0.0, 9.6.0, 9.5.0 | 2026-11-12T13:09:07Z |
+| [https://api.github.com/repos/php-telegram-bot/core/releases?per_page=10](https://api.github.com/repos/php-telegram-bot/core/releases?per_page=10) | 0.84.0, 0.83.1, 0.83.0, 0.82.0, 0.81.0 | 2026-11-12T13:09:07Z |
+| [https://api.github.com/repos/rubenlagus/TelegramBots/releases?per_page=10](https://api.github.com/repos/rubenlagus/TelegramBots/releases?per_page=10) | v10.3.0, v10.2.1, v10.2.0, v10.1.1, v10.1.0 | 2026-11-12T13:09:07Z |
+| [https://api.github.com/repos/teloxide/teloxide/releases?per_page=10](https://api.github.com/repos/teloxide/teloxide/releases?per_page=10) | v0.17.0, v0.16.0, v0.15.0, v0.14.1, v0.14.0 | 2026-11-12T13:09:07Z |
+| [https://api.nuget.org/v3-flatcontainer/telegram.bot/index.json](https://api.nuget.org/v3-flatcontainer/telegram.bot/index.json) | 22.10.4, 22.10.3.4, 22.10.3.3, 22.10.3.2, 22.10.3.1 | 2026-11-12T13:09:07Z |
+| [https://crates.io/api/v1/crates/teloxide](https://crates.io/api/v1/crates/teloxide) | 0.17.0 | 2026-11-12T13:09:07Z |
+| [https://pypi.org/pypi/Telethon/json](https://pypi.org/pypi/Telethon/json) | 1.45.0 | 2026-11-12T13:09:07Z |
+| [https://pypi.org/pypi/aiogram/json](https://pypi.org/pypi/aiogram/json) | 3.31.0 | 2026-11-12T13:09:07Z |
+| [https://pypi.org/pypi/python-telegram-bot/json](https://pypi.org/pypi/python-telegram-bot/json) | 22.8 | 2026-11-12T13:09:07Z |
+| [https://registry.npmjs.org/grammy/latest](https://registry.npmjs.org/grammy/latest) | 1.46.0 | 2026-11-12T13:09:07Z |
+| [https://registry.npmjs.org/skills/latest](https://registry.npmjs.org/skills/latest) | 1.8.1 | 2026-11-12T13:09:07Z |
+| [https://registry.npmjs.org/telegraf/latest](https://registry.npmjs.org/telegraf/latest) | 4.16.3 | 2026-11-12T13:09:07Z |
+| [https://repo.packagist.org/p2/irazasyed/telegram-bot-sdk.json](https://repo.packagist.org/p2/irazasyed/telegram-bot-sdk.json) | v3.16.0, v3.15.0, v3.14.0, v3.13.0, v3.12.0 | 2026-11-12T13:09:07Z |
 
 ## Coverage and operation
 
