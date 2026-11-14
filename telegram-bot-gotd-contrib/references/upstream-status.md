@@ -1,6 +1,6 @@
 # Upstream observations
 
-Generated from the source check at **2026-11-13T12:32:38Z**.
+Generated from the source check at **2026-11-14T11:42:24Z**.
 
 25 tracked sources; 0 unavailable; 5 changed sources await content review.
 
@@ -11,7 +11,7 @@ Read [the source register](sources.md) for the editorial review and framework ba
 | Official feed | Observed versions |
 | --- | --- |
 | [https://api.github.com/repos/gotd/contrib/releases?per_page=10](https://api.github.com/repos/gotd/contrib/releases?per_page=10) | v0.26.0, v0.25.0, v0.24.0, v0.23.0, v0.22.0 |
-| [https://api.github.com/repos/gotd/td/releases?per_page=10](https://api.github.com/repos/gotd/td/releases?per_page=10) | v0.165.1, v0.165.0, v0.164.1, v0.164.0, v0.163.0 |
+| [https://api.github.com/repos/gotd/td/releases?per_page=10](https://api.github.com/repos/gotd/td/releases?per_page=10) | v0.166.0, v0.165.1, v0.165.0, v0.164.1, v0.164.0 |
 
 ## Changes and availability
 
