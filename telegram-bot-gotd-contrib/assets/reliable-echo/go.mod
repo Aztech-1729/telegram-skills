@@ -4,7 +4,7 @@ go 1.26.0
 
 require (
 	github.com/gotd/contrib v0.26.0
-	github.com/gotd/td v0.164.0
+	github.com/gotd/td v0.166.1
 	go.etcd.io/bbolt v1.5.0
 	golang.org/x/time v0.16.0
 )
