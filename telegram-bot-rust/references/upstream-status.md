@@ -1,8 +1,8 @@
 # Upstream observations
 
-Generated from the source check at **2026-11-20T13:30:02Z**.
+Generated from the source check at **2026-11-21T12:56:15Z**.
 
-23 tracked sources; 1 unavailable; 2 changed sources await content review.
+23 tracked sources; 0 unavailable; 2 changed sources await content review.
 
 Read [the source register](sources.md) for the editorial review and framework baseline. These machine observations do not certify compatibility or advance that review date. Compare your installed dependency with the observed versions before using new APIs.
 
@@ -17,6 +17,5 @@ Read [the source register](sources.md) for the editorial review and framework ba
 
 - Content changed: [https://core.telegram.org/bots/api](https://core.telegram.org/bots/api); first detected 2026-11-09T13:16:46Z.
 - Content changed: [https://crates.io/api/v1/crates/teloxide/0.17.0](https://crates.io/api/v1/crates/teloxide/0.17.0); first detected 2026-11-03T12:15:21Z.
-- Unavailable: [https://api.github.com/repos/teloxide/teloxide/releases?per_page=10](https://api.github.com/repos/teloxide/teloxide/releases?per_page=10); http_403. Last successful evidence is retained.
 
 See the [repository source status](https://github.com/Aztech-1729/telegram-skills/blob/main/docs/UPSTREAM_STATUS.md) and [automation policy](https://github.com/Aztech-1729/telegram-skills/blob/main/docs/AUTOMATION.md) for coverage and review steps.
