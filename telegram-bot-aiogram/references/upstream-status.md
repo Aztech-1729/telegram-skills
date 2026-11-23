@@ -1,6 +1,6 @@
 # Upstream observations
 
-Generated from the source check at **2026-11-22T12:48:36Z**.
+Generated from the source check at **2026-11-23T15:13:57Z**.
 
 28 tracked sources; 0 unavailable; 4 changed sources await content review.
 
@@ -10,7 +10,7 @@ Read [the source register](sources.md) for the editorial review and framework ba
 
 | Official feed | Observed versions |
 | --- | --- |
-| [https://pypi.org/pypi/aiogram/json](https://pypi.org/pypi/aiogram/json) | 3.33.0 |
+| [https://pypi.org/pypi/aiogram/json](https://pypi.org/pypi/aiogram/json) | 3.34.0 |
 
 ## Changes and availability
 
