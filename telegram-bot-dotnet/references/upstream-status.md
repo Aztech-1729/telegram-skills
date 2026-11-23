@@ -1,6 +1,6 @@
 # Upstream observations
 
-Generated from the source check at **2026-11-22T12:48:36Z**.
+Generated from the source check at **2026-11-23T15:13:57Z**.
 
 14 tracked sources; 0 unavailable; 3 changed sources await content review.
 
@@ -10,7 +10,7 @@ Read [the source register](sources.md) for the editorial review and framework ba
 
 | Official feed | Observed versions |
 | --- | --- |
-| [https://api.nuget.org/v3-flatcontainer/telegram.bot/index.json](https://api.nuget.org/v3-flatcontainer/telegram.bot/index.json) | 22.10.4, 22.10.3.4, 22.10.3.3, 22.10.3.2, 22.10.3.1 |
+| [https://api.nuget.org/v3-flatcontainer/telegram.bot/index.json](https://api.nuget.org/v3-flatcontainer/telegram.bot/index.json) | 22.10.5, 22.10.4, 22.10.3.4, 22.10.3.3, 22.10.3.2 |
 
 ## Changes and availability
 
