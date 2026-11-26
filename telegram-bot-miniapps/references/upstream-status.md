@@ -1,6 +1,6 @@
 # Upstream observations
 
-Generated from the source check at **2026-11-25T14:51:21Z**.
+Generated from the source check at **2026-11-26T14:18:03Z**.
 
 9 tracked sources; 0 unavailable; 4 changed sources await content review.
 
